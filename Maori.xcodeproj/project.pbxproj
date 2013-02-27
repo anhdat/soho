@@ -1,0 +1,310 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		1A2C714616DE515D00091C15 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1A2C714516DE515D00091C15 /* Cocoa.framework */; };
+		1A2C715016DE515D00091C15 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 1A2C714E16DE515D00091C15 /* InfoPlist.strings */; };
+		1A2C715216DE515D00091C15 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A2C715116DE515D00091C15 /* main.m */; };
+		1A2C715616DE515D00091C15 /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 1A2C715416DE515D00091C15 /* Credits.rtf */; };
+		1A2C715916DE515D00091C15 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A2C715816DE515D00091C15 /* AppDelegate.m */; };
+		1A2C715C16DE515D00091C15 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1A2C715A16DE515D00091C15 /* MainMenu.xib */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		1A2C714216DE515D00091C15 /* Maori.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Maori.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		1A2C714516DE515D00091C15 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
+		1A2C714816DE515D00091C15 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
+		1A2C714916DE515D00091C15 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		1A2C714A16DE515D00091C15 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		1A2C714D16DE515D00091C15 /* Maori-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Maori-Info.plist"; sourceTree = "<group>"; };
+		1A2C714F16DE515D00091C15 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		1A2C715116DE515D00091C15 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		1A2C715316DE515D00091C15 /* Maori-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Maori-Prefix.pch"; sourceTree = "<group>"; };
+		1A2C715516DE515D00091C15 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = en; path = en.lproj/Credits.rtf; sourceTree = "<group>"; };
+		1A2C715716DE515D00091C15 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		1A2C715816DE515D00091C15 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		1A2C715B16DE515D00091C15 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainMenu.xib; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		1A2C713F16DE515D00091C15 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1A2C714616DE515D00091C15 /* Cocoa.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		1A2C713916DE515D00091C15 = {
+			isa = PBXGroup;
+			children = (
+				1A2C714B16DE515D00091C15 /* Maori */,
+				1A2C714416DE515D00091C15 /* Frameworks */,
+				1A2C714316DE515D00091C15 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		1A2C714316DE515D00091C15 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				1A2C714216DE515D00091C15 /* Maori.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		1A2C714416DE515D00091C15 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				1A2C714516DE515D00091C15 /* Cocoa.framework */,
+				1A2C714716DE515D00091C15 /* Other Frameworks */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		1A2C714716DE515D00091C15 /* Other Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				1A2C714816DE515D00091C15 /* AppKit.framework */,
+				1A2C714916DE515D00091C15 /* CoreData.framework */,
+				1A2C714A16DE515D00091C15 /* Foundation.framework */,
+			);
+			name = "Other Frameworks";
+			sourceTree = "<group>";
+		};
+		1A2C714B16DE515D00091C15 /* Maori */ = {
+			isa = PBXGroup;
+			children = (
+				1A2C715716DE515D00091C15 /* AppDelegate.h */,
+				1A2C715816DE515D00091C15 /* AppDelegate.m */,
+				1A2C715A16DE515D00091C15 /* MainMenu.xib */,
+				1A2C714C16DE515D00091C15 /* Supporting Files */,
+			);
+			path = Maori;
+			sourceTree = "<group>";
+		};
+		1A2C714C16DE515D00091C15 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				1A2C714D16DE515D00091C15 /* Maori-Info.plist */,
+				1A2C714E16DE515D00091C15 /* InfoPlist.strings */,
+				1A2C715116DE515D00091C15 /* main.m */,
+				1A2C715316DE515D00091C15 /* Maori-Prefix.pch */,
+				1A2C715416DE515D00091C15 /* Credits.rtf */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		1A2C714116DE515D00091C15 /* Maori */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 1A2C715F16DE515D00091C15 /* Build configuration list for PBXNativeTarget "Maori" */;
+			buildPhases = (
+				1A2C713E16DE515D00091C15 /* Sources */,
+				1A2C713F16DE515D00091C15 /* Frameworks */,
+				1A2C714016DE515D00091C15 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Maori;
+			productName = Maori;
+			productReference = 1A2C714216DE515D00091C15 /* Maori.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		1A2C713A16DE515D00091C15 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0460;
+				ORGANIZATIONNAME = "Dat Anh Truong";
+			};
+			buildConfigurationList = 1A2C713D16DE515D00091C15 /* Build configuration list for PBXProject "Maori" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 1A2C713916DE515D00091C15;
+			productRefGroup = 1A2C714316DE515D00091C15 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				1A2C714116DE515D00091C15 /* Maori */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		1A2C714016DE515D00091C15 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1A2C715016DE515D00091C15 /* InfoPlist.strings in Resources */,
+				1A2C715616DE515D00091C15 /* Credits.rtf in Resources */,
+				1A2C715C16DE515D00091C15 /* MainMenu.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		1A2C713E16DE515D00091C15 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1A2C715216DE515D00091C15 /* main.m in Sources */,
+				1A2C715916DE515D00091C15 /* AppDelegate.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		1A2C714E16DE515D00091C15 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				1A2C714F16DE515D00091C15 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		1A2C715416DE515D00091C15 /* Credits.rtf */ = {
+			isa = PBXVariantGroup;
+			children = (
+				1A2C715516DE515D00091C15 /* en */,
+			);
+			name = Credits.rtf;
+			sourceTree = "<group>";
+		};
+		1A2C715A16DE515D00091C15 /* MainMenu.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				1A2C715B16DE515D00091C15 /* en */,
+			);
+			name = MainMenu.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		1A2C715D16DE515D00091C15 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.8;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		1A2C715E16DE515D00091C15 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.8;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		1A2C716016DE515D00091C15 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Maori/Maori-Prefix.pch";
+				INFOPLIST_FILE = "Maori/Maori-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		1A2C716116DE515D00091C15 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Maori/Maori-Prefix.pch";
+				INFOPLIST_FILE = "Maori/Maori-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		1A2C713D16DE515D00091C15 /* Build configuration list for PBXProject "Maori" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1A2C715D16DE515D00091C15 /* Debug */,
+				1A2C715E16DE515D00091C15 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		1A2C715F16DE515D00091C15 /* Build configuration list for PBXNativeTarget "Maori" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1A2C716016DE515D00091C15 /* Debug */,
+				1A2C716116DE515D00091C15 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 1A2C713A16DE515D00091C15 /* Project object */;
+}
