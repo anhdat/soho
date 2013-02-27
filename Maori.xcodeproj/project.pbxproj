@@ -13,6 +13,9 @@
 		1A2C715616DE515D00091C15 /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 1A2C715416DE515D00091C15 /* Credits.rtf */; };
 		1A2C715916DE515D00091C15 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A2C715816DE515D00091C15 /* AppDelegate.m */; };
 		1A2C715C16DE515D00091C15 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1A2C715A16DE515D00091C15 /* MainMenu.xib */; };
+		1A2C716316DE58D300091C15 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1A2C716216DE58D300091C15 /* QuartzCore.framework */; };
+		1A2C716616DE7BC200091C15 /* StatusView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A2C716516DE7BC200091C15 /* StatusView.m */; };
+		1A2C716916DE83CB00091C15 /* ScriptingBridge.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1A2C716816DE83CB00091C15 /* ScriptingBridge.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -29,6 +32,11 @@
 		1A2C715716DE515D00091C15 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		1A2C715816DE515D00091C15 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		1A2C715B16DE515D00091C15 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainMenu.xib; sourceTree = "<group>"; };
+		1A2C716216DE58D300091C15 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		1A2C716416DE7BC200091C15 /* StatusView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StatusView.h; sourceTree = "<group>"; };
+		1A2C716516DE7BC200091C15 /* StatusView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StatusView.m; sourceTree = "<group>"; };
+		1A2C716716DE818E00091C15 /* iTunes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iTunes.h; sourceTree = "<group>"; };
+		1A2C716816DE83CB00091C15 /* ScriptingBridge.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ScriptingBridge.framework; path = System/Library/Frameworks/ScriptingBridge.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -36,6 +44,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1A2C716916DE83CB00091C15 /* ScriptingBridge.framework in Frameworks */,
+				1A2C716316DE58D300091C15 /* QuartzCore.framework in Frameworks */,
 				1A2C714616DE515D00091C15 /* Cocoa.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -63,6 +73,8 @@
 		1A2C714416DE515D00091C15 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				1A2C716816DE83CB00091C15 /* ScriptingBridge.framework */,
+				1A2C716216DE58D300091C15 /* QuartzCore.framework */,
 				1A2C714516DE515D00091C15 /* Cocoa.framework */,
 				1A2C714716DE515D00091C15 /* Other Frameworks */,
 			);
@@ -82,10 +94,13 @@
 		1A2C714B16DE515D00091C15 /* Maori */ = {
 			isa = PBXGroup;
 			children = (
+				1A2C716716DE818E00091C15 /* iTunes.h */,
 				1A2C715716DE515D00091C15 /* AppDelegate.h */,
 				1A2C715816DE515D00091C15 /* AppDelegate.m */,
 				1A2C715A16DE515D00091C15 /* MainMenu.xib */,
 				1A2C714C16DE515D00091C15 /* Supporting Files */,
+				1A2C716416DE7BC200091C15 /* StatusView.h */,
+				1A2C716516DE7BC200091C15 /* StatusView.m */,
 			);
 			path = Maori;
 			sourceTree = "<group>";
@@ -168,6 +183,7 @@
 			files = (
 				1A2C715216DE515D00091C15 /* main.m in Sources */,
 				1A2C715916DE515D00091C15 /* AppDelegate.m in Sources */,
+				1A2C716616DE7BC200091C15 /* StatusView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

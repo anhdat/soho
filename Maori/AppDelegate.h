@@ -7,9 +7,15 @@
 //
 
 #import <Cocoa/Cocoa.h>
-
-@interface AppDelegate : NSObject <NSApplicationDelegate>
-
-@property (assign) IBOutlet NSWindow *window;
+#import "iTunes.h"
+@interface AppDelegate : NSObject <NSApplicationDelegate>{
+    iTunesApplication *iTunesApp;
+}
+@property (nonatomic, strong) NSStatusItem *controllerItem;
+//@property (assign) IBOutlet NSWindow *window;
+@property (weak) IBOutlet NSView *mainView;
+@property (weak) IBOutlet NSView *view1;
+@property (weak) IBOutlet NSView *view2;
+@property (weak) IBOutlet NSView *volumeView;
 
 @end
