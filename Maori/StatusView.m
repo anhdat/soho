@@ -22,7 +22,20 @@
 
 - (void)drawRect:(NSRect)dirtyRect
 {
-    // Drawing code here.
+    float red = 65/255.0;
+    float green = 105/255.0;
+    float blue = 255/255.0;
+    float alpha = 0.2f;
+    NSColor *myColor = [NSColor colorWithCalibratedRed:red
+                                                 green:green
+                                                  blue:blue
+                                                 alpha:alpha];
+    NSColor *startingColor = myColor;
+    NSColor *endingColor = [NSColor colorWithCalibratedWhite:0.6 alpha:0.0];
+    NSGradient* aGradient = [[NSGradient alloc]
+                             initWithStartingColor:startingColor
+                             endingColor:endingColor];
+    [aGradient drawInRect:[self bounds] angle:180];
 }
 
 - (void)scrollWheel:(NSEvent *)theEvent{
