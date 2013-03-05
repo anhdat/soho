@@ -56,11 +56,6 @@
     NSRect panelRect = [[self window] frame];
     panelRect.size.height = POPUP_HEIGHT;
     [[self window] setFrame:panelRect display:NO];
-    
-    // Follow search string
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(runSearch) name:NSControlTextDidChangeNotification object:self.searchField];
-    
-    
         
 }
 
@@ -115,7 +110,7 @@
     self.backgroundView.arrowX = panelX;
     
     NSRect searchRect = [_albumart frame];
-    searchRect.size.width = NSWidth([self.backgroundView bounds]) - SEARCH_INSET * 2;
+    searchRect.size.width = NSWidth([self.backgroundView bounds]);
     searchRect.origin.x = SEARCH_INSET;
     searchRect.origin.y = NSHeight([self.backgroundView bounds]) - ARROW_HEIGHT - SEARCH_INSET - NSHeight(searchRect);
     
@@ -262,5 +257,8 @@
     else
         songArtwork = [NSImage imageNamed:@"Sample.tiff"];
     [_albumart setImage:songArtwork];
+    
+    [_txtSongTitle setStringValue:[currentTrack name]];
+    [_txtArtistAlbum setStringValue:[NSString stringWithFormat:@"%@ - %@", [currentTrack artist], [currentTrack album]]];
 }
 @end

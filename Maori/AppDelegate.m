@@ -53,11 +53,7 @@
                                                           object:@"com.apple.iTunes.player"];
     
     iTunesApp = (iTunesApplication *)[SBApplication applicationWithBundleIdentifier:@"com.apple.iTunes"];
-    if (iTunesApp.isRunning) {
-        if ([[iTunesApp currentTrack] name]) {
-            [_txtTitle setStringValue:[[iTunesApp currentTrack] name]];
-        }
-    }
+  
     
     [_controlView setFrameOrigin:NSMakePoint(
                                         (NSWidth([_mainView bounds]) - NSWidth([_controlView frame])) / 2,
@@ -68,7 +64,12 @@
     // Install icon into the menu bar
     self.menubarController = [[MenubarController alloc] init];
     
-    [_panelController updateInformation:[iTunesApp currentTrack]];
+    if (iTunesApp.isRunning) {
+        if ([[iTunesApp currentTrack] name]) {
+            [_txtTitle setStringValue:[[iTunesApp currentTrack] name]];
+            [_panelController updateInformation:[iTunesApp currentTrack]];
+        }
+    }
     
 }
 #pragma mark -

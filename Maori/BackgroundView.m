@@ -49,7 +49,7 @@
     [path lineToPoint:NSMakePoint(_arrowX - ARROW_WIDTH / 2, NSMaxY(contentRect) - ARROW_HEIGHT)];
     [path closePath];
     
-    [[NSColor colorWithDeviceWhite:1 alpha:FILL_OPACITY] setFill];
+    [[NSColor colorWithDeviceWhite:0 alpha:FILL_OPACITY] setFill];
     [path fill];
     
     [NSGraphicsContext saveGraphicsState];

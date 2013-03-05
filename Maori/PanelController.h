@@ -28,6 +28,8 @@
 @property (weak) IBOutlet NSImageView *albumart;
 
 @property (nonatomic, unsafe_unretained) IBOutlet NSTextField *textField;
+@property (weak) IBOutlet NSTextField *txtArtistAlbum;
+@property (weak) IBOutlet NSTextField *txtSongTitle;
 
 @property (nonatomic) BOOL hasActivePanel;
 @property (nonatomic, unsafe_unretained, readonly) id<PanelControllerDelegate> delegate;
