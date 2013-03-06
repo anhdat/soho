@@ -16,6 +16,7 @@
 		1A2C716316DE58D300091C15 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1A2C716216DE58D300091C15 /* QuartzCore.framework */; };
 		1A2C716616DE7BC200091C15 /* StatusView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A2C716516DE7BC200091C15 /* StatusView.m */; };
 		1A2C716916DE83CB00091C15 /* ScriptingBridge.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1A2C716816DE83CB00091C15 /* ScriptingBridge.framework */; };
+		1AE5D82416E7B267009D1BF3 /* ControlView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AE5D82316E7B267009D1BF3 /* ControlView.m */; };
 		DC1073E516E3B11900EBF5FE /* MenubarController.m in Sources */ = {isa = PBXBuildFile; fileRef = DC1073DC16E3B11900EBF5FE /* MenubarController.m */; };
 		DC1073E616E3B11900EBF5FE /* PanelController.m in Sources */ = {isa = PBXBuildFile; fileRef = DC1073DE16E3B11900EBF5FE /* PanelController.m */; };
 		DC1073E716E3B11900EBF5FE /* Panel.m in Sources */ = {isa = PBXBuildFile; fileRef = DC1073E016E3B11900EBF5FE /* Panel.m */; };
@@ -54,6 +55,8 @@
 		1A2C716516DE7BC200091C15 /* StatusView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StatusView.m; sourceTree = "<group>"; };
 		1A2C716716DE818E00091C15 /* iTunes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iTunes.h; sourceTree = "<group>"; };
 		1A2C716816DE83CB00091C15 /* ScriptingBridge.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ScriptingBridge.framework; path = System/Library/Frameworks/ScriptingBridge.framework; sourceTree = SDKROOT; };
+		1AE5D82216E7B267009D1BF3 /* ControlView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ControlView.h; sourceTree = "<group>"; };
+		1AE5D82316E7B267009D1BF3 /* ControlView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ControlView.m; sourceTree = "<group>"; };
 		DC1073DB16E3B11900EBF5FE /* MenubarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MenubarController.h; sourceTree = "<group>"; };
 		DC1073DC16E3B11900EBF5FE /* MenubarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MenubarController.m; sourceTree = "<group>"; };
 		DC1073DD16E3B11900EBF5FE /* PanelController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PanelController.h; sourceTree = "<group>"; };
@@ -135,12 +138,16 @@
 			children = (
 				1A2C715716DE515D00091C15 /* AppDelegate.h */,
 				1A2C715816DE515D00091C15 /* AppDelegate.m */,
+				1A2C715A16DE515D00091C15 /* MainMenu.xib */,
+				DC1073ED16E3B11900EBF5FE /* Panel.xib */,
 				DC1073D916E3B11900EBF5FE /* PopUp */,
 				DC1073F216E3B11900EBF5FE /* User Interface */,
 				1A2C716716DE818E00091C15 /* iTunes.h */,
-				1A2C714C16DE515D00091C15 /* Supporting Files */,
+				1AE5D82216E7B267009D1BF3 /* ControlView.h */,
+				1AE5D82316E7B267009D1BF3 /* ControlView.m */,
 				1A2C716416DE7BC200091C15 /* StatusView.h */,
 				1A2C716516DE7BC200091C15 /* StatusView.m */,
+				1A2C714C16DE515D00091C15 /* Supporting Files */,
 			);
 			path = Maori;
 			sourceTree = "<group>";
@@ -148,11 +155,11 @@
 		1A2C714C16DE515D00091C15 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				1A2C714D16DE515D00091C15 /* Maori-Info.plist */,
 				1A2C714E16DE515D00091C15 /* InfoPlist.strings */,
 				1A2C715116DE515D00091C15 /* main.m */,
 				1A2C715316DE515D00091C15 /* Maori-Prefix.pch */,
 				1A2C715416DE515D00091C15 /* Credits.rtf */,
+				1A2C714D16DE515D00091C15 /* Maori-Info.plist */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -188,8 +195,6 @@
 				DC1073F316E3B11900EBF5FE /* Sample.tiff */,
 				DC1073EA16E3B11900EBF5FE /* Status.png */,
 				DC1073EB16E3B11900EBF5FE /* StatusHighlighted.png */,
-				1A2C715A16DE515D00091C15 /* MainMenu.xib */,
-				DC1073ED16E3B11900EBF5FE /* Panel.xib */,
 			);
 			name = "User Interface";
 			sourceTree = "<group>";
@@ -278,6 +283,7 @@
 				DC1073E716E3B11900EBF5FE /* Panel.m in Sources */,
 				DC1073E816E3B11900EBF5FE /* StatusItemView.m in Sources */,
 				DC1073E916E3B11900EBF5FE /* BackgroundView.m in Sources */,
+				1AE5D82416E7B267009D1BF3 /* ControlView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

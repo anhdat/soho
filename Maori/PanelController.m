@@ -56,7 +56,9 @@
     NSRect panelRect = [[self window] frame];
     panelRect.size.height = POPUP_HEIGHT;
     [[self window] setFrame:panelRect display:NO];
-        
+    
+
+    
 }
 
 #pragma mark - Public accessors
@@ -261,4 +263,9 @@
     [_txtSongTitle setStringValue:[currentTrack name]];
     [_txtArtistAlbum setStringValue:[NSString stringWithFormat:@"%@ - %@", [currentTrack artist], [currentTrack album]]];
 }
+
+- (IBAction)slideDidChangeValue:(id)sender {
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"viewSet" object:nil];
+}
+
 @end

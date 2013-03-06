@@ -30,6 +30,7 @@
 @property (nonatomic, unsafe_unretained) IBOutlet NSTextField *textField;
 @property (weak) IBOutlet NSTextField *txtArtistAlbum;
 @property (weak) IBOutlet NSTextField *txtSongTitle;
+@property (weak) IBOutlet NSSlider *slideViewSize;
 
 @property (nonatomic) BOOL hasActivePanel;
 @property (nonatomic, unsafe_unretained, readonly) id<PanelControllerDelegate> delegate;
@@ -39,5 +40,6 @@
 - (void)openPanel;
 - (void)closePanel;
 - (void)updateInformation:(iTunesTrack*) currentTrack;
+- (IBAction)slideDidChangeValue:(id)sender;
 
 @end

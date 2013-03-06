@@ -20,23 +20,40 @@
 {
     _controllerItem = [[NSStatusBar systemStatusBar] statusItemWithLength:NSVariableStatusItemLength];
     
-    NSTrackingAreaOptions trackingOptions =
+     _trackingOptions =
     NSTrackingEnabledDuringMouseDrag
     | NSTrackingMouseEnteredAndExited
     | NSTrackingActiveAlways;
-    NSTrackingArea *trackArea = [[NSTrackingArea alloc]
+    
+    if (_trackArea != nil) {
+        _trackArea = nil;
+    }
+    _trackArea = [[NSTrackingArea alloc]
                                  initWithRect:[_mainView bounds]
-                                 options:trackingOptions
+                                 options:_trackingOptions
                                  owner:self
                                  userInfo:nil];
-    
+    [_mainView addTrackingArea:_trackArea];
     [_controllerItem setView:_mainView];
-    [_mainView addTrackingArea:trackArea];
+   
     
     [_mainView addSubview:_titleView];
     [_mainView addSubview:_controlView];
     [_mainView addSubview:_volumeView];
     
+    CALayer *hostlayer = [CALayer layer];
+    [_mainView setLayer:hostlayer];
+    [_mainView setNeedsDisplay:YES];
+    
+    _progressLayer = [CALayer layer];
+    CGColorSpaceRef colorSpace = CGColorSpaceCreateWithName(kCGColorSpaceGenericRGB);
+    
+    [_progressLayer setFrame:[_mainView frame]];
+    CGFloat components[4] = {0.5f, 1.0f, 0.5f, 0.2f};
+    CGColorRef whiteColor = CGColorCreate(colorSpace, components);
+    _progressLayer.backgroundColor = whiteColor;    [hostlayer addSublayer:_progressLayer];
+    CGColorRelease(whiteColor);
+    CGColorSpaceRelease(colorSpace);
     
     CALayer *layer = [CALayer layer];
     [layer setContents:_mainView];
@@ -46,34 +63,47 @@
     [_volumeView setHidden:YES];
     
     [self listenForVolumeEvents];
-    
+    [self listenToViewChanging];
     [[NSDistributedNotificationCenter defaultCenter] addObserver:self
                                                         selector:@selector(iTunesTrackDidChange:)
                                                             name:@"com.apple.iTunes.playerInfo"
                                                           object:@"com.apple.iTunes.player"];
+    [[NSDistributedNotificationCenter defaultCenter] addObserver:self
+                                                        selector:@selector(iTunesTrackDidChange:)
+                                                            name:@"updateInfor"
+                                                          object:nil];
     
     iTunesApp = (iTunesApplication *)[SBApplication applicationWithBundleIdentifier:@"com.apple.iTunes"];
-  
+    
     
     [_controlView setFrameOrigin:NSMakePoint(
-                                        (NSWidth([_mainView bounds]) - NSWidth([_controlView frame])) / 2,
-                                        (NSHeight([_mainView bounds]) - NSHeight([_controlView frame])) / 2
-                                        )];
+                                             (NSWidth([_mainView bounds]) - NSWidth([_controlView frame])) / 2,
+                                             (NSHeight([_mainView bounds]) - NSHeight([_controlView frame])) / 2
+                                             )];
     [_controlView setAutoresizingMask:NSViewMinXMargin | NSViewMaxXMargin | NSViewMinYMargin | NSViewMaxYMargin];
     
-    // Install icon into the menu bar
+
     self.menubarController = [[MenubarController alloc] init];
     
-    if (iTunesApp.isRunning) {
-        if ([[iTunesApp currentTrack] name]) {
-            [_txtTitle setStringValue:[[iTunesApp currentTrack] name]];
-            [_panelController updateInformation:[iTunesApp currentTrack]];
-        }
+    
+    if (_panelController == nil) {
+        _panelController = [[PanelController alloc] initWithDelegate:self];
+        [_panelController addObserver:self forKeyPath:@"hasActivePanel" options:0 context:kContextActivePanel];
     }
+    [self iTunesTrackDidChange:nil];
+    
+    float viewWidth = [_mainView bounds].size.width;
+    [[_panelController slideViewSize] setDoubleValue:viewWidth];
+    
+    [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(updateProgressBar) userInfo:nil repeats:YES];
+    
+    
+    
+    
     
 }
 #pragma mark -
-#pragma mark mouse envets handler
+#pragma mark mouse events handler
 
 - (void)listenForVolumeEvents{
     //register to listen for VOLUME event
@@ -96,8 +126,7 @@
     [[_controlView animator] setHidden:YES];
     [NSAnimationContext endGrouping];
     [[_volumeView animator] setHidden:YES];
-
- }
+}
 
 - (void)mouseEntered:(NSEvent *)theEvent{
     [[_titleView animator] setHidden:YES];
@@ -107,23 +136,59 @@
 - (void)volumeUp: (NSNotification *) notification{
     [[_controlView animator] setHidden:YES];
     [[_volumeView animator] setHidden:NO];
+    [[_titleView animator] setHidden:YES];
     if (iTunesApp.isRunning) {
-        [iTunesApp setSoundVolume:[iTunesApp soundVolume]+10];
+        [iTunesApp setSoundVolume:[iTunesApp soundVolume]+5];
         [_txtVolume setStringValue:[NSString stringWithFormat:@"Volume: %ld", [iTunesApp soundVolume]]];
     }
-
-    
 }
 
 - (void)volumeDown: (NSNotification *) notification{
     [[_controlView animator] setHidden:YES];
     [[_volumeView animator] setHidden:NO];
+    [[_titleView animator] setHidden:YES];
     if (iTunesApp.isRunning) {
-        [iTunesApp setSoundVolume:[iTunesApp soundVolume]-10];
+        [iTunesApp setSoundVolume:[iTunesApp soundVolume]-5];
         [_txtVolume setStringValue:[NSString stringWithFormat:@"Volume: %ld", [iTunesApp soundVolume]]];
-
     }
+}
 
+
+- (void) listenToViewChanging{
+    [[NSNotificationCenter defaultCenter]
+     addObserver:self
+     selector:@selector(viewSet:)
+     name:@"viewSet"
+     object:nil ];
+}
+
+- (void)viewSet: (NSNotification *) notification{
+    NSRect rec = [_mainView bounds] ;
+    NSSize size;
+    size.height = rec.size.height;
+    size.width = [[_panelController slideViewSize] doubleValue];
+    [_mainView setFrameSize:size];
+    [_titleView setFrame:[_mainView frame]];
+    [_fieldTitle setFrame:[_mainView frame]];
+    [self updateTitleView];
+    if (_trackArea != nil) {
+        _trackArea = nil;
+    }
+    _trackArea = [[NSTrackingArea alloc]
+                  initWithRect:[_mainView bounds]
+                  options:_trackingOptions
+                  owner:self
+                  userInfo:nil];
+    [_mainView addTrackingArea:_trackArea];
+}
+
+- (void)updateProgressBar{
+    NSInteger position = [iTunesApp playerPosition];
+    float width = _mainView.frame.size.width;
+    double duration =[[iTunesApp currentTrack] duration];
+    NSRect frame = [_progressLayer frame];
+    frame.size.width = position/duration * width;
+    [[self progressLayer] setFrame:frame];
 }
 
 #pragma mark -
@@ -151,18 +216,42 @@
 	return iTunesApp.currentTrack;
 }
 
+// Update information on txtTitle and in panelConttoler
+// Invoked when start up an when track changes.
 - (void) iTunesTrackDidChange:(NSNotification *)aNotification{
-    iTunesTrack *track = nil;
-    if (iTunesApp.isRunning) {
-        if ([[iTunesApp currentTrack] name]) {
-            [_txtTitle setStringValue:[[iTunesApp currentTrack] name]];
-            [_panelController updateInformation:[iTunesApp currentTrack]];
-        }
+    if ([[iTunesApp currentTrack] name]) {
+        [self updateTitleView];
+        
+        // Update panelController information.
+        [_panelController updateInformation:[iTunesApp currentTrack]];
     }
+}
 
-	if (![[aNotification userInfo][@"Player State"] isEqualToString:@"Stopped"])
-		track = self.currentTrack;
-	
+- (void) updateTitleView{
+    // Calculate the right size of font to fit the container.
+    NSRect r = [_fieldTitle frame];
+    float xMargin = 1.0;
+    int minFontSize = 9;
+    int maxFontSize = 13;
+    NSString *currentFontName = @"Helvetica";
+    float targetWidth = r.size.width - xMargin;
+    
+    // Get title from SB application.
+    NSString *title = [[iTunesApp currentTrack] name];
+    
+    // the strategy is to start with a big font size
+    // and go smaller until I'm smaller than one of the target sizes.
+    int i;
+    for (i=maxFontSize; i>minFontSize; i--) {
+        NSDictionary* attrs = [[NSDictionary alloc] initWithObjectsAndKeys:[NSFont fontWithName:currentFontName size:i], NSFontAttributeName, nil];
+        NSSize strSize = [title sizeWithAttributes:attrs];
+        if (strSize.width < targetWidth )
+            break;
+        
+    }
+    // Output the title on titleView.
+    [_txtTitle setStringValue:title];
+    [_fieldTitle setFont:[NSFont fontWithName:currentFontName size:(i)]];
 }
 
 #pragma mark -
@@ -202,16 +291,15 @@ void *kContextActivePanel = &kContextActivePanel;
 {
     self.menubarController.hasActiveIcon = !self.menubarController.hasActiveIcon;
     self.panelController.hasActivePanel = self.menubarController.hasActiveIcon;
+    float viewWidth = [_mainView bounds].size.width;
+    [[_panelController slideViewSize] setDoubleValue:viewWidth];
 }
 
 #pragma mark - Public accessors
 
 - (PanelController *)panelController
 {
-    if (_panelController == nil) {
-        _panelController = [[PanelController alloc] initWithDelegate:self];
-        [_panelController addObserver:self forKeyPath:@"hasActivePanel" options:0 context:kContextActivePanel];
-    }
+    
     return _panelController;
 }
 

@@ -24,14 +24,16 @@
 @property (weak) IBOutlet NSTextFieldCell *txtTitle;
 @property (weak) IBOutlet NSTextFieldCell *txtVolume;
 @property (weak) IBOutlet NSTextField *fieldTitle;
-
+@property  NSTrackingAreaOptions trackingOptions;
 @property (nonatomic, strong) MenubarController *menubarController;
 @property (nonatomic, strong, readonly) PanelController *panelController;
+@property (strong, nonatomic) NSTrackingArea *trackArea;
+@property (strong, nonatomic) CALayer *progressLayer;
+
 
 - (IBAction)togglePanel:(id)sender;
 
 - (IBAction)nextTrack:(id)sender;
 - (IBAction)previousTrack:(id)sender;
 - (IBAction)playPause:(id)sender;
-
 @end
