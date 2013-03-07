@@ -1,6 +1,7 @@
 #import "BackgroundView.h"
 #import "StatusItemView.h"
 #import "iTunes.h"
+#import "mbFliperViews.h"
 
 @class PanelController;
 
@@ -21,6 +22,8 @@
     __unsafe_unretained id<PanelControllerDelegate> _delegate;
     __unsafe_unretained NSSearchField *_searchField;
     __unsafe_unretained NSTextField *_textField;
+    mbFliperViews* fliper;
+    Boolean frontIsFlipped;
 }
 
 @property (nonatomic, unsafe_unretained) IBOutlet BackgroundView *backgroundView;
@@ -31,6 +34,11 @@
 @property (weak) IBOutlet NSTextField *txtArtistAlbum;
 @property (weak) IBOutlet NSTextField *txtSongTitle;
 @property (weak) IBOutlet NSSlider *slideViewSize;
+@property (weak) IBOutlet NSView *hostView;
+@property (strong) IBOutlet NSView *frontView;
+@property (strong) IBOutlet NSView *backView;
+- (IBAction)flipToBack:(id)sender;
+- (IBAction)flipToFront:(id)sender;
 
 @property (nonatomic) BOOL hasActivePanel;
 @property (nonatomic, unsafe_unretained, readonly) id<PanelControllerDelegate> delegate;

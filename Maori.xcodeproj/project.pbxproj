@@ -16,6 +16,7 @@
 		1A2C716316DE58D300091C15 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1A2C716216DE58D300091C15 /* QuartzCore.framework */; };
 		1A2C716616DE7BC200091C15 /* StatusView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A2C716516DE7BC200091C15 /* StatusView.m */; };
 		1A2C716916DE83CB00091C15 /* ScriptingBridge.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1A2C716816DE83CB00091C15 /* ScriptingBridge.framework */; };
+		1AE0644416E8FC04000E100A /* mbFliperViews.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AE0644316E8FC04000E100A /* mbFliperViews.m */; };
 		1AE5D82416E7B267009D1BF3 /* ControlView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AE5D82316E7B267009D1BF3 /* ControlView.m */; };
 		DC1073E516E3B11900EBF5FE /* MenubarController.m in Sources */ = {isa = PBXBuildFile; fileRef = DC1073DC16E3B11900EBF5FE /* MenubarController.m */; };
 		DC1073E616E3B11900EBF5FE /* PanelController.m in Sources */ = {isa = PBXBuildFile; fileRef = DC1073DE16E3B11900EBF5FE /* PanelController.m */; };
@@ -55,6 +56,8 @@
 		1A2C716516DE7BC200091C15 /* StatusView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StatusView.m; sourceTree = "<group>"; };
 		1A2C716716DE818E00091C15 /* iTunes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iTunes.h; sourceTree = "<group>"; };
 		1A2C716816DE83CB00091C15 /* ScriptingBridge.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ScriptingBridge.framework; path = System/Library/Frameworks/ScriptingBridge.framework; sourceTree = SDKROOT; };
+		1AE0644216E8FC04000E100A /* mbFliperViews.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mbFliperViews.h; sourceTree = "<group>"; };
+		1AE0644316E8FC04000E100A /* mbFliperViews.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = mbFliperViews.m; sourceTree = "<group>"; };
 		1AE5D82216E7B267009D1BF3 /* ControlView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ControlView.h; sourceTree = "<group>"; };
 		1AE5D82316E7B267009D1BF3 /* ControlView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ControlView.m; sourceTree = "<group>"; };
 		DC1073DB16E3B11900EBF5FE /* MenubarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MenubarController.h; sourceTree = "<group>"; };
@@ -177,6 +180,8 @@
 				DC1073E016E3B11900EBF5FE /* Panel.m */,
 				DC1073E316E3B11900EBF5FE /* BackgroundView.h */,
 				DC1073E416E3B11900EBF5FE /* BackgroundView.m */,
+				1AE0644216E8FC04000E100A /* mbFliperViews.h */,
+				1AE0644316E8FC04000E100A /* mbFliperViews.m */,
 			);
 			name = PopUp;
 			sourceTree = "<group>";
@@ -284,6 +289,7 @@
 				DC1073E816E3B11900EBF5FE /* StatusItemView.m in Sources */,
 				DC1073E916E3B11900EBF5FE /* BackgroundView.m in Sources */,
 				1AE5D82416E7B267009D1BF3 /* ControlView.m in Sources */,
+				1AE0644416E8FC04000E100A /* mbFliperViews.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

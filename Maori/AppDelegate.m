@@ -18,9 +18,10 @@
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification
 {
+    // Set up controlView
     _controllerItem = [[NSStatusBar systemStatusBar] statusItemWithLength:NSVariableStatusItemLength];
     
-     _trackingOptions =
+    _trackingOptions =
     NSTrackingEnabledDuringMouseDrag
     | NSTrackingMouseEnteredAndExited
     | NSTrackingActiveAlways;
@@ -29,29 +30,30 @@
         _trackArea = nil;
     }
     _trackArea = [[NSTrackingArea alloc]
-                                 initWithRect:[_mainView bounds]
-                                 options:_trackingOptions
-                                 owner:self
-                                 userInfo:nil];
+                  initWithRect:[_mainView bounds]
+                  options:_trackingOptions
+                  owner:self
+                  userInfo:nil];
     [_mainView addTrackingArea:_trackArea];
     [_controllerItem setView:_mainView];
-   
+    
     
     [_mainView addSubview:_titleView];
     [_mainView addSubview:_controlView];
     [_mainView addSubview:_volumeView];
+    
+    CGColorSpaceRef colorSpace = CGColorSpaceCreateWithName(kCGColorSpaceGenericRGB);
+    CGFloat components[4] = {0.5f, 1.0f, 0.5f, 0.2f};
+    CGColorRef whiteColor = CGColorCreate(colorSpace, components);
     
     CALayer *hostlayer = [CALayer layer];
     [_mainView setLayer:hostlayer];
     [_mainView setNeedsDisplay:YES];
     
     _progressLayer = [CALayer layer];
-    CGColorSpaceRef colorSpace = CGColorSpaceCreateWithName(kCGColorSpaceGenericRGB);
-    
     [_progressLayer setFrame:[_mainView frame]];
-    CGFloat components[4] = {0.5f, 1.0f, 0.5f, 0.2f};
-    CGColorRef whiteColor = CGColorCreate(colorSpace, components);
     _progressLayer.backgroundColor = whiteColor;    [hostlayer addSublayer:_progressLayer];
+    
     CGColorRelease(whiteColor);
     CGColorSpaceRelease(colorSpace);
     
@@ -64,15 +66,11 @@
     
     [self listenForVolumeEvents];
     [self listenToViewChanging];
+    
     [[NSDistributedNotificationCenter defaultCenter] addObserver:self
                                                         selector:@selector(iTunesTrackDidChange:)
                                                             name:@"com.apple.iTunes.playerInfo"
                                                           object:@"com.apple.iTunes.player"];
-    [[NSDistributedNotificationCenter defaultCenter] addObserver:self
-                                                        selector:@selector(iTunesTrackDidChange:)
-                                                            name:@"updateInfor"
-                                                          object:nil];
-    
     iTunesApp = (iTunesApplication *)[SBApplication applicationWithBundleIdentifier:@"com.apple.iTunes"];
     
     
@@ -82,14 +80,13 @@
                                              )];
     [_controlView setAutoresizingMask:NSViewMinXMargin | NSViewMaxXMargin | NSViewMinYMargin | NSViewMaxYMargin];
     
-
+    
     self.menubarController = [[MenubarController alloc] init];
-    
-    
     if (_panelController == nil) {
         _panelController = [[PanelController alloc] initWithDelegate:self];
         [_panelController addObserver:self forKeyPath:@"hasActivePanel" options:0 context:kContextActivePanel];
     }
+    
     [self iTunesTrackDidChange:nil];
     
     float viewWidth = [_mainView bounds].size.width;
@@ -141,6 +138,11 @@
         [iTunesApp setSoundVolume:[iTunesApp soundVolume]+5];
         [_txtVolume setStringValue:[NSString stringWithFormat:@"Volume: %ld", [iTunesApp soundVolume]]];
     }
+    [NSTimer scheduledTimerWithTimeInterval:1.0f
+                                     target:self
+                                   selector: @selector(mouseExited:)
+                                   userInfo:nil
+                                    repeats:NO];
 }
 
 - (void)volumeDown: (NSNotification *) notification{
@@ -151,6 +153,11 @@
         [iTunesApp setSoundVolume:[iTunesApp soundVolume]-5];
         [_txtVolume setStringValue:[NSString stringWithFormat:@"Volume: %ld", [iTunesApp soundVolume]]];
     }
+    [NSTimer scheduledTimerWithTimeInterval:1.0f
+                                     target:self
+                                   selector: @selector(mouseExited:)
+                                   userInfo:nil
+                                    repeats:NO];
 }
 
 

@@ -74,4 +74,19 @@
     [self setNeedsDisplay:YES];
 }
 
+
+- (void)scrollWheel:(NSEvent *)theEvent{
+    if ([theEvent deltaY] < 0) {
+        [[NSNotificationCenter defaultCenter]
+         postNotificationName:@"volumeUp"
+         object:nil ];
+    }
+    if ([theEvent deltaY] > 0) {
+        [[NSNotificationCenter defaultCenter]
+         postNotificationName:@"volumeDown"
+         object:nil ];
+    }
+}
+
+
 @end

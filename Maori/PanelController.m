@@ -9,7 +9,7 @@
 
 #define SEARCH_INSET 17
 
-#define POPUP_HEIGHT 306
+#define POPUP_HEIGHT 380
 #define PANEL_WIDTH 280
 #define MENU_ANIMATION_DURATION .1
 
@@ -57,11 +57,27 @@
     panelRect.size.height = POPUP_HEIGHT;
     [[self window] setFrame:panelRect display:NO];
     
-
-    
+    fliper = [[mbFliperViews alloc] init];
+    CGPoint org = {0,0}; // offset from the bottom superview
+    fliper.origin = org;
+    [fliper addView:_frontView]; // add views, which can be switched
+    [fliper addView:_backView];
+    fliper.superView = _hostView; // as superview for example type of content view of the window
+    [fliper setActiveViewAtIndex:0];
+    frontIsFlipped = NO;    
 }
 
 #pragma mark - Public accessors
+
+- (IBAction)flipToBack:(id)sender {
+    [fliper flipLeft:nil];
+    frontIsFlipped = YES;
+}
+
+- (IBAction)flipToFront:(id)sender {
+    [fliper flipRight:nil];
+    frontIsFlipped = NO;
+}
 
 - (BOOL)hasActivePanel
 {
@@ -118,12 +134,12 @@
     
     if (NSIsEmptyRect(searchRect))
     {
-        [self.searchField setHidden:YES];
+        [self.hostView setHidden:YES];
     }
     else
     {
-        [self.searchField setFrame:searchRect];
-        [self.searchField setHidden:NO];
+        [self.hostView setFrame:searchRect];
+        [self.hostView setHidden:NO];
     }
     
     NSRect textRect = [self.textField frame];
@@ -214,17 +230,17 @@
     NSEvent *currentEvent = [NSApp currentEvent];
     if ([currentEvent type] == NSLeftMouseDown)
     {
-        NSUInteger clearFlags = ([currentEvent modifierFlags] & NSDeviceIndependentModifierFlagsMask);
-        BOOL shiftPressed = (clearFlags == NSShiftKeyMask);
-        BOOL shiftOptionPressed = (clearFlags == (NSShiftKeyMask | NSAlternateKeyMask));
-        if (shiftPressed || shiftOptionPressed)
-        {
-            openDuration *= 10;
-            
-            if (shiftOptionPressed)
-                NSLog(@"Icon is at %@\n\tMenu is on screen %@\n\tWill be animated to %@",
-                      NSStringFromRect(statusRect), NSStringFromRect(screenRect), NSStringFromRect(panelRect));
-        }
+//        NSUInteger clearFlags = ([currentEvent modifierFlags] & NSDeviceIndependentModifierFlagsMask);
+//        BOOL shiftPressed = (clearFlags == NSShiftKeyMask);
+//        BOOL shiftOptionPressed = (clearFlags == (NSShiftKeyMask | NSAlternateKeyMask));
+//        if (shiftPressed || shiftOptionPressed)
+//        {
+//            openDuration *= 10;
+//            
+//            if (shiftOptionPressed)
+//                NSLog(@"Icon is at %@\n\tMenu is on screen %@\n\tWill be animated to %@",
+//                      NSStringFromRect(statusRect), NSStringFromRect(screenRect), NSStringFromRect(panelRect));
+//        }
     }
     
     [NSAnimationContext beginGrouping];
@@ -238,6 +254,9 @@
 
 - (void)closePanel
 {
+    if (frontIsFlipped) {
+        [self flipToFront:nil];
+    }
     [NSAnimationContext beginGrouping];
     [[NSAnimationContext currentContext] setDuration:CLOSE_DURATION];
     [[[self window] animator] setAlphaValue:0];
