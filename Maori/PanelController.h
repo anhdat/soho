@@ -37,6 +37,7 @@
 @property (weak) IBOutlet NSView *hostView;
 @property (strong) IBOutlet NSView *frontView;
 @property (strong) IBOutlet NSView *backView;
+@property (weak) IBOutlet NSSlider *playerProgressBar;
 - (IBAction)flipToBack:(id)sender;
 - (IBAction)flipToFront:(id)sender;
 
@@ -48,6 +49,8 @@
 - (void)openPanel;
 - (void)closePanel;
 - (void)updateInformation:(iTunesTrack*) currentTrack;
+- (void)updatePlayerProgressBar:(double) position;
 - (IBAction)slideDidChangeValue:(id)sender;
+- (IBAction)playerBarDidChange:(id)sender;
 
 @end

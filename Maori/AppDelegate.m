@@ -18,10 +18,17 @@
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification
 {
+    // Start up as an agent app (without dock icon and menu)
+    //hide icon on Dock
+    
+//    ProcessSerialNumber psn = { 0, kCurrentProcess };
+//    TransformProcessType(&psn, kProcessTransformToForegroundApplication);
+//    [NSApp setActivationPolicy: NSApplicationActivationPolicyProhibited];
     // Set up controlView
     _controllerItem = [[NSStatusBar systemStatusBar] statusItemWithLength:NSVariableStatusItemLength];
     
-    _trackingOptions =
+    // Create and add Tracking Area to mainView
+    _trackingOptions =  
     NSTrackingEnabledDuringMouseDrag
     | NSTrackingMouseEnteredAndExited
     | NSTrackingActiveAlways;
@@ -37,14 +44,15 @@
     [_mainView addTrackingArea:_trackArea];
     [_controllerItem setView:_mainView];
     
-    
+    // Add subviews
     [_mainView addSubview:_titleView];
     [_mainView addSubview:_controlView];
     [_mainView addSubview:_volumeView];
     
+    // Color Green then create a layer to make it ProgressBar under titleView
     CGColorSpaceRef colorSpace = CGColorSpaceCreateWithName(kCGColorSpaceGenericRGB);
     CGFloat components[4] = {0.5f, 1.0f, 0.5f, 0.2f};
-    CGColorRef whiteColor = CGColorCreate(colorSpace, components);
+    CGColorRef whiteColor = CGColorCreate(colorSpace, components); // not a white color :)
     
     CALayer *hostlayer = [CALayer layer];
     [_mainView setLayer:hostlayer];
@@ -64,6 +72,7 @@
     [_controlView setHidden:YES];
     [_volumeView setHidden:YES];
     
+    // Set some observer for events triggered from other classes.
     [self listenForVolumeEvents];
     [self listenToViewChanging];
     
@@ -73,25 +82,29 @@
                                                           object:@"com.apple.iTunes.player"];
     iTunesApp = (iTunesApplication *)[SBApplication applicationWithBundleIdentifier:@"com.apple.iTunes"];
     
-    
+    // Centralize controlView
     [_controlView setFrameOrigin:NSMakePoint(
                                              (NSWidth([_mainView bounds]) - NSWidth([_controlView frame])) / 2,
                                              (NSHeight([_mainView bounds]) - NSHeight([_controlView frame])) / 2
                                              )];
     [_controlView setAutoresizingMask:NSViewMinXMargin | NSViewMaxXMargin | NSViewMinYMargin | NSViewMaxYMargin];
     
-    
+    // early creation of menubarController and panelController. REALLY NEED TO CHECK THE INIT PROCESS.
+    // DUE TO PROBLEM WITH ALBUM ART
     self.menubarController = [[MenubarController alloc] init];
     if (_panelController == nil) {
         _panelController = [[PanelController alloc] initWithDelegate:self];
         [_panelController addObserver:self forKeyPath:@"hasActivePanel" options:0 context:kContextActivePanel];
     }
     
+    // Call to get init information
     [self iTunesTrackDidChange:nil];
     
+    // set double value to slider at the back of panelController
     float viewWidth = [_mainView bounds].size.width;
     [[_panelController slideViewSize] setDoubleValue:viewWidth];
     
+    // update Progressbar under titleView
     [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(updateProgressBar) userInfo:nil repeats:YES];
     
     
@@ -138,7 +151,7 @@
         [iTunesApp setSoundVolume:[iTunesApp soundVolume]+5];
         [_txtVolume setStringValue:[NSString stringWithFormat:@"Volume: %ld", [iTunesApp soundVolume]]];
     }
-    [NSTimer scheduledTimerWithTimeInterval:1.0f
+    [NSTimer scheduledTimerWithTimeInterval:1.5f
                                      target:self
                                    selector: @selector(mouseExited:)
                                    userInfo:nil
@@ -153,7 +166,7 @@
         [iTunesApp setSoundVolume:[iTunesApp soundVolume]-5];
         [_txtVolume setStringValue:[NSString stringWithFormat:@"Volume: %ld", [iTunesApp soundVolume]]];
     }
-    [NSTimer scheduledTimerWithTimeInterval:1.0f
+    [NSTimer scheduledTimerWithTimeInterval:1.5f
                                      target:self
                                    selector: @selector(mouseExited:)
                                    userInfo:nil
@@ -167,8 +180,16 @@
      selector:@selector(viewSet:)
      name:@"viewSet"
      object:nil ];
+    [[NSNotificationCenter defaultCenter]
+     addObserver:self
+     selector:@selector(setPostion:)
+     name:@"changePostion"
+     object:nil ];
 }
-
+- (void)setPostion: (NSNotification *) notification{
+    int pos = [[_panelController playerProgressBar] doubleValue] / 100 * [[iTunesApp currentTrack] duration];
+    [iTunesApp setPlayerPosition: pos];
+}
 - (void)viewSet: (NSNotification *) notification{
     NSRect rec = [_mainView bounds] ;
     NSSize size;
@@ -196,6 +217,7 @@
     NSRect frame = [_progressLayer frame];
     frame.size.width = position/duration * width;
     [[self progressLayer] setFrame:frame];
+    [_panelController updatePlayerProgressBar:position/duration*100];
 }
 
 #pragma mark -

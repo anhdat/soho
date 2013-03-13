@@ -18,6 +18,7 @@
 
 - (void)drawRect:(NSRect)dirtyRect
 {
+    
     NSRect contentRect = NSInsetRect([self bounds], LINE_THICKNESS, LINE_THICKNESS);
     NSBezierPath *path = [NSBezierPath bezierPath];
     
@@ -63,6 +64,7 @@
     [path stroke];
     
     [NSGraphicsContext restoreGraphicsState];
+    
 }
 
 #pragma mark -

@@ -64,14 +64,20 @@
     [fliper addView:_backView];
     fliper.superView = _hostView; // as superview for example type of content view of the window
     [fliper setActiveViewAtIndex:0];
-    frontIsFlipped = NO;    
+    frontIsFlipped = NO;
+    
 }
 
 #pragma mark - Public accessors
 
 - (IBAction)flipToBack:(id)sender {
-    [fliper flipLeft:nil];
-    frontIsFlipped = YES;
+    if (frontIsFlipped) {
+        [fliper flipRight:nil];
+        frontIsFlipped = NO;
+    } else {
+        [fliper flipLeft:nil];
+        frontIsFlipped = YES;
+    }
 }
 
 - (IBAction)flipToFront:(id)sender {
@@ -129,8 +135,8 @@
     
     NSRect searchRect = [_albumart frame];
     searchRect.size.width = NSWidth([self.backgroundView bounds]);
-    searchRect.origin.x = SEARCH_INSET;
-    searchRect.origin.y = NSHeight([self.backgroundView bounds]) - ARROW_HEIGHT - SEARCH_INSET - NSHeight(searchRect);
+    searchRect.origin.x = 2;
+    searchRect.origin.y = NSHeight([self.backgroundView bounds]) - ARROW_HEIGHT - 2 - NSHeight(searchRect);
     
     if (NSIsEmptyRect(searchRect))
     {
@@ -283,8 +289,15 @@
     [_txtArtistAlbum setStringValue:[NSString stringWithFormat:@"%@ - %@", [currentTrack artist], [currentTrack album]]];
 }
 
+
+- (void)updatePlayerProgressBar:(double) position{
+    [_playerProgressBar setDoubleValue:position];
+}
 - (IBAction)slideDidChangeValue:(id)sender {
     [[NSNotificationCenter defaultCenter] postNotificationName:@"viewSet" object:nil];
 }
+
+- (IBAction)playerBarDidChange:(id)sender {
+   [[NSNotificationCenter defaultCenter] postNotificationName:@"changePostion" object:nil];}
 
 @end
