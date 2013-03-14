@@ -20,15 +20,71 @@
 {
     // Start up as an agent app (without dock icon and menu)
     //hide icon on Dock
+    //    ProcessSerialNumber psn = { 0, kCurrentProcess };
+    //    TransformProcessType(&psn, kProcessTransformToForegroundApplication);
+    //    [NSApp setActivationPolicy: NSApplicationActivationPolicyProhibited];
     
-//    ProcessSerialNumber psn = { 0, kCurrentProcess };
-//    TransformProcessType(&psn, kProcessTransformToForegroundApplication);
-//    [NSApp setActivationPolicy: NSApplicationActivationPolicyProhibited];
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    NSDictionary *appDefaults = [NSDictionary dictionaryWithObject:@"NO" forKey:@"AppleMomentumScrollSupported"];
+    [defaults registerDefaults:appDefaults];
+    [self setupViews];
+    // Set some observer for events triggered from other classes.
+    [self listenForVolumeEvents];
+    [self listenToViewChanging];
+    
+    [[NSDistributedNotificationCenter defaultCenter] addObserver:self
+                                                        selector:@selector(TrackDidChange:)
+                                                            name:@"com.apple.iTunes.playerInfo"
+                                                          object:@"com.apple.iTunes.player"];
+    [[NSDistributedNotificationCenter defaultCenter] addObserver:self
+                                                        selector:@selector(TrackDidChange:)
+                                                            name:@"com.spotify.client.PlaybackStateChanged"
+                                                          object:nil];
+    
+    
+    
+    // early creation of menubarController and panelController. REALLY NEED TO CHECK THE INIT PROCESS.
+    // DUE TO PROBLEM WITH ALBUM ART
+    self.menubarController = [[MenubarController alloc] init];
+    if (_panelController == nil) {
+        _panelController = [[PanelController alloc] initWithDelegate:self];
+        [_panelController addObserver:self forKeyPath:@"hasActivePanel" options:0 context:kContextActivePanel];
+    }
+    
+    
+    
+    // set double value to slider at the back of panelController
+    float viewWidth = [_mainView bounds].size.width;
+    [[_panelController slideViewSize] setDoubleValue:viewWidth];
+    
+    // update Progressbar under titleView
+    [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(updateProgressBar) userInfo:nil repeats:YES];
+    
+    _iTunesApp = (iTunesApplication *)[SBApplication applicationWithBundleIdentifier:@"com.apple.iTunes"];
+    _rdioApp = [SBApplication applicationWithBundleIdentifier:@"com.rdio.desktop"];
+    _spotifyApp = [SBApplication applicationWithBundleIdentifier:@"com.spotify.client"];
+    _radiumApp = [SBApplication applicationWithBundleIdentifier:@"com.catpigstudios.Radium"];
+    _playerArray = [[NSMutableArray alloc] init];
+    [_playerArray addObject:@"iTunes"];
+    [_playerArray addObject:@"Spotify"];
+    [_playerArray addObject:@"Rdio"];
+    [_playerArray addObject:@"Radium"];
+    _currentTrack = [[ADTrack alloc] init];
+    NSLog(@"%ld", [_playerArray count]);
+    for (NSInteger i = 0; i < [_playerArray count]; i++) {
+        NSLog(@"%@", [_playerArray objectAtIndex:i]);
+    }
+    // Call to get init information
+    [self iTunesTrackDidChange:nil];
+}
+
+
+-(void) setupViews{
     // Set up controlView
     _controllerItem = [[NSStatusBar systemStatusBar] statusItemWithLength:NSVariableStatusItemLength];
     
     // Create and add Tracking Area to mainView
-    _trackingOptions =  
+    _trackingOptions =
     NSTrackingEnabledDuringMouseDrag
     | NSTrackingMouseEnteredAndExited
     | NSTrackingActiveAlways;
@@ -72,16 +128,6 @@
     [_controlView setHidden:YES];
     [_volumeView setHidden:YES];
     
-    // Set some observer for events triggered from other classes.
-    [self listenForVolumeEvents];
-    [self listenToViewChanging];
-    
-    [[NSDistributedNotificationCenter defaultCenter] addObserver:self
-                                                        selector:@selector(iTunesTrackDidChange:)
-                                                            name:@"com.apple.iTunes.playerInfo"
-                                                          object:@"com.apple.iTunes.player"];
-    iTunesApp = (iTunesApplication *)[SBApplication applicationWithBundleIdentifier:@"com.apple.iTunes"];
-    
     // Centralize controlView
     [_controlView setFrameOrigin:NSMakePoint(
                                              (NSWidth([_mainView bounds]) - NSWidth([_controlView frame])) / 2,
@@ -89,28 +135,7 @@
                                              )];
     [_controlView setAutoresizingMask:NSViewMinXMargin | NSViewMaxXMargin | NSViewMinYMargin | NSViewMaxYMargin];
     
-    // early creation of menubarController and panelController. REALLY NEED TO CHECK THE INIT PROCESS.
-    // DUE TO PROBLEM WITH ALBUM ART
-    self.menubarController = [[MenubarController alloc] init];
-    if (_panelController == nil) {
-        _panelController = [[PanelController alloc] initWithDelegate:self];
-        [_panelController addObserver:self forKeyPath:@"hasActivePanel" options:0 context:kContextActivePanel];
-    }
-    
-    // Call to get init information
-    [self iTunesTrackDidChange:nil];
-    
-    // set double value to slider at the back of panelController
-    float viewWidth = [_mainView bounds].size.width;
-    [[_panelController slideViewSize] setDoubleValue:viewWidth];
-    
-    // update Progressbar under titleView
-    [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(updateProgressBar) userInfo:nil repeats:YES];
-    
-    
-    
-    
-    
+    [_mainView setMenu:_menuPlayer];
 }
 #pragma mark -
 #pragma mark mouse events handler
@@ -127,6 +152,18 @@
      selector:@selector(volumeDown:)
      name:@"volumeDown"
      object:nil ];
+    [[NSNotificationCenter defaultCenter]
+     addObserver:self
+     selector:@selector(openMenu)
+     name:@"mouseDown"
+     object:nil ];
+}
+
+-(void) openMenu{
+    NSLog(@"Open menu");
+    //    [_controllerItem popUpStatusItemMenu:[_controllerItem menu]];
+    //    [_menuPlayer setDelegate:self];
+    //    [_mainView setNeedsDisplay:YES];
 }
 
 - (void)mouseExited:(NSEvent *)theEvent{
@@ -147,11 +184,33 @@
     [[_controlView animator] setHidden:YES];
     [[_volumeView animator] setHidden:NO];
     [[_titleView animator] setHidden:YES];
-    if (iTunesApp.isRunning) {
-        [iTunesApp setSoundVolume:[iTunesApp soundVolume]+5];
-        [_txtVolume setStringValue:[NSString stringWithFormat:@"Volume: %ld", [iTunesApp soundVolume]]];
+    for (NSInteger i = 0; i < [_playerArray count]; i++) {
+        if ([@"iTunes" isEqual:[_playerArray objectAtIndex:i]]) {
+            if ([_iTunesApp isRunning]) {
+                [_iTunesApp setSoundVolume:[_iTunesApp soundVolume]+5];
+                [_txtVolume setStringValue:[NSString stringWithFormat:@"Volume: %ld", [_iTunesApp soundVolume]]];
+            }
+            break;
+        }
+        if ([@"Spotify" isEqual:[_playerArray objectAtIndex:i]]) {
+            if ([_spotifyApp isRunning]) {
+                [_spotifyApp setSoundVolume:[_spotifyApp soundVolume]+5];
+                [_txtVolume setStringValue:[NSString stringWithFormat:@"Volume: %ld", [_spotifyApp soundVolume]]];
+            }
+            break;
+        }
+        if ([@"Rdio" isEqual:[_playerArray objectAtIndex:i]]) {
+            if ([_rdioApp isRunning]) {
+                [_rdioApp setSoundVolume:[_rdioApp soundVolume]+5];
+                [_txtVolume setStringValue:[NSString stringWithFormat:@"Volume: %ld", [_rdioApp soundVolume]]];
+            }
+            break;
+        }
+        if ([@"Radium" isEqual:[_playerArray objectAtIndex:i]]) {
+            break;
+        }
     }
-    [NSTimer scheduledTimerWithTimeInterval:1.5f
+    [NSTimer scheduledTimerWithTimeInterval:2.5f
                                      target:self
                                    selector: @selector(mouseExited:)
                                    userInfo:nil
@@ -162,17 +221,38 @@
     [[_controlView animator] setHidden:YES];
     [[_volumeView animator] setHidden:NO];
     [[_titleView animator] setHidden:YES];
-    if (iTunesApp.isRunning) {
-        [iTunesApp setSoundVolume:[iTunesApp soundVolume]-5];
-        [_txtVolume setStringValue:[NSString stringWithFormat:@"Volume: %ld", [iTunesApp soundVolume]]];
+    for (NSInteger i = 0; i < [_playerArray count]; i++) {
+        if ([@"iTunes" isEqual:[_playerArray objectAtIndex:i]]) {
+            if ([_iTunesApp isRunning]) {
+                [_iTunesApp setSoundVolume:[_iTunesApp soundVolume]-5];
+                [_txtVolume setStringValue:[NSString stringWithFormat:@"Volume: %ld", [_iTunesApp soundVolume]]];
+            }
+            break;
+        }
+        if ([@"Spotify" isEqual:[_playerArray objectAtIndex:i]]) {
+            if ([_spotifyApp isRunning]) {
+                [_spotifyApp setSoundVolume:[_spotifyApp soundVolume]-5];
+                [_txtVolume setStringValue:[NSString stringWithFormat:@"Volume: %ld", [_spotifyApp soundVolume]]];
+            }
+            break;
+        }
+        if ([@"Rdio" isEqual:[_playerArray objectAtIndex:i]]) {
+            if ([_rdioApp isRunning]) {
+                [_rdioApp setSoundVolume:[_rdioApp soundVolume]-5];
+                [_txtVolume setStringValue:[NSString stringWithFormat:@"Volume: %ld", [_rdioApp soundVolume]]];
+            }
+            break;
+        }
+        if ([@"Radium" isEqual:[_playerArray objectAtIndex:i]]) {
+            break;
+        }
     }
-    [NSTimer scheduledTimerWithTimeInterval:1.5f
+    [NSTimer scheduledTimerWithTimeInterval:2.5f
                                      target:self
                                    selector: @selector(mouseExited:)
                                    userInfo:nil
                                     repeats:NO];
 }
-
 
 - (void) listenToViewChanging{
     [[NSNotificationCenter defaultCenter]
@@ -186,9 +266,12 @@
      name:@"changePostion"
      object:nil ];
 }
+
+
 - (void)setPostion: (NSNotification *) notification{
-    int pos = [[_panelController playerProgressBar] doubleValue] / 100 * [[iTunesApp currentTrack] duration];
-    [iTunesApp setPlayerPosition: pos];
+    int pos = [[_panelController playerProgressBar] doubleValue] / 100 * [_currentTrack duration];
+    [_iTunesApp
+     setPlayerPosition: pos];
 }
 - (void)viewSet: (NSNotification *) notification{
     NSRect rec = [_mainView bounds] ;
@@ -211,9 +294,11 @@
 }
 
 - (void)updateProgressBar{
-    NSInteger position = [iTunesApp playerPosition];
+    NSInteger position = [self getPosition];
+    double duration =[_currentTrack duration];
+    
     float width = _mainView.frame.size.width;
-    double duration =[[iTunesApp currentTrack] duration];
+    
     NSRect frame = [_progressLayer frame];
     frame.size.width = position/duration * width;
     [[self progressLayer] setFrame:frame];
@@ -223,36 +308,193 @@
 #pragma mark -
 #pragma mark players handler
 
+
+
 - (IBAction)nextTrack:(id)sender{
-    if (iTunesApp.isRunning) {
-        [iTunesApp nextTrack];
+    for (NSInteger i = 0; i < [_playerArray count]; i++) {
+        if ([@"iTunes" isEqual:[_playerArray objectAtIndex:i]]) {
+            if ([_iTunesApp isRunning]) {
+                [_iTunesApp nextTrack];
+            }
+            return;
+        }
+        if ([@"Spotify" isEqual:[_playerArray objectAtIndex:i]]) {
+            if ([_spotifyApp isRunning]) {
+                [_spotifyApp nextTrack];
+            }
+            return;
+        }
+        if ([@"Rdio" isEqual:[_playerArray objectAtIndex:i]]) {
+            if ([_rdioApp isRunning]) {
+                [_rdioApp nextTrack];
+            }
+            return;
+        }
+        if ([@"Radium" isEqual:[_playerArray objectAtIndex:i]]) {
+            return;
+        }
     }
 }
 - (IBAction)previousTrack:(id)sender{
-    if (iTunesApp.isRunning) {
-        [iTunesApp previousTrack];
+    for (NSInteger i = 0; i < [_playerArray count]; i++) {
+        if ([@"iTunes" isEqual:[_playerArray objectAtIndex:i]]) {
+            if ([_iTunesApp isRunning]) {
+                [_iTunesApp previousTrack];
+            }
+            return;
+        }
+        if ([@"Spotify" isEqual:[_playerArray objectAtIndex:i]]) {
+            if ([_spotifyApp isRunning]) {
+                [_spotifyApp previousTrack];
+            }
+            return;
+        }
+        if ([@"Rdio" isEqual:[_playerArray objectAtIndex:i]]) {
+            if ([_rdioApp isRunning]) {
+                [_rdioApp previousTrack];
+            }
+            return;
+        }
+        if ([@"Radium" isEqual:[_playerArray objectAtIndex:i]]) {
+            return;
+        }
     }
 }
 - (IBAction)playPause:(id)sender{
-    if (iTunesApp.isRunning) {
-        [iTunesApp playpause];
+    for (NSInteger i = 0; i < [_playerArray count]; i++) {
+        if ([@"iTunes" isEqual:[_playerArray objectAtIndex:i]]) {
+            if ([_iTunesApp isRunning]) {
+                [_iTunesApp playpause];
+            }
+            return;
+        }
+        if ([@"Spotify" isEqual:[_playerArray objectAtIndex:i]]) {
+            if ([_spotifyApp isRunning]) {
+                [_spotifyApp playpause];
+            }
+            return;
+        }
+        if ([@"Rdio" isEqual:[_playerArray objectAtIndex:i]]) {
+            if ([_rdioApp isRunning]) {
+                [_rdioApp playpause];
+            }
+            return;
+        }
+        if ([@"Radium" isEqual:[_playerArray objectAtIndex:i]]) {
+            if ([_radiumApp isRunning]) {
+                [[_radiumApp player] playPause];
+            }
+            return;
+        }
     }
 }
 
-- (iTunesTrack *)currentTrack{
-	if (!iTunesApp.isRunning)
-		return nil;
-	return iTunesApp.currentTrack;
+-(NSInteger) getPosition{
+    NSInteger position = 1;
+    for (NSInteger i = 0; i < [_playerArray count]; i++) {
+        if ([@"iTunes" isEqual:[_playerArray objectAtIndex:i]]) {
+            if ([_iTunesApp isRunning]) {
+                return [_iTunesApp playerPosition];
+            }
+            break;
+        }
+        if ([@"Spotify" isEqual:[_playerArray objectAtIndex:i]]) {
+            if ([_spotifyApp isRunning]) {
+                return [_spotifyApp playerPosition];
+            }
+            break;
+        }
+        if ([@"Rdio" isEqual:[_playerArray objectAtIndex:i]]) {
+            if ([_rdioApp isRunning]) {
+                return [_rdioApp playerPosition];
+            }
+            break;
+        }
+        if ([@"Radium" isEqual:[_playerArray objectAtIndex:i]]) {
+            break;
+        }
+    }
+    return position;
 }
+-(void) updateCurrentTrack{
+    for (NSInteger i = 0; i < [_playerArray count]; i++) {
+        if ([@"iTunes" isEqual:[_playerArray objectAtIndex:i]]) {
+            if ([_iTunesApp isRunning]) {
+                iTunesTrack *current = [_iTunesApp currentTrack];
+                [_currentTrack setAlbum:[current album]];
+                [_currentTrack setArtist:[current artist]];
+                [_currentTrack setName:[current name]];
+                [_currentTrack setDuration:[current duration]];
+                [_currentTrack setRating:[current rating]];
+                NSImage *songArtwork;
+                
+                iTunesArtwork *artwork = (iTunesArtwork *)[[[current artworks] get] lastObject];
+                if(artwork != nil)
+                    songArtwork = [[NSImage alloc] initWithData:[artwork rawData]];
+                else
+                    songArtwork = [NSImage imageNamed:@"Sample.tiff"];
+                [_currentTrack setArtwork:songArtwork];
+            }
+            return;
+        }
+        if ([@"Spotify" isEqual:[_playerArray objectAtIndex:i]]) {
+            if ([_spotifyApp isRunning]) {
+                SpotifyTrack *current = [_spotifyApp currentTrack];
+                NSString *album = [current album];
+                [_currentTrack setAlbum:album];
+                [_currentTrack setArtist:[current artist]];
+                [_currentTrack setName:[current name]];
+                [_currentTrack setDuration:[current duration]];
+                [_currentTrack setArtwork:[current artwork]];
+                [_currentTrack setIsAdvertisement:NO];
+                [_currentTrack setIsAdvertisement:[album hasPrefix:@"spotify:user"]||
+                 [album hasPrefix:@"http:"]||
+                 [album hasPrefix:@"spotify:ad"]];
+                [_currentTrack setUrl:[current spotifyUrl]];
+                [_currentTrack setStarred:[current starred]];
+            }
+            return;
+        }
+        if ([@"Rdio" isEqual:[_playerArray objectAtIndex:i]]) {
+            if ([_rdioApp isRunning]) {
+                RdioTrack *current = [_rdioApp currentTrack];
+                [_currentTrack setAlbum:[current album]];
+                [_currentTrack setArtist:[current artist]];
+                [_currentTrack setName:[current name]];
+                [_currentTrack setDuration:[current duration]];
+                [_currentTrack setArtwork:[[NSImage alloc] initWithData:[current artwork]]];
+            }
+            return;
+        }
+        if ([@"Radium" isEqual:[_playerArray objectAtIndex:i]]) {
+            if ([_radiumApp isRunning]) {
+                RadiumRplayer *radiumPlayer;
+                [_currentTrack setName:[radiumPlayer songTitle]];
+                [_currentTrack setArtwork:[radiumPlayer songArtwork]];
+            }
+            return;
+        }
+    }
+
+}
+
 
 // Update information on txtTitle and in panelConttoler
 // Invoked when start up an when track changes.
 - (void) iTunesTrackDidChange:(NSNotification *)aNotification{
-    if ([[iTunesApp currentTrack] name]) {
+    if ([[_iTunesApp currentTrack] name]) {
         [self updateTitleView];
         
         // Update panelController information.
-        [_panelController updateInformation:[iTunesApp currentTrack]];
+//        [_panelController updateInformation:[_iTunesApp currentTrack]];
+    }
+}
+- (void) TrackDidChange:(NSNotification *)aNotification{
+    [self updateCurrentTrack];
+    if ([_currentTrack name]) {
+        [self updateTitleView];
+        // Update panelController information.
+        [_panelController updateInformation:_currentTrack];
     }
 }
 
@@ -266,7 +508,7 @@
     float targetWidth = r.size.width - xMargin;
     
     // Get title from SB application.
-    NSString *title = [[iTunesApp currentTrack] name];
+    NSString *title = [_currentTrack name];
     
     // the strategy is to start with a big font size
     // and go smaller until I'm smaller than one of the target sizes.
@@ -322,6 +564,57 @@ void *kContextActivePanel = &kContextActivePanel;
     self.panelController.hasActivePanel = self.menubarController.hasActiveIcon;
     float viewWidth = [_mainView bounds].size.width;
     [[_panelController slideViewSize] setDoubleValue:viewWidth];
+}
+
+- (IBAction)setiTunes:(id)sender {
+    if ([@"iTunes" isEqual:[_playerArray objectAtIndex:0]]) {
+        return;
+    }
+    NSString *tempString= [_playerArray objectAtIndex:0];
+    for (NSInteger i = 0; i < [_playerArray count]; i++) {
+        if ([@"iTunes" isEqual:[_playerArray objectAtIndex:i]]) {
+            [_playerArray removeObjectAtIndex:i];
+            [_playerArray insertObject:tempString atIndex:i];
+            break;
+        }
+    }
+    [_playerArray removeObjectAtIndex:0];
+    [_playerArray insertObject:@"iTunes" atIndex:0];
+    [self TrackDidChange:nil];
+}
+
+- (IBAction)setSpotify:(id)sender {
+    if ([@"Spotify" isEqual:[_playerArray objectAtIndex:0]]) {
+        return;
+    }
+    NSString *tempString= [_playerArray objectAtIndex:0];
+    for (NSInteger i = 0; i < [_playerArray count]; i++) {
+        if ([@"Spotify" isEqual:[_playerArray objectAtIndex:i]]) {
+            [_playerArray removeObjectAtIndex:i];
+            [_playerArray insertObject:tempString atIndex:i];
+            break;
+        }
+    }
+    [_playerArray removeObjectAtIndex:0];
+    [_playerArray insertObject:@"Spotify" atIndex:0];
+    [self TrackDidChange:nil];
+}
+
+- (IBAction)setRdio:(id)sender {
+    if ([@"Rdio" isEqual:[_playerArray objectAtIndex:0]]) {
+        return;
+    }
+    NSString *tempString= [_playerArray objectAtIndex:0];
+    for (NSInteger i = 0; i < [_playerArray count]; i++) {
+        if ([@"Rdio" isEqual:[_playerArray objectAtIndex:i]]) {
+            [_playerArray removeObjectAtIndex:i];
+            [_playerArray insertObject:tempString atIndex:i];
+            break;
+        }
+    }
+    [_playerArray removeObjectAtIndex:0];
+    [_playerArray insertObject:@"Rdio" atIndex:0];
+    [self TrackDidChange:nil];
 }
 
 #pragma mark - Public accessors

@@ -16,6 +16,8 @@
 		1A2C716316DE58D300091C15 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1A2C716216DE58D300091C15 /* QuartzCore.framework */; };
 		1A2C716616DE7BC200091C15 /* StatusView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A2C716516DE7BC200091C15 /* StatusView.m */; };
 		1A2C716916DE83CB00091C15 /* ScriptingBridge.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1A2C716816DE83CB00091C15 /* ScriptingBridge.framework */; };
+		1A3031DC16F1ECFF00C91EF4 /* ADPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A3031DB16F1ECFF00C91EF4 /* ADPlayer.m */; };
+		1A3031E116F231B200C91EF4 /* ADTrack.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A3031E016F231B100C91EF4 /* ADTrack.m */; };
 		1A801CB716EF8B3D00532C54 /* Background.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A801CB616EF8B3D00532C54 /* Background.m */; };
 		1A801CBA16EF8CE600532C54 /* LBProgressBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A801CB916EF8CE600532C54 /* LBProgressBar.m */; };
 		1A801CC316EFA12F00532C54 /* SNRVerticalSliderCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A801CC216EFA12E00532C54 /* SNRVerticalSliderCell.m */; };
@@ -77,6 +79,12 @@
 		1A2C716516DE7BC200091C15 /* StatusView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StatusView.m; sourceTree = "<group>"; };
 		1A2C716716DE818E00091C15 /* iTunes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iTunes.h; sourceTree = "<group>"; };
 		1A2C716816DE83CB00091C15 /* ScriptingBridge.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ScriptingBridge.framework; path = System/Library/Frameworks/ScriptingBridge.framework; sourceTree = SDKROOT; };
+		1A3031DA16F1ECFF00C91EF4 /* ADPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ADPlayer.h; sourceTree = "<group>"; };
+		1A3031DB16F1ECFF00C91EF4 /* ADPlayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ADPlayer.m; sourceTree = "<group>"; };
+		1A3031DD16F2222A00C91EF4 /* Radium.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Radium.h; sourceTree = "<group>"; };
+		1A3031DE16F2224B00C91EF4 /* Rdio.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Rdio.h; sourceTree = "<group>"; };
+		1A3031DF16F231B100C91EF4 /* ADTrack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ADTrack.h; sourceTree = "<group>"; };
+		1A3031E016F231B100C91EF4 /* ADTrack.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ADTrack.m; sourceTree = "<group>"; };
 		1A801CB516EF8B3D00532C54 /* Background.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Background.h; sourceTree = "<group>"; };
 		1A801CB616EF8B3D00532C54 /* Background.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Background.m; sourceTree = "<group>"; };
 		1A801CB816EF8CE600532C54 /* LBProgressBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBProgressBar.h; sourceTree = "<group>"; };
@@ -216,12 +224,12 @@
 			isa = PBXGroup;
 			children = (
 				1A801CC116EFA12E00532C54 /* SNRVerticalSliderCell.h */,
+				1AE5D82216E7B267009D1BF3 /* ControlView.h */,
 				1A801CC216EFA12E00532C54 /* SNRVerticalSliderCell.m */,
 				1A801CB816EF8CE600532C54 /* LBProgressBar.h */,
 				1A801CB916EF8CE600532C54 /* LBProgressBar.m */,
 				1A801CB516EF8B3D00532C54 /* Background.h */,
 				1A801CB616EF8B3D00532C54 /* Background.m */,
-				1AE5D82216E7B267009D1BF3 /* ControlView.h */,
 				1AE5D82316E7B267009D1BF3 /* ControlView.m */,
 				1A2C716416DE7BC200091C15 /* StatusView.h */,
 				1A2C716516DE7BC200091C15 /* StatusView.m */,
@@ -234,10 +242,16 @@
 		1AEACF8916EC352400420311 /* General */ = {
 			isa = PBXGroup;
 			children = (
+				1A3031DA16F1ECFF00C91EF4 /* ADPlayer.h */,
+				1A3031DB16F1ECFF00C91EF4 /* ADPlayer.m */,
 				1AD2AFD816F0E9F20058421C /* PlayerApplication.h */,
 				1AD2AFD916F0E9F20058421C /* PlayerApplication.m */,
 				1AD2AFD716F0E9F20058421C /* Spotify.h */,
 				1A2C716716DE818E00091C15 /* iTunes.h */,
+				1A3031DE16F2224B00C91EF4 /* Rdio.h */,
+				1A3031DD16F2222A00C91EF4 /* Radium.h */,
+				1A3031DF16F231B100C91EF4 /* ADTrack.h */,
+				1A3031E016F231B100C91EF4 /* ADTrack.m */,
 			);
 			name = General;
 			sourceTree = "<group>";
@@ -402,6 +416,8 @@
 				1A801CC316EFA12F00532C54 /* SNRVerticalSliderCell.m in Sources */,
 				1A801CE616EFA1F200532C54 /* JKSMoviePlayerSliderCell.m in Sources */,
 				1AD2AFDA16F0E9F20058421C /* PlayerApplication.m in Sources */,
+				1A3031DC16F1ECFF00C91EF4 /* ADPlayer.m in Sources */,
+				1A3031E116F231B200C91EF4 /* ADTrack.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

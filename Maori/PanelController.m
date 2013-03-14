@@ -3,6 +3,7 @@
 #import "StatusItemView.h"
 #import "MenubarController.h"
 #import "iTunes.h"
+#import "ADTrack.h"
 
 #define OPEN_DURATION .15
 #define CLOSE_DURATION .1
@@ -275,15 +276,13 @@
 }
 
 
-- (void)updateInformation:(iTunesTrack*) currentTrack{
-    NSImage *songArtwork;
-    iTunesTrack *current = currentTrack;
-    iTunesArtwork *artwork = (iTunesArtwork *)[[[current artworks] get] lastObject];
-    if(artwork != nil)
-        songArtwork = [[NSImage alloc] initWithData:[artwork rawData]];
-    else
-        songArtwork = [NSImage imageNamed:@"Sample.tiff"];
-    [_albumart setImage:songArtwork];
+- (void)updateInformation:(ADTrack*) currentTrack{
+//    NSImage *songArtwork;
+    NSImage *artwork = [currentTrack artwork];
+    if(artwork == nil){
+         artwork = [NSImage imageNamed:@"Sample.tiff"];
+    }
+    [_albumart setImage:artwork];
     
     [_txtSongTitle setStringValue:[currentTrack name]];
     [_txtArtistAlbum setStringValue:[NSString stringWithFormat:@"%@ - %@", [currentTrack artist], [currentTrack album]]];

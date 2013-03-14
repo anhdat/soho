@@ -20,8 +20,6 @@ typedef enum PlayerType PlayerType;
 
 
 @interface PlayerTrack : NSObject {
-	PlayerType type;
-	SBObject *nativeTrack;
 }
 
 @property (assign) PlayerType type;
@@ -43,8 +41,6 @@ typedef enum PlayerType PlayerType;
 
 
 @interface PlayerApplication : NSObject {
-	PlayerType type;
-	SBApplication *nativeApp;
 }
 
 @property (assign) PlayerType type;

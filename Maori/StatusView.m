@@ -25,7 +25,7 @@
     float red = 65/255.0;
     float green = 105/255.0;
     float blue = 255/255.0;
-    float alpha = 0.2f;
+    float alpha = 0.1f;
     NSColor *myColor = [NSColor colorWithCalibratedRed:red
                                                  green:green
                                                   blue:blue
@@ -50,6 +50,13 @@
          object:nil ];
     }
 }
+
+- (void)mouseDown:(NSEvent *)event{
+    [[NSNotificationCenter defaultCenter]
+     postNotificationName:@"mouseDown"
+     object:nil ];
+}
+
 
 
 @end
