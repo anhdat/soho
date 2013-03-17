@@ -29,6 +29,10 @@
 @property (weak) IBOutlet NSTextField *fieldTitle;
 
 @property (weak) IBOutlet NSMenu *menuPlayer;
+@property (weak) IBOutlet NSMenuItem *menuiTunes;
+@property (weak) IBOutlet NSMenuItem *menuSpotify;
+@property (weak) IBOutlet NSMenuItem *menuRdio;
+@property (weak) IBOutlet NSMenuItem *menuRadium;
 
 @property  NSTrackingAreaOptions trackingOptions;
 @property (nonatomic, strong) MenubarController *menubarController;
@@ -36,10 +40,7 @@
 @property (strong, nonatomic) NSTrackingArea *trackArea;
 @property (strong, nonatomic) CALayer *progressLayer;
 
-@property (strong, nonatomic) iTunesApplication *iTunesApp;
-@property (strong, nonatomic) SpotifyApplication *spotifyApp;
-@property (strong, nonatomic) RdioApplication *rdioApp;
-@property (strong, nonatomic) RadiumApplication *radiumApp;
+
 
 @property (strong, nonatomic) NSMutableArray *playerArray;
 @property (strong, nonatomic) ADTrack *currentTrack;
@@ -48,6 +49,7 @@
 - (IBAction)setiTunes:(id)sender;
 - (IBAction)setSpotify:(id)sender;
 - (IBAction)setRdio:(id)sender;
+- (IBAction)setRadium:(id)sender;
 
 - (IBAction)nextTrack:(id)sender;
 - (IBAction)previousTrack:(id)sender;

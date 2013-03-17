@@ -54,7 +54,6 @@
 						<int key="NSvFlags">268</int>
 						<string key="NSFrame">{{-3, 3}, {206, 16}}</string>
 						<reference key="NSSuperview" ref="721071481"/>
-						<reference key="NSNextKeyView"/>
 						<string key="NSReuseIdentifierKey">_NS:1535</string>
 						<bool key="NSEnabled">YES</bool>
 						<object class="NSTextFieldCell" key="NSCell" id="51035483">
@@ -97,17 +96,15 @@
 				<string key="NSClassName">StatusView</string>
 			</object>
 			<object class="NSCustomView" id="376639626">
-				<reference key="NSNextResponder"/>
+				<nil key="NSNextResponder"/>
 				<int key="NSvFlags">268</int>
 				<array class="NSMutableArray" key="NSSubviews"/>
 				<string key="NSFrameSize">{206, 22}</string>
-				<reference key="NSSuperview"/>
-				<reference key="NSNextKeyView"/>
 				<string key="NSReuseIdentifierKey">_NS:9</string>
 				<string key="NSClassName">StatusView</string>
 			</object>
 			<object class="NSCustomView" id="143075783">
-				<reference key="NSNextResponder"/>
+				<nil key="NSNextResponder"/>
 				<int key="NSvFlags">268</int>
 				<array class="NSMutableArray" key="NSSubviews">
 					<object class="NSTextField" id="211838709">
@@ -115,7 +112,6 @@
 						<int key="NSvFlags">268</int>
 						<string key="NSFrame">{{17, 3}, {70, 17}}</string>
 						<reference key="NSSuperview" ref="143075783"/>
-						<reference key="NSNextKeyView"/>
 						<string key="NSReuseIdentifierKey">_NS:1535</string>
 						<bool key="NSEnabled">YES</bool>
 						<object class="NSTextFieldCell" key="NSCell" id="272681574">
@@ -136,13 +132,12 @@
 					</object>
 				</array>
 				<string key="NSFrameSize">{100, 22}</string>
-				<reference key="NSSuperview"/>
 				<reference key="NSNextKeyView" ref="211838709"/>
 				<string key="NSReuseIdentifierKey">_NS:9</string>
 				<string key="NSClassName">StatusView</string>
 			</object>
 			<object class="NSCustomView" id="838285469">
-				<reference key="NSNextResponder"/>
+				<nil key="NSNextResponder"/>
 				<int key="NSvFlags">268</int>
 				<array class="NSMutableArray" key="NSSubviews">
 					<object class="NSButton" id="608356967">
@@ -150,7 +145,6 @@
 						<int key="NSvFlags">268</int>
 						<string key="NSFrame">{{60, 1}, {22, 19}}</string>
 						<reference key="NSSuperview" ref="838285469"/>
-						<reference key="NSNextKeyView"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<bool key="NSEnabled">YES</bool>
 						<object class="NSButtonCell" key="NSCell" id="805654767">
@@ -247,13 +241,12 @@
 					</object>
 				</array>
 				<string key="NSFrameSize">{102, 19}</string>
-				<reference key="NSSuperview"/>
 				<reference key="NSNextKeyView" ref="883307603"/>
 				<string key="NSReuseIdentifierKey">_NS:9</string>
 				<string key="NSClassName">ControlView</string>
 			</object>
 			<object class="NSCustomView" id="499654157">
-				<reference key="NSNextResponder"/>
+				<nil key="NSNextResponder"/>
 				<int key="NSvFlags">268</int>
 				<array class="NSMutableArray" key="NSSubviews">
 					<object class="NSBox" id="565464020">
@@ -261,7 +254,6 @@
 						<int key="NSvFlags">12</int>
 						<string key="NSFrame">{{197, 0}, {5, 21}}</string>
 						<reference key="NSSuperview" ref="499654157"/>
-						<reference key="NSNextKeyView"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<string key="NSOffsets">{0, 0}</string>
 						<object class="NSTextFieldCell" key="NSTitleCell">
@@ -334,7 +326,6 @@
 					</object>
 				</array>
 				<string key="NSFrameSize">{200, 22}</string>
-				<reference key="NSSuperview"/>
 				<reference key="NSNextKeyView" ref="926498111"/>
 				<string key="NSReuseIdentifierKey">_NS:9</string>
 				<string key="NSClassName">StatusView</string>
@@ -366,6 +357,7 @@
 				<array class="NSMutableArray" key="NSMenuItems">
 					<object class="NSMenuItem" id="276767140">
 						<reference key="NSMenu" ref="433421953"/>
+						<bool key="NSIsDisabled">YES</bool>
 						<string key="NSTitle">iTunes</string>
 						<string key="NSKeyEquiv"/>
 						<int key="NSMnemonicLoc">2147483647</int>
@@ -380,6 +372,7 @@
 					</object>
 					<object class="NSMenuItem" id="41875795">
 						<reference key="NSMenu" ref="433421953"/>
+						<bool key="NSIsDisabled">YES</bool>
 						<string key="NSTitle">Spotify</string>
 						<string key="NSKeyEquiv"/>
 						<int key="NSMnemonicLoc">2147483647</int>
@@ -388,6 +381,7 @@
 					</object>
 					<object class="NSMenuItem" id="709993647">
 						<reference key="NSMenu" ref="433421953"/>
+						<bool key="NSIsDisabled">YES</bool>
 						<string key="NSTitle">Rdio</string>
 						<string key="NSKeyEquiv"/>
 						<int key="NSMnemonicLoc">2147483647</int>
@@ -396,6 +390,7 @@
 					</object>
 					<object class="NSMenuItem" id="576817935">
 						<reference key="NSMenu" ref="433421953"/>
+						<bool key="NSIsDisabled">YES</bool>
 						<string key="NSTitle">Radium</string>
 						<string key="NSKeyEquiv"/>
 						<int key="NSMnemonicLoc">2147483647</int>
@@ -560,12 +555,52 @@
 					<int key="connectionID">1171</int>
 				</object>
 				<object class="IBConnectionRecord">
-					<object class="IBActionConnection" key="connection">
-						<string key="label">setRdio:</string>
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">menuiTunes</string>
+						<reference key="source" ref="976324537"/>
+						<reference key="destination" ref="276767140"/>
+					</object>
+					<int key="connectionID">1174</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">menuSpotify</string>
+						<reference key="source" ref="976324537"/>
+						<reference key="destination" ref="41875795"/>
+					</object>
+					<int key="connectionID">1175</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">menuRdio</string>
+						<reference key="source" ref="976324537"/>
+						<reference key="destination" ref="709993647"/>
+					</object>
+					<int key="connectionID">1176</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">menuRadium</string>
 						<reference key="source" ref="976324537"/>
 						<reference key="destination" ref="576817935"/>
 					</object>
-					<int key="connectionID">1173</int>
+					<int key="connectionID">1177</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">setRadium</string>
+						<reference key="source" ref="976324537"/>
+						<reference key="destination" ref="576817935"/>
+					</object>
+					<int key="connectionID">1178</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBActionConnection" key="connection">
+						<string key="label">setRadium:</string>
+						<reference key="source" ref="976324537"/>
+						<reference key="destination" ref="576817935"/>
+					</object>
+					<int key="connectionID">1179</int>
 				</object>
 			</array>
 			<object class="IBMutableOrderedSet" key="objectRecords">
@@ -1401,7 +1436,7 @@
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">1173</int>
+			<int key="maxID">1179</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes"/>
 		<int key="IBDocument.localizationMode">0</int>
