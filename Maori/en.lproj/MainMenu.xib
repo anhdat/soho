@@ -137,7 +137,7 @@
 				<string key="NSClassName">StatusView</string>
 			</object>
 			<object class="NSCustomView" id="838285469">
-				<nil key="NSNextResponder"/>
+				<reference key="NSNextResponder"/>
 				<int key="NSvFlags">268</int>
 				<array class="NSMutableArray" key="NSSubviews">
 					<object class="NSButton" id="608356967">
@@ -241,6 +241,7 @@
 					</object>
 				</array>
 				<string key="NSFrameSize">{102, 19}</string>
+				<reference key="NSSuperview"/>
 				<reference key="NSNextKeyView" ref="883307603"/>
 				<string key="NSReuseIdentifierKey">_NS:9</string>
 				<string key="NSClassName">ControlView</string>
@@ -601,6 +602,14 @@
 						<reference key="destination" ref="576817935"/>
 					</object>
 					<int key="connectionID">1179</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">playButton</string>
+						<reference key="source" ref="976324537"/>
+						<reference key="destination" ref="742798922"/>
+					</object>
+					<int key="connectionID">1180</int>
 				</object>
 			</array>
 			<object class="IBMutableOrderedSet" key="objectRecords">
@@ -1436,7 +1445,7 @@
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">1179</int>
+			<int key="maxID">1180</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes"/>
 		<int key="IBDocument.localizationMode">0</int>

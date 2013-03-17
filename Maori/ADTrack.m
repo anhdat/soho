@@ -15,6 +15,7 @@
     if (self){
         _album = NULL;
         _artist = NULL;
+        _name = NULL;
         _duration = 1;
         _rating = 0;
         _starred = NO;

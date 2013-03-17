@@ -33,6 +33,7 @@
 @property (weak) IBOutlet NSMenuItem *menuSpotify;
 @property (weak) IBOutlet NSMenuItem *menuRdio;
 @property (weak) IBOutlet NSMenuItem *menuRadium;
+@property (weak) IBOutlet NSButton *playButton;
 
 @property  NSTrackingAreaOptions trackingOptions;
 @property (nonatomic, strong) MenubarController *menubarController;
