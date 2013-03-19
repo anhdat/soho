@@ -7,6 +7,9 @@
 //
 
 #import "BackView.h"
+#ifndef NSCOLOR
+#define NSCOLOR(r, g, b, a) [NSColor colorWithCalibratedRed:r/255.0f green:g/255.0f blue:b/255.0f alpha:a]
+#endif
 
 @implementation BackView
 
@@ -23,6 +26,20 @@
 - (void)drawRect:(NSRect)dirtyRect
 {
     // Drawing code here.
+    NSRect fillRect= [self frame];
+    [NSCOLOR(0, 0, 0, 1.0) setFill];
+    NSRectFill(fillRect);
 }
-
+- (void)scrollWheel:(NSEvent *)theEvent{
+    if ([theEvent deltaY] < 0) {
+        [[NSNotificationCenter defaultCenter]
+         postNotificationName:@"volumeUp"
+         object:nil ];
+    }
+    if ([theEvent deltaY] > 0) {
+        [[NSNotificationCenter defaultCenter]
+         postNotificationName:@"volumeDown"
+         object:nil ];
+    }
+}
 @end
