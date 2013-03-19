@@ -14,6 +14,16 @@
 @property (nonatomic) RdioApplication *rdioApp;
 @property (nonatomic) RadiumApplication *radiumApp;
 @property (strong, nonatomic) NSMutableArray *preferedPlayer;
+@property (nonatomic) Boolean isInController;
+@property (nonatomic) RadiumRplayer *radiumPlayer;
+
+@property (nonatomic) Boolean iTunesState;
+@property (nonatomic) Boolean spotifyState;
+@property (nonatomic) Boolean rdioState;
+@property (nonatomic) Boolean radiumState;
+
+@property (nonatomic) Boolean isChanged;
+@property (nonatomic) Boolean currentState;
 @end
 @implementation AppDelegate
 
@@ -30,6 +40,10 @@
     //    TransformProcessType(&psn, kProcessTransformToForegroundApplication);
     //    [NSApp setActivationPolicy: NSApplicationActivationPolicyProhibited];
     
+    double tintLevel = [[NSUserDefaults standardUserDefaults] doubleForKey:@"tintLevel"];
+    NSLog(@"tint %f", tintLevel);
+    [[_panelController backgroundView] setTintLevel:tintLevel];
+
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     NSDictionary *appDefaults = [NSDictionary dictionaryWithObject:@"NO" forKey:@"AppleMomentumScrollSupported"];
     [defaults registerDefaults:appDefaults];
@@ -50,7 +64,10 @@
                                                         selector:@selector(TrackDidChange:)
                                                             name:@"com.rdio.desktop.PlaybackStateChanged"
                                                           object:nil];
-    
+    [[NSDistributedNotificationCenter defaultCenter] addObserver:self
+                                                        selector:@selector(TrackDidChange:)
+                                                            name:@"com.catpigstudios.Radium3.stateChange"
+                                                          object:nil];
     // early creation of menubarController and panelController. REALLY NEED TO CHECK THE INIT PROCESS.
     // DUE TO PROBLEM WITH ALBUM ART
     self.menubarController = [[MenubarController alloc] init];
@@ -86,12 +103,8 @@
     _currentTrack = [[ADTrack alloc] init];
     // Call to get init information
     [self TrackDidChange:nil];
-    if ([[_currentTrack name] length] <= 0) {
-        [[_titleView animator] setHidden:YES];
-        [[_controlView animator] setHidden:NO];
-    }
     
-    
+    [self setIsInController:NO];
     
     [NSTimer scheduledTimerWithTimeInterval:1.0f
                                      target:self
@@ -100,7 +113,13 @@
                                     repeats:YES];
     [_menuPlayer setAutoenablesItems:NO];
     
+    _iTunesState = YES;
+    _spotifyState = YES;
+    _rdioState = YES;
+    _radiumState = YES;
+    
 }
+
 - (void) toBottom:(NSString *) player{
     NSString *tempString= [_playerArray objectAtIndex:0];
     for (NSInteger i = 0; i < [_playerArray count]; i++) {
@@ -115,35 +134,71 @@
     [_playerArray removeLastObject];
     [_playerArray insertObject:player atIndex:3];
 }
+
 -(void) updatePlayerArray{
+    // First, set isChanged to NO
+    [self setIsChanged:NO];
+    
+    // Check iTunes
     if ([_iTunesApp isRunning]) {
+        [self setCurrentState:YES];
     } else {
+        [self setCurrentState:NO];
         if (![@"iTunes" isEqual:[_playerArray objectAtIndex:3]]) {
             [self toBottom:@"iTunes"];
-            [self TrackDidChange:nil];
         }
     }
+    if (_currentState != _iTunesState) {
+        [self setIsChanged:YES];
+    }
+    _iTunesState = _currentState;
+    
+    // Check Spotify
     if ([_spotifyApp isRunning]) {
+        [self setCurrentState:YES];
     } else {
+        [self setCurrentState:NO];
         if (![@"Spotify" isEqual:[_playerArray objectAtIndex:3]]) {
             [self toBottom:@"Spotify"];
-            [self TrackDidChange:nil];
         }
     }
+    if (_currentState != _spotifyState) {
+        [self setIsChanged:YES];
+    }
+    _spotifyState = _currentState;
+
+    // Check Rdio
     if ([_rdioApp isRunning]) {
+        [self setCurrentState:YES];
     } else {
+        [self setCurrentState:NO];
         if (![@"Rdio" isEqual:[_playerArray objectAtIndex:3]]) {
             [self toBottom:@"Rdio"];
-            [self TrackDidChange:nil];
         }
     }
+    if (_currentState != _iTunesState) {
+        [self setIsChanged:YES];
+    }
+    _iTunesState = _currentState;
+
+    // Check Radium
     if ([_radiumApp isRunning]) {
+        [self setCurrentState:YES];
     } else {
+        [self setCurrentState:NO];
         if (![@"Radium" isEqual:[_playerArray objectAtIndex:3]]) {
             [self toBottom:@"Radium"];
-            [self TrackDidChange:nil];
         }
     }
+    if (_currentState != _radiumState) {
+        [self setIsChanged:YES];
+    }
+    _radiumState = _currentState;
+    
+    if (_isChanged) {
+        [self TrackDidChange:nil];
+    }
+
 }
 - (void) updatePlayButton{
     
@@ -202,9 +257,9 @@
         }
         if ([@"Radium" isEqual:[_playerArray objectAtIndex:i]]) {
             if ([_radiumApp isRunning]) {
-                RadiumRplayer *radiumPlayer;
-                radiumPlayer = [_radiumApp player];
-                if ([radiumPlayer playing]) {
+//                RadiumRplayer *radiumPlayer;
+//                _radiumPlayer = [_radiumApp player];
+                if ([_radiumPlayer playing]) {
                     [_playButton setImage:[NSImage imageNamed:@"Auckland_Pause.png"]];                    
                 }else {
                     [_playButton setImage:[NSImage imageNamed:@"Auckland_Play.png"]];                }
@@ -303,9 +358,9 @@
     }
     if ([_radiumApp isRunning]) {
         [_menuRadium setEnabled:YES];
-        RadiumRplayer *radiumPlayer;
-        radiumPlayer = [_radiumApp player];
-        if ([radiumPlayer playing]) {
+//        RadiumRplayer *radiumPlayer;
+        _radiumPlayer = [_radiumApp player];
+        if ([_radiumPlayer playing]) {
             if ([@"Radium" isEqual:[_playerArray objectAtIndex:0]]){
                 [_menuRadium setTitle:@"Radium ♬◁"];
             } else {
@@ -416,6 +471,7 @@
 }
 
 - (void)mouseExited:(NSEvent *)theEvent{
+    [self setIsInController:NO];
     if ([[_currentTrack name] length] > 0) {
         [[_titleView animator] setHidden:NO];
         [NSAnimationContext beginGrouping];
@@ -427,6 +483,7 @@
 }
 
 - (void)mouseEntered:(NSEvent *)theEvent{
+    [self setIsInController:YES];
     if ([[_currentTrack name] length] > 0) {
         [[_titleView animator] setHidden:YES];
         [[_controlView animator] setHidden:NO];
@@ -436,6 +493,11 @@
     [[_controlView animator] setHidden:NO];
     [[_volumeView animator] setHidden:YES];
     [[_titleView animator] setHidden:YES];
+    if (![self isInController]) {
+        [[_controlView animator] setHidden:YES];
+        [[_volumeView animator] setHidden:YES];
+        [[_titleView animator] setHidden:NO];
+    }
 }
 
 - (void)volumeUp: (NSNotification *) notification{
@@ -518,15 +580,10 @@
      selector:@selector(viewSet:)
      name:@"viewSet"
      object:nil ];
-    [[NSNotificationCenter defaultCenter]
-     addObserver:self
-     selector:@selector(setPostion:)
-     name:@"changePostion"
-     object:nil ];
 }
 
 
-- (void)setPostion: (NSNotification *) notification{
+- (IBAction)setPostion: (id)sender{
     int pos = [[_panelController playerProgressBar] doubleValue] / 100 * [_currentTrack duration];
     for (NSInteger i = 0; i < [_playerArray count]; i++) {
         if ([@"iTunes" isEqual:[_playerArray objectAtIndex:i]]) {
@@ -784,10 +841,10 @@
         }
         if ([@"Radium" isEqual:[_playerArray objectAtIndex:i]]) {
             if ([_radiumApp isRunning]) {
-                RadiumRplayer *radiumPlayer;
-                radiumPlayer = [_radiumApp player];
-                if ([radiumPlayer playing]) {
-                    NSString *fullName = [radiumPlayer songTitle];
+//                RadiumRplayer *radiumPlayer;
+//                _radiumPlayer = [_radiumApp player];
+                if ([_radiumPlayer playing]) {
+                    NSString *fullName = [_radiumPlayer songTitle];
                     NSArray *tokens = [fullName componentsSeparatedByString:@"-"];
                     [_currentTrack setName:[tokens objectAtIndex:1]];
                     [_currentTrack setAlbum:@""];
@@ -839,10 +896,14 @@
 
 - (void) TrackDidChange:(NSNotification *)aNotification{
     [self updateCurrentTrack];
-    if ([_currentTrack name]) {
+    NSLog(@"track did change");
+    if ([[_currentTrack name] length] >= 1) {
         [self updateTitleView];
         // Update panelController information.
         [_panelController updateInformation:_currentTrack];
+        if ([_titleView isHidden] && [self isInController] == NO) {
+            [self volumeDone];
+        }
     } else {
         [[_titleView animator] setHidden:YES];
         [[_controlView animator] setHidden:NO];
@@ -884,7 +945,9 @@ void *kContextActivePanel = &kContextActivePanel;
 #pragma mark - Actions
 
 - (IBAction)togglePanel:(id)sender{
-    
+    double tintLevel = [[NSUserDefaults standardUserDefaults] doubleForKey:@"tintLevel"];
+     NSLog(@"tint low %f", tintLevel);
+    [[_panelController backgroundView] setTintLevel:tintLevel];
     self.menubarController.hasActiveIcon = !self.menubarController.hasActiveIcon;
     self.panelController.hasActivePanel = self.menubarController.hasActiveIcon;
     float viewWidth = [_mainView bounds].size.width;

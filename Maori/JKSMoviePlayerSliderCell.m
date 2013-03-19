@@ -26,12 +26,12 @@
 
 - (void)drawKnob:(NSRect)knobRect
 {
-    NSBezierPath *outerPath = [NSBezierPath bezierPathWithOvalInRect:knobRect];
-    NSGradient *outerGradient = [[NSGradient alloc] initWithColors:@[NSCOLOR(193, 193, 193, 1), NSCOLOR(120, 120, 120, 1)]];
-    [outerGradient drawInBezierPath:outerPath angle:90];
-    NSBezierPath *innerPath = [NSBezierPath bezierPathWithOvalInRect:NSInsetRect(knobRect, 2, 2)];
-    NSGradient *innerGradient = [[NSGradient alloc] initWithColors:@[NSCOLOR(154, 154, 154, 1), NSCOLOR(127, 127, 127, 1)]];
-    [innerGradient drawInBezierPath:innerPath angle:90];
+//    NSBezierPath *outerPath = [NSBezierPath bezierPathWithOvalInRect:knobRect];
+//    NSGradient *outerGradient = [[NSGradient alloc] initWithColors:@[NSCOLOR(193, 193, 193, 1), NSCOLOR(120, 120, 120, 1)]];
+//    [outerGradient drawInBezierPath:outerPath angle:90];
+//    NSBezierPath *innerPath = [NSBezierPath bezierPathWithOvalInRect:NSInsetRect(knobRect, 2, 2)];
+//    NSGradient *innerGradient = [[NSGradient alloc] initWithColors:@[NSCOLOR(154, 154, 154, 1), NSCOLOR(127, 127, 127, 1)]];
+//    [innerGradient drawInBezierPath:innerPath angle:90];
 }
 
 
@@ -41,14 +41,35 @@
     sliderRect.origin.y += (NSMaxY(sliderRect) / 2) - 4;
     sliderRect.origin.x += 2;
     sliderRect.size.width -= 4;
-    sliderRect.size.height = 11;
-    
+    sliderRect.size.height = 8;
+   
     NSBezierPath *barPath = [NSBezierPath bezierPathWithRoundedRect:sliderRect xRadius:4 yRadius:4];
-    NSGradient *borderGradient = [[NSGradient alloc] initWithColors:@[NSCOLOR(3, 3, 3, 1), NSCOLOR(23, 23, 23, 1)]];
-    [borderGradient drawInBezierPath:barPath angle:90];
+    NSGradient *borderGradient = [[NSGradient alloc] initWithColors:@[NSCOLOR(13, 13, 13, 0.3), NSCOLOR(26, 26, 26, 0.3)]];
+    [borderGradient drawInBezierPath:barPath angle:30];
     NSBezierPath *innerPath = [NSBezierPath bezierPathWithRoundedRect:NSInsetRect(sliderRect, 1, 1) xRadius:4 yRadius:4];
-    [NSCOLOR(13, 13, 13, 1) setFill];
+    [NSCOLOR(250, 250, 250, 0.7) setFill];
+    
     [innerPath fill];
+    
+    
+    NSRect knobRect = [self knobRectFlipped:flipped];
+    CGFloat fillWidth = (NSMaxX(knobRect));
+    NSRect fillRect= NSMakeRect(sliderRect.origin.x, sliderRect.origin.y, fillWidth, sliderRect.size.height);
+//    fillRect.origin.x = sliderRect.origin.x;
+//    fillRect.origin.y = sliderRect.origin.y;
+    
+//    NSBezierPath *fillBarPath = [NSBezierPath bezierPathWithRoundedRect:fillRect xRadius:4 yRadius:4];
+//    NSGradient *fillBorderGradient = [[NSGradient alloc] initWithColors:@[NSCOLOR(3, 3, 3, 1), NSCOLOR(23, 23, 23, 1)]];
+//    [fillBorderGradient drawInBezierPath:fillBarPath angle:90];
+//
+    NSBezierPath *fillInnerPath = [NSBezierPath bezierPathWithRoundedRect:NSInsetRect(fillRect, 1, 1) xRadius:4 yRadius:4];
+    [NSCOLOR(255, 165, 0, 1) setFill];
+    [fillInnerPath fill];
+    
+    
+    
+//    [[NSColor whiteColor] setFill];
+//    NSRectFill(fillRect);
 }
 
 

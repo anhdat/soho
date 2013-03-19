@@ -61,6 +61,7 @@ static NSString* const kImageKnobHighlighted = @"slider-knob-h";
     NSRect barRect = NSMakeRect(floor(NSMidX(aRect) - (bottomSize.width / 2.f)), aRect.origin.y, bottomSize.width, aRect.size.height);
     NSDrawThreePartImage(barRect, top, mid, bottom, YES, NSCompositeSourceOver, 1.f, flipped);
     NSRect knobRect = [self knobRectFlipped:flipped];
+    
     NSImage *fill = [NSImage imageNamed:kImageMidFilled];
     CGFloat fillHeight = aRect.size.height - (NSMidY(knobRect) + bottomSize.height);
     NSRect fillRect = NSMakeRect(barRect.origin.x, NSMaxY(barRect) - fillHeight, barRect.size.width, fillHeight - bottomSize.height);

@@ -7,5 +7,5 @@
 }
 
 @property (nonatomic, assign) NSInteger arrowX;
-
+@property (nonatomic) double tintLevel;
 @end

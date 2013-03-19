@@ -16,6 +16,16 @@
 
 #pragma mark -
 
+- (id)init
+{
+    self = [super init];
+    if (self) {
+        self.tintLevel = [[NSUserDefaults standardUserDefaults] doubleForKey:@"tintLevel"];
+        NSLog(@"tint in init %f", _tintLevel);
+    }
+    return self;
+}
+
 - (void)drawRect:(NSRect)dirtyRect
 {
     
@@ -49,10 +59,10 @@
     
     [path lineToPoint:NSMakePoint(_arrowX - ARROW_WIDTH / 2, NSMaxY(contentRect) - ARROW_HEIGHT)];
     [path closePath];
-    
-    [[NSColor colorWithDeviceWhite:0 alpha:FILL_OPACITY] setFill];
+        NSLog(@"%f", _tintLevel);
+    [[NSColor colorWithDeviceWhite:_tintLevel alpha:FILL_OPACITY] setFill];
     [path fill];
-    
+
     [NSGraphicsContext saveGraphicsState];
 
     NSBezierPath *clip = [NSBezierPath bezierPathWithRect:[self bounds]];
@@ -61,7 +71,7 @@
     
     [path setLineWidth:LINE_THICKNESS * 2];
     [[NSColor whiteColor] setStroke];
-    [path stroke];
+//    [path stroke];
     
     [NSGraphicsContext restoreGraphicsState];
     
@@ -76,19 +86,6 @@
     [self setNeedsDisplay:YES];
 }
 
-
-- (void)scrollWheel:(NSEvent *)theEvent{
-    if ([theEvent deltaY] < 0) {
-        [[NSNotificationCenter defaultCenter]
-         postNotificationName:@"volumeUp"
-         object:nil ];
-    }
-    if ([theEvent deltaY] > 0) {
-        [[NSNotificationCenter defaultCenter]
-         postNotificationName:@"volumeDown"
-         object:nil ];
-    }
-}
 
 
 @end
