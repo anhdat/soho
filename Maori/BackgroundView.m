@@ -16,16 +16,6 @@
 
 #pragma mark -
 
-- (id)init
-{
-    self = [super init];
-    if (self) {
-        self.tintLevel = [[NSUserDefaults standardUserDefaults] doubleForKey:@"tintLevel"];
-        NSLog(@"tint in init %f", _tintLevel);
-    }
-    return self;
-}
-
 - (void)drawRect:(NSRect)dirtyRect
 {
     
@@ -59,8 +49,8 @@
     
     [path lineToPoint:NSMakePoint(_arrowX - ARROW_WIDTH / 2, NSMaxY(contentRect) - ARROW_HEIGHT)];
     [path closePath];
-        NSLog(@"%f", _tintLevel);
-    [[NSColor colorWithDeviceWhite:_tintLevel alpha:FILL_OPACITY] setFill];
+//        NSLog(@"%f", _tintLevel);
+    [[NSColor colorWithDeviceWhite:1 alpha:FILL_OPACITY] setFill];
     [path fill];
 
     [NSGraphicsContext saveGraphicsState];

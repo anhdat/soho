@@ -18,7 +18,7 @@
 		1A2C716916DE83CB00091C15 /* ScriptingBridge.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1A2C716816DE83CB00091C15 /* ScriptingBridge.framework */; };
 		1A3031DC16F1ECFF00C91EF4 /* ADPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A3031DB16F1ECFF00C91EF4 /* ADPlayer.m */; };
 		1A3031E116F231B200C91EF4 /* ADTrack.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A3031E016F231B100C91EF4 /* ADTrack.m */; };
-		1A6A0A3E16F781BD00939616 /* FontView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A6A0A3D16F781BD00939616 /* FontView.m */; };
+		1A6A0A3E16F781BD00939616 /* FrontView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A6A0A3D16F781BD00939616 /* FrontView.m */; };
 		1A801CB716EF8B3D00532C54 /* Background.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A801CB616EF8B3D00532C54 /* Background.m */; };
 		1A801CBA16EF8CE600532C54 /* LBProgressBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A801CB916EF8CE600532C54 /* LBProgressBar.m */; };
 		1A801CC316EFA12F00532C54 /* SNRVerticalSliderCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A801CC216EFA12E00532C54 /* SNRVerticalSliderCell.m */; };
@@ -32,6 +32,8 @@
 		1A9081C316F8C61A00651C27 /* NSBezierPath+MCAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A9081BE16F8C61A00651C27 /* NSBezierPath+MCAdditions.m */; };
 		1A9081C416F8C61A00651C27 /* NSShadow+MCAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A9081C016F8C61A00651C27 /* NSShadow+MCAdditions.m */; };
 		1A9081C816F8D79D00651C27 /* BackView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A9081C716F8D79D00651C27 /* BackView.m */; };
+		1AA70F7816FA0EE900D2FE21 /* BarBackground.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AA70F7716FA0EE900D2FE21 /* BarBackground.m */; };
+		1AA70F7B16FA25E800D2FE21 /* MSDurationFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AA70F7A16FA25E800D2FE21 /* MSDurationFormatter.m */; };
 		1AD2AFDA16F0E9F20058421C /* PlayerApplication.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AD2AFD916F0E9F20058421C /* PlayerApplication.m */; };
 		1AE0644416E8FC04000E100A /* mbFliperViews.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AE0644316E8FC04000E100A /* mbFliperViews.m */; };
 		1AE5D82416E7B267009D1BF3 /* ControlView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AE5D82316E7B267009D1BF3 /* ControlView.m */; };
@@ -79,8 +81,8 @@
 		1A3031DE16F2224B00C91EF4 /* Rdio.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Rdio.h; sourceTree = "<group>"; };
 		1A3031DF16F231B100C91EF4 /* ADTrack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ADTrack.h; sourceTree = "<group>"; };
 		1A3031E016F231B100C91EF4 /* ADTrack.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ADTrack.m; sourceTree = "<group>"; };
-		1A6A0A3C16F781BD00939616 /* FontView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FontView.h; sourceTree = "<group>"; };
-		1A6A0A3D16F781BD00939616 /* FontView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FontView.m; sourceTree = "<group>"; };
+		1A6A0A3C16F781BD00939616 /* FrontView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FrontView.h; sourceTree = "<group>"; };
+		1A6A0A3D16F781BD00939616 /* FrontView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FrontView.m; sourceTree = "<group>"; };
 		1A801CB516EF8B3D00532C54 /* Background.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Background.h; sourceTree = "<group>"; };
 		1A801CB616EF8B3D00532C54 /* Background.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Background.m; sourceTree = "<group>"; };
 		1A801CB816EF8CE600532C54 /* LBProgressBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBProgressBar.h; sourceTree = "<group>"; };
@@ -103,6 +105,12 @@
 		1A9081C016F8C61A00651C27 /* NSShadow+MCAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSShadow+MCAdditions.m"; path = "../../../Downloads/ANSegmentedControl-master/Sample/Sample/ANSegmentedControl/NSShadow+MCAdditions.m"; sourceTree = "<group>"; };
 		1A9081C616F8D79D00651C27 /* BackView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BackView.h; sourceTree = "<group>"; };
 		1A9081C716F8D79D00651C27 /* BackView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BackView.m; sourceTree = "<group>"; };
+		1AA70F7316FA0DB100D2FE21 /* en */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = en; path = en.lproj/ProgressBarBackground.h; sourceTree = "<group>"; };
+		1AA70F7516FA0DB100D2FE21 /* en */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = en; path = en.lproj/ProgressBarBackground.m; sourceTree = "<group>"; };
+		1AA70F7616FA0EE800D2FE21 /* BarBackground.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BarBackground.h; sourceTree = "<group>"; };
+		1AA70F7716FA0EE900D2FE21 /* BarBackground.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BarBackground.m; sourceTree = "<group>"; };
+		1AA70F7916FA25E800D2FE21 /* MSDurationFormatter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSDurationFormatter.h; sourceTree = "<group>"; };
+		1AA70F7A16FA25E800D2FE21 /* MSDurationFormatter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSDurationFormatter.m; sourceTree = "<group>"; };
 		1AD2AFD716F0E9F20058421C /* Spotify.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Spotify.h; sourceTree = "<group>"; };
 		1AD2AFD816F0E9F20058421C /* PlayerApplication.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayerApplication.h; sourceTree = "<group>"; };
 		1AD2AFD916F0E9F20058421C /* PlayerApplication.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayerApplication.m; sourceTree = "<group>"; };
@@ -232,9 +240,13 @@
 		1AEACF8816EC351300420311 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				1AA70F7216FA0DB100D2FE21 /* ProgressBarBackground.h */,
+				1AA70F7416FA0DB100D2FE21 /* ProgressBarBackground.m */,
 				1A9081C516F8C62300651C27 /* ANSegment */,
-				1A6A0A3C16F781BD00939616 /* FontView.h */,
-				1A6A0A3D16F781BD00939616 /* FontView.m */,
+				1A6A0A3C16F781BD00939616 /* FrontView.h */,
+				1A6A0A3D16F781BD00939616 /* FrontView.m */,
+				1AA70F7616FA0EE800D2FE21 /* BarBackground.h */,
+				1AA70F7716FA0EE900D2FE21 /* BarBackground.m */,
 				1A9081C616F8D79D00651C27 /* BackView.h */,
 				1A9081C716F8D79D00651C27 /* BackView.m */,
 				1AE5D82216E7B267009D1BF3 /* ControlView.h */,
@@ -256,6 +268,8 @@
 		1AEACF8916EC352400420311 /* General */ = {
 			isa = PBXGroup;
 			children = (
+				1AA70F7916FA25E800D2FE21 /* MSDurationFormatter.h */,
+				1AA70F7A16FA25E800D2FE21 /* MSDurationFormatter.m */,
 				1A3031DA16F1ECFF00C91EF4 /* ADPlayer.h */,
 				1A3031DB16F1ECFF00C91EF4 /* ADPlayer.m */,
 				1AD2AFD816F0E9F20058421C /* PlayerApplication.h */,
@@ -408,12 +422,14 @@
 				1AD2AFDA16F0E9F20058421C /* PlayerApplication.m in Sources */,
 				1A3031DC16F1ECFF00C91EF4 /* ADPlayer.m in Sources */,
 				1A3031E116F231B200C91EF4 /* ADTrack.m in Sources */,
-				1A6A0A3E16F781BD00939616 /* FontView.m in Sources */,
+				1A6A0A3E16F781BD00939616 /* FrontView.m in Sources */,
 				1A9081C116F8C61A00651C27 /* ANSegmentedCell.m in Sources */,
 				1A9081C216F8C61A00651C27 /* ANSegmentedControl.m in Sources */,
 				1A9081C316F8C61A00651C27 /* NSBezierPath+MCAdditions.m in Sources */,
 				1A9081C416F8C61A00651C27 /* NSShadow+MCAdditions.m in Sources */,
 				1A9081C816F8D79D00651C27 /* BackView.m in Sources */,
+				1AA70F7816FA0EE900D2FE21 /* BarBackground.m in Sources */,
+				1AA70F7B16FA25E800D2FE21 /* MSDurationFormatter.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -442,6 +458,22 @@
 				1A2C715B16DE515D00091C15 /* en */,
 			);
 			name = MainMenu.xib;
+			sourceTree = "<group>";
+		};
+		1AA70F7216FA0DB100D2FE21 /* ProgressBarBackground.h */ = {
+			isa = PBXVariantGroup;
+			children = (
+				1AA70F7316FA0DB100D2FE21 /* en */,
+			);
+			name = ProgressBarBackground.h;
+			sourceTree = "<group>";
+		};
+		1AA70F7416FA0DB100D2FE21 /* ProgressBarBackground.m */ = {
+			isa = PBXVariantGroup;
+			children = (
+				1AA70F7516FA0DB100D2FE21 /* en */,
+			);
+			name = ProgressBarBackground.m;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */

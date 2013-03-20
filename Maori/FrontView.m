@@ -6,26 +6,16 @@
 //  Copyright (c) 2013 Dat Anh Truong. All rights reserved.
 //
 
-#import "FontView.h"
+#import "FrontView.h"
 #ifndef NSCOLOR
 #define NSCOLOR(r, g, b, a) [NSColor colorWithCalibratedRed:r/255.0f green:g/255.0f blue:b/255.0f alpha:a]
 #endif
-@implementation FontView
-
-- (id)initWithFrame:(NSRect)frame
-{
-    self = [super initWithFrame:frame];
-    if (self) {
-        // Initialization code here.
-    }
-    
-    return self;
-}
+@implementation FrontView
 
 - (void)drawRect:(NSRect)dirtyRect
 {
-    // Drawing code here.
-    NSRect fillRect= NSMakeRect([self frame].origin.x, [self frame].origin.y, [self frame].size.width,20);
+    NSRect fillRect= NSMakeRect([self frame].origin.x, [self frame].origin.y, [self frame].size.width,100);
+//    NSRect fillRect = [self frame];
     [NSCOLOR(0, 0, 0, 0.5) setFill];
     NSRectFill(fillRect);
 }
@@ -44,8 +34,15 @@
 }
 
 - (void)mouseDown:(NSEvent *)event{
-    [[NSNotificationCenter defaultCenter]
-     postNotificationName:@"mouseDown"
-     object:nil ];
+    
+    if ([event clickCount] > 1) {
+        [[NSNotificationCenter defaultCenter]
+         postNotificationName:@"doubleClick"
+         object:nil ];
+    } else {
+        [[NSNotificationCenter defaultCenter]
+         postNotificationName:@"mouseDown"
+         object:nil ];
+    }
 }
 @end

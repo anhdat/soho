@@ -30,6 +30,7 @@
     [NSCOLOR(0, 0, 0, 1.0) setFill];
     NSRectFill(fillRect);
 }
+
 - (void)scrollWheel:(NSEvent *)theEvent{
     if ([theEvent deltaY] < 0) {
         [[NSNotificationCenter defaultCenter]
@@ -39,6 +40,19 @@
     if ([theEvent deltaY] > 0) {
         [[NSNotificationCenter defaultCenter]
          postNotificationName:@"volumeDown"
+         object:nil ];
+    }
+}
+
+- (void)mouseDown:(NSEvent *)event{
+    
+    if ([event clickCount] > 1) {
+        [[NSNotificationCenter defaultCenter]
+         postNotificationName:@"doubleClick"
+         object:nil ];
+    } else {
+        [[NSNotificationCenter defaultCenter]
+         postNotificationName:@"mouseDown"
          object:nil ];
     }
 }

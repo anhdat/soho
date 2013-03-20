@@ -2,15 +2,16 @@
 #import "BackgroundView.h"
 #import "StatusItemView.h"
 #import "MenubarController.h"
-#import "iTunes.h"
 #import "ADTrack.h"
+#import "FrontView.h"
+#import "BackView.h"
 
 #define OPEN_DURATION .15
 #define CLOSE_DURATION .1
 
 #define SEARCH_INSET 17
 
-#define POPUP_HEIGHT 380
+#define POPUP_HEIGHT 400
 #define PANEL_WIDTH 280
 #define MENU_ANIMATION_DURATION .1
 
@@ -65,25 +66,26 @@
     [fliper addView:_backView];
     fliper.superView = _hostView; // as superview for example type of content view of the window
     [fliper setActiveViewAtIndex:0];
-    frontIsFlipped = NO;
+    _frontIsFlipped = NO;
     
 }
 
 #pragma mark - Public accessors
 
 - (IBAction)flipToBack:(id)sender {
-    if (frontIsFlipped) {
+    if (_frontIsFlipped) {
         [fliper flipRight:nil];
-        frontIsFlipped = NO;
+        _frontIsFlipped = NO;
     } else {
         [fliper flipLeft:nil];
-        frontIsFlipped = YES;
+        _frontIsFlipped
+        = YES;
     }
 }
 
 - (IBAction)flipToFront:(id)sender {
     [fliper flipRight:nil];
-    frontIsFlipped = NO;
+    _frontIsFlipped = NO;
 }
 
 - (BOOL)hasActivePanel
@@ -261,7 +263,7 @@
 
 - (void)closePanel
 {
-    if (frontIsFlipped) {
+    if (_frontIsFlipped) {
         [self flipToFront:nil];
     }
     [NSAnimationContext beginGrouping];
@@ -283,9 +285,17 @@
          artwork = [NSImage imageNamed:@"Sample.tiff"];
     }
     [_albumart setImage:artwork];
+    if ([[currentTrack album] length] > 0) {
+        [_txtSongTitle setStringValue:[currentTrack name]];
+    }
     
-    [_txtSongTitle setStringValue:[currentTrack name]];
-    [_txtArtistAlbum setStringValue:[NSString stringWithFormat:@"%@ - %@", [currentTrack artist], [currentTrack album]]];
+    if ([[currentTrack album] length] > 0) {
+        [_txtAlbum setStringValue:[currentTrack album]];
+    }
+    if ([[currentTrack album] length] > 0) {
+        [_txtArtist setStringValue:[currentTrack artist]];
+    }
+
 }
 
 
@@ -297,6 +307,19 @@
 }
 
 - (IBAction)playerBarDidChange:(id)sender {
-   [[NSNotificationCenter defaultCenter] postNotificationName:@"changePostion" object:nil];}
+   [[NSNotificationCenter defaultCenter] postNotificationName:@"changePostion" object:nil];
+}
+
+- (IBAction)playPause:(id)sender {
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"playPause" object:nil];
+}
+
+- (IBAction)prevSong:(id)sender {
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"prevSong" object:nil];
+}
+
+- (IBAction)nextSong:(id)sender {
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"nextSong" object:nil];
+}
 
 @end

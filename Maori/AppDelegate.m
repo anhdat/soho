@@ -7,6 +7,7 @@
 //
 
 #import "AppDelegate.h"
+#import "MSDurationFormatter.h"
 
 @interface AppDelegate ()
 @property (nonatomic) iTunesApplication *iTunesApp;
@@ -100,7 +101,11 @@
     [_playerArray addObject:@"Spotify"];
     [_playerArray addObject:@"Rdio"];
     [_playerArray addObject:@"Radium"];
+    
+    _playerArray = _preferedPlayer ;
+    
     _currentTrack = [[ADTrack alloc] init];
+    
     // Call to get init information
     [self TrackDidChange:nil];
     
@@ -176,10 +181,10 @@
             [self toBottom:@"Rdio"];
         }
     }
-    if (_currentState != _iTunesState) {
+    if (_currentState != _rdioState) {
         [self setIsChanged:YES];
     }
-    _iTunesState = _currentState;
+    _rdioState = _currentState;
 
     // Check Radium
     if ([_radiumApp isRunning]) {
@@ -211,13 +216,16 @@
                 {
                     case iTunesEPlSPlaying:
                         [_playButton setImage:[NSImage imageNamed:@"Auckland_Pause.png"]];
+                        [[_panelController playBtn] setImage:[NSImage imageNamed:@"iTunes mini_pause"]];
                         break;
                     default:
                         [_playButton setImage:[NSImage imageNamed:@"Auckland_Play.png"]];
+                        [[_panelController playBtn] setImage:[NSImage imageNamed:@"iTunes mini_play"]];
                         break;
                 }
             } else {
                 [_playButton setImage:[NSImage imageNamed:@"Auckland_Play.png"]];
+                [[_panelController playBtn] setImage:[NSImage imageNamed:@"iTunes mini_play"]];
             }
             return;
         }
@@ -227,13 +235,16 @@
                 {
                     case SpotifyEPlSPlaying:
                         [_playButton setImage:[NSImage imageNamed:@"Auckland_Pause.png"]];
+                        [[_panelController playBtn] setImage:[NSImage imageNamed:@"iTunes mini_pause"]];
                         break;
                     default:
                         [_playButton setImage:[NSImage imageNamed:@"Auckland_Play.png"]];
+                        [[_panelController playBtn] setImage:[NSImage imageNamed:@"iTunes mini_play"]];
                         break;
                 }
             } else {
                 [_playButton setImage:[NSImage imageNamed:@"Auckland_Play.png"]];
+                [[_panelController playBtn] setImage:[NSImage imageNamed:@"iTunes mini_play"]];
             }
             
             return;
@@ -244,13 +255,16 @@
                 {
                     case RdioEPSSPlaying:
                         [_playButton setImage:[NSImage imageNamed:@"Auckland_Pause.png"]];
+                        [[_panelController playBtn] setImage:[NSImage imageNamed:@"iTunes mini_pause"]];
                         break;
                     default:
                         [_playButton setImage:[NSImage imageNamed:@"Auckland_Play.png"]];
+                        [[_panelController playBtn] setImage:[NSImage imageNamed:@"iTunes mini_play"]];
                         break;
                 }
             } else {
                 [_playButton setImage:[NSImage imageNamed:@"Auckland_Play.png"]];
+                [[_panelController playBtn] setImage:[NSImage imageNamed:@"iTunes mini_play"]];
             }
             
             return;
@@ -260,16 +274,18 @@
 //                RadiumRplayer *radiumPlayer;
 //                _radiumPlayer = [_radiumApp player];
                 if ([_radiumPlayer playing]) {
-                    [_playButton setImage:[NSImage imageNamed:@"Auckland_Pause.png"]];                    
+                    [_playButton setImage:[NSImage imageNamed:@"Auckland_Pause.png"]];
+                    [[_panelController playBtn] setImage:[NSImage imageNamed:@"iTunes mini_pause"]];
                 }else {
-                    [_playButton setImage:[NSImage imageNamed:@"Auckland_Play.png"]];                }
+                    [_playButton setImage:[NSImage imageNamed:@"Auckland_Play.png"]];
+                    [[_panelController playBtn] setImage:[NSImage imageNamed:@"iTunes mini_play"]];               }
             }else {
                 [_playButton setImage:[NSImage imageNamed:@"Auckland_Play.png"]];
+                [[_panelController playBtn] setImage:[NSImage imageNamed:@"iTunes mini_play"]];
             }
             return;
         }
     }
-
 }
 - (void) updateMenu{
     [self updatePlayerArray];
@@ -464,7 +480,7 @@
 }
 
 -(void) openMenu{
-    NSLog(@"Open menu");
+//    NSLog(@"Open menu");
     //    [_controllerItem popUpStatusItemMenu:[_controllerItem menu]];
     //    [_menuPlayer setDelegate:self];
     //    [_mainView setNeedsDisplay:YES];
@@ -580,10 +596,42 @@
      selector:@selector(viewSet:)
      name:@"viewSet"
      object:nil ];
+    [[NSNotificationCenter defaultCenter]
+     addObserver:self
+     selector:@selector(setPosition)
+     name:@"changePostion"
+     object:nil ];
+    [[NSNotificationCenter defaultCenter]
+     addObserver:self
+     selector:@selector(doubleClick)
+     name:@"doubleClick"
+     object:nil ];
+    [[NSNotificationCenter defaultCenter]
+     addObserver:self
+     selector:@selector(playPause:)
+     name:@"playPause"
+     object:nil ];
+    [[NSNotificationCenter defaultCenter]
+     addObserver:self
+     selector:@selector(nextTrack:)
+     name:@"nextSong"
+     object:nil ];
+    [[NSNotificationCenter defaultCenter]
+     addObserver:self
+     selector:@selector(previousTrack:)
+     name:@"prevSong"
+     object:nil ];
 }
 
+-(void) doubleClick{
+    if ([_panelController frontIsFlipped]) {
+        [_panelController flipToFront:nil];
+    } else {
+        [_panelController flipToBack:nil];
+    }
+}
 
-- (IBAction)setPostion: (id)sender{
+- (void) setPosition{
     int pos = [[_panelController playerProgressBar] doubleValue] / 100 * [_currentTrack duration];
     for (NSInteger i = 0; i < [_playerArray count]; i++) {
         if ([@"iTunes" isEqual:[_playerArray objectAtIndex:i]]) {
@@ -608,7 +656,7 @@
             break;
         }
     }
-    
+
 }
 - (void)viewSet: (NSNotification *) notification{
     NSRect rec = [_mainView bounds] ;
@@ -633,6 +681,11 @@
 - (void)updateProgressBar{
     NSInteger position = [self getPosition];
     double duration =[_currentTrack duration];
+    
+    NSString *elapsedTimeString = [MSDurationFormatter hoursMinutesSecondsFromSeconds:position];
+    NSString *remainingTimeString = [MSDurationFormatter hoursMinutesSecondsFromSeconds:duration];
+    [[_panelController txtEslapsedTime] setStringValue:elapsedTimeString];
+    [[_panelController txtRemainingTime] setStringValue:remainingTimeString];
     
     float width = _mainView.frame.size.width;
     
@@ -945,9 +998,6 @@ void *kContextActivePanel = &kContextActivePanel;
 #pragma mark - Actions
 
 - (IBAction)togglePanel:(id)sender{
-    double tintLevel = [[NSUserDefaults standardUserDefaults] doubleForKey:@"tintLevel"];
-     NSLog(@"tint low %f", tintLevel);
-    [[_panelController backgroundView] setTintLevel:tintLevel];
     self.menubarController.hasActiveIcon = !self.menubarController.hasActiveIcon;
     self.panelController.hasActivePanel = self.menubarController.hasActiveIcon;
     float viewWidth = [_mainView bounds].size.width;

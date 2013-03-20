@@ -55,5 +55,4 @@
 - (IBAction)nextTrack:(id)sender;
 - (IBAction)previousTrack:(id)sender;
 - (IBAction)playPause:(id)sender;
-- (IBAction)setPostion: (id)sender;
 @end

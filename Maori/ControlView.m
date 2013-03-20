@@ -7,6 +7,7 @@
 //
 
 #import "ControlView.h"
+#import "AppDelegate.h"
 #define backgroundColor [NSColor colorWithCalibratedRed:32.0/255.0 green:36.0/255.0 blue:41.0/255.0 alpha:1.0]
 @implementation ControlView
 
@@ -53,7 +54,11 @@
          postNotificationName:@"volumeDown"
          object:nil ];
     }
+    
 }
-
+- (void)mouseDown:(NSEvent *)event{
+    AppDelegate *appDelegate = (AppDelegate *)[[NSApplication sharedApplication] delegate];
+    [appDelegate playPause:nil];
+}
 
 @end

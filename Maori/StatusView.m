@@ -7,7 +7,7 @@
 //
 
 #import "StatusView.h"
-
+#import "AppDelegate.h"
 @implementation StatusView
 
 - (id)initWithFrame:(NSRect)frame
@@ -52,11 +52,8 @@
 }
 
 - (void)mouseDown:(NSEvent *)event{
-    [[NSNotificationCenter defaultCenter]
-     postNotificationName:@"mouseDown"
-     object:nil ];
+    AppDelegate *appDelegate = (AppDelegate *)[[NSApplication sharedApplication] delegate];
+    [appDelegate playPause:nil];
 }
-
-
 
 @end
