@@ -10,4 +10,5 @@
 
 @interface RoundedWindow : NSWindow
 
+@property (assign) NSPoint initialLocation;
 @end

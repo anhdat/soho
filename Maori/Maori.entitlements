@@ -4,5 +4,16 @@
 <dict>
 	<key>com.apple.security.app-sandbox</key>
 	<true/>
+	<key>com.apple.security.network.client</key>
+	<true/>
+	<key>com.apple.security.network.server</key>
+	<true/>
+	<key>com.apple.security.temporary-exception.apple-events</key>
+	<array>
+		<string>com.catpigstudios.radium3</string>
+		<string>com.rdio.desktop</string>
+		<string>com.apple.itunes</string>
+		<string>com.spotify.client</string>
+	</array>
 </dict>
 </plist>

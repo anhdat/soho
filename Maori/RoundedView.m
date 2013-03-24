@@ -14,7 +14,13 @@
 
 - (void)drawRect:(NSRect)rect
 {
-    NSColor *bgColor = [NSColor colorWithCalibratedWhite:0.0 alpha:0.35];
+    
+//    NSColor *bgColor = [NSColor colorWithCalibratedWhite:0.0 alpha:0.35];
+    NSColor *bgColor = [NSColor colorWithCalibratedRed:250/255
+                                                 green:102/255
+                                                  blue:51/255
+                                                 alpha:0.9];
+
     NSRect bgRect = rect;
     int minX = NSMinX(bgRect);
     int midX = NSMidX(bgRect);
@@ -22,7 +28,7 @@
     int minY = NSMinY(bgRect);
     int midY = NSMidY(bgRect);
     int maxY = NSMaxY(bgRect);
-    float radius = 25.0; // correct value to duplicate Panther's App Switcher
+    float radius = 5.0; // correct value to duplicate Panther's App Switcher
     NSBezierPath *bgPath = [NSBezierPath bezierPath];
     
     // Bottom edge and bottom-right curve
@@ -34,12 +40,12 @@
     // Right edge and top-right curve
     [bgPath appendBezierPathWithArcFromPoint:NSMakePoint(maxX, maxY) 
                                      toPoint:NSMakePoint(midX, maxY) 
-                                      radius:radius];
+                                      radius:0.0];
     
     // Top edge and top-left curve
     [bgPath appendBezierPathWithArcFromPoint:NSMakePoint(minX, maxY) 
                                      toPoint:NSMakePoint(minX, midY) 
-                                      radius:radius];
+                                      radius:0.0];
     
     // Left edge and bottom-left curve
     [bgPath appendBezierPathWithArcFromPoint:bgRect.origin 

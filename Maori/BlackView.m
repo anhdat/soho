@@ -7,7 +7,7 @@
 //
 
 #import "BlackView.h"
-
+#import "Chick.h"
 @implementation BlackView
 
 - (id)initWithFrame:(NSRect)frame
@@ -22,7 +22,10 @@
 
 - (void)drawRect:(NSRect)dirtyRect
 {
-    // Drawing code here.
+    NSRect fillRect= NSMakeRect([self frame].origin.x, [self frame].origin.y, [self frame].size.width,100);
+    //    NSRect fillRect = [self frame];
+    
+    [[NSColor colorWithCalibratedRed:0.0 green:0.0 blue:0.0 alpha:0.7] setFill];
+    NSRectFill(fillRect);
 }
-
 @end
