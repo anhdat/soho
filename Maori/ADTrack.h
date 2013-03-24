@@ -19,6 +19,7 @@
 
 // iTunes attributes
 @property (nonatomic)  NSInteger rating;
+@property (nonatomic) NSString *lyrics;
 
 // Spotify attributes
 @property (nonatomic) BOOL starred;

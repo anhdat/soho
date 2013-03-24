@@ -24,6 +24,7 @@
 
 - (void)drawRect:(NSRect)dirtyRect
 {
+    NSLog(@"abc");
     NSRect fillRect = [self frame];
     [NSCOLOR(0, 0, 0, 0.5) setFill];
     NSRectFill(fillRect);

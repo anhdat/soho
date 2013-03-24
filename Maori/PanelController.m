@@ -83,9 +83,17 @@
     }
 }
 
+- (IBAction)quitApp:(id)sender {
+    [NSApp terminate:self];
+}
+
 - (IBAction)flipToFront:(id)sender {
     [fliper flipRight:nil];
     _frontIsFlipped = NO;
+}
+
+- (IBAction)freeChick:(id)sender {
+   [[NSNotificationCenter defaultCenter] postNotificationName:@"freeChick" object:nil];
 }
 
 - (BOOL)hasActivePanel

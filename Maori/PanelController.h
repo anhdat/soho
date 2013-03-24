@@ -2,6 +2,8 @@
 #import "StatusItemView.h"
 #import "iTunes.h"
 #import "mbFliperViews.h"
+#import "Chick.h"
+
 @class PanelController;
 
 @protocol PanelControllerDelegate <NSObject>
@@ -42,9 +44,11 @@
 @property (strong) IBOutlet NSView *backView;
 @property (weak) IBOutlet NSSlider *playerProgressBar;
 - (IBAction)flipToBack:(id)sender;
+@property (weak) IBOutlet NSButton *quitApp;
 - (IBAction)flipToFront:(id)sender;
 @property (weak) IBOutlet NSTextFieldCell *txtEslapsedTime;
 @property (weak) IBOutlet NSTextFieldCell *txtRemainingTime;
+- (IBAction)freeChick:(id)sender;
 
 @property (nonatomic) BOOL hasActivePanel;
 @property (nonatomic, unsafe_unretained, readonly) id<PanelControllerDelegate> delegate;
@@ -53,7 +57,7 @@
 
 - (void)openPanel;
 - (void)closePanel;
-- (void)updateInformation:(iTunesTrack*) currentTrack; 
+- (void)updateInformation:(ADTrack*) currentTrack;
 - (void)updatePlayerProgressBar:(double) position;
 - (IBAction)slideDidChangeValue:(id)sender;
 - (IBAction)playerBarDidChange:(id)sender;

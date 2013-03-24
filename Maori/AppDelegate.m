@@ -25,6 +25,7 @@
 
 @property (nonatomic) Boolean isChanged;
 @property (nonatomic) Boolean currentState;
+@property (nonatomic) Boolean isJustRun;
 @end
 @implementation AppDelegate
 
@@ -41,10 +42,7 @@
     //    TransformProcessType(&psn, kProcessTransformToForegroundApplication);
     //    [NSApp setActivationPolicy: NSApplicationActivationPolicyProhibited];
     
-    double tintLevel = [[NSUserDefaults standardUserDefaults] doubleForKey:@"tintLevel"];
-    NSLog(@"tint %f", tintLevel);
-    [[_panelController backgroundView] setTintLevel:tintLevel];
-
+    _isJustRun = YES;
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     NSDictionary *appDefaults = [NSDictionary dictionaryWithObject:@"NO" forKey:@"AppleMomentumScrollSupported"];
     [defaults registerDefaults:appDefaults];
@@ -122,6 +120,9 @@
     _spotifyState = YES;
     _rdioState = YES;
     _radiumState = YES;
+    
+    
+    
     
 }
 
@@ -400,6 +401,7 @@
 }
 
 -(void) setupViews{
+    
     // Set up controlView
     _controllerItem = [[NSStatusBar systemStatusBar] statusItemWithLength:NSVariableStatusItemLength];
     
@@ -621,6 +623,11 @@
      selector:@selector(previousTrack:)
      name:@"prevSong"
      object:nil ];
+    [[NSNotificationCenter defaultCenter]
+     addObserver:self
+     selector:@selector(freeChick)
+     name:@"freeChick"
+     object:nil ];
 }
 
 -(void) doubleClick{
@@ -819,6 +826,7 @@
                     [_currentTrack setName:[current name]];
                     [_currentTrack setDuration:[current duration]];
                     [_currentTrack setRating:[current rating]];
+                    [_currentTrack setLyrics:[current lyrics]];
                     NSImage *songArtwork;
                     
                     iTunesArtwork *artwork = (iTunesArtwork *)[[[current artworks] get] lastObject];
@@ -954,6 +962,7 @@
         [self updateTitleView];
         // Update panelController information.
         [_panelController updateInformation:_currentTrack];
+        [_niceChick updateInformation:_currentTrack];
         if ([_titleView isHidden] && [self isInController] == NO) {
             [self volumeDone];
         }
@@ -998,11 +1007,17 @@ void *kContextActivePanel = &kContextActivePanel;
 #pragma mark - Actions
 
 - (IBAction)togglePanel:(id)sender{
+    
+   
     self.menubarController.hasActiveIcon = !self.menubarController.hasActiveIcon;
     self.panelController.hasActivePanel = self.menubarController.hasActiveIcon;
     float viewWidth = [_mainView bounds].size.width;
     [[_panelController slideViewSize] setDoubleValue:viewWidth];
-    [self TrackDidChange:nil];
+    if (_isJustRun) {
+       [self TrackDidChange:nil]; 
+    }
+    [self setIsJustRun:NO];
+     
 }
 
 - (IBAction)setiTunes:(id)sender {
@@ -1074,6 +1089,16 @@ void *kContextActivePanel = &kContextActivePanel;
     
 }
 
+
+- (void) freeChick{
+    if (!_niceChick) {
+        _niceChick = [[Chick alloc] initWithWindowNibName:@"Chick"];
+    }
+    
+    [_niceChick showWindow:nil];
+    [[_niceChick window] setMovableByWindowBackground:YES];
+    [self togglePanel:nil];
+}
 #pragma mark - Public accessors
 
 - (PanelController *)panelController{
@@ -1084,6 +1109,17 @@ void *kContextActivePanel = &kContextActivePanel;
 
 - (StatusItemView *)statusItemViewForPanelController:(PanelController *)controller{
     return self.menubarController.statusItemView;
+}
+
+
+- (void)scrollWheel:(NSEvent *)theEvent{
+    NSLog(@"nothing");
+    if ([theEvent deltaY] < 0) {
+        [self volumeUp:nil];
+    }
+    if ([theEvent deltaY] > 0) {
+        [self volumeDown:nil];    }
+    
 }
 
 

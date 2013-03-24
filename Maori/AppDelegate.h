@@ -14,8 +14,8 @@
 #import "MenubarController.h"
 #import "PanelController.h"
 #import "ADTrack.h"
-
-@interface AppDelegate : NSObject <NSApplicationDelegate, PanelControllerDelegate,NSMenuDelegate>{
+#import "Chick.h"
+@interface AppDelegate : NSObject <NSApplicationDelegate, PanelControllerDelegate,NSMenuDelegate, ChickDelegate>{
 }
 @property (nonatomic, strong) NSStatusItem *controllerItem;
 //@property (assign) IBOutlet NSWindow *window;
@@ -35,13 +35,14 @@
 @property (weak) IBOutlet NSMenuItem *menuRadium;
 @property (weak) IBOutlet NSButton *playButton;
 
+@property (strong, nonatomic) NSStatusItem *statusPlayItem ;
 @property  NSTrackingAreaOptions trackingOptions;
 @property (nonatomic, strong) MenubarController *menubarController;
 @property (nonatomic, strong, readonly) PanelController *panelController;
 @property (strong, nonatomic) NSTrackingArea *trackArea;
 @property (strong, nonatomic) CALayer *progressLayer;
 
-
+@property (nonatomic) Chick *niceChick ;
 
 @property (strong, nonatomic) NSMutableArray *playerArray;
 @property (strong, nonatomic) ADTrack *currentTrack;
@@ -55,4 +56,5 @@
 - (IBAction)nextTrack:(id)sender;
 - (IBAction)previousTrack:(id)sender;
 - (IBAction)playPause:(id)sender;
+- (void) TrackDidChange:(NSNotification *)aNotification;
 @end
