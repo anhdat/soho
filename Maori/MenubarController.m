@@ -14,9 +14,20 @@
     {
         // Install status item into the menu bar
         NSStatusItem *statusItem = [[NSStatusBar systemStatusBar] statusItemWithLength:STATUS_ITEM_VIEW_WIDTH];
+        
         _statusItemView = [[StatusItemView alloc] initWithStatusItem:statusItem];
-        _statusItemView.image = [NSImage imageNamed:@"SoHo_statusBar_icon_normal"];
-        _statusItemView.alternateImage = [NSImage imageNamed:@"SoHo_statusBar_icon_hightlighted"];
+        
+        
+        NSImage *statusIcon = [NSImage imageNamed:@"SoHo_statusBar_icon_normal"];
+        NSSize imageSize = {[statusIcon size].width*(18.0/[statusIcon size].width), [statusIcon size].height*(18.0/[statusIcon size].height) };
+        [statusIcon setSize:imageSize];
+        _statusItemView.image = statusIcon;
+        
+        
+        NSImage *statusIconAlt = [NSImage imageNamed:@"SoHo_statusBar_icon_hightlighted"];
+        NSSize imageSizeAlt = {[statusIconAlt size].width*(18.0/[statusIconAlt size].width), [statusIconAlt size].height*(18.0/[statusIconAlt size].height) };
+        [statusIconAlt setSize:imageSizeAlt];
+        _statusItemView.alternateImage = statusIconAlt;
         _statusItemView.action = @selector(togglePanel:);
     }
     return self;

@@ -46,9 +46,8 @@
 - (void)mouseDown:(NSEvent *)theEvent {
     // Get the mouse location in window coordinates.
     if ([theEvent clickCount] > 1) {
-        NSLog(@"khong man chi het a");
         AppDelegate *appDelegateObject = (AppDelegate *)[[NSApplication sharedApplication] delegate];
-        [[appDelegateObject niceChick] toggleLyrics];
+        [[appDelegateObject niceChick] toggleLyrics:nil];
     }
     self.initialLocation = [theEvent locationInWindow];
 }

@@ -293,15 +293,21 @@
          artwork = [NSImage imageNamed:@"Sample.tiff"];
     }
     [_albumart setImage:artwork];
-    if ([[currentTrack album] length] > 0) {
+    if ([[currentTrack name] length] > 0) {
         [_txtSongTitle setStringValue:[currentTrack name]];
+    } else {
+        [_txtSongTitle setStringValue:@""];
     }
     
     if ([[currentTrack album] length] > 0) {
         [_txtAlbum setStringValue:[currentTrack album]];
+    } else {
+        [_txtAlbum setStringValue:@""];
     }
-    if ([[currentTrack album] length] > 0) {
+    if ([[currentTrack artist] length] > 0) {
         [_txtArtist setStringValue:[currentTrack artist]];
+    } else {
+        [_txtArtist setStringValue:@""];
     }
 
 }

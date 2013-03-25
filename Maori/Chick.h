@@ -22,10 +22,15 @@
 @property (weak) IBOutlet NSTextField *txtArtist;
 @property (weak) IBOutlet NSTextField *txtSongTitle;
 @property (weak) IBOutlet NSButton *playBtn;
+@property (nonatomic) BOOL isSticked;
 
 - (IBAction)playPause:(id)sender;
 - (IBAction)nextTrack:(id)sender;
 - (IBAction)prevTrack:(id)sender;
+- (IBAction)toggleStick:(id)sender;
+
+
+@property (weak) IBOutlet NSButton *stickBtn;
 
 @property (unsafe_unretained) IBOutlet NSTextView *lyricsTextView;
 @property (weak) IBOutlet NSView *lyricsView;
@@ -34,7 +39,6 @@
 - (void)updateInformation:(ADTrack*) currentTrack;
 
 - (IBAction)returnToMom:(id)sender;
-
-- (void) toggleLyrics;
+- (IBAction) toggleLyrics:(id)sender;
 @property(assign) id <ChickDelegate> chickProtocolDelegate;
 @end

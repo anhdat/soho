@@ -14,7 +14,6 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
-        // Initialization code here.
     }
     
     return self;
@@ -22,9 +21,7 @@
 
 - (void)drawRect:(NSRect)dirtyRect
 {
-    NSRect fillRect= NSMakeRect([self frame].origin.x, [self frame].origin.y, [self frame].size.width,100);
-    //    NSRect fillRect = [self frame];
-    
+    NSRect fillRect= [self bounds];
     [[NSColor colorWithCalibratedRed:0.0 green:0.0 blue:0.0 alpha:0.7] setFill];
     NSRectFill(fillRect);
 }

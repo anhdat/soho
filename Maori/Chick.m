@@ -28,6 +28,16 @@
     [[NSNotificationCenter defaultCenter] postNotificationName:@"prevSong" object:nil];
 }
 
+- (IBAction)toggleStick:(id)sender {
+    if (_isSticked) {
+        [_stickBtn setImage:[NSImage imageNamed:@"SoHo_chick_stick_alt"]];
+        [self setIsSticked:NO];
+    } else {
+        [_stickBtn setImage:[NSImage imageNamed:@"SoHo_chick_stick"]];
+        [self setIsSticked:YES];
+    }
+}
+
 - (void)updateInformation:(ADTrack*) currentTrack{
     NSImage *artwork = [currentTrack artwork];
     if(artwork == nil){
@@ -36,12 +46,18 @@
     [_albumArt setImage:artwork];
     if ([[currentTrack name] length] > 0) {
         [_txtSongTitle setStringValue:[currentTrack name]];
+    } else {
+        [_txtSongTitle setStringValue:@""];
     }
     if ([[currentTrack artist] length] > 0) {
         [_txtArtist setStringValue:[currentTrack artist]];
+    } else {
+        [_txtArtist setStringValue:@""];
     }
     if ([[currentTrack lyrics] length] > 0) {
         [_lyricsTextView setString:[currentTrack lyrics]];
+    } else {
+        [_lyricsTextView setString:@""];
     }
 }
 
@@ -70,20 +86,42 @@
     CALayer *lyricsLayer = [CALayer layer];
     [lyricsLayer setContents:_lyricsView];
     [_lyricsView setWantsLayer:YES];
+    
+    NSTrackingAreaOptions trackingOptions;
+    NSTrackingArea *trackArea;
+    trackingOptions =
+    NSTrackingEnabledDuringMouseDrag
+    | NSTrackingMouseEnteredAndExited
+    | NSTrackingActiveAlways;
+    
+    if (trackArea != nil) {
+        trackArea = nil;
+    }
+    trackArea = [[NSTrackingArea alloc]
+                  initWithRect:[_controlView bounds]
+                  options:trackingOptions
+                  owner:self
+                  userInfo:nil];
+    [_controlView addTrackingArea:trackArea];
+    
+    [_titleView setHidden:YES];
+    [_lyricsView setHidden:YES];
+    [self setIsSticked:NO];
 }
 
 - (IBAction)returnToMom:(id)sender {
-//    [[self window] setIsVisible:NO];
     [[self window] close];
 }
 
-- (void) toggleLyrics{
+- (IBAction) toggleLyrics:(id)sender{
     if ([_lyricsView isHidden]) {
         [[_lyricsView animator] setHidden:NO];
         [[_titleView animator] setHidden:NO];
     } else {
         [[_lyricsView animator] setHidden:YES];
-        [[_titleView animator] setHidden:YES];
+        if (!_isSticked) {
+            [[_titleView animator] setHidden:YES];
+        }
     }
 }
 
@@ -97,6 +135,22 @@
         [[NSNotificationCenter defaultCenter]
          postNotificationName:@"volumeDown"
          object:nil ];
+    }
+}
+
+
+- (void)mouseEntered:(NSEvent *)theEvent{
+    [[_titleView animator] setHidden:NO];
+}
+
+
+- (void)mouseExited:(NSEvent *)theEvent{
+    if ([_lyricsView isHidden]) {
+        if (!_isSticked) {
+            [[_titleView animator] setHidden:YES];
+        }
+    } else {
+        [[_titleView animator] setHidden:NO];
     }
 }
 
