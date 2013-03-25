@@ -3,6 +3,7 @@
 #import "iTunes.h"
 #import "mbFliperViews.h"
 #import "Chick.h"
+#import <Scribbler/Scribbler.h>
 
 @class PanelController;
 
@@ -16,7 +17,7 @@
 
 #pragma mark -
 
-@interface PanelController : NSWindowController <NSWindowDelegate>
+@interface PanelController : NSWindowController <NSWindowDelegate, LFWebServiceDelegate>
 {
     BOOL _hasActivePanel;
     __unsafe_unretained BackgroundView *_backgroundView;
@@ -25,6 +26,7 @@
     __unsafe_unretained NSTextField *_textField;
     mbFliperViews* fliper;
 //    AppDelegate *appDelegate;
+    BOOL authorizationPending;
 }
 
 @property Boolean frontIsFlipped;
@@ -64,5 +66,51 @@
 - (IBAction)playPause:(id)sender;
 - (IBAction)prevSong:(id)sender;
 - (IBAction)nextSong:(id)sender;
+
+
+
+
+
+// Log methods
+- (void)log:(NSString *)format, ...;
+
+// Authorization methods
+- (void)connectWithStoredCredentials;
+- (IBAction)connectWithLastFM:(id)sender;
+- (IBAction)disconnectFromLastFM:(id)sender;
+- (IBAction)completeAuthorization:(id)sender;
+- (IBAction)openManagementPage:(id)sender;
+
+// Track methods
+- (IBAction)startPlayingTrack:(id)sender;
+- (IBAction)scrobbleTrack:(id)sender;
+- (IBAction)loveTrack:(id)sender;
+- (IBAction)banTrack:(id)sender;
+
+// Web service delegate methods
+- (void)sessionNeedsAuthorizationViaURL:(NSURL *)theURL;
+- (void)sessionAuthorizationStillPending;
+- (void)sessionAuthorizationFailed;
+- (void)sessionCreatedWithKey:(NSString *)theKey user:(NSString *)theUser;
+
+- (void)sessionValidatedForUser:(NSString *)theUser;
+- (void)sessionInvalidForUser:(NSString *)theUser;
+- (void)sessionKeyRevoked:(NSString *)theKey forUser:(NSString *)theUser;
+
+- (void)scrobblerHandshakeSucceeded;
+- (void)scrobblerHandshakeFailed:(NSError *)theError willRetry:(BOOL)willRetry;
+- (void)scrobblerClient:(NSString *)theClientID bannedForVersion:(NSString *)theClientVersion;
+- (void)scrobblerRejectedSystemTime;
+
+- (void)nowPlayingSucceededForTrack:(LFTrack *)theTrack;
+- (void)scrobbleSucceededForTrack:(LFTrack *)theTrack;
+- (void)loveSucceededForTrack:(LFTrack *)theTrack;
+- (void)banSucceededForTrack:(LFTrack *)theTrack;
+
+- (void)nowPlayingFailedForTrack:(LFTrack *)theTrack error:(NSError *)theError willRetry:(BOOL)willRetry;
+- (void)scrobbleFailedForTrack:(LFTrack *)theTrack error:(NSError *)theError willRetry:(BOOL)willRetry;
+- (void)loveFailedForTrack:(LFTrack *)theTrack error:(NSError *)theError willRetry:(BOOL)willRetry;
+- (void)banFailedForTrack:(LFTrack *)theTrack error:(NSError *)theError willRetry:(BOOL)willRetry;
+
 
 @end
