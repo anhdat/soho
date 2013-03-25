@@ -32,10 +32,6 @@
 		1A9081B616F8B2D400651C27 /* iTunes mini_play.png in Resources */ = {isa = PBXBuildFile; fileRef = 1A9081B216F8B2D300651C27 /* iTunes mini_play.png */; };
 		1A9081B716F8B2D400651C27 /* iTunes mini_prev.png in Resources */ = {isa = PBXBuildFile; fileRef = 1A9081B316F8B2D300651C27 /* iTunes mini_prev.png */; };
 		1A9081B816F8B2D400651C27 /* iTunes mini_nexxt.png in Resources */ = {isa = PBXBuildFile; fileRef = 1A9081B416F8B2D300651C27 /* iTunes mini_nexxt.png */; };
-		1A9081C116F8C61A00651C27 /* ANSegmentedCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A9081BA16F8C61A00651C27 /* ANSegmentedCell.m */; };
-		1A9081C216F8C61A00651C27 /* ANSegmentedControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A9081BC16F8C61A00651C27 /* ANSegmentedControl.m */; };
-		1A9081C316F8C61A00651C27 /* NSBezierPath+MCAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A9081BE16F8C61A00651C27 /* NSBezierPath+MCAdditions.m */; };
-		1A9081C416F8C61A00651C27 /* NSShadow+MCAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A9081C016F8C61A00651C27 /* NSShadow+MCAdditions.m */; };
 		1A9081C816F8D79D00651C27 /* BackView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A9081C716F8D79D00651C27 /* BackView.m */; };
 		1AA4778716FF6EC10021750D /* BlackView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AA4778616FF6EC10021750D /* BlackView.m */; };
 		1AA70F7816FA0EE900D2FE21 /* BarBackground.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AA70F7716FA0EE900D2FE21 /* BarBackground.m */; };
@@ -127,14 +123,6 @@
 		1A9081B216F8B2D300651C27 /* iTunes mini_play.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iTunes mini_play.png"; sourceTree = "<group>"; };
 		1A9081B316F8B2D300651C27 /* iTunes mini_prev.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iTunes mini_prev.png"; sourceTree = "<group>"; };
 		1A9081B416F8B2D300651C27 /* iTunes mini_nexxt.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iTunes mini_nexxt.png"; sourceTree = "<group>"; };
-		1A9081B916F8C61A00651C27 /* ANSegmentedCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ANSegmentedCell.h; path = "../../../Downloads/ANSegmentedControl-master/Sample/Sample/ANSegmentedControl/ANSegmentedCell.h"; sourceTree = "<group>"; };
-		1A9081BA16F8C61A00651C27 /* ANSegmentedCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ANSegmentedCell.m; path = "../../../Downloads/ANSegmentedControl-master/Sample/Sample/ANSegmentedControl/ANSegmentedCell.m"; sourceTree = "<group>"; };
-		1A9081BB16F8C61A00651C27 /* ANSegmentedControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ANSegmentedControl.h; path = "../../../Downloads/ANSegmentedControl-master/Sample/Sample/ANSegmentedControl/ANSegmentedControl.h"; sourceTree = "<group>"; };
-		1A9081BC16F8C61A00651C27 /* ANSegmentedControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ANSegmentedControl.m; path = "../../../Downloads/ANSegmentedControl-master/Sample/Sample/ANSegmentedControl/ANSegmentedControl.m"; sourceTree = "<group>"; };
-		1A9081BD16F8C61A00651C27 /* NSBezierPath+MCAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSBezierPath+MCAdditions.h"; path = "../../../Downloads/ANSegmentedControl-master/Sample/Sample/ANSegmentedControl/NSBezierPath+MCAdditions.h"; sourceTree = "<group>"; };
-		1A9081BE16F8C61A00651C27 /* NSBezierPath+MCAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSBezierPath+MCAdditions.m"; path = "../../../Downloads/ANSegmentedControl-master/Sample/Sample/ANSegmentedControl/NSBezierPath+MCAdditions.m"; sourceTree = "<group>"; };
-		1A9081BF16F8C61A00651C27 /* NSShadow+MCAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSShadow+MCAdditions.h"; path = "../../../Downloads/ANSegmentedControl-master/Sample/Sample/ANSegmentedControl/NSShadow+MCAdditions.h"; sourceTree = "<group>"; };
-		1A9081C016F8C61A00651C27 /* NSShadow+MCAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSShadow+MCAdditions.m"; path = "../../../Downloads/ANSegmentedControl-master/Sample/Sample/ANSegmentedControl/NSShadow+MCAdditions.m"; sourceTree = "<group>"; };
 		1A9081C616F8D79D00651C27 /* BackView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BackView.h; sourceTree = "<group>"; };
 		1A9081C716F8D79D00651C27 /* BackView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BackView.m; sourceTree = "<group>"; };
 		1AA4778516FF6EC10021750D /* BlackView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BlackView.h; sourceTree = "<group>"; };
@@ -214,7 +202,6 @@
 		1A1F0DE316FCD5E200A92A77 /* Unused */ = {
 			isa = PBXGroup;
 			children = (
-				1A9081C516F8C62300651C27 /* ANSegment */,
 				1A801CB516EF8B3D00532C54 /* Background.h */,
 				1A801CB616EF8B3D00532C54 /* Background.m */,
 				1A801CC116EFA12E00532C54 /* SNRVerticalSliderCell.h */,
@@ -295,21 +282,6 @@
 				1A2C714D16DE515D00091C15 /* Maori-Info.plist */,
 			);
 			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		1A9081C516F8C62300651C27 /* ANSegment */ = {
-			isa = PBXGroup;
-			children = (
-				1A9081B916F8C61A00651C27 /* ANSegmentedCell.h */,
-				1A9081BA16F8C61A00651C27 /* ANSegmentedCell.m */,
-				1A9081BB16F8C61A00651C27 /* ANSegmentedControl.h */,
-				1A9081BC16F8C61A00651C27 /* ANSegmentedControl.m */,
-				1A9081BD16F8C61A00651C27 /* NSBezierPath+MCAdditions.h */,
-				1A9081BE16F8C61A00651C27 /* NSBezierPath+MCAdditions.m */,
-				1A9081BF16F8C61A00651C27 /* NSShadow+MCAdditions.h */,
-				1A9081C016F8C61A00651C27 /* NSShadow+MCAdditions.m */,
-			);
-			name = ANSegment;
 			sourceTree = "<group>";
 		};
 		1AA70F7F16FA2C7500D2FE21 /* LastFM */ = {
@@ -566,10 +538,6 @@
 				1A3031DC16F1ECFF00C91EF4 /* ADPlayer.m in Sources */,
 				1A3031E116F231B200C91EF4 /* ADTrack.m in Sources */,
 				1A6A0A3E16F781BD00939616 /* FrontView.m in Sources */,
-				1A9081C116F8C61A00651C27 /* ANSegmentedCell.m in Sources */,
-				1A9081C216F8C61A00651C27 /* ANSegmentedControl.m in Sources */,
-				1A9081C316F8C61A00651C27 /* NSBezierPath+MCAdditions.m in Sources */,
-				1A9081C416F8C61A00651C27 /* NSShadow+MCAdditions.m in Sources */,
 				1A9081C816F8D79D00651C27 /* BackView.m in Sources */,
 				1AA70F7816FA0EE900D2FE21 /* BarBackground.m in Sources */,
 				1AA70F7B16FA25E800D2FE21 /* MSDurationFormatter.m in Sources */,
@@ -674,7 +642,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = Maori/Maori.entitlements;
-				CODE_SIGN_IDENTITY = "Mac Developer";
+				CODE_SIGN_IDENTITY = "";
 				COMBINE_HIDPI_IMAGES = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -685,7 +653,6 @@
 				INFOPLIST_FILE = "Maori/Maori-Info.plist";
 				MACOSX_DEPLOYMENT_TARGET = 10.7;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
 				SDKROOT = macosx10.7;
 				WRAPPER_EXTENSION = app;
 			};
@@ -695,7 +662,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = Maori/Maori.entitlements;
-				CODE_SIGN_IDENTITY = "Mac Developer";
+				CODE_SIGN_IDENTITY = "";
 				COMBINE_HIDPI_IMAGES = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -706,7 +673,6 @@
 				INFOPLIST_FILE = "Maori/Maori-Info.plist";
 				MACOSX_DEPLOYMENT_TARGET = 10.7;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
 				SDKROOT = macosx10.7;
 				WRAPPER_EXTENSION = app;
 			};

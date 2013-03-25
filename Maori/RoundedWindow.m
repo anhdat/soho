@@ -8,6 +8,7 @@
 
 #import "RoundedWindow.h"
 #import "Chick.h"
+#import "AppDelegate.h"
 @implementation RoundedWindow
 - (id)initWithContentRect:(NSRect)contentRect styleMask:(NSUInteger)aStyle backing:(NSBackingStoreType)bufferingType defer:(BOOL)flag
 {
@@ -16,10 +17,6 @@
     {
         [self setStyleMask:NSBorderlessWindowMask];
         [self setOpaque:NO];
-//        NSColor *myColor = [NSColor colorWithCalibratedRed:255/255
-//                                                     green:102/255
-//                                                      blue:51/255
-//                                                     alpha:0.9];
         [self setBackgroundColor:[NSColor clearColor]];
     }
     
@@ -33,7 +30,6 @@
     aView.layer.frame           = aView.frame;
     aView.layer.cornerRadius    = 5.0;
     aView.layer.masksToBounds   = YES;
-    
     
     [super setContentView:aView];
     
@@ -51,8 +47,8 @@
     // Get the mouse location in window coordinates.
     if ([theEvent clickCount] > 1) {
         NSLog(@"khong man chi het a");
-        Chick *kenChick;
-        [kenChick toggleLyrics];
+        AppDelegate *appDelegateObject = (AppDelegate *)[[NSApplication sharedApplication] delegate];
+        [[appDelegateObject niceChick] toggleLyrics];
     }
     self.initialLocation = [theEvent locationInWindow];
 }

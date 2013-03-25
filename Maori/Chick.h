@@ -29,6 +29,7 @@
 
 @property (unsafe_unretained) IBOutlet NSTextView *lyricsTextView;
 @property (weak) IBOutlet NSView *lyricsView;
+@property (weak) IBOutlet NSView *titleView;
 
 - (void)updateInformation:(ADTrack*) currentTrack;
 

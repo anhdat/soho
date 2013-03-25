@@ -17,12 +17,15 @@
 
 @implementation Chick
 - (IBAction)playPause:(id)sender {
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"playPause" object:nil];
 }
 
 - (IBAction)nextTrack:(id)sender {
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"nextSong" object:nil];
 }
 
 - (IBAction)prevTrack:(id)sender {
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"prevSong" object:nil];
 }
 
 - (void)updateInformation:(ADTrack*) currentTrack{
@@ -47,9 +50,7 @@
 {
     self = [super initWithWindow:window];
     if (self) {
-        // Initialization code here.
         [window setMovableByWindowBackground:YES];
-        NSLog(@"init");
     }
     return self;
 }
@@ -63,6 +64,12 @@
     [_lyricsTextView setBackgroundColor:[NSColor colorWithCalibratedRed:1.0 green:1.0 blue:1.0 alpha:0.9]];
     AppDelegate *appDelegateObject = (AppDelegate *)[[NSApplication sharedApplication] delegate];
     [appDelegateObject TrackDidChange:nil];
+    CALayer *layer = [CALayer layer];
+    [layer setContents:_titleView];
+    [_titleView setWantsLayer:YES];
+    CALayer *lyricsLayer = [CALayer layer];
+    [lyricsLayer setContents:_lyricsView];
+    [_lyricsView setWantsLayer:YES];
 }
 
 - (IBAction)returnToMom:(id)sender {
@@ -71,11 +78,12 @@
 }
 
 - (void) toggleLyrics{
-    NSLog(@"toggle");
     if ([_lyricsView isHidden]) {
-        [_lyricsView setHidden:NO];
+        [[_lyricsView animator] setHidden:NO];
+        [[_titleView animator] setHidden:NO];
     } else {
-        [_lyricsView setHidden:YES];
+        [[_lyricsView animator] setHidden:YES];
+        [[_titleView animator] setHidden:YES];
     }
 }
 
