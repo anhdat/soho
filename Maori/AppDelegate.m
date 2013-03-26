@@ -26,6 +26,7 @@
 @property (nonatomic) Boolean isChanged;
 @property (nonatomic) Boolean currentState;
 @property (nonatomic) Boolean isJustRun;
+
 @end
 @implementation AppDelegate
 
@@ -429,7 +430,7 @@
     
     // Color Green then create a layer to make it ProgressBar under titleView
     CGColorSpaceRef colorSpace = CGColorSpaceCreateWithName(kCGColorSpaceGenericRGB);
-    CGFloat components[4] = {0.5f, 1.0f, 0.5f, 0.2f};
+    CGFloat components[4] = {0.5f, 1.0f, 0.5f, 0.3f};
     CGColorRef whiteColor = CGColorCreate(colorSpace, components); // not a white color :)
     
     CALayer *hostlayer = [CALayer layer];
@@ -827,6 +828,21 @@
                     [_currentTrack setDuration:[current duration]];
                     [_currentTrack setRating:[current rating]];
                     [_currentTrack setLyrics:[current lyrics]];
+                    switch ([_iTunesApp playerState]) {
+                        case iTunesEPlSPlaying:
+                            [_currentTrack setPlayerState:@"Play"];
+                            break;
+                        case iTunesEPlSPaused:
+                            [_currentTrack setPlayerState:@"Pause"];
+                            break;
+                        case iTunesEPlSStopped:
+                            [_currentTrack setPlayerState:@"Stop"];
+                            break;
+                        default:
+                            [_currentTrack setPlayerState:@"Pause"];
+                            break;
+                    }
+                    [_currentTrack setTrackID:[current persistentID]];
                     NSImage *songArtwork;
                     
                     iTunesArtwork *artwork = (iTunesArtwork *)[[[current artworks] get] lastObject];
@@ -846,7 +862,6 @@
                 [_currentTrack setArtist:@""];
             }
             return;
-            
         }
         if ([@"Spotify" isEqual:[_playerArray objectAtIndex:i]]) {
             if ([_spotifyApp isRunning]) {
@@ -863,7 +878,22 @@
                      [album hasPrefix:@"http:"]||
                      [album hasPrefix:@"spotify:ad"]];
                     [_currentTrack setUrl:[current spotifyUrl]];
+                    [_currentTrack setTrackID:[current spotifyUrl]];
                     [_currentTrack setStarred:[current starred]];
+                    switch ([_spotifyApp playerState]) {
+                        case SpotifyEPlSPlaying:
+                            [_currentTrack setPlayerState:@"Play"];
+                            break;
+                        case SpotifyEPlSPaused:
+                            [_currentTrack setPlayerState:@"Pause"];
+                            break;
+                        case SpotifyEPlSStopped:
+                            [_currentTrack setPlayerState:@"Stop"];
+                            break;
+                        default:
+                            [_currentTrack setPlayerState:@"Pause"];
+                            break;
+                    }
                     
                 }else {
                     [_currentTrack setName:@""];
@@ -876,7 +906,6 @@
                 [_currentTrack setArtist:@""];
             }
             return;
-            
         }
         if ([@"Rdio" isEqual:[_playerArray objectAtIndex:i]]) {
             if ([_rdioApp isRunning]) {
@@ -887,6 +916,21 @@
                     [_currentTrack setName:[current name]];
                     [_currentTrack setDuration:[current duration]];
                     [_currentTrack setArtwork:[[NSImage alloc] initWithData:[current artwork]]];
+                    switch ([_rdioApp playerState]) {
+                        case RdioEPSSPlaying:
+                            [_currentTrack setPlayerState:@"Play"];
+                            break;
+                        case RdioEPSSPaused:
+                            [_currentTrack setPlayerState:@"Pause"];
+                            break;
+                        case RdioEPSSStopped:
+                            [_currentTrack setPlayerState:@"Stop"];
+                            break;
+                        default:
+                            [_currentTrack setPlayerState:@"Pause"];
+                            break;
+                    }
+                    [_currentTrack setTrackID:[current rdioUrl]];
                 }else {
                     [_currentTrack setName:@""];
                     [_currentTrack setAlbum:@""];
@@ -898,7 +942,6 @@
                 [_currentTrack setArtist:@""];
             }
             return;
-            
         }
         if ([@"Radium" isEqual:[_playerArray objectAtIndex:i]]) {
             if ([_radiumApp isRunning]) {
@@ -911,11 +954,12 @@
                     [_currentTrack setAlbum:@""];
                     [_currentTrack setArtist:[tokens objectAtIndex:0]];
                     [_currentTrack setArtwork:nil];
-                    
+                    [_currentTrack setPlayerState:@"Play"];
                 }else {
                     [_currentTrack setName:@""];
                     [_currentTrack setAlbum:@""];
                     [_currentTrack setArtist:@""];
+                    [_currentTrack setPlayerState:@"Pause"];
                 }
             }else {
                 [_currentTrack setName:@""];

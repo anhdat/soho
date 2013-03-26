@@ -16,7 +16,8 @@
 @property (strong, nonatomic) NSImage *artwork;
 @property (strong, nonatomic) NSString *name;
 @property (nonatomic) double duration;
-
+@property (strong, nonatomic) NSString *playerState;
+@property (strong, nonatomic) NSString *trackID;
 // iTunes attributes
 @property (nonatomic)  NSInteger rating;
 @property (nonatomic) NSString *lyrics;

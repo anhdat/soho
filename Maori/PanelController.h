@@ -70,6 +70,21 @@
 
 
 
+@property (weak) IBOutlet NSTextField *authInstructionText;
+@property (weak) IBOutlet NSTextField *authStatus;
+@property (weak) IBOutlet NSProgressIndicator *authSpinner;
+@property (weak) IBOutlet NSButton *authConnectButton;
+
+@property (strong, nonatomic)NSString *currentTrackID;
+@property (nonatomic) BOOL wasPlaying;
+@property (strong, nonatomic) LFTrack *curentLFTrack;
+// UI methods
+- (void)showAuthConnectPane;
+- (void)showAuthPreAuthPane;
+- (void)showAuthWaitingPane;
+- (void)showAuthValidatingPane;
+- (void)showAuthConnectedPaneWithUser:(NSString *)username;
+
 
 // Log methods
 - (void)log:(NSString *)format, ...;

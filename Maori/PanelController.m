@@ -41,6 +41,41 @@
         //lastfm
         NSDictionary *defaults = [NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithBool:NO], @"LastFMConfigured", @"", @"LastFMUsername", nil];
         [[NSUserDefaults standardUserDefaults] registerDefaults:defaults];
+        
+        
+        // We'll use this variable for when we need to switch back and
+        // forth between the web browser
+        authorizationPending = NO;
+        
+        // First, let's setup the web service object
+        // You can obtain the API key and shared secret on your API info page
+        //  - http://www.last.fm/api/account
+        
+        LFWebService *lastfm = [LFWebService sharedWebService];
+        [lastfm setDelegate:self];
+        [lastfm setAPIKey:@"99876210ed01e4c2e7247b255828e58d"];
+        [lastfm setSharedSecret:@"d4ed5f693627141c4e3cddd4f2b019e5"];
+        
+        // We'll also set our client ID for scrobbling
+        // You can obtain one of these by contacting Last.fm
+        //  - http://www.last.fm/api/submissions#1.1
+        // For now, we'll use the testing ID 'tst'
+        [lastfm setClientID:@"tst"];
+        [lastfm setClientVersion:@"1.0"];
+        
+        // We're also going to turn off autoscrobble, which
+        // scrobbles the last playing track automatically
+        // whenever a new track starts playing
+        [lastfm setAutoScrobble:NO];
+        
+        // In order to run, we need a valid session key
+        // First, we'll check to see if we have one. If we do,
+        // we'll set it, then test it. Otherwise, we'll wait for
+        // someone to click the "Connect" button.
+        [self connectWithStoredCredentials];
+        
+        
+        _wasPlaying = NO;
     }
     return self;
 }
@@ -76,51 +111,28 @@
     fliper.superView = _hostView; // as superview for example type of content view of the window
     [fliper setActiveViewAtIndex:0];
     _frontIsFlipped = NO;
-    
-    
-    
-	// We'll use this variable for when we need to switch back and
-	// forth between the web browser
-	authorizationPending = NO;
-	
-	// First, let's setup the web service object
-	// You can obtain the API key and shared secret on your API info page
-	//  - http://www.last.fm/api/account
-	
-	LFWebService *lastfm = [LFWebService sharedWebService];
-	[lastfm setDelegate:self];
-	[lastfm setAPIKey:@"5b792457bd456c690c79b486ada9be36"];
-	[lastfm setSharedSecret:@"d305d74e7998346c544191206e9bb4dc"];
-	
-	// We'll also set our client ID for scrobbling
-	// You can obtain one of these by contacting Last.fm
-	//  - http://www.last.fm/api/submissions#1.1
-	// For now, we'll use the testing ID 'tst'
-	[lastfm setClientID:@"tst"];
-	[lastfm setClientVersion:@"1.0"];
-	
-	// We're also going to turn off autoscrobble, which
-	// scrobbles the last playing track automatically
-	// whenever a new track starts playing
-	[lastfm setAutoScrobble:NO];
-	
-	// In order to run, we need a valid session key
-	// First, we'll check to see if we have one. If we do,
-	// we'll set it, then test it. Otherwise, we'll wait for
-	// someone to click the "Connect" button.
-	[self connectWithStoredCredentials];
-    
-    // If we have a pending authorization, this is our
-	// cue to start trying to validate it, since the user likely
-	// just switched back from the browser window
-	if (authorizationPending)
-	{
-		authorizationPending = NO;
-		[self completeAuthorization:nil];
-	}
 }
 
 #pragma mark - Public accessors
+
+- (void)completeAuthorization {
+    // If we have a pending authorization, this is our
+    // cue to start trying to validate it, since the user likely
+    // just switched back from the browser window
+    
+    if (authorizationPending)
+    {
+        
+        authorizationPending = NO;
+        [self completeAuthorization:nil];
+        NSLog(@"trying to authorization");
+        [NSTimer scheduledTimerWithTimeInterval:5.0f
+                                         target:self
+                                       selector:@selector(completeAuthorization)
+                                       userInfo:nil
+                                        repeats:YES];
+    }
+}
 
 - (IBAction)flipToBack:(id)sender {
     if (_frontIsFlipped) {
@@ -128,9 +140,9 @@
         _frontIsFlipped = NO;
     } else {
         [fliper flipLeft:nil];
-        _frontIsFlipped
-        = YES;
+        _frontIsFlipped = YES;
     }
+
 }
 
 - (IBAction)quitApp:(id)sender {
@@ -317,6 +329,9 @@
     [NSAnimationContext endGrouping];
     
     [panel performSelector:@selector(makeFirstResponder:) withObject:self.searchField afterDelay:openDuration];
+    if (authorizationPending) {
+        [self completeAuthorization];
+    }
 }
 
 - (void)closePanel
@@ -337,28 +352,79 @@
 
 
 - (void)updateInformation:(ADTrack*) currentTrack{
-//    NSImage *songArtwork;
+    NSString *name = [currentTrack name];
+    NSString *artist = [currentTrack artist];
+    NSString *album = [currentTrack album];
+    NSString *state = [currentTrack playerState];
+    
     NSImage *artwork = [currentTrack artwork];
     if(artwork == nil){
          artwork = [NSImage imageNamed:@"Sample.tiff"];
     }
     [_albumart setImage:artwork];
-    if ([[currentTrack name] length] > 0) {
-        [_txtSongTitle setStringValue:[currentTrack name]];
+    if ([name length] > 0) {
+        [_txtSongTitle setStringValue:name];
     } else {
         [_txtSongTitle setStringValue:@""];
     }
     
-    if ([[currentTrack album] length] > 0) {
-        [_txtAlbum setStringValue:[currentTrack album]];
+    if ([album length] > 0) {
+        [_txtAlbum setStringValue:album];
     } else {
         [_txtAlbum setStringValue:@""];
     }
-    if ([[currentTrack artist] length] > 0) {
-        [_txtArtist setStringValue:[currentTrack artist]];
+    if ([artist length] > 0) {
+        [_txtArtist setStringValue:artist];
     } else {
         [_txtArtist setStringValue:@""];
     }
+    
+    if ([state isEqualToString:@"Stop"])
+	{
+		// Scrobble if it's necessary
+		if (_curentLFTrack)
+		{
+			[_curentLFTrack stop];
+			currentTrack = nil;
+			_wasPlaying = NO;
+		}
+		return;
+	}
+	
+	// check persistentID
+	NSString *theID = [currentTrack trackID];
+	if (![_currentTrackID isEqualToString:theID])
+	{
+		// Scrobble if it's necessary
+		if (_curentLFTrack)
+		{
+			[_curentLFTrack stop];
+			_curentLFTrack = nil;
+			_wasPlaying = NO;
+		}
+		
+		// the track changed
+		if (!(name || artist))
+		{
+			return;
+		}
+		
+		LFTrack *theTrack = [LFTrack trackWithTitle:name artist:artist duration:[currentTrack duration]];
+				
+		_curentLFTrack = theTrack;
+		_currentTrackID = theID;
+	}
+	
+	if ([state isEqualToString:@"Play"] && !_wasPlaying)
+	{
+		[_curentLFTrack play];
+		_wasPlaying = YES;
+	}
+	if ([state isEqualToString:@"Pause"] && _wasPlaying)
+	{
+		[_curentLFTrack pause];
+		_wasPlaying = NO;
+	}
 
 }
 
@@ -386,6 +452,145 @@
     [[NSNotificationCenter defaultCenter] postNotificationName:@"nextSong" object:nil];
 }
 
+- (void)showAuthConnectPane
+{
+	[_authInstructionText setStringValue:@"In order to use Last.fm within this application, you first need to connect it with your account. Click the button below to get started."];
+	[_authStatus setHidden:YES];
+	[_authSpinner
+     stopAnimation:self];
+	
+	[_authConnectButton setTitle:@"Connect with Last.fm"];
+	
+	// get frame, set size, and center
+//	NSRect buttonFrame = [_authConnectButton frame];
+//	buttonFrame.size.width = 174.0; // taken from IB
+//	
+//	CGFloat parentWidth = [[_authConnectButton superview] frame].size.width;
+//	buttonFrame.origin.x = (parentWidth / 2.0) - (buttonFrame.size.width / 2.0);
+//	[_authConnectButton setFrame:buttonFrame];
+	
+	[_authConnectButton setAction:@selector(connectWithLastFM:)];
+	[_authConnectButton setHidden:NO];
+}
+- (void)showAuthPreAuthPane
+{
+	[_authInstructionText setStringValue:@"In order to use Last.fm within this application, you first need to connect it with your account. Click the button below to get started."];
+	[_authConnectButton setHidden:YES];
+	[_authStatus setStringValue:@"Making Authorization Request…"];
+	
+//	// measure the gap
+//	NSRect statusFrame = [_authStatus frame];
+//	NSRect spinFrame = [_authSpinner frame];
+//	CGFloat gap = spinFrame.origin.x - (statusFrame.origin.x + statusFrame.size.width);
+//	
+//	// adjust the size of the status field
+//	[_authStatus sizeToFit];
+//	
+//	// reposition the spinner
+//	statusFrame = [_authStatus frame];
+//	spinFrame.origin.x = statusFrame.origin.x + statusFrame.size.width + gap;
+//	[_authSpinner setFrame:spinFrame];
+//	
+//	// now center both of them
+//	CGFloat totalWidth = statusFrame.size.width + gap + spinFrame.size.width;
+//	CGFloat parentWidth = [[_authStatus superview] frame].size.width;
+//	CGFloat adjustment = statusFrame.origin.x - ((parentWidth / 2.0) - (totalWidth / 2.0));
+//	
+//	statusFrame.origin.x -= adjustment;
+//	spinFrame.origin.x -= adjustment;
+//	[_authStatus setFrame:statusFrame];
+//	[_authSpinner setFrame:spinFrame];
+	
+	[_authStatus setHidden:NO];
+	[_authSpinner startAnimation:self];
+}
+- (void)showAuthWaitingPane
+{
+	[_authInstructionText setStringValue:@"You will now need to provide authorization to Last.fm in your web browser, which should open for you. Once you've finished, return here and wait for authorization to complete."];
+	[_authConnectButton setHidden:YES];
+	[_authStatus setStringValue:@"Awaiting Authorization…"];
+	
+//	// measure the gap
+//	NSRect statusFrame = [_authStatus frame];
+//	NSRect spinFrame = [_authSpinner frame];
+//	CGFloat gap = spinFrame.origin.x - (statusFrame.origin.x + statusFrame.size.width);
+//	
+//	// adjust the size of the status field
+//	[_authStatus sizeToFit];
+//	
+//	// reposition the spinner
+//	statusFrame = [_authStatus frame];
+//	spinFrame.origin.x = statusFrame.origin.x + statusFrame.size.width + gap;
+//	[_authSpinner setFrame:spinFrame];
+//	
+//	// now center both of them
+//	CGFloat totalWidth = statusFrame.size.width + gap + spinFrame.size.width;
+//	CGFloat parentWidth = [[_authStatus superview] frame].size.width;
+//	CGFloat adjustment = statusFrame.origin.x - ((parentWidth / 2.0) - (totalWidth / 2.0));
+//	
+//	statusFrame.origin.x -= adjustment;
+//	spinFrame.origin.x -= adjustment;
+//	[_authStatus setFrame:statusFrame];
+//	[_authSpinner setFrame:spinFrame];
+	
+	[_authStatus setHidden:NO];
+	[_authSpinner startAnimation:self];
+}
+- (void)showAuthValidatingPane
+{
+	[_authInstructionText setStringValue:@"Please wait while I validate the credentials from your last authorization with Last.fm."];
+	[_authConnectButton setHidden:YES];
+	[_authStatus setStringValue:@"Checking Authorization…"];
+	
+	// measure the gap
+//	NSRect statusFrame = [_authStatus frame];
+//	NSRect spinFrame = [_authSpinner frame];
+//	CGFloat gap = spinFrame.origin.x - (statusFrame.origin.x + statusFrame.size.width);
+//	
+//	// adjust the size of the status field
+//	[_authStatus sizeToFit];
+//	
+//	// reposition the spinner
+//	statusFrame = [_authStatus frame];
+//	spinFrame.origin.x = statusFrame.origin.x + statusFrame.size.width + gap;
+//	[_authSpinner setFrame:spinFrame];
+//	
+//	// now center both of them
+//	CGFloat totalWidth = statusFrame.size.width + gap + spinFrame.size.width;
+//	CGFloat parentWidth = [[_authStatus superview] frame].size.width;
+//	CGFloat adjustment = statusFrame.origin.x - ((parentWidth / 2.0) - (totalWidth / 2.0));
+//	
+//	statusFrame.origin.x -= adjustment;
+//	spinFrame.origin.x -= adjustment;
+//	[_authStatus setFrame:statusFrame];
+//	[_authSpinner setFrame:spinFrame];
+	
+	[_authStatus setHidden:NO];
+	[_authSpinner startAnimation:self];
+}
+- (void)showAuthConnectedPaneWithUser:(NSString *)username
+{
+	NSMutableAttributedString *str = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"Hello, %@! You have successfully connected your Last.fm account with this application. You can now Love and Ban tracks, as well as scrobble your plays to Last.fm.", username]];
+	[str addAttribute:NSFontAttributeName value:[NSFont boldSystemFontOfSize:12.0] range:NSMakeRange(7, [username length])];
+	
+	[_authInstructionText setAttributedStringValue:str];
+	
+	[_authSpinner stopAnimation:self];
+	[_authStatus setHidden:YES];
+	
+	[_authConnectButton setTitle:@"Disconnect from Last.fm"];
+	
+	// get frame, set size, and center
+//	NSRect buttonFrame = [_authConnectButton frame];
+//	buttonFrame.size.width = 195.0; // taken from IB
+//	
+//	CGFloat parentWidth = [[_authConnectButton superview] frame].size.width;
+//	buttonFrame.origin.x = (parentWidth / 2.0) - (buttonFrame.size.width / 2.0);
+//	[_authConnectButton setFrame:buttonFrame];
+	
+	[_authConnectButton setAction:@selector(disconnectFromLastFM:)];
+	[_authConnectButton setHidden:NO];
+}
 
 
 #pragma mark Authorization methods
@@ -411,7 +616,7 @@
 			[lastfm validateSessionCredentials];
 			
 			// Adjust the UI
-//			[uiController showAuthValidatingPane];
+			[self showAuthValidatingPane];
 		}
 	}
 }
@@ -421,7 +626,13 @@
 	[[LFWebService sharedWebService] establishNewSession];
 	
 	// Adjust the UI to show status
-//	[uiController showAuthPreAuthPane];
+	[self showAuthPreAuthPane];
+    
+    [NSTimer scheduledTimerWithTimeInterval:5.0f
+                                     target:self
+                                   selector: @selector(completeAuthorization)
+                                   userInfo:nil
+                                    repeats:NO];
 }
 - (IBAction)disconnectFromLastFM:(id)sender
 {
@@ -444,7 +655,7 @@
 	[lastfm setSessionKey:nil];
 	
 	// ... and update the UI
-//	[uiController showAuthConnectPane];
+	[self showAuthConnectPane];
 }
 - (IBAction)completeAuthorization:(id)sender
 {
@@ -491,7 +702,7 @@
 	// UI to match the current status,
 	// then open up the web browser to have the user allow our demo app
 	// access
-//	[uiController showAuthWaitingPane];
+	[self showAuthWaitingPane];
 	
 	[[NSWorkspace sharedWorkspace] openURL:theURL];
 	authorizationPending = YES;
@@ -507,7 +718,7 @@
 - (void)sessionAuthorizationFailed
 {
 	// We failed. Epically.
-//	[uiController showAuthConnectPane];
+	[self showAuthConnectPane];
 }
 - (void)sessionCreatedWithKey:(NSString *)theKey user:(NSString *)theUser
 {
@@ -527,18 +738,18 @@
 		[[EMKeychainProxy sharedProxy] addGenericKeychainItemForService:keychainService withUsername:theUser password:theKey];
 	
 	// Hooray! we're up and running
-//	[uiController showAuthConnectedPaneWithUser:theUser];
+	[self showAuthConnectedPaneWithUser:theUser];
 }
 
 - (void)sessionValidatedForUser:(NSString *)theUser
 {
 	// Hooray! we're up and running
-//	[uiController showAuthConnectedPaneWithUser:theUser];
+	[self showAuthConnectedPaneWithUser:theUser];
 }
 - (void)sessionInvalidForUser:(NSString *)theUser
 {
 	// We failed. Epically.
-//	[uiController showAuthConnectPane];
+	[self showAuthConnectPane];
 }
 - (void)sessionKeyRevoked:(NSString *)theKey forUser:(NSString *)theUser
 {
@@ -595,6 +806,17 @@
 - (void)banFailedForTrack:(LFTrack *)theTrack error:(NSError *)theError willRetry:(BOOL)willRetry
 {
 	[self log:@"Ban failed (retry=%d): %@ (%@) - %@", willRetry, [theTrack title], [theTrack artist], [theError localizedDescription]];
+}
+#pragma mark Log methods
+- (void)log:(NSString *)format, ...
+{
+	// log out to the activity display
+	va_list argList;
+	va_start(argList, format);
+	NSString *output = [[NSString alloc] initWithFormat:format arguments:argList];
+	va_end(argList);
+	
+	NSLog(@"%@", output);
 }
 
 @end
