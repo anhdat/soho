@@ -219,7 +219,7 @@
                     case iTunesEPlSPlaying:
                         [_playButton setImage:[NSImage imageNamed:@"Auckland_Pause.png"]];
                         [[_panelController playBtn] setImage:[NSImage imageNamed:@"iTunes mini_pause"]];
-                        break;
+                                                break;
                     default:
                         [_playButton setImage:[NSImage imageNamed:@"Auckland_Play.png"]];
                         [[_panelController playBtn] setImage:[NSImage imageNamed:@"iTunes mini_play"]];
@@ -1135,12 +1135,12 @@ void *kContextActivePanel = &kContextActivePanel;
 
 
 - (void) freeChick{
-    if (!_niceChick) {
-        _niceChick = [[Chick alloc] initWithWindowNibName:@"Chick"];
-    }
-    
-    [_niceChick showWindow:nil];
-    [[_niceChick window] setMovableByWindowBackground:YES];
+//    if (!_niceChick) {
+//        _niceChick = [[Chick alloc] initWithWindowNibName:@"Chick"];
+//    }
+//    
+//    [_niceChick showWindow:nil];
+//    [[_niceChick window] setMovableByWindowBackground:YES];
     [self togglePanel:nil];
 }
 #pragma mark - Public accessors

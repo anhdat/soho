@@ -17,7 +17,7 @@
 
 @implementation Chick
 - (IBAction)playPause:(id)sender {
-        [[NSNotificationCenter defaultCenter] postNotificationName:@"playPause" object:nil];
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"playPause" object:nil];
 }
 
 - (IBAction)nextTrack:(id)sender {
@@ -39,10 +39,12 @@
 }
 
 - (void)updateInformation:(ADTrack*) currentTrack{
+    NSSize artSize = [_albumArt frame].size;
     NSImage *artwork = [currentTrack artwork];
     if(artwork == nil){
         artwork = [NSImage imageNamed:@"Sample.tiff"];
     }
+    [artwork setSize:artSize];
     [_albumArt setImage:artwork];
     if ([[currentTrack name] length] > 0) {
         [_txtSongTitle setStringValue:[currentTrack name]];
@@ -59,6 +61,8 @@
     } else {
         [_lyricsTextView setString:@""];
     }
+    NSImage *playButtonImage = [NSImage imageNamed:[[currentTrack playerState] isEqualToString:@"Play"]? @"SoHo_chick_pause" : @"SoHo_chick_play"];
+    [_playBtn setImage:playButtonImage];
 }
 
 
@@ -98,10 +102,10 @@
         trackArea = nil;
     }
     trackArea = [[NSTrackingArea alloc]
-                  initWithRect:[_controlView bounds]
-                  options:trackingOptions
-                  owner:self
-                  userInfo:nil];
+                 initWithRect:[_controlView bounds]
+                 options:trackingOptions
+                 owner:self
+                 userInfo:nil];
     [_controlView addTrackingArea:trackArea];
     
     [_titleView setHidden:YES];

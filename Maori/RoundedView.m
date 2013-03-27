@@ -16,9 +16,9 @@
 {
     
 //    NSColor *bgColor = [NSColor colorWithCalibratedWhite:0.0 alpha:0.35];
-    NSColor *bgColor = [NSColor colorWithCalibratedRed:250/255
-                                                 green:102/255
-                                                  blue:51/255
+    NSColor *bgColor = [NSColor colorWithCalibratedRed:0.0
+                                                 green:0.0
+                                                  blue:0.0
                                                  alpha:0.9];
 
     NSRect bgRect = rect;

@@ -135,6 +135,7 @@
 }
 
 - (IBAction)flipToBack:(id)sender {
+    [self connectWithStoredCredentials];
     if (_frontIsFlipped) {
         [fliper flipRight:nil];
         _frontIsFlipped = NO;
@@ -210,32 +211,34 @@
     searchRect.size.width = NSWidth([self.backgroundView bounds]);
     searchRect.origin.x = 2;
     searchRect.origin.y = NSHeight([self.backgroundView bounds]) - ARROW_HEIGHT - 2 - NSHeight(searchRect);
+    [self.hostView setFrame:searchRect];
+//    
+//    if (NSIsEmptyRect(searchRect))
+//    {
+//        [self.hostView setHidden:YES];
+//    }
+//    else
+//    {
+//        [self.hostView setFrame:searchRect];
+//        [self.hostView setHidden:NO];
+//    }
     
-    if (NSIsEmptyRect(searchRect))
-    {
-        [self.hostView setHidden:YES];
-    }
-    else
-    {
-        [self.hostView setFrame:searchRect];
-        [self.hostView setHidden:NO];
-    }
     
-    NSRect textRect = [self.textField frame];
-    textRect.size.width = NSWidth([self.backgroundView bounds]) - SEARCH_INSET * 2;
-    textRect.origin.x = SEARCH_INSET;
-    textRect.size.height = NSHeight([self.backgroundView bounds]) - ARROW_HEIGHT - SEARCH_INSET * 3 - NSHeight(searchRect);
-    textRect.origin.y = SEARCH_INSET;
-    
-    if (NSIsEmptyRect(textRect))
-    {
-        [self.textField setHidden:YES];
-    }
-    else
-    {
-        [self.textField setFrame:textRect];
-        [self.textField setHidden:NO];
-    }
+//    NSRect textRect = [self.textField frame];
+//    textRect.size.width = NSWidth([self.backgroundView bounds]) - SEARCH_INSET * 2;
+//    textRect.origin.x = SEARCH_INSET;
+//    textRect.size.height = NSHeight([self.backgroundView bounds]) - ARROW_HEIGHT - SEARCH_INSET * 3 - NSHeight(searchRect);
+//    textRect.origin.y = SEARCH_INSET;
+//    
+//    if (NSIsEmptyRect(textRect))
+//    {
+//        [self.textField setHidden:YES];
+//    }
+//    else
+//    {
+//        [self.textField setFrame:textRect];
+//        [self.textField setHidden:NO];
+//    }
 }
 
 #pragma mark - Keyboard
@@ -306,9 +309,9 @@
     
     NSTimeInterval openDuration = OPEN_DURATION;
     
-    NSEvent *currentEvent = [NSApp currentEvent];
-    if ([currentEvent type] == NSLeftMouseDown)
-    {
+//    NSEvent *currentEvent = [NSApp currentEvent];
+//    if ([currentEvent type] == NSLeftMouseDown)
+//    {
 //        NSUInteger clearFlags = ([currentEvent modifierFlags] & NSDeviceIndependentModifierFlagsMask);
 //        BOOL shiftPressed = (clearFlags == NSShiftKeyMask);
 //        BOOL shiftOptionPressed = (clearFlags == (NSShiftKeyMask | NSAlternateKeyMask));
@@ -320,7 +323,7 @@
 //                NSLog(@"Icon is at %@\n\tMenu is on screen %@\n\tWill be animated to %@",
 //                      NSStringFromRect(statusRect), NSStringFromRect(screenRect), NSStringFromRect(panelRect));
 //        }
-    }
+//    }
     
     [NSAnimationContext beginGrouping];
     [[NSAnimationContext currentContext] setDuration:openDuration];
@@ -339,6 +342,7 @@
     if (_frontIsFlipped) {
         [self flipToFront:nil];
     }
+    
     [NSAnimationContext beginGrouping];
     [[NSAnimationContext currentContext] setDuration:CLOSE_DURATION];
     [[[self window] animator] setAlphaValue:0];
@@ -357,10 +361,25 @@
     NSString *album = [currentTrack album];
     NSString *state = [currentTrack playerState];
     
+    NSSize artSize = [_albumart frame].size;
+
     NSImage *artwork = [currentTrack artwork];
     if(artwork == nil){
          artwork = [NSImage imageNamed:@"Sample.tiff"];
     }
+    
+    NSSize currentArtSize = [artwork size];
+    NSSize targetArtSize;
+    bool isFill = NO;
+    [artwork setScalesWhenResized:NSScaleToFit];
+//    if (currentArtSize.width > currentArtSize.height) {
+//        currentArtSize.height = currentArtSize.height * (artSize.width<currentArtSize.width?artSize.width/currentArtSize.width:currentArtSize.width/artSize.width);
+//        currentArtSize.width = artSize.width;
+//    } else {
+//        currentArtSize.width = currentArtSize.width * (artSize.height<currentArtSize.height?artSize.height/currentArtSize.height:currentArtSize.height/artSize.height);
+//        currentArtSize.height = artSize.height;
+//    }
+//    [artwork setSize:currentArtSize];
     [_albumart setImage:artwork];
     if ([name length] > 0) {
         [_txtSongTitle setStringValue:name];
@@ -474,7 +493,7 @@
 }
 - (void)showAuthPreAuthPane
 {
-	[_authInstructionText setStringValue:@"In order to use Last.fm within this application, you first need to connect it with your account. Click the button below to get started."];
+	[_authInstructionText setStringValue:@"You are not login."];
 	[_authConnectButton setHidden:YES];
 	[_authStatus setStringValue:@"Making Authorization Request…"];
 	
@@ -570,8 +589,8 @@
 }
 - (void)showAuthConnectedPaneWithUser:(NSString *)username
 {
-	NSMutableAttributedString *str = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"Hello, %@! You have successfully connected your Last.fm account with this application. You can now Love and Ban tracks, as well as scrobble your plays to Last.fm.", username]];
-	[str addAttribute:NSFontAttributeName value:[NSFont boldSystemFontOfSize:12.0] range:NSMakeRange(7, [username length])];
+	NSMutableAttributedString *str = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"Hi, %@!", username]];
+//	[str addAttribute:NSFontAttributeName value:[NSFont boldSystemFontOfSize:12.0] range:NSMakeRange(7, [username length])];
 	
 	[_authInstructionText setAttributedStringValue:str];
 	
