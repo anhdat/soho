@@ -37,17 +37,14 @@
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification
 {
-    // Start up as an agent app (without dock icon and menu)
-    //hide icon on Dock
-    //    ProcessSerialNumber psn = { 0, kCurrentProcess };
-    //    TransformProcessType(&psn, kProcessTransformToForegroundApplication);
-    //    [NSApp setActivationPolicy: NSApplicationActivationPolicyProhibited];
-    
     _isJustRun = YES;
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     NSDictionary *appDefaults = [NSDictionary dictionaryWithObject:@"NO" forKey:@"AppleMomentumScrollSupported"];
     [defaults registerDefaults:appDefaults];
+    
+    //setup Views
     [self setupViews];
+   
     // Set some observer for events triggered from other classes.
     [self listenForVolumeEvents];
     [self listenToViewChanging];
@@ -68,8 +65,8 @@
                                                         selector:@selector(TrackDidChange:)
                                                             name:@"com.catpigstudios.Radium3.stateChange"
                                                           object:nil];
-    // early creation of menubarController and panelController. REALLY NEED TO CHECK THE INIT PROCESS.
-    // DUE TO PROBLEM WITH ALBUM ART
+   
+    // early creation of menubarController and panelController.
     self.menubarController = [[MenubarController alloc] init];
     if (_panelController == nil) {
         _panelController = [[PanelController alloc] initWithDelegate:self];
@@ -105,9 +102,7 @@
     
     _currentTrack = [[ADTrack alloc] init];
     
-    // Call to get init information
-    [self TrackDidChange:nil];
-    
+        
     [self setIsInController:NO];
     
     [NSTimer scheduledTimerWithTimeInterval:1.0f
@@ -115,6 +110,11 @@
                                    selector: @selector(updateMenu)
                                    userInfo:nil
                                     repeats:YES];
+    [NSTimer scheduledTimerWithTimeInterval:3.0f
+                                     target:self
+                                   selector: @selector(updateTitleView)
+                                   userInfo:nil
+                                    repeats:NO];
     [_menuPlayer setAutoenablesItems:NO];
     
     _iTunesState = YES;
@@ -122,8 +122,10 @@
     _rdioState = YES;
     _radiumState = YES;
     
-    
-    
+    // Call to get init information
+    [self TrackDidChange:nil];
+
+//    [self updateTitleView];
     
 }
 
@@ -403,6 +405,16 @@
 
 -(void) setupViews{
     
+    NSRect mainFrame = [_mainView frame];
+    double width = [[NSUserDefaults standardUserDefaults] doubleForKey:@"width"];
+    if (!width) {
+        width = 200.0;
+    }
+    mainFrame.size.width = width;
+    
+    [_mainView setFrame:mainFrame];
+    [_titleView setFrame:mainFrame];
+    
     // Set up controlView
     _controllerItem = [[NSStatusBar systemStatusBar] statusItemWithLength:NSVariableStatusItemLength];
     
@@ -458,6 +470,7 @@
                                              )];
     [_controlView setAutoresizingMask:NSViewMinXMargin | NSViewMaxXMargin | NSViewMinYMargin | NSViewMaxYMargin];
     
+
     [_mainView setMenu:_menuPlayer];
 }
 #pragma mark -
@@ -670,20 +683,36 @@
     NSRect rec = [_mainView bounds] ;
     NSSize size;
     size.height = rec.size.height;
-    size.width = [[_panelController slideViewSize] doubleValue];
-    [_mainView setFrameSize:size];
-    [_titleView setFrame:[_mainView frame]];
-    [_fieldTitle setFrame:[_mainView frame]];
-    [self updateTitleView];
+    double width = [[NSUserDefaults standardUserDefaults] doubleForKey:@"width"];
+    if (!width) {
+        width = 200.0;
+    }
+    size.width = width;
+    NSGraphicsContext* theContext = [NSGraphicsContext currentContext];
+    [theContext saveGraphicsState];
+    [[_mainView animator] setFrameSize:size];
+//    [_mainView setFrameSize:size];
+//    [_titleView setFrame:[_mainView frame]];
+//    [_fieldTitle setFrame:[_mainView frame]];
+    [[_titleView animator] setFrameSize:size];
+    [[_fieldTitle animator] setFrameSize:size];
+     [theContext restoreGraphicsState];
+    [self performSelector:@selector(updateTitleView) withObject:self afterDelay:[[NSAnimationContext currentContext] duration]];
+
     if (_trackArea != nil) {
         _trackArea = nil;
     }
+    [self cleanTrackArea];
     _trackArea = [[NSTrackingArea alloc]
                   initWithRect:[_mainView bounds]
                   options:_trackingOptions
                   owner:self
                   userInfo:nil];
+    
     [_mainView addTrackingArea:_trackArea];
+}
+- (void) cleanTrackArea{
+    [_mainView removeTrackingArea:_trackArea];
 }
 
 - (void)updateProgressBar{
@@ -1135,11 +1164,11 @@ void *kContextActivePanel = &kContextActivePanel;
 
 
 - (void) freeChick{
-//    if (!_niceChick) {
-//        _niceChick = [[Chick alloc] initWithWindowNibName:@"Chick"];
-//    }
-//    
-//    [_niceChick showWindow:nil];
+    if (!_niceChick) {
+        _niceChick = [[Chick alloc] initWithWindowNibName:@"Chick"];
+    }
+//
+    [_niceChick showWindow:nil];
 //    [[_niceChick window] setMovableByWindowBackground:YES];
     [self togglePanel:nil];
 }

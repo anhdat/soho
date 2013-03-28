@@ -57,4 +57,5 @@
 - (IBAction)previousTrack:(id)sender;
 - (IBAction)playPause:(id)sender;
 - (void) TrackDidChange:(NSNotification *)aNotification;
+- (void) cleanTrackArea;
 @end

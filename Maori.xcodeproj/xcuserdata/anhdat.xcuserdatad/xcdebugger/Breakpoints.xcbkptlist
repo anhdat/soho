@@ -34,11 +34,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "Maori/PanelController.m"
-         timestampString = "386105258.240125"
+         timestampString = "386187438.139422"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "682"
-         endingLineNumber = "682"
+         startingLineNumber = "673"
+         endingLineNumber = "673"
          landmarkName = "-completeAuthorization:"
          landmarkType = "5">
       </FileBreakpoint>
@@ -46,13 +46,13 @@
          shouldBeEnabled = "Yes"
          ignoreCount = "0"
          continueAfterRunningActions = "No"
-         filePath = "Maori/PanelController.m"
-         timestampString = "386105258.240125"
+         filePath = "Maori/AppDelegate.m"
+         timestampString = "386186810.502077"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "592"
-         endingLineNumber = "592"
-         landmarkName = "-showAuthConnectedPaneWithUser:"
+         startingLineNumber = "700"
+         endingLineNumber = "700"
+         landmarkName = "-viewSet:"
          landmarkType = "5">
       </FileBreakpoint>
    </FileBreakpoints>

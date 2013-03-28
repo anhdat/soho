@@ -38,6 +38,11 @@
 		1A359A8617035BAA008B9F96 /* SoHo_chick_prev_alt.png in Resources */ = {isa = PBXBuildFile; fileRef = 1A359A7C17035BAA008B9F96 /* SoHo_chick_prev_alt.png */; };
 		1A359A8717035BAA008B9F96 /* SoHo_chick_prev.png in Resources */ = {isa = PBXBuildFile; fileRef = 1A359A7D17035BAA008B9F96 /* SoHo_chick_prev.png */; };
 		1A359A8917036DF9008B9F96 /* lastfm.png in Resources */ = {isa = PBXBuildFile; fileRef = 1A359A8817036DF9008B9F96 /* lastfm.png */; };
+		1A6148151704ADBB008EE2B9 /* DragLogo.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A6148131704ADBA008EE2B9 /* DragLogo.m */; };
+		1A6148161704ADBB008EE2B9 /* DragLogo.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1A6148141704ADBA008EE2B9 /* DragLogo.xib */; };
+		1A6148191704B612008EE2B9 /* TransperentView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A6148181704B612008EE2B9 /* TransperentView.m */; };
+		1A61481C1704B6D0008EE2B9 /* TransperentImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A61481B1704B6D0008EE2B9 /* TransperentImageView.m */; };
+		1A61481F1704B7F2008EE2B9 /* TransparentWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A61481E1704B7F2008EE2B9 /* TransparentWindow.m */; };
 		1A6A0A3E16F781BD00939616 /* FrontView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A6A0A3D16F781BD00939616 /* FrontView.m */; };
 		1A801CB716EF8B3D00532C54 /* Background.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A801CB616EF8B3D00532C54 /* Background.m */; };
 		1A801CBA16EF8CE600532C54 /* LBProgressBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A801CB916EF8CE600532C54 /* LBProgressBar.m */; };
@@ -156,6 +161,15 @@
 		1A359A7C17035BAA008B9F96 /* SoHo_chick_prev_alt.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SoHo_chick_prev_alt.png; sourceTree = "<group>"; };
 		1A359A7D17035BAA008B9F96 /* SoHo_chick_prev.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SoHo_chick_prev.png; sourceTree = "<group>"; };
 		1A359A8817036DF9008B9F96 /* lastfm.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = lastfm.png; sourceTree = "<group>"; };
+		1A6148121704ADBA008EE2B9 /* DragLogo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DragLogo.h; sourceTree = "<group>"; };
+		1A6148131704ADBA008EE2B9 /* DragLogo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DragLogo.m; sourceTree = "<group>"; };
+		1A6148141704ADBA008EE2B9 /* DragLogo.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DragLogo.xib; sourceTree = "<group>"; };
+		1A6148171704B612008EE2B9 /* TransperentView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TransperentView.h; sourceTree = "<group>"; };
+		1A6148181704B612008EE2B9 /* TransperentView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TransperentView.m; sourceTree = "<group>"; };
+		1A61481A1704B6D0008EE2B9 /* TransperentImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TransperentImageView.h; sourceTree = "<group>"; };
+		1A61481B1704B6D0008EE2B9 /* TransperentImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TransperentImageView.m; sourceTree = "<group>"; };
+		1A61481D1704B7F2008EE2B9 /* TransparentWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TransparentWindow.h; sourceTree = "<group>"; };
+		1A61481E1704B7F2008EE2B9 /* TransparentWindow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TransparentWindow.m; sourceTree = "<group>"; };
 		1A6A0A3C16F781BD00939616 /* FrontView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FrontView.h; sourceTree = "<group>"; };
 		1A6A0A3D16F781BD00939616 /* FrontView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FrontView.m; sourceTree = "<group>"; };
 		1A801CB516EF8B3D00532C54 /* Background.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Background.h; sourceTree = "<group>"; };
@@ -317,6 +331,9 @@
 				1A2C715816DE515D00091C15 /* AppDelegate.m */,
 				1A2C715A16DE515D00091C15 /* MainMenu.xib */,
 				DC1073ED16E3B11900EBF5FE /* Panel.xib */,
+				1A6148121704ADBA008EE2B9 /* DragLogo.h */,
+				1A6148131704ADBA008EE2B9 /* DragLogo.m */,
+				1A6148141704ADBA008EE2B9 /* DragLogo.xib */,
 				1A8F9D2316FB486900D49883 /* Chick.h */,
 				1A8F9D2416FB486900D49883 /* Chick.m */,
 				1A8F9D2516FB486900D49883 /* Chick.xib */,
@@ -390,6 +407,12 @@
 				1AE5D82316E7B267009D1BF3 /* ControlView.m */,
 				1A2C716416DE7BC200091C15 /* StatusView.h */,
 				1A2C716516DE7BC200091C15 /* StatusView.m */,
+				1A6148171704B612008EE2B9 /* TransperentView.h */,
+				1A6148181704B612008EE2B9 /* TransperentView.m */,
+				1A61481A1704B6D0008EE2B9 /* TransperentImageView.h */,
+				1A61481B1704B6D0008EE2B9 /* TransperentImageView.m */,
+				1A61481D1704B7F2008EE2B9 /* TransparentWindow.h */,
+				1A61481E1704B7F2008EE2B9 /* TransparentWindow.m */,
 			);
 			name = "Status Bar";
 			sourceTree = "<group>";
@@ -603,6 +626,7 @@
 				1A359A8617035BAA008B9F96 /* SoHo_chick_prev_alt.png in Resources */,
 				1A359A8717035BAA008B9F96 /* SoHo_chick_prev.png in Resources */,
 				1A359A8917036DF9008B9F96 /* lastfm.png in Resources */,
+				1A6148161704ADBB008EE2B9 /* DragLogo.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -641,6 +665,10 @@
 				1AA4778716FF6EC10021750D /* BlackView.m in Sources */,
 				1A95A81D1700B9E0006D3708 /* EMKeychainItem.m in Sources */,
 				1A95A81E1700B9E0006D3708 /* EMKeychainProxy.m in Sources */,
+				1A6148151704ADBB008EE2B9 /* DragLogo.m in Sources */,
+				1A6148191704B612008EE2B9 /* TransperentView.m in Sources */,
+				1A61481C1704B6D0008EE2B9 /* TransperentImageView.m in Sources */,
+				1A61481F1704B7F2008EE2B9 /* TransparentWindow.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

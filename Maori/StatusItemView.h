@@ -1,3 +1,4 @@
+#import "DragLogo.h"
 @interface StatusItemView : NSView {
 @private
     NSImage *_image;
@@ -17,5 +18,8 @@
 @property (nonatomic, readonly) NSRect globalRect;
 @property (nonatomic) SEL action;
 @property (nonatomic, unsafe_unretained) id target;
-
+@property (assign) NSPoint initialLocation;
+@property (assign) double width;
+@property (nonatomic, strong) DragLogo *logoToDrag;
+@property (assign) bool isDragging;
 @end

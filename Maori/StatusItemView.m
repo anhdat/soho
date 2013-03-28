@@ -1,4 +1,5 @@
 #import "StatusItemView.h"
+#import "AppDelegate.h"
 
 @implementation StatusItemView
 
@@ -21,6 +22,7 @@
     if (self != nil) {
         _statusItem = statusItem;
         _statusItem.view = self;
+        _isDragging = NO;
     }
     return self;
 }
@@ -50,6 +52,54 @@
     [NSApp sendAction:self.action to:self.target from:self];
 }
 
+- (void)mouseDragged:(NSEvent *)theEvent{
+   
+    // Get the mouse location in window coordinates.
+    NSPoint currentLocation = [theEvent locationInWindow];
+    
+    if (abs(currentLocation.x) > 10) {
+        
+         _isDragging = YES;
+        
+        if (!_logoToDrag) {
+            _logoToDrag = [[DragLogo alloc] initWithWindowNibName:@"DragLogo"];
+        }
+        //
+        NSRect screenVisibleFrame = [[NSScreen mainScreen] frame];
+        
+        
+        
+        // get mouse location
+        NSPoint mouseLoc;
+        mouseLoc = [NSEvent mouseLocation];
+        
+        // show window
+        [_logoToDrag showWindow:nil];
+        [[_logoToDrag window] setFrameOrigin:NSMakePoint(mouseLoc.x, screenVisibleFrame.size.height-22)];
+        
+        // calculate new width
+        _width = [[NSUserDefaults standardUserDefaults] doubleForKey:@"width"];
+        _width += - currentLocation.x;
+        if (_width<1) {
+            _width = 1;
+        }
+        if (_width > 300) {
+            _width = 300;
+        }
+
+    }
+    
+    
+}
+- (void) mouseUp:(NSEvent *)theEvent{
+    if (_isDragging) {
+        [[NSUserDefaults standardUserDefaults] setDouble:_width forKey:@"width"];
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"viewSet" object:nil];
+        [_logoToDrag close];
+        _isDragging = NO;
+    }
+    
+}
 #pragma mark -
 #pragma mark Accessors
 

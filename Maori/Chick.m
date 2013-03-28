@@ -40,7 +40,8 @@
 
 - (void)updateInformation:(ADTrack*) currentTrack{
     NSSize artSize = [_albumArt frame].size;
-    NSImage *artwork = [currentTrack artwork];
+    NSImage *artwork = [[currentTrack artwork] copy];
+    
     if(artwork == nil){
         artwork = [NSImage imageNamed:@"Sample.tiff"];
     }

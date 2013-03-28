@@ -332,8 +332,9 @@
     [NSAnimationContext endGrouping];
     
     [panel performSelector:@selector(makeFirstResponder:) withObject:self.searchField afterDelay:openDuration];
-    if (authorizationPending) {
-        [self completeAuthorization];
+    NSString *theUser = [[NSUserDefaults standardUserDefaults] objectForKey:@"LastFMUsername"];
+    if (theUser) {
+        [self showAuthConnectedPaneWithUser:theUser];
     }
 }
 
@@ -362,25 +363,14 @@
     NSString *state = [currentTrack playerState];
     
     NSSize artSize = [_albumart frame].size;
-
     NSImage *artwork = [currentTrack artwork];
     if(artwork == nil){
          artwork = [NSImage imageNamed:@"Sample.tiff"];
     }
-    
-    NSSize currentArtSize = [artwork size];
-    NSSize targetArtSize;
-    bool isFill = NO;
-    [artwork setScalesWhenResized:NSScaleToFit];
-//    if (currentArtSize.width > currentArtSize.height) {
-//        currentArtSize.height = currentArtSize.height * (artSize.width<currentArtSize.width?artSize.width/currentArtSize.width:currentArtSize.width/artSize.width);
-//        currentArtSize.width = artSize.width;
-//    } else {
-//        currentArtSize.width = currentArtSize.width * (artSize.height<currentArtSize.height?artSize.height/currentArtSize.height:currentArtSize.height/artSize.height);
-//        currentArtSize.height = artSize.height;
-//    }
-//    [artwork setSize:currentArtSize];
+    [artwork setScalesWhenResized:NSScaleProportionally];
+    [artwork setSize:artSize];
     [_albumart setImage:artwork];
+    
     if ([name length] > 0) {
         [_txtSongTitle setStringValue:name];
     } else {
@@ -452,6 +442,7 @@
     [_playerProgressBar setDoubleValue:position];
 }
 - (IBAction)slideDidChangeValue:(id)sender {
+    [[NSUserDefaults standardUserDefaults] setDouble:[_slideViewSize doubleValue] forKey:@"width"];
     [[NSNotificationCenter defaultCenter] postNotificationName:@"viewSet" object:nil];
 }
 
