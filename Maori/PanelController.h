@@ -89,6 +89,9 @@
 // Log methods
 - (void)log:(NSString *)format, ...;
 
+@property (weak) IBOutlet NSButton *toggleLoveBtnChk;
+- (IBAction)toggleLoveBtn:(id)sender;
+
 // Authorization methods
 - (void)connectWithStoredCredentials;
 - (IBAction)connectWithLastFM:(id)sender;
@@ -97,10 +100,12 @@
 - (IBAction)openManagementPage:(id)sender;
 
 // Track methods
-- (IBAction)startPlayingTrack:(id)sender;
-- (IBAction)scrobbleTrack:(id)sender;
-- (IBAction)loveTrack:(id)sender;
-- (IBAction)banTrack:(id)sender;
+//- (IBAction)startPlayingTrack:(id)sender;
+//- (IBAction)scrobbleTrack:(id)sender;
+//- (IBAction)loveTrack:(id)sender;
+//- (IBAction)banTrack:(id)sender;
+- (void) loveTrack;
+
 
 // Web service delegate methods
 - (void)sessionNeedsAuthorizationViaURL:(NSURL *)theURL;

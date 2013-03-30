@@ -642,6 +642,11 @@
      selector:@selector(freeChick)
      name:@"freeChick"
      object:nil ];
+    [[NSNotificationCenter defaultCenter]
+     addObserver:self
+     selector:@selector(toggleLoveBtn)
+     name:@"hideNow"
+     object:nil ];
 }
 
 -(void) doubleClick{
@@ -1160,6 +1165,19 @@ void *kContextActivePanel = &kContextActivePanel;
     [_playerArray insertObject:@"Radium" atIndex:0];
     [self TrackDidChange:nil];
     
+}
+
+- (void)toggleLoveBtn{
+    bool hide = [[NSUserDefaults standardUserDefaults] boolForKey:@"hideLoveBtn"];
+    if (hide) {
+        [_loveBtn setHidden:YES];
+    } else {
+        [_loveBtn setHidden:NO];
+    }
+}
+
+- (IBAction)loveTrack:(id)sender {
+    [_panelController loveTrack];
 }
 
 

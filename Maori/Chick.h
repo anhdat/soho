@@ -23,7 +23,7 @@
 @property (weak) IBOutlet NSTextField *txtSongTitle;
 @property (weak) IBOutlet NSButton *playBtn;
 @property (nonatomic) BOOL isSticked;
-
+@property (nonatomic) bool hasLyrics;
 - (IBAction)playPause:(id)sender;
 - (IBAction)nextTrack:(id)sender;
 - (IBAction)prevTrack:(id)sender;
@@ -35,6 +35,9 @@
 @property (unsafe_unretained) IBOutlet NSTextView *lyricsTextView;
 @property (weak) IBOutlet NSView *lyricsView;
 @property (weak) IBOutlet NSView *titleView;
+@property (weak) IBOutlet NSButton *lyricsBtn;
+@property (weak) IBOutlet NSTextField *letterL;
+- (IBAction)loveTrack:(id)sender;
 
 - (void)updateInformation:(ADTrack*) currentTrack;
 

@@ -34,6 +34,7 @@
 @property (weak) IBOutlet NSMenuItem *menuRdio;
 @property (weak) IBOutlet NSMenuItem *menuRadium;
 @property (weak) IBOutlet NSButton *playButton;
+@property (weak) IBOutlet NSButton *loveBtn;
 
 @property (strong, nonatomic) NSStatusItem *statusPlayItem ;
 @property  NSTrackingAreaOptions trackingOptions;
@@ -52,10 +53,12 @@
 - (IBAction)setSpotify:(id)sender;
 - (IBAction)setRdio:(id)sender;
 - (IBAction)setRadium:(id)sender;
+- (IBAction)loveTrack:(id)sender;
 
 - (IBAction)nextTrack:(id)sender;
 - (IBAction)previousTrack:(id)sender;
 - (IBAction)playPause:(id)sender;
 - (void) TrackDidChange:(NSNotification *)aNotification;
 - (void) cleanTrackArea;
+- (void) toggleLoveBtn;
 @end

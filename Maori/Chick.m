@@ -29,13 +29,23 @@
 }
 
 - (IBAction)toggleStick:(id)sender {
+    if (!_hasLyrics) {
+        if (_isSticked) {
+            [_stickBtn setImage:[NSImage imageNamed:@"SoHo_chick_stick_alt"]];
+        } else {
+            [_stickBtn setImage:[NSImage imageNamed:@"SoHo_chick_stick"]];
+        }
+    }
     if (_isSticked) {
-        [_stickBtn setImage:[NSImage imageNamed:@"SoHo_chick_stick_alt"]];
         [self setIsSticked:NO];
     } else {
-        [_stickBtn setImage:[NSImage imageNamed:@"SoHo_chick_stick"]];
         [self setIsSticked:YES];
     }
+}
+
+- (IBAction)loveTrack:(id)sender {
+    AppDelegate *appDelegateObject = (AppDelegate *)[[NSApplication sharedApplication] delegate];
+    [appDelegateObject loveTrack:nil];
 }
 
 - (void)updateInformation:(ADTrack*) currentTrack{
@@ -59,11 +69,25 @@
     }
     if ([[currentTrack lyrics] length] > 0) {
         [_lyricsTextView setString:[currentTrack lyrics]];
+        [self setHasLyrics:YES];
     } else {
         [_lyricsTextView setString:@""];
+        [self setHasLyrics:NO];
     }
     NSImage *playButtonImage = [NSImage imageNamed:[[currentTrack playerState] isEqualToString:@"Play"]? @"SoHo_chick_pause" : @"SoHo_chick_play"];
     [_playBtn setImage:playButtonImage];
+    if (_hasLyrics) {
+        [_stickBtn setImage:[NSImage imageNamed:@"SoHo_chick_lyrics"]];
+        [_letterL setHidden:NO];
+    } else {
+        [[_lyricsView animator] setHidden:YES];
+        [_letterL setHidden:YES];
+        if (_isSticked) {
+            [_stickBtn setImage:[NSImage imageNamed:@"SoHo_chick_stick_alt"]];
+        } else {
+            [_stickBtn setImage:[NSImage imageNamed:@"SoHo_chick_stick"]];
+        }
+    }
 }
 
 
@@ -112,6 +136,7 @@
     [_titleView setHidden:YES];
     [_lyricsView setHidden:YES];
     [self setIsSticked:NO];
+    [self setHasLyrics:NO];
 }
 
 - (IBAction)returnToMom:(id)sender {
@@ -119,13 +144,15 @@
 }
 
 - (IBAction) toggleLyrics:(id)sender{
-    if ([_lyricsView isHidden]) {
-        [[_lyricsView animator] setHidden:NO];
-        [[_titleView animator] setHidden:NO];
-    } else {
-        [[_lyricsView animator] setHidden:YES];
-        if (!_isSticked) {
-            [[_titleView animator] setHidden:YES];
+    if (_hasLyrics) {
+        if ([_lyricsView isHidden]) {
+            [[_lyricsView animator] setHidden:NO];
+            [[_titleView animator] setHidden:NO];
+        } else {
+            [[_lyricsView animator] setHidden:YES];
+            if (!_isSticked) {
+                [[_titleView animator] setHidden:YES];
+            }
         }
     }
 }

@@ -111,6 +111,7 @@
     fliper.superView = _hostView; // as superview for example type of content view of the window
     [fliper setActiveViewAtIndex:0];
     _frontIsFlipped = NO;
+
 }
 
 #pragma mark - Public accessors
@@ -333,7 +334,7 @@
     
     [panel performSelector:@selector(makeFirstResponder:) withObject:self.searchField afterDelay:openDuration];
     NSString *theUser = [[NSUserDefaults standardUserDefaults] objectForKey:@"LastFMUsername"];
-    if (theUser) {
+    if ([theUser length] > 0) {
         [self showAuthConnectedPaneWithUser:theUser];
     }
 }
@@ -464,12 +465,12 @@
 
 - (void)showAuthConnectPane
 {
-	[_authInstructionText setStringValue:@"In order to use Last.fm within this application, you first need to connect it with your account. Click the button below to get started."];
+	[_authInstructionText setStringValue:@"You are not login."];
 	[_authStatus setHidden:YES];
 	[_authSpinner
      stopAnimation:self];
 	
-	[_authConnectButton setTitle:@"Connect with Last.fm"];
+	[_authConnectButton setTitle:@"Connect"];
 	
 	// get frame, set size, and center
 //	NSRect buttonFrame = [_authConnectButton frame];
@@ -484,7 +485,7 @@
 }
 - (void)showAuthPreAuthPane
 {
-	[_authInstructionText setStringValue:@"You are not login."];
+	[_authInstructionText setStringValue:@"Please wait for a moment."];
 	[_authConnectButton setHidden:YES];
 	[_authStatus setStringValue:@"Making Authorization Request…"];
 	
@@ -516,7 +517,7 @@
 }
 - (void)showAuthWaitingPane
 {
-	[_authInstructionText setStringValue:@"You will now need to provide authorization to Last.fm in your web browser, which should open for you. Once you've finished, return here and wait for authorization to complete."];
+	[_authInstructionText setStringValue:@""];
 	[_authConnectButton setHidden:YES];
 	[_authStatus setStringValue:@"Awaiting Authorization…"];
 	
@@ -679,30 +680,35 @@
 }
 
 #pragma mark Track methods
-- (IBAction)startPlayingTrack:(id)sender
-{
-	LFTrack *track = [LFTrack trackWithTitle:@"trackName"  artist:@"trackArtist" duration:345.0];
-	[track play];
-}
-- (IBAction)scrobbleTrack:(id)sender
-{
-	LFTrack *track = [LFTrack trackWithTitle:@"trackName"  artist:@"trackArtist" duration:345.0];
-	[track setPlayingTime:100.0];
-	[track stop]; // forces a scrobble
-}
-- (IBAction)loveTrack:(id)sender
-{
-	LFTrack *track = [LFTrack trackWithTitle:@"trackName"  artist:@"trackArtist" duration:345.0];
-	[track setPlayingTime:100.0];
-	[track love];
-	[track stop]; // forces a scrobble
-}
-- (IBAction)banTrack:(id)sender
-{
-	LFTrack *track = [LFTrack trackWithTitle:@"trackName"  artist:@"trackArtist" duration:345.0];
-	[track setPlayingTime:200.0];
-	[track ban];
-	[track stop]; // forces a scrobble
+//- (IBAction)startPlayingTrack:(id)sender
+//{
+//	LFTrack *track = [LFTrack trackWithTitle:@"trackName"  artist:@"trackArtist" duration:345.0];
+//	[track play];
+//}
+//- (IBAction)scrobbleTrack:(id)sender
+//{
+//	LFTrack *track = [LFTrack trackWithTitle:@"trackName"  artist:@"trackArtist" duration:345.0];
+//	[track setPlayingTime:100.0];
+//	[track stop]; // forces a scrobble
+//}
+//- (IBAction)loveTrack:(id)sender
+//{
+//	LFTrack *track = [LFTrack trackWithTitle:@"trackName"  artist:@"trackArtist" duration:345.0];
+//	[track setPlayingTime:100.0];
+//	[track love];
+//	[track stop]; // forces a scrobble
+//}
+//- (IBAction)banTrack:(id)sender
+//{
+//	LFTrack *track = [LFTrack trackWithTitle:@"trackName"  artist:@"trackArtist" duration:345.0];
+//	[track setPlayingTime:200.0];
+//	[track ban];
+//	[track stop]; // forces a scrobble
+//}
+
+- (void) loveTrack{
+    [_curentLFTrack love];
+    [_curentLFTrack stop];
 }
 
 #pragma mark Web service delegate methods
@@ -829,4 +835,8 @@
 	NSLog(@"%@", output);
 }
 
+- (IBAction)toggleLoveBtn:(id)sender {
+    [[NSUserDefaults standardUserDefaults] setBool:([_toggleLoveBtnChk state]==NSOnState) forKey:@"hideLoveBtn"];
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"hideNow" object:nil];
+}
 @end
