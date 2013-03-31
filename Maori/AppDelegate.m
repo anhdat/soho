@@ -76,8 +76,8 @@
     
     
     // set double value to slider at the back of panelController
-    float viewWidth = [_mainView bounds].size.width;
-    [[_panelController slideViewSize] setDoubleValue:viewWidth];
+//    float viewWidth = [_mainView bounds].size.width;
+//    [[_panelController slideViewSize] setDoubleValue:viewWidth];
     
     // update Progressbar under titleView
     [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(updateProgressBar) userInfo:nil repeats:YES];
@@ -88,9 +88,11 @@
     _rdioApp = [SBApplication applicationWithBundleIdentifier:@"com.rdio.desktop"];
     _radiumApp = [SBApplication applicationWithBundleIdentifier:@"com.catpigstudios.Radium"];
     
-    _preferedPlayer = [[NSMutableArray alloc] initWithObjects:@"Spotify", @"iTunes", @"Radium", @"Rdio", nil];
     
-    
+    _preferedPlayer = [[NSMutableArray alloc] initWithArray:[[NSUserDefaults standardUserDefaults] arrayForKey:@"preferedPlayer"]];
+    if ([_preferedPlayer count] == 0) {
+        _preferedPlayer = [[NSMutableArray alloc] initWithObjects:@"Spotify", @"iTunes", @"Radium", @"Rdio", nil];
+    }
     
     _playerArray = [[NSMutableArray alloc] init];
     [_playerArray addObject:@"iTunes"];
@@ -99,6 +101,7 @@
     [_playerArray addObject:@"Radium"];
     
     _playerArray = _preferedPlayer ;
+    
     
     _currentTrack = [[ADTrack alloc] init];
     
@@ -126,6 +129,7 @@
     [self TrackDidChange:nil];
 
 //    [self updateTitleView];
+    [self toggleLoveBtn]; 
     
 }
 
@@ -292,6 +296,7 @@
     }
 }
 - (void) updateMenu{
+    
     [self updatePlayerArray];
     if ([_iTunesApp isRunning]) {
         [_menuiTunes setEnabled:YES];
@@ -700,7 +705,7 @@
 //    [_titleView setFrame:[_mainView frame]];
 //    [_fieldTitle setFrame:[_mainView frame]];
     [[_titleView animator] setFrameSize:size];
-    [[_fieldTitle animator] setFrameSize:size];
+//    [[_fieldTitle animator] setFrameSize:size];
      [theContext restoreGraphicsState];
     [self performSelector:@selector(updateTitleView) withObject:self afterDelay:[[NSAnimationContext currentContext] duration]];
 
@@ -1089,8 +1094,7 @@ void *kContextActivePanel = &kContextActivePanel;
    
     self.menubarController.hasActiveIcon = !self.menubarController.hasActiveIcon;
     self.panelController.hasActivePanel = self.menubarController.hasActiveIcon;
-    float viewWidth = [_mainView bounds].size.width;
-    [[_panelController slideViewSize] setDoubleValue:viewWidth];
+
     if (_isJustRun) {
        [self TrackDidChange:nil]; 
     }
@@ -1112,6 +1116,7 @@ void *kContextActivePanel = &kContextActivePanel;
     }
     [_playerArray removeObjectAtIndex:0];
     [_playerArray insertObject:@"iTunes" atIndex:0];
+    [[NSUserDefaults standardUserDefaults] setObject:_preferedPlayer forKey:@"preferedPlayer"];
     [self TrackDidChange:nil];
 }
 
@@ -1129,6 +1134,7 @@ void *kContextActivePanel = &kContextActivePanel;
     }
     [_playerArray removeObjectAtIndex:0];
     [_playerArray insertObject:@"Spotify" atIndex:0];
+    [[NSUserDefaults standardUserDefaults] setObject:_preferedPlayer forKey:@"preferedPlayer"];
     [self TrackDidChange:nil];
 }
 
@@ -1146,6 +1152,7 @@ void *kContextActivePanel = &kContextActivePanel;
     }
     [_playerArray removeObjectAtIndex:0];
     [_playerArray insertObject:@"Rdio" atIndex:0];
+    [[NSUserDefaults standardUserDefaults] setObject:_preferedPlayer forKey:@"preferedPlayer"];
     [self TrackDidChange:nil];
 }
 
@@ -1163,12 +1170,13 @@ void *kContextActivePanel = &kContextActivePanel;
     }
     [_playerArray removeObjectAtIndex:0];
     [_playerArray insertObject:@"Radium" atIndex:0];
+    [[NSUserDefaults standardUserDefaults] setObject:_preferedPlayer forKey:@"preferedPlayer"];
     [self TrackDidChange:nil];
     
 }
 
 - (void)toggleLoveBtn{
-    bool hide = [[NSUserDefaults standardUserDefaults] boolForKey:@"hideLoveBtn"];
+    bool hide = [[NSUserDefaults standardUserDefaults] boolForKey:@"hideLoveBtnState"];
     if (hide) {
         [_loveBtn setHidden:YES];
     } else {

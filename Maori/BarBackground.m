@@ -7,9 +7,7 @@
 //
 
 #import "BarBackground.h"
-#ifndef NSCOLOR
-#define NSCOLOR(r, g, b, a) [NSColor colorWithCalibratedRed:r/255.0f green:g/255.0f blue:b/255.0f alpha:a]
-#endif
+
 @implementation BarBackground
 
 - (id)initWithFrame:(NSRect)frame
@@ -24,10 +22,9 @@
 
 - (void)drawRect:(NSRect)dirtyRect
 {
-    NSLog(@"abc");
-    NSRect fillRect = [self frame];
-    [NSCOLOR(0, 0, 0, 0.5) setFill];
+    NSRect fillRect= [self bounds];
+    [[NSColor colorWithCalibratedRed:0.0 green:0.0 blue:0.0 alpha:0.5] setFill];
     NSRectFill(fillRect);
 }
-
 @end
+    

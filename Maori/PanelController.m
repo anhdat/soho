@@ -76,6 +76,9 @@
         
         
         _wasPlaying = NO;
+        [self showAuthConnectPane];
+//        [_authStatus setHidden:NO];
+//        [_authSpinner setHidden:YES];
     }
     return self;
 }
@@ -223,23 +226,6 @@
 //        [self.hostView setFrame:searchRect];
 //        [self.hostView setHidden:NO];
 //    }
-    
-    
-//    NSRect textRect = [self.textField frame];
-//    textRect.size.width = NSWidth([self.backgroundView bounds]) - SEARCH_INSET * 2;
-//    textRect.origin.x = SEARCH_INSET;
-//    textRect.size.height = NSHeight([self.backgroundView bounds]) - ARROW_HEIGHT - SEARCH_INSET * 3 - NSHeight(searchRect);
-//    textRect.origin.y = SEARCH_INSET;
-//    
-//    if (NSIsEmptyRect(textRect))
-//    {
-//        [self.textField setHidden:YES];
-//    }
-//    else
-//    {
-//        [self.textField setFrame:textRect];
-//        [self.textField setHidden:NO];
-//    }
 }
 
 #pragma mark - Keyboard
@@ -249,17 +235,6 @@
     self.hasActivePanel = NO;
 }
 
-- (void)runSearch
-{
-    NSString *searchFormat = @"";
-    NSString *searchString = [self.searchField stringValue];
-    if ([searchString length] > 0)
-    {
-        searchFormat = NSLocalizedString(@"Search for ‘%@’…", @"Format for search request");
-    }
-    NSString *searchRequest = [NSString stringWithFormat:searchFormat, searchString];
-    [self.textField setStringValue:searchRequest];
-}
 
 #pragma mark - Public methods
 
@@ -442,10 +417,7 @@
 - (void)updatePlayerProgressBar:(double) position{
     [_playerProgressBar setDoubleValue:position];
 }
-- (IBAction)slideDidChangeValue:(id)sender {
-    [[NSUserDefaults standardUserDefaults] setDouble:[_slideViewSize doubleValue] forKey:@"width"];
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"viewSet" object:nil];
-}
+
 
 - (IBAction)playerBarDidChange:(id)sender {
    [[NSNotificationCenter defaultCenter] postNotificationName:@"changePostion" object:nil];
@@ -463,142 +435,53 @@
     [[NSNotificationCenter defaultCenter] postNotificationName:@"nextSong" object:nil];
 }
 
+- (IBAction)toggleLaunchAtLogin:(id)sender {
+    LaunchAtLoginController *launch = [[LaunchAtLoginController alloc] init];
+    [launch setLaunchAtLogin:![launch launchAtLogin]];
+}
+
 - (void)showAuthConnectPane
 {
-	[_authInstructionText setStringValue:@"You are not login."];
-	[_authStatus setHidden:YES];
-	[_authSpinner
-     stopAnimation:self];
+	[_authStatus setStringValue:@"You are not login."];
+    [_authSpinner setHidden:YES];
+	[_authSpinner stopAnimation:self];
 	
 	[_authConnectButton setTitle:@"Connect"];
-	
-	// get frame, set size, and center
-//	NSRect buttonFrame = [_authConnectButton frame];
-//	buttonFrame.size.width = 174.0; // taken from IB
-//	
-//	CGFloat parentWidth = [[_authConnectButton superview] frame].size.width;
-//	buttonFrame.origin.x = (parentWidth / 2.0) - (buttonFrame.size.width / 2.0);
-//	[_authConnectButton setFrame:buttonFrame];
 	
 	[_authConnectButton setAction:@selector(connectWithLastFM:)];
 	[_authConnectButton setHidden:NO];
 }
 - (void)showAuthPreAuthPane
 {
-	[_authInstructionText setStringValue:@"Please wait for a moment."];
 	[_authConnectButton setHidden:YES];
+    [_authSpinner setHidden:NO];
 	[_authStatus setStringValue:@"Making Authorization Request…"];
-	
-//	// measure the gap
-//	NSRect statusFrame = [_authStatus frame];
-//	NSRect spinFrame = [_authSpinner frame];
-//	CGFloat gap = spinFrame.origin.x - (statusFrame.origin.x + statusFrame.size.width);
-//	
-//	// adjust the size of the status field
-//	[_authStatus sizeToFit];
-//	
-//	// reposition the spinner
-//	statusFrame = [_authStatus frame];
-//	spinFrame.origin.x = statusFrame.origin.x + statusFrame.size.width + gap;
-//	[_authSpinner setFrame:spinFrame];
-//	
-//	// now center both of them
-//	CGFloat totalWidth = statusFrame.size.width + gap + spinFrame.size.width;
-//	CGFloat parentWidth = [[_authStatus superview] frame].size.width;
-//	CGFloat adjustment = statusFrame.origin.x - ((parentWidth / 2.0) - (totalWidth / 2.0));
-//	
-//	statusFrame.origin.x -= adjustment;
-//	spinFrame.origin.x -= adjustment;
-//	[_authStatus setFrame:statusFrame];
-//	[_authSpinner setFrame:spinFrame];
-	
-	[_authStatus setHidden:NO];
 	[_authSpinner startAnimation:self];
 }
 - (void)showAuthWaitingPane
 {
-	[_authInstructionText setStringValue:@""];
 	[_authConnectButton setHidden:YES];
 	[_authStatus setStringValue:@"Awaiting Authorization…"];
 	
-//	// measure the gap
-//	NSRect statusFrame = [_authStatus frame];
-//	NSRect spinFrame = [_authSpinner frame];
-//	CGFloat gap = spinFrame.origin.x - (statusFrame.origin.x + statusFrame.size.width);
-//	
-//	// adjust the size of the status field
-//	[_authStatus sizeToFit];
-//	
-//	// reposition the spinner
-//	statusFrame = [_authStatus frame];
-//	spinFrame.origin.x = statusFrame.origin.x + statusFrame.size.width + gap;
-//	[_authSpinner setFrame:spinFrame];
-//	
-//	// now center both of them
-//	CGFloat totalWidth = statusFrame.size.width + gap + spinFrame.size.width;
-//	CGFloat parentWidth = [[_authStatus superview] frame].size.width;
-//	CGFloat adjustment = statusFrame.origin.x - ((parentWidth / 2.0) - (totalWidth / 2.0));
-//	
-//	statusFrame.origin.x -= adjustment;
-//	spinFrame.origin.x -= adjustment;
-//	[_authStatus setFrame:statusFrame];
-//	[_authSpinner setFrame:spinFrame];
-	
-	[_authStatus setHidden:NO];
+    [_authSpinner setHidden:NO];
 	[_authSpinner startAnimation:self];
 }
 - (void)showAuthValidatingPane
 {
-	[_authInstructionText setStringValue:@"Please wait while I validate the credentials from your last authorization with Last.fm."];
 	[_authConnectButton setHidden:YES];
 	[_authStatus setStringValue:@"Checking Authorization…"];
-	
-	// measure the gap
-//	NSRect statusFrame = [_authStatus frame];
-//	NSRect spinFrame = [_authSpinner frame];
-//	CGFloat gap = spinFrame.origin.x - (statusFrame.origin.x + statusFrame.size.width);
-//	
-//	// adjust the size of the status field
-//	[_authStatus sizeToFit];
-//	
-//	// reposition the spinner
-//	statusFrame = [_authStatus frame];
-//	spinFrame.origin.x = statusFrame.origin.x + statusFrame.size.width + gap;
-//	[_authSpinner setFrame:spinFrame];
-//	
-//	// now center both of them
-//	CGFloat totalWidth = statusFrame.size.width + gap + spinFrame.size.width;
-//	CGFloat parentWidth = [[_authStatus superview] frame].size.width;
-//	CGFloat adjustment = statusFrame.origin.x - ((parentWidth / 2.0) - (totalWidth / 2.0));
-//	
-//	statusFrame.origin.x -= adjustment;
-//	spinFrame.origin.x -= adjustment;
-//	[_authStatus setFrame:statusFrame];
-//	[_authSpinner setFrame:spinFrame];
-	
-	[_authStatus setHidden:NO];
 	[_authSpinner startAnimation:self];
 }
 - (void)showAuthConnectedPaneWithUser:(NSString *)username
 {
 	NSMutableAttributedString *str = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"Hi, %@!", username]];
-//	[str addAttribute:NSFontAttributeName value:[NSFont boldSystemFontOfSize:12.0] range:NSMakeRange(7, [username length])];
+	[_authStatus setAttributedStringValue:str];
 	
-	[_authInstructionText setAttributedStringValue:str];
+    [_authConnectButton setTitle:@"Disconnect"];
 	
-	[_authSpinner stopAnimation:self];
-	[_authStatus setHidden:YES];
-	
-	[_authConnectButton setTitle:@"Disconnect from Last.fm"];
-	
-	// get frame, set size, and center
-//	NSRect buttonFrame = [_authConnectButton frame];
-//	buttonFrame.size.width = 195.0; // taken from IB
-//	
-//	CGFloat parentWidth = [[_authConnectButton superview] frame].size.width;
-//	buttonFrame.origin.x = (parentWidth / 2.0) - (buttonFrame.size.width / 2.0);
-//	[_authConnectButton setFrame:buttonFrame];
-	
+    [_authSpinner stopAnimation:self];
+    [_authSpinner setHidden:YES];
+    
 	[_authConnectButton setAction:@selector(disconnectFromLastFM:)];
 	[_authConnectButton setHidden:NO];
 }
@@ -836,7 +719,7 @@
 }
 
 - (IBAction)toggleLoveBtn:(id)sender {
-    [[NSUserDefaults standardUserDefaults] setBool:([_toggleLoveBtnChk state]==NSOnState) forKey:@"hideLoveBtn"];
+    [[NSUserDefaults standardUserDefaults] setBool:([_toggleLoveBtnChk state]==NSOnState) forKey:@"hideLoveBtnState"];
     [[NSNotificationCenter defaultCenter] postNotificationName:@"hideNow" object:nil];
 }
 @end

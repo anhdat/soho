@@ -58,7 +58,8 @@
     NSPoint currentLocation = [theEvent locationInWindow];
     
     if (abs(currentLocation.x) > 10) {
-        
+        AppDelegate *appDelegateObject = (AppDelegate *)[[NSApplication sharedApplication] delegate];
+        [[appDelegateObject panelController] closePanel];
          _isDragging = YES;
         
         if (!_logoToDrag) {
@@ -100,6 +101,20 @@
     }
     
 }
+
+- (void)scrollWheel:(NSEvent *)theEvent{
+    if ([theEvent deltaY] < 0) {
+        [[NSNotificationCenter defaultCenter]
+         postNotificationName:@"volumeUp"
+         object:nil ];
+    }
+    if ([theEvent deltaY] > 0) {
+        [[NSNotificationCenter defaultCenter]
+         postNotificationName:@"volumeDown"
+         object:nil ];
+    }
+}
+
 #pragma mark -
 #pragma mark Accessors
 

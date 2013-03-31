@@ -14,10 +14,6 @@
 
 - (void)drawRect:(NSRect)dirtyRect
 {
-    NSRect fillRect= NSMakeRect([self frame].origin.x, [self frame].origin.y, [self frame].size.width,100);
-//    NSRect fillRect = [self frame];
-    [NSCOLOR(0, 0, 0, 0.5) setFill];
-    NSRectFill(fillRect);
 }
 
 - (void)scrollWheel:(NSEvent *)theEvent{

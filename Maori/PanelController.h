@@ -3,8 +3,8 @@
 #import "iTunes.h"
 #import "mbFliperViews.h"
 #import "Chick.h"
+#import "LaunchAtLoginController.h"
 #import <Scribbler/Scribbler.h>
-
 @class PanelController;
 
 @protocol PanelControllerDelegate <NSObject>
@@ -40,7 +40,6 @@
 @property (weak) IBOutlet NSButtonCell *playBtn;
 
 @property (weak) IBOutlet NSTextField *txtSongTitle;
-@property (weak) IBOutlet NSSlider *slideViewSize;
 @property (weak) IBOutlet NSView *hostView;
 @property (strong) IBOutlet NSView *frontView;
 @property (strong) IBOutlet NSView *backView;
@@ -51,6 +50,7 @@
 @property (weak) IBOutlet NSTextFieldCell *txtEslapsedTime;
 @property (weak) IBOutlet NSTextFieldCell *txtRemainingTime;
 - (IBAction)freeChick:(id)sender;
+@property (weak) IBOutlet NSPopUpButton *preferedPlayerBtn;
 
 @property (nonatomic) BOOL hasActivePanel;
 @property (nonatomic, unsafe_unretained, readonly) id<PanelControllerDelegate> delegate;
@@ -61,16 +61,15 @@
 - (void)closePanel;
 - (void)updateInformation:(ADTrack*) currentTrack;
 - (void)updatePlayerProgressBar:(double) position;
-- (IBAction)slideDidChangeValue:(id)sender;
 - (IBAction)playerBarDidChange:(id)sender;
 - (IBAction)playPause:(id)sender;
 - (IBAction)prevSong:(id)sender;
 - (IBAction)nextSong:(id)sender;
+- (IBAction)toggleLaunchAtLogin:(id)sender;
 
 
 
 
-@property (weak) IBOutlet NSTextField *authInstructionText;
 @property (weak) IBOutlet NSTextField *authStatus;
 @property (weak) IBOutlet NSProgressIndicator *authSpinner;
 @property (weak) IBOutlet NSButton *authConnectButton;

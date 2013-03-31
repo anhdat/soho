@@ -46,7 +46,7 @@
 				<string key="NSClassName">NSFontManager</string>
 			</object>
 			<object class="NSCustomView" id="721071481">
-				<reference key="NSNextResponder"/>
+				<nil key="NSNextResponder"/>
 				<int key="NSvFlags">268</int>
 				<array class="NSMutableArray" key="NSSubviews">
 					<object class="NSTextField" id="419300045">
@@ -90,22 +90,20 @@
 					</object>
 				</array>
 				<string key="NSFrameSize">{200, 22}</string>
-				<reference key="NSSuperview"/>
 				<reference key="NSNextKeyView" ref="419300045"/>
 				<string key="NSReuseIdentifierKey">_NS:9</string>
 				<string key="NSClassName">StatusView</string>
 			</object>
 			<object class="NSCustomView" id="376639626">
-				<reference key="NSNextResponder"/>
+				<nil key="NSNextResponder"/>
 				<int key="NSvFlags">268</int>
 				<array class="NSMutableArray" key="NSSubviews"/>
 				<string key="NSFrameSize">{206, 22}</string>
-				<reference key="NSSuperview"/>
 				<string key="NSReuseIdentifierKey">_NS:9</string>
 				<string key="NSClassName">StatusView</string>
 			</object>
 			<object class="NSCustomView" id="143075783">
-				<reference key="NSNextResponder"/>
+				<nil key="NSNextResponder"/>
 				<int key="NSvFlags">268</int>
 				<array class="NSMutableArray" key="NSSubviews">
 					<object class="NSTextField" id="211838709">
@@ -133,7 +131,6 @@
 					</object>
 				</array>
 				<string key="NSFrameSize">{100, 22}</string>
-				<reference key="NSSuperview"/>
 				<reference key="NSNextKeyView" ref="211838709"/>
 				<string key="NSReuseIdentifierKey">_NS:9</string>
 				<string key="NSClassName">StatusView</string>
@@ -281,7 +278,7 @@
 				<string key="NSClassName">ControlView</string>
 			</object>
 			<object class="NSCustomView" id="499654157">
-				<reference key="NSNextResponder"/>
+				<nil key="NSNextResponder"/>
 				<int key="NSvFlags">268</int>
 				<array class="NSMutableArray" key="NSSubviews">
 					<object class="NSBox" id="565464020">
@@ -361,7 +358,6 @@
 					</object>
 				</array>
 				<string key="NSFrameSize">{200, 22}</string>
-				<reference key="NSSuperview"/>
 				<reference key="NSNextKeyView" ref="926498111"/>
 				<string key="NSReuseIdentifierKey">_NS:9</string>
 				<string key="NSClassName">StatusView</string>
@@ -1568,7 +1564,7 @@
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">1287</int>
+			<int key="maxID">1288</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes"/>
 		<int key="IBDocument.localizationMode">0</int>

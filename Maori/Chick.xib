@@ -376,7 +376,7 @@
 																	<int key="NSvFlags">2322</int>
 																	<string key="NSFrameSize">{200, 170}</string>
 																	<reference key="NSSuperview" ref="347597194"/>
-																	<reference key="NSNextKeyView" ref="107541030"/>
+																	<reference key="NSNextKeyView" ref="28717809"/>
 																	<string key="NSReuseIdentifierKey">_NS:13</string>
 																	<object class="NSTextContainer" key="NSTextContainer" id="1060025116">
 																		<object class="NSLayoutManager" key="NSLayoutManager">
@@ -488,7 +488,7 @@
 													</array>
 													<string key="NSFrameSize">{200, 170}</string>
 													<reference key="NSSuperview" ref="120464448"/>
-													<reference key="NSNextKeyView" ref="28717809"/>
+													<reference key="NSNextKeyView" ref="347597194"/>
 													<string key="NSReuseIdentifierKey">_NS:9</string>
 													<int key="NSsFlags">133136</int>
 													<reference key="NSVScroller" ref="107541030"/>
