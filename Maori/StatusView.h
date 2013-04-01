@@ -9,5 +9,6 @@
 #import <Cocoa/Cocoa.h>
 
 @interface StatusView : NSView
+@property (weak) IBOutlet NSImageView *nextArrow;
 
 @end

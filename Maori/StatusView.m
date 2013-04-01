@@ -50,7 +50,9 @@
          object:nil ];
     }
 }
-
+- (void)swipeWithEvent:(NSEvent *)event{
+    NSLog(@"%f", [event deltaX]);
+}
 - (void)mouseDown:(NSEvent *)event{
     AppDelegate *appDelegate = (AppDelegate *)[[NSApplication sharedApplication] delegate];
     [appDelegate playPause:nil];

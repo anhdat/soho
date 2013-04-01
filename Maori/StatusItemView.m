@@ -60,6 +60,8 @@
     if (abs(currentLocation.x) > 10) {
         AppDelegate *appDelegateObject = (AppDelegate *)[[NSApplication sharedApplication] delegate];
         [[appDelegateObject panelController] closePanel];
+        
+        // Begin a dragging session.
          _isDragging = YES;
         
         if (!_logoToDrag) {
@@ -94,9 +96,17 @@
 }
 - (void) mouseUp:(NSEvent *)theEvent{
     if (_isDragging) {
+        // Call appdelegate to update new width.
         [[NSUserDefaults standardUserDefaults] setDouble:_width forKey:@"width"];
         [[NSNotificationCenter defaultCenter] postNotificationName:@"viewSet" object:nil];
         [_logoToDrag close];
+        
+        // Mark icon to be unactive.
+        AppDelegate *appDelegateObject = (AppDelegate *)[[NSApplication sharedApplication] delegate];
+        appDelegateObject.menubarController.hasActiveIcon = !appDelegateObject.menubarController.hasActiveIcon;
+        appDelegateObject.panelController.hasActivePanel = appDelegateObject.menubarController.hasActiveIcon;
+        
+        // End a dragging session.
         _isDragging = NO;
     }
     
