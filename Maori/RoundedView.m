@@ -8,9 +8,16 @@
 
 
 #import "RoundedView.h"
+#import "DHSwipeIndicator.h"
 
 @implementation RoundedView
-
+- (void)awakeFromNib
+{
+    [super awakeFromNib];
+    [self setAcceptsTouchEvents:YES];
+    self.swipeIndicator = [[DHSwipeIndicator alloc] initWithWebView:self] ;
+   
+}
 
 - (void)drawRect:(NSRect)rect
 {

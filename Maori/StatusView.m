@@ -8,6 +8,7 @@
 
 #import "StatusView.h"
 #import "AppDelegate.h"
+#import "STTDHSwipeIndicator.h"
 @implementation StatusView
 
 - (id)initWithFrame:(NSRect)frame
@@ -15,7 +16,7 @@
     self = [super initWithFrame:frame];
     if (self) {
         // Initialization code here.
-        
+        self.swipeIndicator = [[STTDHSwipeIndicator alloc] initWithWebView:self] ;
     }
     return self;
 }
@@ -49,9 +50,6 @@
          postNotificationName:@"volumeDown"
          object:nil ];
     }
-}
-- (void)swipeWithEvent:(NSEvent *)event{
-    NSLog(@"%f", [event deltaX]);
 }
 - (void)mouseDown:(NSEvent *)event{
     AppDelegate *appDelegate = (AppDelegate *)[[NSApplication sharedApplication] delegate];

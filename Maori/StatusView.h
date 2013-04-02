@@ -7,8 +7,8 @@
 //
 
 #import <Cocoa/Cocoa.h>
-
+@class STTDHSwipeIndicator;
 @interface StatusView : NSView
 @property (weak) IBOutlet NSImageView *nextArrow;
-
+@property (retain) STTDHSwipeIndicator *swipeIndicator;
 @end

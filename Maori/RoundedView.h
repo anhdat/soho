@@ -8,8 +8,10 @@
 
 
 #import <Cocoa/Cocoa.h>
-
+@class DHSwipeIndicator;
 @interface RoundedView : NSView
 {
 }
+
+@property (retain) DHSwipeIndicator *swipeIndicator;
 @end

@@ -7,7 +7,6 @@
 //
 
 #import <Cocoa/Cocoa.h>
-
 @interface RoundedWindow : NSWindow
 
 @property (assign) NSPoint initialLocation;

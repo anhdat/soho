@@ -419,7 +419,8 @@
     
     [_mainView setFrame:mainFrame];
     [_titleView setFrame:mainFrame];
-    
+    [_controlView setFrame:mainFrame];
+    [_volumeView setFrame:mainFrame];
     // Set up controlView
     _controllerItem = [[NSStatusBar systemStatusBar] statusItemWithLength:NSVariableStatusItemLength];
     
@@ -469,12 +470,12 @@
     [_volumeView setHidden:YES];
     
     // Centralize controlView
-    [_controlView setFrameOrigin:NSMakePoint(
-                                             (NSWidth([_mainView bounds]) - NSWidth([_controlView frame])) / 2,
-                                             (NSHeight([_mainView bounds]) - NSHeight([_controlView frame])) / 2
-                                             )];
-    [_controlView setAutoresizingMask:NSViewMinXMargin | NSViewMaxXMargin | NSViewMinYMargin | NSViewMaxYMargin];
-    
+//    [_controlView setFrameOrigin:NSMakePoint(
+//                                             (NSWidth([_mainView bounds]) - NSWidth([_controlView frame])) / 2,
+//                                             (NSHeight([_mainView bounds]) - NSHeight([_controlView frame])) / 2
+//                                             )];
+//    [_controlView setAutoresizingMask:NSViewMinXMargin | NSViewMaxXMargin | NSViewMinYMargin | NSViewMaxYMargin];
+//    
 
     [_mainView setMenu:_menuPlayer];
 }
@@ -705,6 +706,8 @@
 //    [_titleView setFrame:[_mainView frame]];
 //    [_fieldTitle setFrame:[_mainView frame]];
     [[_titleView animator] setFrameSize:size];
+    [[_controlView animator] setFrameSize:size];
+    [_volumeView setFrameSize:size];
 //    [[_fieldTitle animator] setFrameSize:size];
      [theContext restoreGraphicsState];
     [self performSelector:@selector(updateTitleView) withObject:self afterDelay:[[NSAnimationContext currentContext] duration]];

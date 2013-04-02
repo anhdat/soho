@@ -5,7 +5,7 @@
 #import "ADTrack.h"
 #import "FrontView.h"
 #import "BackView.h"
-
+#import "NotificationWindowController.h"
 
 #import <Scribbler/Scribbler.h>
 #import "EMKeychainProxy.h"
@@ -684,6 +684,16 @@
 - (void)loveSucceededForTrack:(LFTrack *)theTrack
 {
 	[self log:@"Love succeeded: %@ (%@)", [theTrack title], [theTrack artist]];
+   
+    NotificationWindowController *loveNotification;
+    if (!loveNotification) {
+        loveNotification = [[NotificationWindowController alloc] initWithWindowNibName:@"NotificationWindowController"];
+    }
+    [loveNotification showWindow:nil];
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 2 * NSEC_PER_SEC), dispatch_get_current_queue(), ^{
+        [loveNotification close];
+    });
+    
 }
 - (void)banSucceededForTrack:(LFTrack *)theTrack
 {
