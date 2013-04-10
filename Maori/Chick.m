@@ -105,7 +105,9 @@
     [super windowDidLoad];
     [[self window] setLevel:NSScreenSaverWindowLevel + 1];
     [[self window] orderFront:nil];
+    [self setIsSticked:NO];
     
+    [self setHasLyrics:NO];
     [_lyricsTextView setBackgroundColor:[NSColor colorWithCalibratedRed:1.0 green:1.0 blue:1.0 alpha:0.9]];
     AppDelegate *appDelegateObject = (AppDelegate *)[[NSApplication sharedApplication] delegate];
     [appDelegateObject TrackDidChange:nil];
@@ -135,8 +137,7 @@
     
     [_titleView setHidden:YES];
     [_lyricsView setHidden:YES];
-    [self setIsSticked:NO];
-    [self setHasLyrics:NO];
+    
 }
 
 - (IBAction)returnToMom:(id)sender {
@@ -158,17 +159,34 @@
 }
 
 - (void)scrollWheel:(NSEvent *)theEvent{
-    if ([theEvent deltaY] < 0) {
-        [[NSNotificationCenter defaultCenter]
-         postNotificationName:@"volumeUp"
-         object:nil ];
+    if ([theEvent isDirectionInvertedFromDevice]) {
+        if ([theEvent deltaY] < 0) {
+            [[NSNotificationCenter defaultCenter]
+             postNotificationName:@"volumeUp"
+             object:nil ];
+        }
+        if ([theEvent deltaY] > 0) {
+            [[NSNotificationCenter defaultCenter]
+             postNotificationName:@"volumeDown"
+             object:nil ];
+        }
+        
+    } else {
+        if ([theEvent deltaY] > 0) {
+            [[NSNotificationCenter defaultCenter]
+             postNotificationName:@"volumeUp"
+             object:nil ];
+        }
+        if ([theEvent deltaY] < 0) {
+            [[NSNotificationCenter defaultCenter]
+             postNotificationName:@"volumeDown"
+             object:nil ];
+        }
+        
     }
-    if ([theEvent deltaY] > 0) {
-        [[NSNotificationCenter defaultCenter]
-         postNotificationName:@"volumeDown"
-         object:nil ];
-    }
+    
 }
+
 
 
 - (void)mouseEntered:(NSEvent *)theEvent{

@@ -153,8 +153,9 @@
     else if([event phase] == NSEventPhaseEnded)
     {
         AppDelegate *appDelegateObject = (AppDelegate *)[[NSApplication sharedApplication] delegate];
-        [[appDelegateObject panelController] closePanel];
-        
+//        [[appDelegateObject panelController] closePanel];
+//        appDelegateObject.menubarController.hasActiveIcon = !appDelegateObject.menubarController.hasActiveIcon;
+//        appDelegateObject.panelController.hasActivePanel = appDelegateObject.menubarController.hasActiveIcon;
         if(currentSum < -0.3 && canGoLeft)
         {
             [appDelegateObject previousTrack:nil];

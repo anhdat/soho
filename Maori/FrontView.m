@@ -7,35 +7,44 @@
 //
 
 #import "FrontView.h"
-#import "FrontDHSwipeIndicator.h"
 
 #ifndef NSCOLOR
 #define NSCOLOR(r, g, b, a) [NSColor colorWithCalibratedRed:r/255.0f green:g/255.0f blue:b/255.0f alpha:a]
 #endif
 @implementation FrontView
-- (void)awakeFromNib
-{
-    [super awakeFromNib];
-    [self setAcceptsTouchEvents:YES];
-    self.swipeIndicator = [[FrontDHSwipeIndicator alloc] initWithWebView:self] ;
-    
-}
 - (void)drawRect:(NSRect)dirtyRect
 {
 }
 
 - (void)scrollWheel:(NSEvent *)theEvent{
-    if ([theEvent deltaY] < 0) {
-        [[NSNotificationCenter defaultCenter]
-         postNotificationName:@"volumeUp"
-         object:nil ];
+    if ([theEvent isDirectionInvertedFromDevice]) {
+        if ([theEvent deltaY] < 0) {
+            [[NSNotificationCenter defaultCenter]
+             postNotificationName:@"volumeUp"
+             object:nil ];
+        }
+        if ([theEvent deltaY] > 0) {
+            [[NSNotificationCenter defaultCenter]
+             postNotificationName:@"volumeDown"
+             object:nil ];
+        }
+        
+    } else {
+        if ([theEvent deltaY] > 0) {
+            [[NSNotificationCenter defaultCenter]
+             postNotificationName:@"volumeUp"
+             object:nil ];
+        }
+        if ([theEvent deltaY] < 0) {
+            [[NSNotificationCenter defaultCenter]
+             postNotificationName:@"volumeDown"
+             object:nil ];
+        }
+        
     }
-    if ([theEvent deltaY] > 0) {
-        [[NSNotificationCenter defaultCenter]
-         postNotificationName:@"volumeDown"
-         object:nil ];
-    }
+    
 }
+
 
 - (void)mouseDown:(NSEvent *)event{
     

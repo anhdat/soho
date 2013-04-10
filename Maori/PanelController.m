@@ -79,6 +79,8 @@
         [self showAuthConnectPane];
 //        [_authStatus setHidden:NO];
 //        [_authSpinner setHidden:YES];
+        
+        
     }
     return self;
 }
@@ -89,6 +91,13 @@
 }
 
 #pragma mark -
+- (void) unhideChik{
+    if (!_enableChik) {
+        [_chikBtn setHidden:YES];
+    } else {
+        [_chikBtn setHidden:NO];
+    }
+}
 
 - (void)awakeFromNib
 {
@@ -114,6 +123,12 @@
     fliper.superView = _hostView; // as superview for example type of content view of the window
     [fliper setActiveViewAtIndex:0];
     _frontIsFlipped = NO;
+    
+    // Easter Egg part
+    _enableChik = [[[NSUserDefaults standardUserDefaults] stringForKey:@"chikSong1"] isCaseInsensitiveLike:@".efil otni gnitsrub s'taht nedrag a em wohS"] &&
+    [[[NSUserDefaults standardUserDefaults] stringForKey:@"chikSong2"] isCaseInsensitiveLike:@"?enog uoy evah erehw gniht elpmis hO"] &&
+    [[[NSUserDefaults standardUserDefaults] stringForKey:@"chikSong3"] isCaseInsensitiveLike:@".snoitseuq ruoy em ksa dna ,sterces ruoy em lleT"];
+    [self unhideChik];
 
 }
 

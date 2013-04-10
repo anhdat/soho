@@ -32,17 +32,34 @@
 }
 
 - (void)scrollWheel:(NSEvent *)theEvent{
-    if ([theEvent deltaY] < 0) {
-        [[NSNotificationCenter defaultCenter]
-         postNotificationName:@"volumeUp"
-         object:nil ];
+    if ([theEvent isDirectionInvertedFromDevice]) {
+        if ([theEvent deltaY] < 0) {
+            [[NSNotificationCenter defaultCenter]
+             postNotificationName:@"volumeUp"
+             object:nil ];
+        }
+        if ([theEvent deltaY] > 0) {
+            [[NSNotificationCenter defaultCenter]
+             postNotificationName:@"volumeDown"
+             object:nil ];
+        }
+        
+    } else {
+        if ([theEvent deltaY] > 0) {
+            [[NSNotificationCenter defaultCenter]
+             postNotificationName:@"volumeUp"
+             object:nil ];
+        }
+        if ([theEvent deltaY] < 0) {
+            [[NSNotificationCenter defaultCenter]
+             postNotificationName:@"volumeDown"
+             object:nil ];
+        }
+        
     }
-    if ([theEvent deltaY] > 0) {
-        [[NSNotificationCenter defaultCenter]
-         postNotificationName:@"volumeDown"
-         object:nil ];
-    }
+    
 }
+
 
 - (void)mouseDown:(NSEvent *)event{
     

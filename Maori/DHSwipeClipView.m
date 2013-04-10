@@ -78,6 +78,7 @@
 
 - (void)scrollWheel:(NSEvent *)event
 {
+    
     if(![NSEvent isSwipeTrackingFromScrollEventsEnabled])
     {
         [super scrollWheel:event];
@@ -86,7 +87,6 @@
     if([event phase] == NSEventPhaseBegan)
     {
         currentSum = 0;
-//        NSScrollView *scrollView = [[[[webView mainFrame] frameView] documentView] enclosingScrollView];
         
         NSRect bounds = [webView bounds];
         canGoLeft = canGoRight = NO;
@@ -152,7 +152,6 @@
     else if([event phase] == NSEventPhaseEnded)
     {
         AppDelegate *appDelegateObject = (AppDelegate *)[[NSApplication sharedApplication] delegate];
-        [[appDelegateObject panelController] closePanel];
 
         if(currentSum < -0.3 && canGoLeft)
         {

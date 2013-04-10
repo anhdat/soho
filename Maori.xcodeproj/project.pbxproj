@@ -94,8 +94,6 @@
 		1AAA0BEB16FEB41E00086219 /* RoundedWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AAA0BEA16FEB41E00086219 /* RoundedWindow.m */; };
 		1AB3735F170B122B00D2B5DA /* STTDHSwipeIndicator.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AB3735C170B122B00D2B5DA /* STTDHSwipeIndicator.m */; };
 		1AB37360170B122B00D2B5DA /* STTDHSwipeClipView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AB3735E170B122B00D2B5DA /* STTDHSwipeClipView.m */; };
-		1AB37365170B29D700D2B5DA /* FrontDHSwipeIndicator.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AB37362170B29D700D2B5DA /* FrontDHSwipeIndicator.m */; };
-		1AB37366170B29D700D2B5DA /* FrontDHSwipeClipView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AB37364170B29D700D2B5DA /* FrontDHSwipeClipView.m */; };
 		1AB3736A170B2E0100D2B5DA /* NotificationWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AB37368170B2E0000D2B5DA /* NotificationWindowController.m */; };
 		1AB3736B170B2E0100D2B5DA /* NotificationWindowController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1AB37369170B2E0100D2B5DA /* NotificationWindowController.xib */; };
 		1AB37379170B35F600D2B5DA /* SoHo_loved@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1AB37378170B35F600D2B5DA /* SoHo_loved@2x.png */; };
@@ -144,6 +142,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		1A2A670E17159F66007ABCB0 /* Radium.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Radium.h; sourceTree = "<group>"; };
 		1A2C714216DE515D00091C15 /* Maori.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Maori.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1A2C714516DE515D00091C15 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		1A2C714816DE515D00091C15 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
@@ -164,7 +163,6 @@
 		1A2C716816DE83CB00091C15 /* ScriptingBridge.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ScriptingBridge.framework; path = System/Library/Frameworks/ScriptingBridge.framework; sourceTree = SDKROOT; };
 		1A3031DA16F1ECFF00C91EF4 /* ADPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ADPlayer.h; sourceTree = "<group>"; };
 		1A3031DB16F1ECFF00C91EF4 /* ADPlayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ADPlayer.m; sourceTree = "<group>"; };
-		1A3031DD16F2222A00C91EF4 /* Radium.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Radium.h; sourceTree = "<group>"; };
 		1A3031DE16F2224B00C91EF4 /* Rdio.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Rdio.h; sourceTree = "<group>"; };
 		1A3031DF16F231B100C91EF4 /* ADTrack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ADTrack.h; sourceTree = "<group>"; };
 		1A3031E016F231B100C91EF4 /* ADTrack.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ADTrack.m; sourceTree = "<group>"; };
@@ -270,10 +268,6 @@
 		1AB3735C170B122B00D2B5DA /* STTDHSwipeIndicator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STTDHSwipeIndicator.m; sourceTree = "<group>"; };
 		1AB3735D170B122B00D2B5DA /* STTDHSwipeClipView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STTDHSwipeClipView.h; sourceTree = "<group>"; };
 		1AB3735E170B122B00D2B5DA /* STTDHSwipeClipView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STTDHSwipeClipView.m; sourceTree = "<group>"; };
-		1AB37361170B29D700D2B5DA /* FrontDHSwipeIndicator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FrontDHSwipeIndicator.h; sourceTree = "<group>"; };
-		1AB37362170B29D700D2B5DA /* FrontDHSwipeIndicator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FrontDHSwipeIndicator.m; sourceTree = "<group>"; };
-		1AB37363170B29D700D2B5DA /* FrontDHSwipeClipView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FrontDHSwipeClipView.h; sourceTree = "<group>"; };
-		1AB37364170B29D700D2B5DA /* FrontDHSwipeClipView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FrontDHSwipeClipView.m; sourceTree = "<group>"; };
 		1AB37367170B2E0000D2B5DA /* NotificationWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NotificationWindowController.h; sourceTree = "<group>"; };
 		1AB37368170B2E0000D2B5DA /* NotificationWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NotificationWindowController.m; sourceTree = "<group>"; };
 		1AB37369170B2E0100D2B5DA /* NotificationWindowController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NotificationWindowController.xib; sourceTree = "<group>"; };
@@ -458,10 +452,6 @@
 		1AAA0BEC16FED74400086219 /* PopUp */ = {
 			isa = PBXGroup;
 			children = (
-				1AB37361170B29D700D2B5DA /* FrontDHSwipeIndicator.h */,
-				1AB37362170B29D700D2B5DA /* FrontDHSwipeIndicator.m */,
-				1AB37363170B29D700D2B5DA /* FrontDHSwipeClipView.h */,
-				1AB37364170B29D700D2B5DA /* FrontDHSwipeClipView.m */,
 				1A6A0A3C16F781BD00939616 /* FrontView.h */,
 				1A6A0A3D16F781BD00939616 /* FrontView.m */,
 				1A9081C616F8D79D00651C27 /* BackView.h */,
@@ -539,8 +529,8 @@
 				1AD2AFD916F0E9F20058421C /* PlayerApplication.m */,
 				1AD2AFD716F0E9F20058421C /* Spotify.h */,
 				1A2C716716DE818E00091C15 /* iTunes.h */,
+				1A2A670E17159F66007ABCB0 /* Radium.h */,
 				1A3031DE16F2224B00C91EF4 /* Rdio.h */,
-				1A3031DD16F2222A00C91EF4 /* Radium.h */,
 				1A3031DF16F231B100C91EF4 /* ADTrack.h */,
 				1A3031E016F231B100C91EF4 /* ADTrack.m */,
 			);
@@ -809,8 +799,6 @@
 				1AA5B510170A085F00DC95B4 /* DHSwipeClipView.m in Sources */,
 				1AB3735F170B122B00D2B5DA /* STTDHSwipeIndicator.m in Sources */,
 				1AB37360170B122B00D2B5DA /* STTDHSwipeClipView.m in Sources */,
-				1AB37365170B29D700D2B5DA /* FrontDHSwipeIndicator.m in Sources */,
-				1AB37366170B29D700D2B5DA /* FrontDHSwipeClipView.m in Sources */,
 				1AB3736A170B2E0100D2B5DA /* NotificationWindowController.m in Sources */,
 				1AB3737E170B368D00D2B5DA /* NotificationView.m in Sources */,
 			);

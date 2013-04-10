@@ -68,6 +68,7 @@
 - (IBAction)toggleLaunchAtLogin:(id)sender;
 
 
+@property (weak) IBOutlet NSButton *chikBtn;
 
 
 @property (weak) IBOutlet NSTextField *authStatus;
@@ -132,4 +133,6 @@
 - (void)banFailedForTrack:(LFTrack *)theTrack error:(NSError *)theError willRetry:(BOOL)willRetry;
 
 
+@property (assign) bool enableChik;
+- (void) unhideChik;
 @end

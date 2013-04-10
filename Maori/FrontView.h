@@ -7,7 +7,7 @@
 //
 
 #import <Cocoa/Cocoa.h>
-@class FrontDHSwipeIndicator;
+
 @interface FrontView : NSView
-@property (retain) FrontDHSwipeIndicator *swipeIndicator;
+
 @end

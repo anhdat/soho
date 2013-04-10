@@ -47,6 +47,7 @@
 
 @property (strong, nonatomic) NSMutableArray *playerArray;
 @property (strong, nonatomic) ADTrack *currentTrack;
+@property (assign) bool enableChik;
 
 - (IBAction)togglePanel:(id)sender;
 - (IBAction)setiTunes:(id)sender;
@@ -54,6 +55,7 @@
 - (IBAction)setRdio:(id)sender;
 - (IBAction)setRadium:(id)sender;
 - (IBAction)loveTrack:(id)sender;
+- (IBAction)compact:(id)sender;
 
 - (IBAction)nextTrack:(id)sender;
 - (IBAction)previousTrack:(id)sender;

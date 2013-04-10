@@ -16,7 +16,6 @@
 @property (nonatomic) RadiumApplication *radiumApp;
 @property (strong, nonatomic) NSMutableArray *preferedPlayer;
 @property (nonatomic) Boolean isInController;
-@property (nonatomic) RadiumRplayer *radiumPlayer;
 
 @property (nonatomic) Boolean iTunesState;
 @property (nonatomic) Boolean spotifyState;
@@ -38,13 +37,22 @@
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification
 {
     _isJustRun = YES;
+    _enableChik = NO;
+    
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     NSDictionary *appDefaults = [NSDictionary dictionaryWithObject:@"NO" forKey:@"AppleMomentumScrollSupported"];
     [defaults registerDefaults:appDefaults];
     
+    // Easter Egg part
+    _enableChik = [[[NSUserDefaults standardUserDefaults] stringForKey:@"chikSong1"] isCaseInsensitiveLike:@".efil otni gnitsrub s'taht nedrag a em wohS"] &&
+    [[[NSUserDefaults standardUserDefaults] stringForKey:@"chikSong2"] isCaseInsensitiveLike:@"?enog uoy evah erehw gniht elpmis hO"] &&
+    [[[NSUserDefaults standardUserDefaults] stringForKey:@"chikSong3"] isCaseInsensitiveLike:@".snoitseuq ruoy em ksa dna ,sterces ruoy em lleT"];
+    
     //setup Views
     [self setupViews];
+    
    
+       
     // Set some observer for events triggered from other classes.
     [self listenForVolumeEvents];
     [self listenToViewChanging];
@@ -67,11 +75,12 @@
                                                           object:nil];
    
     // early creation of menubarController and panelController.
-    self.menubarController = [[MenubarController alloc] init];
     if (_panelController == nil) {
         _panelController = [[PanelController alloc] initWithDelegate:self];
         [_panelController addObserver:self forKeyPath:@"hasActivePanel" options:0 context:kContextActivePanel];
     }
+    
+   
     
     
     
@@ -79,14 +88,13 @@
 //    float viewWidth = [_mainView bounds].size.width;
 //    [[_panelController slideViewSize] setDoubleValue:viewWidth];
     
-    // update Progressbar under titleView
-    [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(updateProgressBar) userInfo:nil repeats:YES];
+    
     
     
     _iTunesApp = [SBApplication applicationWithBundleIdentifier:@"com.apple.iTunes"];
     _spotifyApp =[SBApplication applicationWithBundleIdentifier:@"com.spotify.client"];
     _rdioApp = [SBApplication applicationWithBundleIdentifier:@"com.rdio.desktop"];
-    _radiumApp = [SBApplication applicationWithBundleIdentifier:@"com.catpigstudios.Radium"];
+    _radiumApp = [SBApplication applicationWithBundleIdentifier:@"com.catpigstudios.Radium3"];
     
     
     _preferedPlayer = [[NSMutableArray alloc] initWithArray:[[NSUserDefaults standardUserDefaults] arrayForKey:@"preferedPlayer"]];
@@ -107,6 +115,17 @@
     
         
     [self setIsInController:NO];
+    _iTunesState = YES;
+    _spotifyState = YES;
+    _rdioState = YES;
+    _radiumState = YES;
+    
+    // update Progressbar under titleView
+    [NSTimer scheduledTimerWithTimeInterval:1.0
+                                     target:self
+                                   selector:@selector(updateProgressBar)
+                                   userInfo:nil
+                                    repeats:YES];
     
     [NSTimer scheduledTimerWithTimeInterval:1.0f
                                      target:self
@@ -120,11 +139,7 @@
                                     repeats:NO];
     [_menuPlayer setAutoenablesItems:NO];
     
-    _iTunesState = YES;
-    _spotifyState = YES;
-    _rdioState = YES;
-    _radiumState = YES;
-    
+   
     // Call to get init information
     [self TrackDidChange:nil];
 
@@ -281,7 +296,7 @@
             if ([_radiumApp isRunning]) {
 //                RadiumRplayer *radiumPlayer;
 //                _radiumPlayer = [_radiumApp player];
-                if ([_radiumPlayer playing]) {
+                if ([_radiumApp playing]) {
                     [_playButton setImage:[NSImage imageNamed:@"Auckland_Pause.png"]];
                     [[_panelController playBtn] setImage:[NSImage imageNamed:@"iTunes mini_pause"]];
                 }else {
@@ -383,9 +398,7 @@
     }
     if ([_radiumApp isRunning]) {
         [_menuRadium setEnabled:YES];
-//        RadiumRplayer *radiumPlayer;
-        _radiumPlayer = [_radiumApp player];
-        if ([_radiumPlayer playing]) {
+        if ([_radiumApp playing]) {
             if ([@"Radium" isEqual:[_playerArray objectAtIndex:0]]){
                 [_menuRadium setTitle:@"Radium ♬◁"];
             } else {
@@ -423,7 +436,8 @@
     [_volumeView setFrame:mainFrame];
     // Set up controlView
     _controllerItem = [[NSStatusBar systemStatusBar] statusItemWithLength:NSVariableStatusItemLength];
-    
+    self.menubarController = [[MenubarController alloc] init];
+
     // Create and add Tracking Area to mainView
     _trackingOptions =
     NSTrackingEnabledDuringMouseDrag
@@ -456,7 +470,9 @@
     [_mainView setNeedsDisplay:YES];
     
     _progressLayer = [CALayer layer];
-    [_progressLayer setFrame:[_mainView frame]];
+    
+    NSRect progressRect = NSMakeRect(mainFrame.origin.x, mainFrame.origin.y+2, mainFrame.size.width, 18);
+    [_progressLayer setFrame:progressRect];
     _progressLayer.backgroundColor = whiteColor;    [hostlayer addSublayer:_progressLayer];
     
     CGColorRelease(whiteColor);
@@ -733,7 +749,7 @@
     double duration =[_currentTrack duration];
     
     NSString *elapsedTimeString = [MSDurationFormatter hoursMinutesSecondsFromSeconds:position];
-    NSString *remainingTimeString = [MSDurationFormatter hoursMinutesSecondsFromSeconds:duration];
+    NSString *remainingTimeString = [MSDurationFormatter hoursMinutesSecondsFromSeconds:duration-position];
     [[_panelController txtEslapsedTime] setStringValue:elapsedTimeString];
     [[_panelController txtRemainingTime] setStringValue:remainingTimeString];
     
@@ -822,7 +838,11 @@
         }
         if ([@"Radium" isEqual:[_playerArray objectAtIndex:i]]) {
             if ([_radiumApp isRunning]) {
-                [[_radiumApp player] playPause];
+                if ([_radiumApp playing]) {
+                    [_radiumApp pause];
+                } else {
+                    [_radiumApp play];
+                }
             }
             return;
         }
@@ -857,6 +877,63 @@
     
     return position;
 }
+
+-(void)saveToUserDefaults:(NSString*)myString forKey:(NSString*) key
+{
+    NSUserDefaults *standardUserDefaults = [NSUserDefaults standardUserDefaults];
+    
+    if (standardUserDefaults) {
+        [standardUserDefaults setObject:myString forKey:key];
+        [standardUserDefaults synchronize];
+    }
+}
+
+-(void) checkValidChikKeys{
+    if (!_enableChik) {        
+        // Chasing cars.
+        bool chikSong = [[[NSUserDefaults standardUserDefaults] stringForKey:@"chikSong1"] isCaseInsensitiveLike:@".efil otni gnitsrub s'taht nedrag a em wohS"];
+        if ( chikSong != YES) {
+            if ([[_currentTrack name] isCaseInsensitiveLike:@"Chasing cars"]) {
+                if ([[_currentTrack artist] isCaseInsensitiveLike:@"Snow Patrol"]) {
+                    // save user and post message
+                    [self saveToUserDefaults:@".efil otni gnitsrub s'taht nedrag a em wohS" forKey:@"chikSong1"];
+                    NSLog(@"You have my sword,");
+                    return;
+                }
+            }
+        } else {
+            // Somewhere only we know.
+            chikSong = [[[NSUserDefaults standardUserDefaults] stringForKey:@"chikSong2"] isCaseInsensitiveLike:@"?enog uoy evah erehw gniht elpmis hO"];
+            if (chikSong != YES) {
+                if ([[_currentTrack name] isCaseInsensitiveLike:@"Somewhere Only We Know"]) {
+                    if ([[_currentTrack artist] isCaseInsensitiveLike:@"Keane"]) {
+                        // save user and post message
+                        [self saveToUserDefaults:@"?enog uoy evah erehw gniht elpmis hO" forKey:@"chikSong2"];
+                        NSLog(@"and you have my bow,");
+                        return;
+                    }
+                }
+            } else {
+                // The Scientist.
+                chikSong = [[[NSUserDefaults standardUserDefaults] stringForKey:@"chikSong3"] isCaseInsensitiveLike:@".snoitseuq ruoy em ksa dna ,sterces ruoy em lleT"];
+                if (chikSong != YES) {
+                    if ([[_currentTrack name] isCaseInsensitiveLike:@"The Scientist"]) {
+                        if ([[_currentTrack artist] isCaseInsensitiveLike:@"Coldplay"]) {
+                            // save user and post message
+                            [self saveToUserDefaults:@".snoitseuq ruoy em ksa dna ,sterces ruoy em lleT" forKey:@"chikSong3"];
+                            NSLog(@"and my axe.");
+                            
+                                [_panelController setEnableChik:YES];
+                                [_panelController unhideChik];
+                            return;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
 -(void) updateCurrentTrack{
     
     for (NSInteger i = 0; i < [_playerArray count]; i++) {
@@ -893,6 +970,7 @@
                     else
                         songArtwork = [NSImage imageNamed:@"Sample.tiff"];
                     [_currentTrack setArtwork:songArtwork];
+                    [self checkValidChikKeys];
                 } else {
                     [_currentTrack setName:@""];
                     [_currentTrack setAlbum:@""];
@@ -915,6 +993,11 @@
                     [_currentTrack setName:[current name]];
                     [_currentTrack setDuration:[current duration]];
                     [_currentTrack setArtwork:[current artwork]];
+                    if ([_currentTrack artwork] == nil) {
+                        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 2 * NSEC_PER_SEC), dispatch_get_current_queue(), ^{
+                            [self TrackDidChange:nil];
+                        });
+                    }
                     [_currentTrack setIsAdvertisement:NO];
                     [_currentTrack setIsAdvertisement:[album hasPrefix:@"spotify:user"]||
                      [album hasPrefix:@"http:"]||
@@ -936,6 +1019,7 @@
                             [_currentTrack setPlayerState:@"Pause"];
                             break;
                     }
+                    [self checkValidChikKeys];
                     
                 }else {
                     [_currentTrack setName:@""];
@@ -957,7 +1041,7 @@
                     [_currentTrack setArtist:[current artist]];
                     [_currentTrack setName:[current name]];
                     [_currentTrack setDuration:[current duration]];
-                    [_currentTrack setArtwork:[[NSImage alloc] initWithData:[current artwork]]];
+//                    [_currentTrack setArtwork:[[NSImage alloc] initWithData:[current artwork]]];
                     switch ([_rdioApp playerState]) {
                         case RdioEPSSPlaying:
                             [_currentTrack setPlayerState:@"Play"];
@@ -973,6 +1057,7 @@
                             break;
                     }
                     [_currentTrack setTrackID:[current rdioUrl]];
+                    [self checkValidChikKeys];
                 }else {
                     [_currentTrack setName:@""];
                     [_currentTrack setAlbum:@""];
@@ -987,16 +1072,18 @@
         }
         if ([@"Radium" isEqual:[_playerArray objectAtIndex:i]]) {
             if ([_radiumApp isRunning]) {
-//                RadiumRplayer *radiumPlayer;
-//                _radiumPlayer = [_radiumApp player];
-                if ([_radiumPlayer playing]) {
-                    NSString *fullName = [_radiumPlayer songTitle];
+                if ([_radiumApp playing]) {
+                    NSString *fullName = [_radiumApp trackName];
+                    [_currentTrack setDuration:180.0];
                     NSArray *tokens = [fullName componentsSeparatedByString:@"-"];
                     [_currentTrack setName:[tokens objectAtIndex:1]];
                     [_currentTrack setAlbum:@""];
                     [_currentTrack setArtist:[tokens objectAtIndex:0]];
-                    [_currentTrack setArtwork:nil];
-                    [_currentTrack setPlayerState:@"Play"];
+                    if ([_radiumApp trackArtwork]) {
+                        [_currentTrack setArtwork:[_radiumApp trackArtwork]];
+                    }
+                [_currentTrack setPlayerState:@"Play"];
+                [self checkValidChikKeys];
                 }else {
                     [_currentTrack setName:@""];
                     [_currentTrack setAlbum:@""];
@@ -1187,6 +1274,11 @@ void *kContextActivePanel = &kContextActivePanel;
 
 - (IBAction)loveTrack:(id)sender {
     [_panelController loveTrack];
+}
+
+- (IBAction)compact:(id)sender {
+    [[NSUserDefaults standardUserDefaults] setDouble:1.0 forKey:@"width"];
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"viewSet" object:nil];
 }
 
 

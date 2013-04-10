@@ -1,5 +1,5 @@
 #import "BackgroundView.h"
-
+//#import "FrontDHSwipeIndicator.h"
 #define FILL_OPACITY 0.9f
 #define STROKE_OPACITY 1.0f
 
@@ -15,6 +15,13 @@
 @synthesize arrowX = _arrowX;
 
 #pragma mark -
+//- (void)awakeFromNib
+//{
+//    [super awakeFromNib];
+//    [self setAcceptsTouchEvents:YES];
+//    self.swipeIndicator = [[FrontDHSwipeIndicator alloc] initWithWebView:self] ;
+//    
+//}
 
 - (void)drawRect:(NSRect)dirtyRect
 {
