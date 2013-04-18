@@ -1,10 +1,9 @@
 #import "BackgroundView.h"
 #import "StatusItemView.h"
-#import "iTunes.h"
 #import "mbFliperViews.h"
 #import "Chick.h"
-#import "LaunchAtLoginController.h"
 #import <Scribbler/Scribbler.h>
+
 @class PanelController;
 
 @protocol PanelControllerDelegate <NSObject>
@@ -66,6 +65,9 @@
 - (IBAction)prevSong:(id)sender;
 - (IBAction)nextSong:(id)sender;
 - (IBAction)toggleLaunchAtLogin:(id)sender;
+@property (weak) IBOutlet NSButton *launchAtLoginBtn;
+
+@property (weak) IBOutlet NSButton *seeHowBtn;
 
 
 @property (weak) IBOutlet NSButton *chikBtn;
@@ -132,6 +134,9 @@
 - (void)loveFailedForTrack:(LFTrack *)theTrack error:(NSError *)theError willRetry:(BOOL)willRetry;
 - (void)banFailedForTrack:(LFTrack *)theTrack error:(NSError *)theError willRetry:(BOOL)willRetry;
 
+- (IBAction)goToFacebook:(id)sender;
+- (IBAction)goToTwitter:(id)sender;
+- (IBAction)goToHomePage:(id)sender;
 
 @property (assign) bool enableChik;
 - (void) unhideChik;

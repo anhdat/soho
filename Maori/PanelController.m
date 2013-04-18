@@ -6,7 +6,6 @@
 #import "FrontView.h"
 #import "BackView.h"
 #import "NotificationWindowController.h"
-
 #import <Scribbler/Scribbler.h>
 #import "EMKeychainProxy.h"
 #import "EMKeychainItem.h"
@@ -115,6 +114,7 @@
     panelRect.size.height = POPUP_HEIGHT;
     [[self window] setFrame:panelRect display:NO];
     
+    
     fliper = [[mbFliperViews alloc] init];
     CGPoint org = {0,0}; // offset from the bottom superview
     fliper.origin = org;
@@ -129,7 +129,6 @@
     [[[NSUserDefaults standardUserDefaults] stringForKey:@"chikSong2"] isCaseInsensitiveLike:@"?enog uoy evah erehw gniht elpmis hO"] &&
     [[[NSUserDefaults standardUserDefaults] stringForKey:@"chikSong3"] isCaseInsensitiveLike:@".snoitseuq ruoy em ksa dna ,sterces ruoy em lleT"];
     [self unhideChik];
-
 }
 
 #pragma mark - Public accessors
@@ -144,7 +143,6 @@
         
         authorizationPending = NO;
         [self completeAuthorization:nil];
-        NSLog(@"trying to authorization");
         [NSTimer scheduledTimerWithTimeInterval:5.0f
                                          target:self
                                        selector:@selector(completeAuthorization)
@@ -356,7 +354,7 @@
     NSSize artSize = [_albumart frame].size;
     NSImage *artwork = [currentTrack artwork];
     if(artwork == nil){
-         artwork = [NSImage imageNamed:@"Sample.tiff"];
+         artwork = [NSImage imageNamed:@"Sample"];
     }
     [artwork setScalesWhenResized:NSScaleProportionally];
     [artwork setSize:artSize];
@@ -451,8 +449,7 @@
 }
 
 - (IBAction)toggleLaunchAtLogin:(id)sender {
-    LaunchAtLoginController *launch = [[LaunchAtLoginController alloc] init];
-    [launch setLaunchAtLogin:![launch launchAtLogin]];
+    
 }
 
 - (void)showAuthConnectPane
@@ -690,7 +687,7 @@
 
 - (void)nowPlayingSucceededForTrack:(LFTrack *)theTrack
 {
-	[self log:@"Now playing succeeded: %@ (%@)", [theTrack title], [theTrack artist]];
+//	[self log:@"Now playing succeeded: %@ (%@)", [theTrack title], [theTrack artist]];
 }
 - (void)scrobbleSucceededForTrack:(LFTrack *)theTrack
 {
@@ -698,14 +695,17 @@
 }
 - (void)loveSucceededForTrack:(LFTrack *)theTrack
 {
-	[self log:@"Love succeeded: %@ (%@)", [theTrack title], [theTrack artist]];
+//	[self log:@"Love succeeded: %@ (%@)", [theTrack title], [theTrack artist]];
    
     NotificationWindowController *loveNotification;
     if (!loveNotification) {
         loveNotification = [[NotificationWindowController alloc] initWithWindowNibName:@"NotificationWindowController"];
     }
     [loveNotification showWindow:nil];
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 2 * NSEC_PER_SEC), dispatch_get_current_queue(), ^{
+    [[loveNotification notiImageView] setImage:[NSImage imageNamed:@"So_loved"]];
+    [[loveNotification notiText] setStringValue:@"Loved"];
+
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 2.0 * NSEC_PER_SEC), dispatch_get_current_queue(), ^{
         [loveNotification close];
     });
     
@@ -730,6 +730,18 @@
 - (void)banFailedForTrack:(LFTrack *)theTrack error:(NSError *)theError willRetry:(BOOL)willRetry
 {
 	[self log:@"Ban failed (retry=%d): %@ (%@) - %@", willRetry, [theTrack title], [theTrack artist], [theError localizedDescription]];
+}
+
+- (IBAction)goToFacebook:(id)sender {
+    [[NSWorkspace sharedWorkspace] openURL: [NSURL URLWithString:@"http://www.facebook.com/SoHoMacApp"]];
+}
+
+- (IBAction)goToTwitter:(id)sender {
+    [[NSWorkspace sharedWorkspace] openURL: [NSURL URLWithString:@"http://twitter.com/SoHoMacApp"]];
+}
+
+- (IBAction)goToHomePage:(id)sender {
+    [[NSWorkspace sharedWorkspace] openURL: [NSURL URLWithString:@"http://soho.anhd.at/"]];
 }
 #pragma mark Log methods
 - (void)log:(NSString *)format, ...

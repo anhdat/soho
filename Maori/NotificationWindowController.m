@@ -27,9 +27,6 @@
 - (void)windowDidLoad
 {
     [super windowDidLoad];
-    
-    
-    [super windowDidLoad];
     [[self window] setLevel:NSScreenSaverWindowLevel + 1];
     [[self window] orderFront:nil];
     

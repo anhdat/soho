@@ -10,4 +10,8 @@
 
 @interface NotificationWindowController : NSWindowController
 
+@property (weak) IBOutlet NSImageView *notiImageView;
+
+@property (weak) IBOutlet NSTextField *notiText;
+
 @end

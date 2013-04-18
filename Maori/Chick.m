@@ -53,7 +53,7 @@
     NSImage *artwork = [[currentTrack artwork] copy];
     
     if(artwork == nil){
-        artwork = [NSImage imageNamed:@"Sample.tiff"];
+        artwork = [NSImage imageNamed:@"Sample"];
     }
     [artwork setSize:artSize];
     [_albumArt setImage:artwork];
@@ -76,6 +76,8 @@
     }
     NSImage *playButtonImage = [NSImage imageNamed:[[currentTrack playerState] isEqualToString:@"Play"]? @"SoHo_chick_pause" : @"SoHo_chick_play"];
     [_playBtn setImage:playButtonImage];
+    NSImage *playButtonAltImage = [NSImage imageNamed:[[currentTrack playerState] isEqualToString:@"Play"]? @"SoHo_chick_pause_alt" : @"SoHo_chick_play_alt"];
+    [_playBtn setAlternateImage:playButtonAltImage];
     if (_hasLyrics) {
         [_stickBtn setImage:[NSImage imageNamed:@"SoHo_chick_lyrics"]];
         [_letterL setHidden:NO];

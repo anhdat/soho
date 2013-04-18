@@ -8,6 +8,10 @@
 
 #import "AppDelegate.h"
 #import "MSDurationFormatter.h"
+#import "NotificationWindowController.h"
+#import "StartupWindow.h"
+
+#define kAlreadyBeenLaunched @"AlreadyBeenLaunched"
 
 @interface AppDelegate ()
 @property (nonatomic) iTunesApplication *iTunesApp;
@@ -25,7 +29,7 @@
 @property (nonatomic) Boolean isChanged;
 @property (nonatomic) Boolean currentState;
 @property (nonatomic) Boolean isJustRun;
-
+@property (strong, nonatomic) StartupWindow *startup;
 @end
 @implementation AppDelegate
 
@@ -144,7 +148,25 @@
     [self TrackDidChange:nil];
 
 //    [self updateTitleView];
-    [self toggleLoveBtn]; 
+    if ([[NSUserDefaults standardUserDefaults] boolForKey:@"LastFMConfigured"] != YES) {
+        [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"hideLoveBtnState"];
+    }
+    
+//    [[NSNotificationCenter defaultCenter] postNotificationName:@"hideNow" object:nil];
+    [self toggleLoveBtn];
+    
+    // check launch for first time
+//    long launchCount;
+//    launchCount = [[NSUserDefaults standardUserDefaults] integerForKey:@"launchCount" ];
+//    
+//    if (launchCount != 1){
+//        _startup = [[StartupWindow alloc] initWithWindowNibName:@"StartupWindow"];
+//        [_startup showWindow:nil];
+//
+//        
+//        [[NSUserDefaults standardUserDefaults] setInteger:1 forKey:@"launchCount"];
+//        [[NSUserDefaults standardUserDefaults] synchronize];
+//    }
     
 }
 
@@ -228,87 +250,99 @@
     }
 
 }
+- (void) updatePlayBtnToPlay{
+    // For Play button on the status bar
+    [_playButton setImage:[NSImage imageNamed:@"Auckland_Play"]];
+    [_playButton setAlternateImage:[NSImage imageNamed:@"Auckland_Play_alt"]];
+    
+    // Play button on the panenl
+    [[_panelController playBtn] setImage:[NSImage imageNamed:@"SoHo_Play"]];
+    [[_panelController playBtn] setAlternateImage:[NSImage imageNamed:@"SoHo_Play_alt"]];
+}
+
+- (void) updatePlayBtnToPause{
+    // For play button on the status bar
+    [_playButton setImage:[NSImage imageNamed:@"Auckland_Pause"]];
+    [_playButton setAlternateImage:[NSImage imageNamed:@"Auckland_Pause_alt"]];
+    
+    // Play button on the pannel
+    [[_panelController playBtn] setImage:[NSImage imageNamed:@"SoHo_Pause"]];
+    [[_panelController playBtn] setAlternateImage:[NSImage imageNamed:@"SoHo_Pause_alt"]];
+}
+
+
 - (void) updatePlayButton{
-    
-    
-    
-    for (NSInteger i = 0; i < [_playerArray count]; i++) {
-        if ([@"iTunes" isEqual:[_playerArray objectAtIndex:i]]) {
+    NSString *topPlayer = [_playerArray objectAtIndex:0];
+   
+    // Iterate the player array to find running application.
+//    for (NSInteger i = 0; i < [_playerArray count]; i++) { 
+        // iTunes
+        if ([@"iTunes" isEqual:topPlayer]) {
             if ([_iTunesApp isRunning]) {
                 switch (_iTunesApp.playerState)
                 {
                     case iTunesEPlSPlaying:
-                        [_playButton setImage:[NSImage imageNamed:@"Auckland_Pause.png"]];
-                        [[_panelController playBtn] setImage:[NSImage imageNamed:@"iTunes mini_pause"]];
-                                                break;
+                        [self updatePlayBtnToPause];
+                        break;
                     default:
-                        [_playButton setImage:[NSImage imageNamed:@"Auckland_Play.png"]];
-                        [[_panelController playBtn] setImage:[NSImage imageNamed:@"iTunes mini_play"]];
+                        [self updatePlayBtnToPlay];
                         break;
                 }
             } else {
-                [_playButton setImage:[NSImage imageNamed:@"Auckland_Play.png"]];
-                [[_panelController playBtn] setImage:[NSImage imageNamed:@"iTunes mini_play"]];
+                [self updatePlayBtnToPlay];
             }
             return;
         }
-        if ([@"Spotify" isEqual:[_playerArray objectAtIndex:i]]) {
+        
+        // Spotify
+        if ([@"Spotify" isEqual:topPlayer]) {
             if ([_spotifyApp isRunning]) {
                 switch (_spotifyApp.playerState)
                 {
                     case SpotifyEPlSPlaying:
-                        [_playButton setImage:[NSImage imageNamed:@"Auckland_Pause.png"]];
-                        [[_panelController playBtn] setImage:[NSImage imageNamed:@"iTunes mini_pause"]];
+                        [self updatePlayBtnToPause];
                         break;
                     default:
-                        [_playButton setImage:[NSImage imageNamed:@"Auckland_Play.png"]];
-                        [[_panelController playBtn] setImage:[NSImage imageNamed:@"iTunes mini_play"]];
+                        [self updatePlayBtnToPlay];
                         break;
                 }
             } else {
-                [_playButton setImage:[NSImage imageNamed:@"Auckland_Play.png"]];
-                [[_panelController playBtn] setImage:[NSImage imageNamed:@"iTunes mini_play"]];
+                [self updatePlayBtnToPlay];
             }
-            
             return;
         }
-        if ([@"Rdio" isEqual:[_playerArray objectAtIndex:i]]) {
+        if ([@"Rdio" isEqual:topPlayer]) {
             if ([_rdioApp isRunning]) {
                 switch (_rdioApp.playerState)
                 {
                     case RdioEPSSPlaying:
-                        [_playButton setImage:[NSImage imageNamed:@"Auckland_Pause.png"]];
-                        [[_panelController playBtn] setImage:[NSImage imageNamed:@"iTunes mini_pause"]];
+                        [self updatePlayBtnToPause];
                         break;
                     default:
-                        [_playButton setImage:[NSImage imageNamed:@"Auckland_Play.png"]];
-                        [[_panelController playBtn] setImage:[NSImage imageNamed:@"iTunes mini_play"]];
+                        [self updatePlayBtnToPlay];
                         break;
                 }
             } else {
-                [_playButton setImage:[NSImage imageNamed:@"Auckland_Play.png"]];
-                [[_panelController playBtn] setImage:[NSImage imageNamed:@"iTunes mini_play"]];
+                [self updatePlayBtnToPlay];
             }
             
             return;
         }
-        if ([@"Radium" isEqual:[_playerArray objectAtIndex:i]]) {
+        if ([@"Radium" isEqual:topPlayer]) {
             if ([_radiumApp isRunning]) {
 //                RadiumRplayer *radiumPlayer;
 //                _radiumPlayer = [_radiumApp player];
                 if ([_radiumApp playing]) {
-                    [_playButton setImage:[NSImage imageNamed:@"Auckland_Pause.png"]];
-                    [[_panelController playBtn] setImage:[NSImage imageNamed:@"iTunes mini_pause"]];
+                    [self updatePlayBtnToPause];
                 }else {
-                    [_playButton setImage:[NSImage imageNamed:@"Auckland_Play.png"]];
-                    [[_panelController playBtn] setImage:[NSImage imageNamed:@"iTunes mini_play"]];               }
+                    [self updatePlayBtnToPlay];
+                }
             }else {
-                [_playButton setImage:[NSImage imageNamed:@"Auckland_Play.png"]];
-                [[_panelController playBtn] setImage:[NSImage imageNamed:@"iTunes mini_play"]];
+                [self updatePlayBtnToPlay];
             }
             return;
         }
-    }
+//    } // end FOR
 }
 - (void) updateMenu{
     
@@ -426,7 +460,7 @@
     NSRect mainFrame = [_mainView frame];
     double width = [[NSUserDefaults standardUserDefaults] doubleForKey:@"width"];
     if (!width) {
-        width = 200.0;
+        width = 1.0;
     }
     mainFrame.size.width = width;
     
@@ -494,6 +528,7 @@
 //    
 
     [_mainView setMenu:_menuPlayer];
+    
 }
 #pragma mark -
 #pragma mark mouse events handler
@@ -889,7 +924,9 @@
 }
 
 -(void) checkValidChikKeys{
-    if (!_enableChik) {        
+    if (!_enableChik) {
+     
+        
         // Chasing cars.
         bool chikSong = [[[NSUserDefaults standardUserDefaults] stringForKey:@"chikSong1"] isCaseInsensitiveLike:@".efil otni gnitsrub s'taht nedrag a em wohS"];
         if ( chikSong != YES) {
@@ -898,6 +935,19 @@
                     // save user and post message
                     [self saveToUserDefaults:@".efil otni gnitsrub s'taht nedrag a em wohS" forKey:@"chikSong1"];
                     NSLog(@"You have my sword,");
+                    
+                    
+                    NotificationWindowController *loveNotification;
+                    if (!loveNotification) {
+                        loveNotification = [[NotificationWindowController alloc] initWithWindowNibName:@"NotificationWindowController"];
+                    }
+                    [loveNotification showWindow:nil];
+                    [[loveNotification notiImageView] setImage:[NSImage imageNamed:@"So_sword.png"]];
+                    [[loveNotification notiText] setStringValue:@"You have my sword,"];
+                    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 4.0 * NSEC_PER_SEC), dispatch_get_current_queue(), ^{
+                        [loveNotification close];
+                    });
+
                     return;
                 }
             }
@@ -910,6 +960,19 @@
                         // save user and post message
                         [self saveToUserDefaults:@"?enog uoy evah erehw gniht elpmis hO" forKey:@"chikSong2"];
                         NSLog(@"and you have my bow,");
+                        
+                        
+                        NotificationWindowController *loveNotification;
+                        if (!loveNotification) {
+                            loveNotification = [[NotificationWindowController alloc] initWithWindowNibName:@"NotificationWindowController"];
+                        }
+                        [loveNotification showWindow:nil];
+                        [[loveNotification notiImageView] setImage:[NSImage imageNamed:@"So_bow.png"]];
+                        [[loveNotification notiText] setStringValue:@"and you have my bow,"];
+                        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 4.0 * NSEC_PER_SEC), dispatch_get_current_queue(), ^{
+                            [loveNotification close];
+                        });
+
                         return;
                     }
                 }
@@ -922,6 +985,19 @@
                             // save user and post message
                             [self saveToUserDefaults:@".snoitseuq ruoy em ksa dna ,sterces ruoy em lleT" forKey:@"chikSong3"];
                             NSLog(@"and my axe.");
+                            
+                            
+                            NotificationWindowController *loveNotification;
+                            if (!loveNotification) {
+                                loveNotification = [[NotificationWindowController alloc] initWithWindowNibName:@"NotificationWindowController"];
+                            }
+                            [loveNotification showWindow:nil];
+                            [[loveNotification notiImageView] setImage:[NSImage imageNamed:@"So_axe.png"]];
+                            [[loveNotification notiText] setStringValue:@"and my axe."];
+                            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 4.0 * NSEC_PER_SEC), dispatch_get_current_queue(), ^{
+                                [loveNotification close];
+                            });
+
                             
                                 [_panelController setEnableChik:YES];
                                 [_panelController unhideChik];
@@ -968,7 +1044,7 @@
                     if(artwork != nil)
                         songArtwork = [[NSImage alloc] initWithData:[artwork rawData]];
                     else
-                        songArtwork = [NSImage imageNamed:@"Sample.tiff"];
+                        songArtwork = [NSImage imageNamed:@"Sample"];
                     [_currentTrack setArtwork:songArtwork];
                     [self checkValidChikKeys];
                 } else {
@@ -1119,10 +1195,10 @@
     for (i=maxFontSize; i>minFontSize; i--) {
         NSDictionary* attrs = [[NSDictionary alloc] initWithObjectsAndKeys:[NSFont fontWithName:currentFontName size:i], NSFontAttributeName, nil];
         NSSize strSize = [title sizeWithAttributes:attrs];
-        if (strSize.width < targetWidth )
+        if (strSize.width < targetWidth)
             break;
-        
     }
+    
     // Output the title on titleView.
     [_txtTitle setStringValue:title];
     [_fieldTitle setFont:[NSFont fontWithName:currentFontName size:(i)]];
@@ -1130,7 +1206,6 @@
 
 - (void) TrackDidChange:(NSNotification *)aNotification{
     [self updateCurrentTrack];
-    NSLog(@"track did change");
     if ([[_currentTrack name] length] >= 1) {
         [self updateTitleView];
         // Update panelController information.
@@ -1305,7 +1380,6 @@ void *kContextActivePanel = &kContextActivePanel;
 
 
 - (void)scrollWheel:(NSEvent *)theEvent{
-    NSLog(@"nothing");
     if ([theEvent deltaY] < 0) {
         [self volumeUp:nil];
     }

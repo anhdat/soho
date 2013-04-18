@@ -47,12 +47,12 @@
     // Right edge and top-right curve
     [bgPath appendBezierPathWithArcFromPoint:NSMakePoint(maxX, maxY) 
                                      toPoint:NSMakePoint(midX, maxY) 
-                                      radius:0.0];
+                                      radius:radius];
     
     // Top edge and top-left curve
     [bgPath appendBezierPathWithArcFromPoint:NSMakePoint(minX, maxY) 
                                      toPoint:NSMakePoint(minX, midY) 
-                                      radius:0.0];
+                                      radius:radius];
     
     // Left edge and bottom-left curve
     [bgPath appendBezierPathWithArcFromPoint:bgRect.origin 

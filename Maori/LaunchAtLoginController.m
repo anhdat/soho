@@ -64,22 +64,23 @@ void sharedFileListDidChange(LSSharedFileListRef inList, void *context)
 
 - (LSSharedFileListItemRef) findItemWithURL: (NSURL*) wantedURL inFileList: (LSSharedFileListRef) fileList
 {
-    if (wantedURL == NULL || fileList == NULL)
+    if (wantedURL == NULL ||
+        fileList == NULL)
         return NULL;
 
-//    NSArray *listSnapshot = [NSMakeCollectable(LSSharedFileListCopySnapshot(fileList, NULL)) autorelease];
-//    for (id itemObject in listSnapshot) {
-//        LSSharedFileListItemRef item = (LSSharedFileListItemRef) itemObject;
-//        UInt32 resolutionFlags = kLSSharedFileListNoUserInteraction | kLSSharedFileListDoNotMountVolumes;
-//        CFURLRef currentItemURL = NULL;
-//        LSSharedFileListItemResolve(item, resolutionFlags, &currentItemURL, NULL);
-//        if (currentItemURL && CFEqual(currentItemURL, wantedURL)) {
-//            CFRelease(currentItemURL);
-//            return item;
-//        }
-//        if (currentItemURL)
-//            CFRelease(currentItemURL);
-//    }
+    NSArray *listSnapshot = CFBridgingRelease(LSSharedFileListCopySnapshot(fileList, NULL)) ;
+    for (id itemObject in listSnapshot) {
+        LSSharedFileListItemRef item = (__bridge LSSharedFileListItemRef) itemObject;
+        UInt32 resolutionFlags = kLSSharedFileListNoUserInteraction | kLSSharedFileListDoNotMountVolumes;
+        CFURLRef currentItemURL = NULL;
+        LSSharedFileListItemResolve(item, resolutionFlags, &currentItemURL, NULL);
+        if (currentItemURL && CFEqual(currentItemURL, (__bridge CFTypeRef)(wantedURL))) {
+            CFRelease(currentItemURL);
+            return item;
+        }
+        if (currentItemURL)
+            CFRelease(currentItemURL);
+    }
 
     return NULL;
 }

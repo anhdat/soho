@@ -56,7 +56,6 @@
     
     [path lineToPoint:NSMakePoint(_arrowX - ARROW_WIDTH / 2, NSMaxY(contentRect) - ARROW_HEIGHT)];
     [path closePath];
-//        NSLog(@"%f", _tintLevel);
     [[NSColor colorWithDeviceWhite:1 alpha:FILL_OPACITY] setFill];
     [path fill];
 
