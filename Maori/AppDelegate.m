@@ -85,32 +85,39 @@
     }
     
    
-    
-    
-    
-    // set double value to slider at the back of panelController
-//    float viewWidth = [_mainView bounds].size.width;
-//    [[_panelController slideViewSize] setDoubleValue:viewWidth];
-    
-    
-    
-    
     _iTunesApp = [SBApplication applicationWithBundleIdentifier:@"com.apple.iTunes"];
-    _spotifyApp =[SBApplication applicationWithBundleIdentifier:@"com.spotify.client"];
-    _rdioApp = [SBApplication applicationWithBundleIdentifier:@"com.rdio.desktop"];
-    _radiumApp = [SBApplication applicationWithBundleIdentifier:@"com.catpigstudios.Radium3"];
+    NSString* spotifyPath = [ [ NSWorkspace sharedWorkspace ]
+                            absolutePathForAppBundleWithIdentifier: @"com.spotify.client" ];
+    if( spotifyPath ) {
+        _spotifyApp =[SBApplication applicationWithBundleIdentifier:@"com.spotify.client"];
+    } else {
+        _spotifyApp = nil;
+    }
+    
+    spotifyPath = [ [ NSWorkspace sharedWorkspace ]
+                   absolutePathForAppBundleWithIdentifier: @"com.rdio.desktop" ];
+    if( spotifyPath ) {
+        _rdioApp =[SBApplication applicationWithBundleIdentifier:@"com.rdio.desktop"];
+    } else {
+        _rdioApp = nil;
+    }
+
+    spotifyPath = [ [ NSWorkspace sharedWorkspace ]
+                   absolutePathForAppBundleWithIdentifier: @"com.catpigstudios.Radium3" ];
+    if( spotifyPath ) {
+        _radiumApp =[SBApplication applicationWithBundleIdentifier:@"com.catpigstudios.Radium3"];
+    } else {
+        _radiumApp = nil;
+    }
+
     
     
     _preferedPlayer = [[NSMutableArray alloc] initWithArray:[[NSUserDefaults standardUserDefaults] arrayForKey:@"preferedPlayer"]];
     if ([_preferedPlayer count] == 0) {
-        _preferedPlayer = [[NSMutableArray alloc] initWithObjects:@"Spotify", @"iTunes", @"Radium", @"Rdio", nil];
+        _preferedPlayer = [[NSMutableArray alloc] initWithObjects:@"iTunes", @"Spotify", @"Rdio", @"Radium", nil];
     }
     
     _playerArray = [[NSMutableArray alloc] init];
-    [_playerArray addObject:@"iTunes"];
-    [_playerArray addObject:@"Spotify"];
-    [_playerArray addObject:@"Rdio"];
-    [_playerArray addObject:@"Radium"];
     
     _playerArray = _preferedPlayer ;
     
@@ -747,7 +754,7 @@
     size.height = rec.size.height;
     double width = [[NSUserDefaults standardUserDefaults] doubleForKey:@"width"];
     if (!width) {
-        width = 200.0;
+        width = 1.0;
     }
     size.width = width;
     NSGraphicsContext* theContext = [NSGraphicsContext currentContext];

@@ -691,7 +691,7 @@
 }
 - (void)scrobbleSucceededForTrack:(LFTrack *)theTrack
 {
-	[self log:@"Scrobble succeeded: %@ (%@)", [theTrack title], [theTrack artist]];
+//	[self log:@"Scrobble succeeded: %@ (%@)", [theTrack title], [theTrack artist]];
 }
 - (void)loveSucceededForTrack:(LFTrack *)theTrack
 {
