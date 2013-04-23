@@ -47,7 +47,7 @@
 
 @property (strong, nonatomic) NSMutableArray *playerArray;
 @property (strong, nonatomic) ADTrack *currentTrack;
-@property (assign) bool enableChik;
+
 
 - (IBAction)togglePanel:(id)sender;
 - (IBAction)setiTunes:(id)sender;

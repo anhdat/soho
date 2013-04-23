@@ -50,6 +50,7 @@
 @property (weak) IBOutlet NSTextFieldCell *txtRemainingTime;
 - (IBAction)freeChick:(id)sender;
 @property (weak) IBOutlet NSPopUpButton *preferedPlayerBtn;
+@property (weak) IBOutlet NSButton *flipBtn;
 
 @property (nonatomic) BOOL hasActivePanel;
 @property (nonatomic, unsafe_unretained, readonly) id<PanelControllerDelegate> delegate;

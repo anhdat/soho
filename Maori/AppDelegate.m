@@ -41,16 +41,11 @@
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification
 {
     _isJustRun = YES;
-    _enableChik = NO;
     
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     NSDictionary *appDefaults = [NSDictionary dictionaryWithObject:@"NO" forKey:@"AppleMomentumScrollSupported"];
     [defaults registerDefaults:appDefaults];
     
-    // Easter Egg part
-    _enableChik = [[[NSUserDefaults standardUserDefaults] stringForKey:@"chikSong1"] isCaseInsensitiveLike:@".efil otni gnitsrub s'taht nedrag a em wohS"] &&
-    [[[NSUserDefaults standardUserDefaults] stringForKey:@"chikSong2"] isCaseInsensitiveLike:@"?enog uoy evah erehw gniht elpmis hO"] &&
-    [[[NSUserDefaults standardUserDefaults] stringForKey:@"chikSong3"] isCaseInsensitiveLike:@".snoitseuq ruoy em ksa dna ,sterces ruoy em lleT"];
     
     //setup Views
     [self setupViews];
@@ -920,102 +915,8 @@
     return position;
 }
 
--(void)saveToUserDefaults:(NSString*)myString forKey:(NSString*) key
-{
-    NSUserDefaults *standardUserDefaults = [NSUserDefaults standardUserDefaults];
-    
-    if (standardUserDefaults) {
-        [standardUserDefaults setObject:myString forKey:key];
-        [standardUserDefaults synchronize];
-    }
-}
 
--(void) checkValidChikKeys{
-    if (!_enableChik) {
-     
-        
-        // Chasing cars.
-        bool chikSong = [[[NSUserDefaults standardUserDefaults] stringForKey:@"chikSong1"] isCaseInsensitiveLike:@".efil otni gnitsrub s'taht nedrag a em wohS"];
-        if ( chikSong != YES) {
-            if ([[_currentTrack name] isCaseInsensitiveLike:@"Chasing cars"]) {
-                if ([[_currentTrack artist] isCaseInsensitiveLike:@"Snow Patrol"]) {
-                    // save user and post message
-                    [self saveToUserDefaults:@".efil otni gnitsrub s'taht nedrag a em wohS" forKey:@"chikSong1"];
-                    NSLog(@"You have my sword,");
-                    
-                    
-                    NotificationWindowController *loveNotification;
-                    if (!loveNotification) {
-                        loveNotification = [[NotificationWindowController alloc] initWithWindowNibName:@"NotificationWindowController"];
-                    }
-                    [loveNotification showWindow:nil];
-                    [[loveNotification notiImageView] setImage:[NSImage imageNamed:@"So_sword.png"]];
-                    [[loveNotification notiText] setStringValue:@"You have my sword,"];
-                    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 4.0 * NSEC_PER_SEC), dispatch_get_current_queue(), ^{
-                        [loveNotification close];
-                    });
 
-                    return;
-                }
-            }
-        } else {
-            // Somewhere only we know.
-            chikSong = [[[NSUserDefaults standardUserDefaults] stringForKey:@"chikSong2"] isCaseInsensitiveLike:@"?enog uoy evah erehw gniht elpmis hO"];
-            if (chikSong != YES) {
-                if ([[_currentTrack name] isCaseInsensitiveLike:@"Somewhere Only We Know"]) {
-                    if ([[_currentTrack artist] isCaseInsensitiveLike:@"Keane"]) {
-                        // save user and post message
-                        [self saveToUserDefaults:@"?enog uoy evah erehw gniht elpmis hO" forKey:@"chikSong2"];
-                        NSLog(@"and you have my bow,");
-                        
-                        
-                        NotificationWindowController *loveNotification;
-                        if (!loveNotification) {
-                            loveNotification = [[NotificationWindowController alloc] initWithWindowNibName:@"NotificationWindowController"];
-                        }
-                        [loveNotification showWindow:nil];
-                        [[loveNotification notiImageView] setImage:[NSImage imageNamed:@"So_bow.png"]];
-                        [[loveNotification notiText] setStringValue:@"and you have my bow,"];
-                        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 4.0 * NSEC_PER_SEC), dispatch_get_current_queue(), ^{
-                            [loveNotification close];
-                        });
-
-                        return;
-                    }
-                }
-            } else {
-                // The Scientist.
-                chikSong = [[[NSUserDefaults standardUserDefaults] stringForKey:@"chikSong3"] isCaseInsensitiveLike:@".snoitseuq ruoy em ksa dna ,sterces ruoy em lleT"];
-                if (chikSong != YES) {
-                    if ([[_currentTrack name] isCaseInsensitiveLike:@"The Scientist"]) {
-                        if ([[_currentTrack artist] isCaseInsensitiveLike:@"Coldplay"]) {
-                            // save user and post message
-                            [self saveToUserDefaults:@".snoitseuq ruoy em ksa dna ,sterces ruoy em lleT" forKey:@"chikSong3"];
-                            NSLog(@"and my axe.");
-                            
-                            
-                            NotificationWindowController *loveNotification;
-                            if (!loveNotification) {
-                                loveNotification = [[NotificationWindowController alloc] initWithWindowNibName:@"NotificationWindowController"];
-                            }
-                            [loveNotification showWindow:nil];
-                            [[loveNotification notiImageView] setImage:[NSImage imageNamed:@"So_axe.png"]];
-                            [[loveNotification notiText] setStringValue:@"and my axe."];
-                            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 4.0 * NSEC_PER_SEC), dispatch_get_current_queue(), ^{
-                                [loveNotification close];
-                            });
-
-                            
-                                [_panelController setEnableChik:YES];
-                                [_panelController unhideChik];
-                            return;
-                        }
-                    }
-                }
-            }
-        }
-    }
-}
 
 -(void) updateCurrentTrack{
     
@@ -1053,7 +954,6 @@
                     else
                         songArtwork = [NSImage imageNamed:@"Sample"];
                     [_currentTrack setArtwork:songArtwork];
-                    [self checkValidChikKeys];
                 } else {
                     [_currentTrack setName:@""];
                     [_currentTrack setAlbum:@""];
@@ -1102,8 +1002,6 @@
                             [_currentTrack setPlayerState:@"Pause"];
                             break;
                     }
-                    [self checkValidChikKeys];
-                    
                 }else {
                     [_currentTrack setName:@""];
                     [_currentTrack setAlbum:@""];
@@ -1140,7 +1038,6 @@
                             break;
                     }
                     [_currentTrack setTrackID:[current rdioUrl]];
-                    [self checkValidChikKeys];
                 }else {
                     [_currentTrack setName:@""];
                     [_currentTrack setAlbum:@""];
@@ -1166,8 +1063,7 @@
                         [_currentTrack setArtwork:[_radiumApp trackArtwork]];
                     }
                 [_currentTrack setPlayerState:@"Play"];
-                [self checkValidChikKeys];
-                }else {
+            }else {
                     [_currentTrack setName:@""];
                     [_currentTrack setAlbum:@""];
                     [_currentTrack setArtist:@""];

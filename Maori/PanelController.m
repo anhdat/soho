@@ -153,9 +153,14 @@
 
 - (IBAction)flipToBack:(id)sender {
     [self connectWithStoredCredentials];
+    [_flipBtn setEnabled:NO];
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 4.0 * NSEC_PER_SEC), dispatch_get_current_queue(), ^{
+        [_flipBtn setEnabled:YES];
+    });
     if (_frontIsFlipped) {
         [fliper flipRight:nil];
         _frontIsFlipped = NO;
+        
     } else {
         [fliper flipLeft:nil];
         _frontIsFlipped = YES;
@@ -344,6 +349,87 @@
     });
 }
 
+-(void)saveToUserDefaults:(NSString*)myString forKey:(NSString*) key
+{
+    NSUserDefaults *standardUserDefaults = [NSUserDefaults standardUserDefaults];
+    
+    if (standardUserDefaults) {
+        [standardUserDefaults setObject:myString forKey:key];
+        [standardUserDefaults synchronize];
+    }
+}
+
+-(void) checkValidChikKeysForTrack:(ADTrack *) trackToCheck{
+    if (!_enableChik) {
+        
+        
+        // Chasing cars.
+        bool chikSong = [[[NSUserDefaults standardUserDefaults] stringForKey:@"chikSong1"] isCaseInsensitiveLike:@".efil otni gnitsrub s'taht nedrag a em wohS"];
+        if ( chikSong != YES) {
+            if ([[trackToCheck name] isCaseInsensitiveLike:@"Chasing cars"]) {
+                if ([[trackToCheck artist] isCaseInsensitiveLike:@"Snow Patrol"]) {
+                    // save user and post message
+                    [self saveToUserDefaults:@".efil otni gnitsrub s'taht nedrag a em wohS" forKey:@"chikSong1"];
+                    NSLog(@"You have my sword,");
+                    
+                    
+                    NotificationWindowController *loveNotification;
+                    if (!loveNotification) {
+                        loveNotification = [[NotificationWindowController alloc] initWithWindowNibName:@"NotificationWindowController"];
+                    }
+                    
+                    [loveNotification showNotification:nil withImageNamed:@"So_sword" withText:@"You have my sword," withTime:4.0];
+                    return;
+                }
+            }
+        } else {
+            // Somewhere only we know.
+            chikSong = [[[NSUserDefaults standardUserDefaults] stringForKey:@"chikSong2"] isCaseInsensitiveLike:@"?enog uoy evah erehw gniht elpmis hO"];
+            if (chikSong != YES) {
+                if ([[trackToCheck name] isCaseInsensitiveLike:@"Somewhere Only We Know"]) {
+                    if ([[trackToCheck artist] isCaseInsensitiveLike:@"Keane"]) {
+                        // save user and post message
+                        [self saveToUserDefaults:@"?enog uoy evah erehw gniht elpmis hO" forKey:@"chikSong2"];
+                        NSLog(@"and you have my bow,");
+                        
+                        
+                        NotificationWindowController *loveNotification;
+                        if (!loveNotification) {
+                            loveNotification = [[NotificationWindowController alloc] initWithWindowNibName:@"NotificationWindowController"];
+                        }
+                        
+                        [loveNotification showNotification:nil withImageNamed:@"So_bow" withText:@"and you have my bow," withTime:4.0];
+                        return;
+                    }
+                }
+            } else {
+                // The Scientist.
+                chikSong = [[[NSUserDefaults standardUserDefaults] stringForKey:@"chikSong3"] isCaseInsensitiveLike:@".snoitseuq ruoy em ksa dna ,sterces ruoy em lleT"];
+                if (chikSong != YES) {
+                    if ([[trackToCheck name] isCaseInsensitiveLike:@"The Scientist"]) {
+                        if ([[trackToCheck artist] isCaseInsensitiveLike:@"Coldplay"]) {
+                            // save user and post message
+                            [self saveToUserDefaults:@".snoitseuq ruoy em ksa dna ,sterces ruoy em lleT" forKey:@"chikSong3"];
+                            NSLog(@"and my axe.");
+                            
+                            
+                            NotificationWindowController *loveNotification;
+                            if (!loveNotification) {
+                                loveNotification = [[NotificationWindowController alloc] initWithWindowNibName:@"NotificationWindowController"];
+                            }
+                            
+                            [loveNotification showNotification:nil withImageNamed:@"So_axe" withText:@"and my axe." withTime:4.0];
+                            
+                            [self setEnableChik:YES];
+                            [self unhideChik];
+                            return;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
 
 - (void)updateInformation:(ADTrack*) currentTrack{
     NSString *name = [currentTrack name];
@@ -423,6 +509,7 @@
 		[_curentLFTrack pause];
 		_wasPlaying = NO;
 	}
+    [self checkValidChikKeysForTrack:currentTrack];
 
 }
 
@@ -701,13 +788,14 @@
     if (!loveNotification) {
         loveNotification = [[NotificationWindowController alloc] initWithWindowNibName:@"NotificationWindowController"];
     }
-    [loveNotification showWindow:nil];
-    [[loveNotification notiImageView] setImage:[NSImage imageNamed:@"So_loved"]];
-    [[loveNotification notiText] setStringValue:@"Loved"];
-
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 2.0 * NSEC_PER_SEC), dispatch_get_current_queue(), ^{
-        [loveNotification close];
-    });
+//    [loveNotification showWindow:nil];
+//    [[loveNotification notiImageView] setImage:[NSImage imageNamed:@"So_loved"]];
+//    [[loveNotification notiText] setStringValue:@"Loved"];
+//
+//    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 2.0 * NSEC_PER_SEC), dispatch_get_current_queue(), ^{
+//        [loveNotification close];
+//    });
+    [loveNotification showNotification:nil withImageNamed:@"So_loved" withText:@"Loved" withTime:2.0];
     
 }
 - (void)banSucceededForTrack:(LFTrack *)theTrack

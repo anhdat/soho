@@ -63,7 +63,7 @@
 
 - (void)mouseDown:(NSEvent *)event{
     
-    if ([event clickCount] > 1) {
+    if ([event clickCount] == 2) {
         [[NSNotificationCenter defaultCenter]
          postNotificationName:@"doubleClick"
          object:nil ];
