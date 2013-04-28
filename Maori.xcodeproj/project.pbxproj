@@ -63,8 +63,8 @@
 		1A66912C171DDA88009C45E9 /* Auckland_Pause@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1A669124171DDA87009C45E9 /* Auckland_Pause@2x.png */; };
 		1A66912D171DDA88009C45E9 /* Auckland_Next@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1A669125171DDA87009C45E9 /* Auckland_Next@2x.png */; };
 		1A66912E171DDA88009C45E9 /* Auckland_Play@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1A669126171DDA87009C45E9 /* Auckland_Play@2x.png */; };
-		1A66912F171DDA88009C45E9 /* Auckland_Prev@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1A669127171DDA87009C45E9 /* Auckland_Prev@2x.png */; };
-		1A669130171DDA88009C45E9 /* Auckland_Prev_alt@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1A669128171DDA87009C45E9 /* Auckland_Prev_alt@2x.png */; };
+		1A66912F171DDA88009C45E9 /* Auckland_Previous@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1A669127171DDA87009C45E9 /* Auckland_Previous@2x.png */; };
+		1A669130171DDA88009C45E9 /* Auckland_Previous_alt@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1A669128171DDA87009C45E9 /* Auckland_Previous_alt@2x.png */; };
 		1A669131171DDA88009C45E9 /* Auckland_Play_alt@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1A669129171DDA87009C45E9 /* Auckland_Play_alt@2x.png */; };
 		1A669132171DDA88009C45E9 /* Auckland_Next_alt@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1A66912A171DDA87009C45E9 /* Auckland_Next_alt@2x.png */; };
 		1A669133171DDA88009C45E9 /* Auckland_Pause_alt@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1A66912B171DDA87009C45E9 /* Auckland_Pause_alt@2x.png */; };
@@ -242,8 +242,8 @@
 		1A669124171DDA87009C45E9 /* Auckland_Pause@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Auckland_Pause@2x.png"; sourceTree = "<group>"; };
 		1A669125171DDA87009C45E9 /* Auckland_Next@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Auckland_Next@2x.png"; sourceTree = "<group>"; };
 		1A669126171DDA87009C45E9 /* Auckland_Play@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Auckland_Play@2x.png"; sourceTree = "<group>"; };
-		1A669127171DDA87009C45E9 /* Auckland_Prev@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Auckland_Prev@2x.png"; sourceTree = "<group>"; };
-		1A669128171DDA87009C45E9 /* Auckland_Prev_alt@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Auckland_Prev_alt@2x.png"; sourceTree = "<group>"; };
+		1A669127171DDA87009C45E9 /* Auckland_Previous@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Auckland_Previous@2x.png"; sourceTree = "<group>"; };
+		1A669128171DDA87009C45E9 /* Auckland_Previous_alt@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Auckland_Previous_alt@2x.png"; sourceTree = "<group>"; };
 		1A669129171DDA87009C45E9 /* Auckland_Play_alt@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Auckland_Play_alt@2x.png"; sourceTree = "<group>"; };
 		1A66912A171DDA87009C45E9 /* Auckland_Next_alt@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Auckland_Next_alt@2x.png"; sourceTree = "<group>"; };
 		1A66912B171DDA87009C45E9 /* Auckland_Pause_alt@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Auckland_Pause_alt@2x.png"; sourceTree = "<group>"; };
@@ -674,8 +674,8 @@
 				1A669124171DDA87009C45E9 /* Auckland_Pause@2x.png */,
 				1A669125171DDA87009C45E9 /* Auckland_Next@2x.png */,
 				1A669126171DDA87009C45E9 /* Auckland_Play@2x.png */,
-				1A669127171DDA87009C45E9 /* Auckland_Prev@2x.png */,
-				1A669128171DDA87009C45E9 /* Auckland_Prev_alt@2x.png */,
+				1A669127171DDA87009C45E9 /* Auckland_Previous@2x.png */,
+				1A669128171DDA87009C45E9 /* Auckland_Previous_alt@2x.png */,
 				1A669129171DDA87009C45E9 /* Auckland_Play_alt@2x.png */,
 				1A66912A171DDA87009C45E9 /* Auckland_Next_alt@2x.png */,
 				1A66912B171DDA87009C45E9 /* Auckland_Pause_alt@2x.png */,
@@ -811,8 +811,8 @@
 				1A66912C171DDA88009C45E9 /* Auckland_Pause@2x.png in Resources */,
 				1A66912D171DDA88009C45E9 /* Auckland_Next@2x.png in Resources */,
 				1A66912E171DDA88009C45E9 /* Auckland_Play@2x.png in Resources */,
-				1A66912F171DDA88009C45E9 /* Auckland_Prev@2x.png in Resources */,
-				1A669130171DDA88009C45E9 /* Auckland_Prev_alt@2x.png in Resources */,
+				1A66912F171DDA88009C45E9 /* Auckland_Previous@2x.png in Resources */,
+				1A669130171DDA88009C45E9 /* Auckland_Previous_alt@2x.png in Resources */,
 				1A669131171DDA88009C45E9 /* Auckland_Play_alt@2x.png in Resources */,
 				1A669132171DDA88009C45E9 /* Auckland_Next_alt@2x.png in Resources */,
 				1A669133171DDA88009C45E9 /* Auckland_Pause_alt@2x.png in Resources */,

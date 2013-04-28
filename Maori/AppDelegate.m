@@ -1083,7 +1083,7 @@
 - (void) updateTitleView{
     // Calculate the right size of font to fit the container.
     NSRect r = [_fieldTitle frame];
-    float xMargin = 1.0;
+    float xMargin = 2.0;
     int minFontSize = 9;
     int maxFontSize = 13;
     NSString *currentFontName = @"Helvetica";

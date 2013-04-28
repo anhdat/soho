@@ -18,7 +18,6 @@
 //[fliper setActiveViewAtIndex:0];
 
 #import <Foundation/Foundation.h>
-
 @interface mbFliperViews : NSObject
 {
     NSMutableArray* views; //Animated views

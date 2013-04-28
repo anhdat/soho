@@ -141,4 +141,5 @@
 
 @property (assign) bool enableChik;
 - (void) unhideChik;
+-(void) toggleFlipBtnWith: (BOOL) value;
 @end

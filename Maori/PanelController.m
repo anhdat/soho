@@ -150,13 +150,16 @@
                                         repeats:YES];
     }
 }
-
+-(void) toggleFlipBtnWith: (BOOL) value{
+    if (value) {
+        [_flipBtn setEnabled:YES];
+    } else {
+        [_flipBtn setEnabled:NO];
+    }
+}
 - (IBAction)flipToBack:(id)sender {
     [self connectWithStoredCredentials];
-    [_flipBtn setEnabled:NO];
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 4.0 * NSEC_PER_SEC), dispatch_get_current_queue(), ^{
-        [_flipBtn setEnabled:YES];
-    });
+    [self toggleFlipBtnWith:NO];
     if (_frontIsFlipped) {
         [fliper flipRight:nil];
         _frontIsFlipped = NO;
@@ -165,6 +168,9 @@
         [fliper flipLeft:nil];
         _frontIsFlipped = YES;
     }
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 2.0 * NSEC_PER_SEC), dispatch_get_current_queue(), ^{
+        [self toggleFlipBtnWith:YES];
+    });
 
 }
 
@@ -821,11 +827,11 @@
 }
 
 - (IBAction)goToFacebook:(id)sender {
-    [[NSWorkspace sharedWorkspace] openURL: [NSURL URLWithString:@"http://www.facebook.com/SoHoMacApp"]];
+    [[NSWorkspace sharedWorkspace] openURL: [NSURL URLWithString:@"http://www.facebook.com/SoHoForMac"]];
 }
 
 - (IBAction)goToTwitter:(id)sender {
-    [[NSWorkspace sharedWorkspace] openURL: [NSURL URLWithString:@"http://twitter.com/SoHoMacApp"]];
+    [[NSWorkspace sharedWorkspace] openURL: [NSURL URLWithString:@"http://twitter.com/SoHoForMac"]];
 }
 
 - (IBAction)goToHomePage:(id)sender {
