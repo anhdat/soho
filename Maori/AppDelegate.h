@@ -56,6 +56,8 @@
 - (IBAction)setRadium:(id)sender;
 - (IBAction)loveTrack:(id)sender;
 - (IBAction)compact:(id)sender;
+- (IBAction)quitMenu:(id)sender;
+
 
 - (IBAction)nextTrack:(id)sender;
 - (IBAction)previousTrack:(id)sender;

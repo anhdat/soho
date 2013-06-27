@@ -782,7 +782,7 @@
 }
 
 - (void)updateProgressBar{
-    NSInteger position = [self getPosition];
+    double position = [self getPosition];
     double duration =[_currentTrack duration];
     
     NSString *elapsedTimeString = [MSDurationFormatter hoursMinutesSecondsFromSeconds:position];
@@ -886,8 +886,8 @@
     }
 }
 
--(NSInteger) getPosition{
-    NSInteger position = 1;
+-(double) getPosition{
+    double position = 1;
     for (NSInteger i = 0; i < [_playerArray count]; i++) {
         if ([@"iTunes" isEqual:[_playerArray objectAtIndex:i]]) {
             if ([_iTunesApp isRunning]) {
@@ -1083,10 +1083,10 @@
 - (void) updateTitleView{
     // Calculate the right size of font to fit the container.
     NSRect r = [_fieldTitle frame];
-    float xMargin = 2.0;
+    float xMargin = 4.0;
     int minFontSize = 9;
     int maxFontSize = 13;
-    NSString *currentFontName = @"Helvetica";
+    NSString *currentFontName = @"Helvetica Neue";
     float targetWidth = r.size.width - xMargin;
     
     // Get title from SB application.
@@ -1183,6 +1183,7 @@ void *kContextActivePanel = &kContextActivePanel;
     [_playerArray removeObjectAtIndex:0];
     [_playerArray insertObject:@"iTunes" atIndex:0];
     [[NSUserDefaults standardUserDefaults] setObject:_preferedPlayer forKey:@"preferedPlayer"];
+    [[NSUserDefaults standardUserDefaults] synchronize];
     [self TrackDidChange:nil];
 }
 
@@ -1201,6 +1202,7 @@ void *kContextActivePanel = &kContextActivePanel;
     [_playerArray removeObjectAtIndex:0];
     [_playerArray insertObject:@"Spotify" atIndex:0];
     [[NSUserDefaults standardUserDefaults] setObject:_preferedPlayer forKey:@"preferedPlayer"];
+     [[NSUserDefaults standardUserDefaults] synchronize];
     [self TrackDidChange:nil];
 }
 
@@ -1219,6 +1221,7 @@ void *kContextActivePanel = &kContextActivePanel;
     [_playerArray removeObjectAtIndex:0];
     [_playerArray insertObject:@"Rdio" atIndex:0];
     [[NSUserDefaults standardUserDefaults] setObject:_preferedPlayer forKey:@"preferedPlayer"];
+     [[NSUserDefaults standardUserDefaults] synchronize];
     [self TrackDidChange:nil];
 }
 
@@ -1237,6 +1240,7 @@ void *kContextActivePanel = &kContextActivePanel;
     [_playerArray removeObjectAtIndex:0];
     [_playerArray insertObject:@"Radium" atIndex:0];
     [[NSUserDefaults standardUserDefaults] setObject:_preferedPlayer forKey:@"preferedPlayer"];
+     [[NSUserDefaults standardUserDefaults] synchronize];
     [self TrackDidChange:nil];
     
 }
@@ -1256,7 +1260,12 @@ void *kContextActivePanel = &kContextActivePanel;
 
 - (IBAction)compact:(id)sender {
     [[NSUserDefaults standardUserDefaults] setDouble:1.0 forKey:@"width"];
+    [[NSUserDefaults standardUserDefaults] synchronize];
     [[NSNotificationCenter defaultCenter] postNotificationName:@"viewSet" object:nil];
+}
+
+- (IBAction)quitMenu:(id)sender {
+    [NSApp terminate:self];
 }
 
 
@@ -1291,6 +1300,15 @@ void *kContextActivePanel = &kContextActivePanel;
     
 }
 
+-(void)saveToUserDefaults:(NSString*)myString forKey:(NSString*) key
+{
+    NSUserDefaults *standardUserDefaults = [NSUserDefaults standardUserDefaults];
+    
+    if (standardUserDefaults) {
+        [standardUserDefaults setObject:myString forKey:key];
+        [standardUserDefaults synchronize];
+    }
+}
 
 
 @end

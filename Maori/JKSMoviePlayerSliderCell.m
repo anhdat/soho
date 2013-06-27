@@ -12,6 +12,9 @@
 #endif
 
 @implementation JKSMoviePlayerSliderCell
+//-(void)setNeedsDisplayInRect:(NSRect)invalidRect{
+//    [super setNeedsDisplayInRect:[self bounds]];
+//}
 
 - (NSRect)knobRectFlipped:(BOOL)flipped
 {
@@ -24,15 +27,20 @@
 }
 
 
-- (void)drawKnob:(NSRect)knobRect
-{
+- (void) drawKnob:(NSRect)knobRect{
+    
+}
+
+//
+//- (void)drawKnob:(NSRect)knobRect
+//{
 //    NSBezierPath *outerPath = [NSBezierPath bezierPathWithOvalInRect:knobRect];
 //    NSGradient *outerGradient = [[NSGradient alloc] initWithColors:@[NSCOLOR(193, 193, 193, 1), NSCOLOR(120, 120, 120, 1)]];
 //    [outerGradient drawInBezierPath:outerPath angle:90];
 //    NSBezierPath *innerPath = [NSBezierPath bezierPathWithOvalInRect:NSInsetRect(knobRect, 2, 2)];
 //    NSGradient *innerGradient = [[NSGradient alloc] initWithColors:@[NSCOLOR(154, 154, 154, 1), NSCOLOR(127, 127, 127, 1)]];
 //    [innerGradient drawInBezierPath:innerPath angle:90];
-}
+//}
 
 
 - (void)drawBarInside:(NSRect)aRect flipped:(BOOL)flipped
@@ -46,6 +54,7 @@
     NSBezierPath *barPath = [NSBezierPath bezierPathWithRoundedRect:sliderRect xRadius:4 yRadius:4];
     NSGradient *borderGradient = [[NSGradient alloc] initWithColors:@[NSCOLOR(13, 13, 13, 0.3), NSCOLOR(26, 26, 26, 0.3)]];
     [borderGradient drawInBezierPath:barPath angle:30];
+    
     NSBezierPath *innerPath = [NSBezierPath bezierPathWithRoundedRect:NSInsetRect(sliderRect, 1, 1) xRadius:4 yRadius:4];
     [NSCOLOR(250, 250, 250, 0.7) setFill];
     

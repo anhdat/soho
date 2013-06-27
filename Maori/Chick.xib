@@ -2,9 +2,9 @@
 <archive type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="8.00">
 	<data>
 		<int key="IBDocument.SystemTarget">1070</int>
-		<string key="IBDocument.SystemVersion">12D78</string>
+		<string key="IBDocument.SystemVersion">12E55</string>
 		<string key="IBDocument.InterfaceBuilderVersion">3084</string>
-		<string key="IBDocument.AppKitVersion">1187.37</string>
+		<string key="IBDocument.AppKitVersion">1187.39</string>
 		<string key="IBDocument.HIToolboxVersion">626.00</string>
 		<object class="NSMutableDictionary" key="IBDocument.PluginVersions">
 			<string key="NS.key.0">com.apple.InterfaceBuilder.CocoaPlugin</string>
@@ -71,7 +71,7 @@
 							<string key="NSFrame">{{-1, 27}, {201, 200}}</string>
 							<reference key="NSSuperview" ref="1006"/>
 							<reference key="NSWindow"/>
-							<reference key="NSNextKeyView" ref="288157696"/>
+							<reference key="NSNextKeyView" ref="543727259"/>
 							<string key="NSReuseIdentifierKey">_NS:9</string>
 							<bool key="NSEnabled">YES</bool>
 							<object class="NSImageCell" key="NSCell" id="582900486">
@@ -100,6 +100,7 @@
 									<string key="NSFrame">{{163, 4}, {34, 34}}</string>
 									<reference key="NSSuperview" ref="543727259"/>
 									<reference key="NSWindow"/>
+									<reference key="NSNextKeyView" ref="288157696"/>
 									<string key="NSReuseIdentifierKey">_NS:9</string>
 									<bool key="NSEnabled">YES</bool>
 									<object class="NSButtonCell" key="NSCell" id="217064562">
@@ -107,7 +108,7 @@
 										<int key="NSCellFlags2">134217728</int>
 										<string key="NSContents"/>
 										<object class="NSFont" key="NSSupport">
-											<string key="NSName">LucidaCalligraphy-Italic</string>
+											<string key="NSName">LucidaGrande</string>
 											<double key="NSSize">13</double>
 											<int key="NSfFlags">16</int>
 										</object>
@@ -136,7 +137,7 @@
 										<int key="NSCellFlags2">138413056</int>
 										<string key="NSContents">L</string>
 										<object class="NSFont" key="NSSupport">
-											<string key="NSName">LucidaCalligraphy-Italic</string>
+											<string key="NSName">LucidaGrande</string>
 											<double key="NSSize">20</double>
 											<int key="NSfFlags">16</int>
 										</object>
@@ -173,7 +174,7 @@
 														<object class="NSTextView" id="577775916">
 															<reference key="NSNextResponder" ref="347597194"/>
 															<int key="NSvFlags">2322</int>
-															<string key="NSFrameSize">{200, 169}</string>
+															<string key="NSFrameSize">{170, 169}</string>
 															<reference key="NSSuperview" ref="347597194"/>
 															<reference key="NSWindow"/>
 															<reference key="NSNextKeyView" ref="107541030"/>
@@ -193,7 +194,7 @@
 																	<nil key="NSDelegate"/>
 																</object>
 																<reference key="NSTextView" ref="577775916"/>
-																<double key="NSWidth">200</double>
+																<double key="NSWidth">170</double>
 																<int key="NSTCFlags">1</int>
 															</object>
 															<object class="NSTextViewSharedData" key="NSSharedData">
@@ -242,7 +243,7 @@
 															<nil key="NSDelegate"/>
 														</object>
 													</array>
-													<string key="NSFrameSize">{200, 169}</string>
+													<string key="NSFrameSize">{185, 169}</string>
 													<reference key="NSSuperview" ref="28111298"/>
 													<reference key="NSWindow"/>
 													<reference key="NSNextKeyView" ref="577775916"/>
@@ -278,7 +279,7 @@
 												<object class="NSScroller" id="107541030">
 													<reference key="NSNextResponder" ref="28111298"/>
 													<int key="NSvFlags">256</int>
-													<string key="NSFrame">{{184, 0}, {16, 169}}</string>
+													<string key="NSFrame">{{185, 0}, {15, 169}}</string>
 													<reference key="NSSuperview" ref="28111298"/>
 													<reference key="NSWindow"/>
 													<reference key="NSNextKeyView" ref="608213851"/>
@@ -339,8 +340,8 @@
 											<string key="NSReuseIdentifierKey">_NS:1535</string>
 											<bool key="NSEnabled">YES</bool>
 											<object class="NSTextFieldCell" key="NSCell" id="397729494">
-												<int key="NSCellFlags">68157504</int>
-												<int key="NSCellFlags2">4195584</int>
+												<int key="NSCellFlags">67108928</int>
+												<int key="NSCellFlags2">4196608</int>
 												<string key="NSContents">Song Title</string>
 												<object class="NSFont" key="NSSupport">
 													<string key="NSName">Helvetica-Bold</string>
@@ -398,8 +399,8 @@
 											<string key="NSReuseIdentifierKey">_NS:1535</string>
 											<bool key="NSEnabled">YES</bool>
 											<object class="NSTextFieldCell" key="NSCell" id="68184338">
-												<int key="NSCellFlags">68157504</int>
-												<int key="NSCellFlags2">4195328</int>
+												<int key="NSCellFlags">67108928</int>
+												<int key="NSCellFlags2">4196352</int>
 												<string key="NSContents">Artist</string>
 												<object class="NSFont" key="NSSupport">
 													<string key="NSName">Helvetica-BoldOblique</string>
@@ -468,7 +469,6 @@
 							<string key="NSFrame">{{159, 1}, {41, 26}}</string>
 							<reference key="NSSuperview" ref="1006"/>
 							<reference key="NSWindow"/>
-							<reference key="NSNextKeyView"/>
 							<string key="NSReuseIdentifierKey">_NS:9</string>
 							<bool key="NSEnabled">YES</bool>
 							<object class="NSButtonCell" key="NSCell" id="510790696">
@@ -633,7 +633,7 @@
 					<reference key="NSWindow"/>
 					<reference key="NSNextKeyView" ref="146983978"/>
 				</object>
-				<string key="NSScreenRect">{{0, 0}, {1920, 1178}}</string>
+				<string key="NSScreenRect">{{0, 0}, {1366, 746}}</string>
 				<string key="NSMaxSize">{10000000000000, 10000000000000}</string>
 				<bool key="NSWindowIsRestorable">YES</bool>
 			</object>

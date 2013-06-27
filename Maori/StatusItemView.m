@@ -98,6 +98,7 @@
     if (_isDragging) {
         // Call appdelegate to update new width.
         [[NSUserDefaults standardUserDefaults] setDouble:_width forKey:@"width"];
+        [[NSUserDefaults standardUserDefaults] synchronize];
         [[NSNotificationCenter defaultCenter] postNotificationName:@"viewSet" object:nil];
         [_logoToDrag close];
         

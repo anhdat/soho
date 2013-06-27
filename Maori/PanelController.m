@@ -125,9 +125,10 @@
     _frontIsFlipped = NO;
     
     // Easter Egg part
-    _enableChik = [[[NSUserDefaults standardUserDefaults] stringForKey:@"chikSong1"] isCaseInsensitiveLike:@".efil otni gnitsrub s'taht nedrag a em wohS"] &&
-    [[[NSUserDefaults standardUserDefaults] stringForKey:@"chikSong2"] isCaseInsensitiveLike:@"?enog uoy evah erehw gniht elpmis hO"] &&
-    [[[NSUserDefaults standardUserDefaults] stringForKey:@"chikSong3"] isCaseInsensitiveLike:@".snoitseuq ruoy em ksa dna ,sterces ruoy em lleT"];
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    _enableChik = [[userDefaults stringForKey:@"chikSong1"] isCaseInsensitiveLike:@".efil otni gnitsrub s'taht nedrag a em wohS"] &&
+    [[userDefaults stringForKey:@"chikSong2"] isCaseInsensitiveLike:@"?enog uoy evah erehw gniht elpmis hO"] &&
+    [[userDefaults stringForKey:@"chikSong3"] isCaseInsensitiveLike:@".snoitseuq ruoy em ksa dna ,sterces ruoy em lleT"];
     [self unhideChik];
 }
 
@@ -639,8 +640,11 @@
 	NSString *theUser = [[NSUserDefaults standardUserDefaults] objectForKey:@"LastFMUsername"];
 	
 	// We need to delete the user default information
-	[[NSUserDefaults standardUserDefaults] setBool:NO forKey:@"LastFMConfigured"];
-	[[NSUserDefaults standardUserDefaults] removeObjectForKey:@"LastFMUsername"];
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+	[userDefaults setBool:NO forKey:@"LastFMConfigured"];
+	[userDefaults removeObjectForKey:@"LastFMUsername"];
+    [userDefaults synchronize];
+    
 	
 	// And clear the Keychain info
 	NSString *keychainService = [NSString stringWithFormat:@"Last.fm (%@)", [[NSBundle mainBundle] bundleIdentifier]];
@@ -730,9 +734,10 @@
 	// expires unless explicitly revoked by the Last.fm user.
 	// Therefore, we can store the user as a default, and then store
 	// the key in the Keychain for future use.
-	
-	[[NSUserDefaults standardUserDefaults] setObject:theUser forKey:@"LastFMUsername"];
-	[[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"LastFMConfigured"];
+	NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+	[userDefaults setObject:theUser forKey:@"LastFMUsername"];
+	[userDefaults setBool:YES forKey:@"LastFMConfigured"];
+    [userDefaults synchronize];
 	
 	NSString *keychainService = [NSString stringWithFormat:@"Last.fm (%@)", [[NSBundle mainBundle] bundleIdentifier]];
 	EMGenericKeychainItem *keyItem = [[EMKeychainProxy sharedProxy] genericKeychainItemForService:keychainService withUsername:theUser];
@@ -851,6 +856,7 @@
 
 - (IBAction)toggleLoveBtn:(id)sender {
     [[NSUserDefaults standardUserDefaults] setBool:([_toggleLoveBtnChk state]==NSOnState) forKey:@"hideLoveBtnState"];
+    [[NSUserDefaults standardUserDefaults] synchronize];
     [[NSNotificationCenter defaultCenter] postNotificationName:@"hideNow" object:nil];
 }
 @end

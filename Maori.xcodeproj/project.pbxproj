@@ -184,7 +184,6 @@
 		1A2C716216DE58D300091C15 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		1A2C716416DE7BC200091C15 /* StatusView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StatusView.h; sourceTree = "<group>"; };
 		1A2C716516DE7BC200091C15 /* StatusView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StatusView.m; sourceTree = "<group>"; };
-		1A2C716716DE818E00091C15 /* iTunes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iTunes.h; sourceTree = "<group>"; };
 		1A2C716816DE83CB00091C15 /* ScriptingBridge.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ScriptingBridge.framework; path = System/Library/Frameworks/ScriptingBridge.framework; sourceTree = SDKROOT; };
 		1A3031DA16F1ECFF00C91EF4 /* ADPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ADPlayer.h; sourceTree = "<group>"; };
 		1A3031DB16F1ECFF00C91EF4 /* ADPlayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ADPlayer.m; sourceTree = "<group>"; };
@@ -316,6 +315,8 @@
 		1AB3737A170B360A00D2B5DA /* So_loved.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = So_loved.png; sourceTree = "<group>"; };
 		1AB3737C170B368B00D2B5DA /* NotificationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NotificationView.h; sourceTree = "<group>"; };
 		1AB3737D170B368C00D2B5DA /* NotificationView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NotificationView.m; sourceTree = "<group>"; };
+		1ABB250C177CAD3900CC5F4B /* iTunes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iTunes.h; sourceTree = "<group>"; };
+		1ABB250D177CAD7A00CC5F4B /* Spotify.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Spotify.h; sourceTree = "<group>"; };
 		1ACD0E8016FE233700C3D71D /* SoHo_free_chick.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SoHo_free_chick.png; sourceTree = "<group>"; };
 		1ACD0E8416FE2A2300C3D71D /* SoHo_statusBar_play_normal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SoHo_statusBar_play_normal.png; sourceTree = "<group>"; };
 		1ACD0E8516FE2A2300C3D71D /* SoHo_statusBar_play_normal@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "SoHo_statusBar_play_normal@2x.png"; sourceTree = "<group>"; };
@@ -325,7 +326,6 @@
 		1ACD0E9216FE2F4000C3D71D /* SoHo_statusBar_icon_hightlighted.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SoHo_statusBar_icon_hightlighted.png; sourceTree = "<group>"; };
 		1ACD0E9316FE2F4000C3D71D /* SoHo_statusBar_icon_hightlighted@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "SoHo_statusBar_icon_hightlighted@2x.png"; sourceTree = "<group>"; };
 		1ACD0E9816FE31CB00C3D71D /* Maori.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Maori.entitlements; sourceTree = "<group>"; };
-		1AD2AFD716F0E9F20058421C /* Spotify.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Spotify.h; sourceTree = "<group>"; };
 		1AD2AFD816F0E9F20058421C /* PlayerApplication.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayerApplication.h; sourceTree = "<group>"; };
 		1AD2AFD916F0E9F20058421C /* PlayerApplication.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayerApplication.m; sourceTree = "<group>"; };
 		1ADBA3251717159B00C821BA /* So_axe.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = So_axe.png; sourceTree = "<group>"; };
@@ -574,9 +574,9 @@
 				1A3031DB16F1ECFF00C91EF4 /* ADPlayer.m */,
 				1AD2AFD816F0E9F20058421C /* PlayerApplication.h */,
 				1AD2AFD916F0E9F20058421C /* PlayerApplication.m */,
-				1AD2AFD716F0E9F20058421C /* Spotify.h */,
-				1A2C716716DE818E00091C15 /* iTunes.h */,
 				1A2A670E17159F66007ABCB0 /* Radium.h */,
+				1ABB250D177CAD7A00CC5F4B /* Spotify.h */,
+				1ABB250C177CAD3900CC5F4B /* iTunes.h */,
 				1A3031DE16F2224B00C91EF4 /* Rdio.h */,
 				1A3031DF16F231B100C91EF4 /* ADTrack.h */,
 				1A3031E016F231B100C91EF4 /* ADTrack.m */,
@@ -983,7 +983,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = Maori/Maori.entitlements;
-				CODE_SIGN_IDENTITY = "3rd Party Mac Developer Application";
+				CODE_SIGN_IDENTITY = "";
 				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = NO;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -998,7 +998,6 @@
 				INFOPLIST_FILE = "Maori/Maori-Info.plist";
 				MACOSX_DEPLOYMENT_TARGET = 10.7;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
 				SDKROOT = macosx10.7;
 				WRAPPER_EXTENSION = app;
 			};
@@ -1008,7 +1007,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = Maori/Maori.entitlements;
-				CODE_SIGN_IDENTITY = "3rd Party Mac Developer Application";
+				CODE_SIGN_IDENTITY = "";
 				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = NO;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -1023,7 +1022,6 @@
 				INFOPLIST_FILE = "Maori/Maori-Info.plist";
 				MACOSX_DEPLOYMENT_TARGET = 10.7;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
 				SDKROOT = macosx10.7;
 				WRAPPER_EXTENSION = app;
 			};
