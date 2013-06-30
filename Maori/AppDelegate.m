@@ -10,8 +10,11 @@
 #import "MSDurationFormatter.h"
 #import "NotificationWindowController.h"
 #import "StartupWindow.h"
+#import "NSColor+CGColor.h"
 
 #define kAlreadyBeenLaunched @"AlreadyBeenLaunched"
+#define kGreenComponents {0.5f, 1.0f, 0.5f, 0.3f}
+#define kGrayComponents {0.0f, 0.0f, 0.0f, 0.05f}
 
 @interface AppDelegate ()
 @property (nonatomic) iTunesApplication *iTunesApp;
@@ -30,6 +33,9 @@
 @property (nonatomic) Boolean currentState;
 @property (nonatomic) Boolean isJustRun;
 @property (strong, nonatomic) StartupWindow *startup;
+
+@property (nonatomic) NSColor *greenColor;
+@property (nonatomic) NSColor *grayColor;
 @end
 @implementation AppDelegate
 
@@ -260,6 +266,9 @@
     // Play button on the panenl
     [[_panelController playBtn] setImage:[NSImage imageNamed:@"SoHo_Play"]];
     [[_panelController playBtn] setAlternateImage:[NSImage imageNamed:@"SoHo_Play_alt"]];
+    
+    // Color of Progress Bar
+    _progressLayer.backgroundColor = _grayColor.CGColor;
 }
 
 - (void) updatePlayBtnToPause{
@@ -270,6 +279,9 @@
     // Play button on the pannel
     [[_panelController playBtn] setImage:[NSImage imageNamed:@"SoHo_Pause"]];
     [[_panelController playBtn] setAlternateImage:[NSImage imageNamed:@"SoHo_Pause_alt"]];
+    
+    // Color of Progrees Bar
+      _progressLayer.backgroundColor = _greenColor.CGColor;
 }
 
 
@@ -497,9 +509,14 @@
     [_mainView addSubview:_volumeView];
     
     // Color Green then create a layer to make it ProgressBar under titleView
-    CGColorSpaceRef colorSpace = CGColorSpaceCreateWithName(kCGColorSpaceGenericRGB);
-    CGFloat components[4] = {0.5f, 1.0f, 0.5f, 0.3f};
-    CGColorRef whiteColor = CGColorCreate(colorSpace, components); // not a white color :)
+//    CGColorSpaceRef colorSpace = CGColorSpaceCreateWithName(kCGColorSpaceGenericRGB);
+//    CGFloat components1[4] = kGreenComponents;
+//    CGFloat components2[4] = kGrayComponents;
+//    _greenColor = CGColorCreate(colorSpace, components1); // not a white color :)
+//    _grayColor = CGColorCreate(colorSpace, components2);
+    
+    _greenColor = [NSColor colorWithSRGBRed:0.5 green:1.0 blue:0.5 alpha:0.3];
+    _grayColor = [NSColor colorWithSRGBRed:0.0 green:0.0 blue:0.0 alpha:0.05];
     
     CALayer *hostlayer = [CALayer layer];
     [_mainView setLayer:hostlayer];
@@ -509,10 +526,11 @@
     
     NSRect progressRect = NSMakeRect(mainFrame.origin.x, mainFrame.origin.y+2, mainFrame.size.width, 18);
     [_progressLayer setFrame:progressRect];
-    _progressLayer.backgroundColor = whiteColor;    [hostlayer addSublayer:_progressLayer];
+    _progressLayer.backgroundColor = _grayColor.CGColor;
+    [hostlayer addSublayer:_progressLayer];
     
-    CGColorRelease(whiteColor);
-    CGColorSpaceRelease(colorSpace);
+//    CGColorRelease(_greenColor);
+//    CGColorSpaceRelease(colorSpace);
     
     CALayer *layer = [CALayer layer];
     [layer setContents:_mainView];
@@ -521,13 +539,13 @@
     [_controlView setHidden:YES];
     [_volumeView setHidden:YES];
     
-    // Centralize controlView
-//    [_controlView setFrameOrigin:NSMakePoint(
-//                                             (NSWidth([_mainView bounds]) - NSWidth([_controlView frame])) / 2,
-//                                             (NSHeight([_mainView bounds]) - NSHeight([_controlView frame])) / 2
-//                                             )];
-//    [_controlView setAutoresizingMask:NSViewMinXMargin | NSViewMaxXMargin | NSViewMinYMargin | NSViewMaxYMargin];
-//    
+    // Centralize volumeView
+    [_volumeView setFrameOrigin:NSMakePoint(
+                                             (NSWidth([_mainView bounds]) - NSWidth([_volumeView frame])) / 2,
+                                             (NSHeight([_mainView bounds]) - NSHeight([_volumeView frame])) / 2
+                                             )];
+    [_volumeView setAutoresizingMask:NSViewMinXMargin | NSViewMaxXMargin | NSViewMinYMargin | NSViewMaxYMargin];
+    
 
     [_mainView setMenu:_menuPlayer];
     

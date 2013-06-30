@@ -84,6 +84,7 @@
 		1A66914F171DEEB7009C45E9 /* SoHo_twitter.png in Resources */ = {isa = PBXBuildFile; fileRef = 1A66914D171DEEB7009C45E9 /* SoHo_twitter.png */; };
 		1A669154171DF467009C45E9 /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 1A669153171DF467009C45E9 /* Credits.rtf */; };
 		1A6A0A3E16F781BD00939616 /* FrontView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A6A0A3D16F781BD00939616 /* FrontView.m */; };
+		1A78A8DB177F52B2009CFF76 /* NSColor+CGColor.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A78A8DA177F52B2009CFF76 /* NSColor+CGColor.m */; };
 		1A801CB716EF8B3D00532C54 /* Background.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A801CB616EF8B3D00532C54 /* Background.m */; };
 		1A801CBA16EF8CE600532C54 /* LBProgressBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A801CB916EF8CE600532C54 /* LBProgressBar.m */; };
 		1A801CC316EFA12F00532C54 /* SNRVerticalSliderCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A801CC216EFA12E00532C54 /* SNRVerticalSliderCell.m */; };
@@ -263,6 +264,8 @@
 		1A669153171DF467009C45E9 /* Credits.rtf */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.rtf; path = Credits.rtf; sourceTree = "<group>"; };
 		1A6A0A3C16F781BD00939616 /* FrontView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FrontView.h; sourceTree = "<group>"; };
 		1A6A0A3D16F781BD00939616 /* FrontView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FrontView.m; sourceTree = "<group>"; };
+		1A78A8D9177F52B2009CFF76 /* NSColor+CGColor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSColor+CGColor.h"; sourceTree = "<group>"; };
+		1A78A8DA177F52B2009CFF76 /* NSColor+CGColor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSColor+CGColor.m"; sourceTree = "<group>"; };
 		1A801CB516EF8B3D00532C54 /* Background.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Background.h; sourceTree = "<group>"; };
 		1A801CB616EF8B3D00532C54 /* Background.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Background.m; sourceTree = "<group>"; };
 		1A801CB816EF8CE600532C54 /* LBProgressBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBProgressBar.h; sourceTree = "<group>"; };
@@ -568,6 +571,8 @@
 		1AEACF8916EC352400420311 /* General */ = {
 			isa = PBXGroup;
 			children = (
+				1A78A8D9177F52B2009CFF76 /* NSColor+CGColor.h */,
+				1A78A8DA177F52B2009CFF76 /* NSColor+CGColor.m */,
 				1AA70F7916FA25E800D2FE21 /* MSDurationFormatter.h */,
 				1AA70F7A16FA25E800D2FE21 /* MSDurationFormatter.m */,
 				1A3031DA16F1ECFF00C91EF4 /* ADPlayer.h */,
@@ -887,6 +892,7 @@
 				1AB3736A170B2E0100D2B5DA /* NotificationWindowController.m in Sources */,
 				1AB3737E170B368D00D2B5DA /* NotificationView.m in Sources */,
 				1A1C10E9171BFAAA0027C41D /* StartupWindow.m in Sources */,
+				1A78A8DB177F52B2009CFF76 /* NSColor+CGColor.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -983,7 +989,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = Maori/Maori.entitlements;
-				CODE_SIGN_IDENTITY = "";
+				CODE_SIGN_IDENTITY = "3rd Party Mac Developer Application";
 				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = NO;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -998,6 +1004,7 @@
 				INFOPLIST_FILE = "Maori/Maori-Info.plist";
 				MACOSX_DEPLOYMENT_TARGET = 10.7;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				SDKROOT = macosx10.7;
 				WRAPPER_EXTENSION = app;
 			};
@@ -1007,7 +1014,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = Maori/Maori.entitlements;
-				CODE_SIGN_IDENTITY = "";
+				CODE_SIGN_IDENTITY = "3rd Party Mac Developer Application";
 				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = NO;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -1022,6 +1029,7 @@
 				INFOPLIST_FILE = "Maori/Maori-Info.plist";
 				MACOSX_DEPLOYMENT_TARGET = 10.7;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				SDKROOT = macosx10.7;
 				WRAPPER_EXTENSION = app;
 			};

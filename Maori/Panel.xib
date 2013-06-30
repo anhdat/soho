@@ -229,7 +229,7 @@
 								<object class="NSTextField" id="1008304214">
 									<reference key="NSNextResponder" ref="530767345"/>
 									<int key="NSvFlags">314</int>
-									<string key="NSFrame">{{19, 91}, {238, 24}}</string>
+									<string key="NSFrame">{{19, 87}, {238, 24}}</string>
 									<reference key="NSSuperview" ref="530767345"/>
 									<reference key="NSNextKeyView" ref="908350121"/>
 									<string key="NSReuseIdentifierKey">_NS:1535</string>
@@ -259,7 +259,7 @@
 								<object class="NSTextField" id="488435156">
 									<reference key="NSNextResponder" ref="530767345"/>
 									<int key="NSvFlags">306</int>
-									<string key="NSFrame">{{10, 106}, {256, 25}}</string>
+									<string key="NSFrame">{{10, 103}, {256, 25}}</string>
 									<reference key="NSSuperview" ref="530767345"/>
 									<reference key="NSNextKeyView" ref="898473174"/>
 									<string key="NSReuseIdentifierKey">_NS:1535</string>
@@ -294,7 +294,7 @@
 								<object class="NSTextField" id="898473174">
 									<reference key="NSNextResponder" ref="530767345"/>
 									<int key="NSvFlags">306</int>
-									<string key="NSFrame">{{10, 68}, {256, 25}}</string>
+									<string key="NSFrame">{{10, 67}, {256, 25}}</string>
 									<reference key="NSSuperview" ref="530767345"/>
 									<reference key="NSNextKeyView" ref="1008304214"/>
 									<string key="NSReuseIdentifierKey">_NS:1535</string>
@@ -398,9 +398,9 @@
 							<object class="NSTextField" id="902138769">
 								<reference key="NSNextResponder" ref="306318619"/>
 								<int key="NSvFlags">268</int>
-								<string key="NSFrame">{{10, 1}, {38, 17}}</string>
+								<string key="NSFrame">{{2, 1}, {38, 17}}</string>
 								<reference key="NSSuperview" ref="306318619"/>
-								<reference key="NSNextKeyView" ref="752857934"/>
+								<reference key="NSNextKeyView" ref="363802642"/>
 								<string key="NSReuseIdentifierKey">_NS:1535</string>
 								<bool key="NSEnabled">YES</bool>
 								<object class="NSTextFieldCell" key="NSCell" id="309020790">
@@ -416,7 +416,7 @@
 								<bool key="NSAllowsLogicalLayoutDirection">NO</bool>
 							</object>
 						</object>
-						<string key="NSFrame">{{-9, 0}, {317, 22}}</string>
+						<string key="NSFrameSize">{276, 22}</string>
 						<reference key="NSSuperview" ref="475639493"/>
 						<reference key="NSNextKeyView" ref="902138769"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
@@ -439,7 +439,7 @@
 						</object>
 						<string key="NSFrameSize">{276, 276}</string>
 						<reference key="NSSuperview" ref="475639493"/>
-						<reference key="NSNextKeyView" ref="363802642"/>
+						<reference key="NSNextKeyView" ref="306318619"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<bool key="NSEnabled">YES</bool>
 						<object class="NSImageCell" key="NSCell" id="201304628">
@@ -461,7 +461,7 @@
 				</object>
 				<string key="NSFrameSize">{276, 276}</string>
 				<reference key="NSSuperview"/>
-				<reference key="NSNextKeyView" ref="306318619"/>
+				<reference key="NSNextKeyView" ref="752857934"/>
 				<string key="NSReuseIdentifierKey">_NS:9</string>
 				<string key="NSClassName">FrontView</string>
 			</object>
@@ -491,7 +491,6 @@
 											<int key="NSvFlags">268</int>
 											<string key="NSFrame">{{9, 27}, {62, 32}}</string>
 											<reference key="NSSuperview" ref="780849453"/>
-											<reference key="NSNextKeyView"/>
 											<string key="NSReuseIdentifierKey">_NS:9</string>
 											<bool key="NSEnabled">YES</bool>
 											<object class="NSButtonCell" key="NSCell" id="609402767">
@@ -515,7 +514,6 @@
 											<int key="NSvFlags">268</int>
 											<string key="NSFrame">{{14, 99}, {232, 106}}</string>
 											<reference key="NSSuperview" ref="780849453"/>
-											<reference key="NSNextKeyView"/>
 											<string key="NSReuseIdentifierKey">_NS:9</string>
 											<string key="NSAntiCompressionPriority">{250, 750}</string>
 											<bool key="NSEnabled">YES</bool>
@@ -1712,6 +1710,7 @@ A</string>
 					<string>58.IBPluginDependency</string>
 					<string>6.CustomClassName</string>
 					<string>6.IBPluginDependency</string>
+					<string>67.CustomClassName</string>
 					<string>67.IBPluginDependency</string>
 					<string>68.CustomClassName</string>
 					<string>68.IBPluginDependency</string>
@@ -1800,6 +1799,7 @@ A</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>BackgroundView</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
+					<string>ADPlayerSlider</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>JKSMoviePlayerSliderCell</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>

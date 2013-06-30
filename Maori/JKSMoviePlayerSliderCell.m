@@ -42,7 +42,6 @@
 //    [innerGradient drawInBezierPath:innerPath angle:90];
 //}
 
-
 - (void)drawBarInside:(NSRect)aRect flipped:(BOOL)flipped
 {
     NSRect sliderRect = aRect;
@@ -50,8 +49,12 @@
     sliderRect.origin.x += 2;
     sliderRect.size.width -= 4;
     sliderRect.size.height = 8;
+    
+    
    
     NSBezierPath *barPath = [NSBezierPath bezierPathWithRoundedRect:sliderRect xRadius:4 yRadius:4];
+    
+    // Draw background gradient
     NSGradient *borderGradient = [[NSGradient alloc] initWithColors:@[NSCOLOR(13, 13, 13, 0.3), NSCOLOR(26, 26, 26, 0.3)]];
     [borderGradient drawInBezierPath:barPath angle:30];
     
@@ -64,22 +67,23 @@
     NSRect knobRect = [self knobRectFlipped:flipped];
     CGFloat fillWidth = (NSMaxX(knobRect));
     NSRect fillRect= NSMakeRect(sliderRect.origin.x, sliderRect.origin.y, fillWidth, sliderRect.size.height);
-//    fillRect.origin.x = sliderRect.origin.x;
-//    fillRect.origin.y = sliderRect.origin.y;
     
-//    NSBezierPath *fillBarPath = [NSBezierPath bezierPathWithRoundedRect:fillRect xRadius:4 yRadius:4];
-//    NSGradient *fillBorderGradient = [[NSGradient alloc] initWithColors:@[NSCOLOR(3, 3, 3, 1), NSCOLOR(23, 23, 23, 1)]];
-//    [fillBorderGradient drawInBezierPath:fillBarPath angle:90];
-//
     NSBezierPath *fillInnerPath = [NSBezierPath bezierPathWithRoundedRect:NSInsetRect(fillRect, 1, 1) xRadius:4 yRadius:4];
     [NSCOLOR(255, 165, 0, 1) setFill];
     [fillInnerPath fill];
     
-    
-    
-//    [[NSColor whiteColor] setFill];
-//    NSRectFill(fillRect);
 }
 
+
+
+
+@end
+
+@implementation ADPlayerSlider
+// Need it to redraw the whole slider every time otherwise it causes drawing artifacts
+- (void)setNeedsDisplayInRect:(NSRect)invalidRect
+{
+    [super setNeedsDisplayInRect:self.bounds];
+}
 
 @end

@@ -9,5 +9,7 @@
 #import <Cocoa/Cocoa.h>
 
 @interface JKSMoviePlayerSliderCell : NSSliderCell
+@end
 
+@interface ADPlayerSlider : NSSlider
 @end
