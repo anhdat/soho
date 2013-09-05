@@ -16,7 +16,8 @@
 #define kGreenComponents {0.5f, 1.0f, 0.5f, 0.3f}
 #define kGrayComponents {0.0f, 0.0f, 0.0f, 0.05f}
 
-@interface AppDelegate ()
+@interface AppDelegate (){
+}
 @property (nonatomic) iTunesApplication *iTunesApp;
 @property (nonatomic) SpotifyApplication *spotifyApp;
 @property (nonatomic) RdioApplication *rdioApp;
@@ -36,6 +37,8 @@
 
 @property (nonatomic) NSColor *greenColor;
 @property (nonatomic) NSColor *grayColor;
+
+
 @end
 @implementation AppDelegate
 
@@ -48,6 +51,7 @@
 {
     _isJustRun = YES;
     
+        
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     NSDictionary *appDefaults = [NSDictionary dictionaryWithObject:@"NO" forKey:@"AppleMomentumScrollSupported"];
     [defaults registerDefaults:appDefaults];

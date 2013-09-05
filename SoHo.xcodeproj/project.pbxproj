@@ -85,6 +85,7 @@
 		1A669154171DF467009C45E9 /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 1A669153171DF467009C45E9 /* Credits.rtf */; };
 		1A6A0A3E16F781BD00939616 /* FrontView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A6A0A3D16F781BD00939616 /* FrontView.m */; };
 		1A78A8DB177F52B2009CFF76 /* NSColor+CGColor.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A78A8DA177F52B2009CFF76 /* NSColor+CGColor.m */; };
+		1A78CBE21794567D005F486D /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1A78CBE11794567D005F486D /* StoreKit.framework */; };
 		1A801CB716EF8B3D00532C54 /* Background.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A801CB616EF8B3D00532C54 /* Background.m */; };
 		1A801CBA16EF8CE600532C54 /* LBProgressBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A801CB916EF8CE600532C54 /* LBProgressBar.m */; };
 		1A801CC316EFA12F00532C54 /* SNRVerticalSliderCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A801CC216EFA12E00532C54 /* SNRVerticalSliderCell.m */; };
@@ -169,15 +170,15 @@
 		1A1C10E8171BFAAA0027C41D /* StartupWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = StartupWindow.xib; sourceTree = "<group>"; };
 		1A1C10EB171BFCBA0027C41D /* SoHo_logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SoHo_logo.png; sourceTree = "<group>"; };
 		1A2A670E17159F66007ABCB0 /* Radium.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Radium.h; sourceTree = "<group>"; };
-		1A2C714216DE515D00091C15 /* Maori.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Maori.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		1A2C714216DE515D00091C15 /* SoHo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SoHo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1A2C714516DE515D00091C15 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		1A2C714816DE515D00091C15 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
 		1A2C714916DE515D00091C15 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		1A2C714A16DE515D00091C15 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
-		1A2C714D16DE515D00091C15 /* Maori-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Maori-Info.plist"; sourceTree = "<group>"; };
+		1A2C714D16DE515D00091C15 /* SoHo-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "SoHo-Info.plist"; sourceTree = "<group>"; };
 		1A2C714F16DE515D00091C15 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		1A2C715116DE515D00091C15 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		1A2C715316DE515D00091C15 /* Maori-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Maori-Prefix.pch"; sourceTree = "<group>"; };
+		1A2C715316DE515D00091C15 /* SoHo-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SoHo-Prefix.pch"; sourceTree = "<group>"; };
 		1A2C715516DE515D00091C15 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = en; path = en.lproj/Credits.rtf; sourceTree = "<group>"; };
 		1A2C715716DE515D00091C15 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		1A2C715816DE515D00091C15 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -266,6 +267,7 @@
 		1A6A0A3D16F781BD00939616 /* FrontView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FrontView.m; sourceTree = "<group>"; };
 		1A78A8D9177F52B2009CFF76 /* NSColor+CGColor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSColor+CGColor.h"; sourceTree = "<group>"; };
 		1A78A8DA177F52B2009CFF76 /* NSColor+CGColor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSColor+CGColor.m"; sourceTree = "<group>"; };
+		1A78CBE11794567D005F486D /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.7.sdk/System/Library/Frameworks/StoreKit.framework; sourceTree = DEVELOPER_DIR; };
 		1A801CB516EF8B3D00532C54 /* Background.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Background.h; sourceTree = "<group>"; };
 		1A801CB616EF8B3D00532C54 /* Background.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Background.m; sourceTree = "<group>"; };
 		1A801CB816EF8CE600532C54 /* LBProgressBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBProgressBar.h; sourceTree = "<group>"; };
@@ -365,6 +367,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1A78CBE21794567D005F486D /* StoreKit.framework in Frameworks */,
 				1A2C714616DE515D00091C15 /* Cocoa.framework in Frameworks */,
 				1A95A79D1700A991006D3708 /* Security.framework in Frameworks */,
 				1A95A7A61700ABDF006D3708 /* ScriptingBridge.framework in Frameworks */,
@@ -393,6 +396,7 @@
 		1A2C713916DE515D00091C15 = {
 			isa = PBXGroup;
 			children = (
+				1A78CBE11794567D005F486D /* StoreKit.framework */,
 				1A5E83971725B7FE0009E4A1 /* icon.icns */,
 				1A95A80E1700B98C006D3708 /* Carbon.framework */,
 				1A2C714B16DE515D00091C15 /* Maori */,
@@ -404,7 +408,7 @@
 		1A2C714316DE515D00091C15 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				1A2C714216DE515D00091C15 /* Maori.app */,
+				1A2C714216DE515D00091C15 /* SoHo.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -472,9 +476,9 @@
 			children = (
 				1A2C714E16DE515D00091C15 /* InfoPlist.strings */,
 				1A2C715116DE515D00091C15 /* main.m */,
-				1A2C715316DE515D00091C15 /* Maori-Prefix.pch */,
+				1A2C715316DE515D00091C15 /* SoHo-Prefix.pch */,
 				1A2C715416DE515D00091C15 /* Credits.rtf */,
-				1A2C714D16DE515D00091C15 /* Maori-Info.plist */,
+				1A2C714D16DE515D00091C15 /* SoHo-Info.plist */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -700,9 +704,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		1A2C714116DE515D00091C15 /* Maori */ = {
+		1A2C714116DE515D00091C15 /* SoHo */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 1A2C715F16DE515D00091C15 /* Build configuration list for PBXNativeTarget "Maori" */;
+			buildConfigurationList = 1A2C715F16DE515D00091C15 /* Build configuration list for PBXNativeTarget "SoHo" */;
 			buildPhases = (
 				1A2C713E16DE515D00091C15 /* Sources */,
 				1A2C713F16DE515D00091C15 /* Frameworks */,
@@ -713,9 +717,9 @@
 			);
 			dependencies = (
 			);
-			name = Maori;
+			name = SoHo;
 			productName = Maori;
-			productReference = 1A2C714216DE515D00091C15 /* Maori.app */;
+			productReference = 1A2C714216DE515D00091C15 /* SoHo.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -727,7 +731,7 @@
 				LastUpgradeCheck = 0460;
 				ORGANIZATIONNAME = "Dat Anh Truong";
 			};
-			buildConfigurationList = 1A2C713D16DE515D00091C15 /* Build configuration list for PBXProject "Maori" */;
+			buildConfigurationList = 1A2C713D16DE515D00091C15 /* Build configuration list for PBXProject "SoHo" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -739,7 +743,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				1A2C714116DE515D00091C15 /* Maori */,
+				1A2C714116DE515D00091C15 /* SoHo */,
 			);
 		};
 /* End PBXProject section */
@@ -989,7 +993,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = Maori/Maori.entitlements;
-				CODE_SIGN_IDENTITY = "3rd Party Mac Developer Application";
+				CODE_SIGN_IDENTITY = "Mac Developer: Anh Dat Truong (9H82WA6C3X)";
 				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = NO;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -1000,10 +1004,10 @@
 					"\"$(SRCROOT)/../Desktop\"",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "Maori/Maori-Prefix.pch";
-				INFOPLIST_FILE = "Maori/Maori-Info.plist";
+				GCC_PREFIX_HEADER = "Maori/SoHo-Prefix.pch";
+				INFOPLIST_FILE = "Maori/SoHo-Info.plist";
 				MACOSX_DEPLOYMENT_TARGET = 10.7;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = SoHo;
 				PROVISIONING_PROFILE = "";
 				SDKROOT = macosx10.7;
 				WRAPPER_EXTENSION = app;
@@ -1014,7 +1018,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = Maori/Maori.entitlements;
-				CODE_SIGN_IDENTITY = "3rd Party Mac Developer Application";
+				CODE_SIGN_IDENTITY = "Mac Developer: Anh Dat Truong (9H82WA6C3X)";
 				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = NO;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -1025,10 +1029,10 @@
 					"\"$(SRCROOT)/../Desktop\"",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "Maori/Maori-Prefix.pch";
-				INFOPLIST_FILE = "Maori/Maori-Info.plist";
+				GCC_PREFIX_HEADER = "Maori/SoHo-Prefix.pch";
+				INFOPLIST_FILE = "Maori/SoHo-Info.plist";
 				MACOSX_DEPLOYMENT_TARGET = 10.7;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = SoHo;
 				PROVISIONING_PROFILE = "";
 				SDKROOT = macosx10.7;
 				WRAPPER_EXTENSION = app;
@@ -1038,7 +1042,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		1A2C713D16DE515D00091C15 /* Build configuration list for PBXProject "Maori" */ = {
+		1A2C713D16DE515D00091C15 /* Build configuration list for PBXProject "SoHo" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				1A2C715D16DE515D00091C15 /* Debug */,
@@ -1047,7 +1051,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		1A2C715F16DE515D00091C15 /* Build configuration list for PBXNativeTarget "Maori" */ = {
+		1A2C715F16DE515D00091C15 /* Build configuration list for PBXNativeTarget "SoHo" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				1A2C716016DE515D00091C15 /* Debug */,
