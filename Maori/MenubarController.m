@@ -18,15 +18,11 @@
         _statusItemView = [[StatusItemView alloc] initWithStatusItem:statusItem];
         
         
-        NSImage *statusIcon = [NSImage imageNamed:@"SoHo_statusBar_icon_normal"];
-        NSSize imageSize = {[statusIcon size].width*(18.0/[statusIcon size].width), [statusIcon size].height*(18.0/[statusIcon size].height) };
-        [statusIcon setSize:imageSize];
+        NSImage *statusIcon = [NSImage imageNamed:@"SoHo_logo_normal"];
         _statusItemView.image = statusIcon;
         
         
         NSImage *statusIconAlt = [NSImage imageNamed:@"SoHo_statusBar_icon_hightlighted"];
-        NSSize imageSizeAlt = {[statusIconAlt size].width*(18.0/[statusIconAlt size].width), [statusIconAlt size].height*(18.0/[statusIconAlt size].height) };
-        [statusIconAlt setSize:imageSizeAlt];
         _statusItemView.alternateImage = statusIconAlt;
         _statusItemView.action = @selector(togglePanel:);
     }

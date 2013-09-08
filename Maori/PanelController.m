@@ -10,7 +10,7 @@
 #import "EMKeychainProxy.h"
 #import "EMKeychainItem.h"
 
-#define OPEN_DURATION .15
+#define OPEN_DURATION .25
 #define CLOSE_DURATION .1
 
 #define SEARCH_INSET 17
@@ -241,16 +241,6 @@
     searchRect.origin.x = 2;
     searchRect.origin.y = NSHeight([self.backgroundView bounds]) - ARROW_HEIGHT - 2 - NSHeight(searchRect);
     [self.hostView setFrame:searchRect];
-//    
-//    if (NSIsEmptyRect(searchRect))
-//    {
-//        [self.hostView setHidden:YES];
-//    }
-//    else
-//    {
-//        [self.hostView setFrame:searchRect];
-//        [self.hostView setHidden:NO];
-//    }
 }
 
 #pragma mark - Keyboard
@@ -326,13 +316,13 @@
 //        }
 //    }
     
+    [panel setFrame:panelRect display:YES];
+
     [NSAnimationContext beginGrouping];
     [[NSAnimationContext currentContext] setDuration:openDuration];
-    [[panel animator] setFrame:panelRect display:YES];
     [[panel animator] setAlphaValue:1];
     [NSAnimationContext endGrouping];
     
-    [panel performSelector:@selector(makeFirstResponder:) withObject:self.searchField afterDelay:openDuration];
     NSString *theUser = [[NSUserDefaults standardUserDefaults] objectForKey:@"LastFMUsername"];
     if ([theUser length] > 0) {
         [self showAuthConnectedPaneWithUser:theUser];

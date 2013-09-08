@@ -120,6 +120,8 @@
 		1AB37379170B35F600D2B5DA /* So_loved@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1AB37378170B35F600D2B5DA /* So_loved@2x.png */; };
 		1AB3737B170B360A00D2B5DA /* So_loved.png in Resources */ = {isa = PBXBuildFile; fileRef = 1AB3737A170B360A00D2B5DA /* So_loved.png */; };
 		1AB3737E170B368D00D2B5DA /* NotificationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AB3737D170B368C00D2B5DA /* NotificationView.m */; };
+		1ABA56CE17D8E72500DAA3FA /* SoHo_logo_normal.png in Resources */ = {isa = PBXBuildFile; fileRef = 1ABA56CC17D8E72500DAA3FA /* SoHo_logo_normal.png */; };
+		1ABA56CF17D8E72500DAA3FA /* SoHo_logo_normal@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1ABA56CD17D8E72500DAA3FA /* SoHo_logo_normal@2x.png */; };
 		1ACD0E8116FE233700C3D71D /* SoHo_free_chick.png in Resources */ = {isa = PBXBuildFile; fileRef = 1ACD0E8016FE233700C3D71D /* SoHo_free_chick.png */; };
 		1ACD0E8A16FE2A2400C3D71D /* SoHo_statusBar_play_normal.png in Resources */ = {isa = PBXBuildFile; fileRef = 1ACD0E8416FE2A2300C3D71D /* SoHo_statusBar_play_normal.png */; };
 		1ACD0E8B16FE2A2400C3D71D /* SoHo_statusBar_play_normal@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1ACD0E8516FE2A2300C3D71D /* SoHo_statusBar_play_normal@2x.png */; };
@@ -320,6 +322,8 @@
 		1AB3737A170B360A00D2B5DA /* So_loved.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = So_loved.png; sourceTree = "<group>"; };
 		1AB3737C170B368B00D2B5DA /* NotificationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NotificationView.h; sourceTree = "<group>"; };
 		1AB3737D170B368C00D2B5DA /* NotificationView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NotificationView.m; sourceTree = "<group>"; };
+		1ABA56CC17D8E72500DAA3FA /* SoHo_logo_normal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SoHo_logo_normal.png; sourceTree = "<group>"; };
+		1ABA56CD17D8E72500DAA3FA /* SoHo_logo_normal@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "SoHo_logo_normal@2x.png"; sourceTree = "<group>"; };
 		1ABB250C177CAD3900CC5F4B /* iTunes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iTunes.h; sourceTree = "<group>"; };
 		1ABB250D177CAD7A00CC5F4B /* Spotify.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Spotify.h; sourceTree = "<group>"; };
 		1ACD0E8016FE233700C3D71D /* SoHo_free_chick.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SoHo_free_chick.png; sourceTree = "<group>"; };
@@ -618,6 +622,8 @@
 		DC1073F216E3B11900EBF5FE /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				1ABA56CC17D8E72500DAA3FA /* SoHo_logo_normal.png */,
+				1ABA56CD17D8E72500DAA3FA /* SoHo_logo_normal@2x.png */,
 				1A34050017208133007F944B /* SoHo_facebook_alt.png */,
 				1A3404FE172080EF007F944B /* SoHo_twitter_alt.png */,
 				1A66914C171DEEB7009C45E9 /* SoHo_facebook.png */,
@@ -843,6 +849,8 @@
 				1A3404FF172080EF007F944B /* SoHo_twitter_alt.png in Resources */,
 				1A34050117208133007F944B /* SoHo_facebook_alt.png in Resources */,
 				1A5E83981725B7FE0009E4A1 /* icon.icns in Resources */,
+				1ABA56CE17D8E72500DAA3FA /* SoHo_logo_normal.png in Resources */,
+				1ABA56CF17D8E72500DAA3FA /* SoHo_logo_normal@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -993,7 +1001,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = Maori/Maori.entitlements;
-				CODE_SIGN_IDENTITY = "Mac Developer: Anh Dat Truong (9H82WA6C3X)";
+				CODE_SIGN_IDENTITY = "";
 				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = NO;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -1006,10 +1014,9 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Maori/SoHo-Prefix.pch";
 				INFOPLIST_FILE = "Maori/SoHo-Info.plist";
-				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				MACOSX_DEPLOYMENT_TARGET = 10.8;
 				PRODUCT_NAME = SoHo;
-				PROVISIONING_PROFILE = "";
-				SDKROOT = macosx10.7;
+				SDKROOT = macosx;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -1018,7 +1025,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = Maori/Maori.entitlements;
-				CODE_SIGN_IDENTITY = "Mac Developer: Anh Dat Truong (9H82WA6C3X)";
+				CODE_SIGN_IDENTITY = "";
 				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = NO;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -1031,10 +1038,9 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Maori/SoHo-Prefix.pch";
 				INFOPLIST_FILE = "Maori/SoHo-Info.plist";
-				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				MACOSX_DEPLOYMENT_TARGET = 10.8;
 				PRODUCT_NAME = SoHo;
-				PROVISIONING_PROFILE = "";
-				SDKROOT = macosx10.7;
+				SDKROOT = macosx;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
