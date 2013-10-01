@@ -124,6 +124,21 @@
     [fliper setActiveViewAtIndex:0];
     _frontIsFlipped = NO;
     
+    NSColor *color = [NSColor whiteColor];
+    
+    NSMutableAttributedString *colorTitle =
+    
+    [[NSMutableAttributedString alloc] initWithAttributedString:[_VisitBtnCell attributedTitle]];
+    
+    NSRange titleRange = NSMakeRange(0, [colorTitle length]);
+    
+    [colorTitle addAttribute:NSForegroundColorAttributeName value:color range:titleRange];
+    
+    [_VisitBtnCell setAttributedTitle:colorTitle];
+//    [_VisitBtnCell setHighlightsBy:NSCellLightsByBackground];
+    _VisitBtnCell.hoverImage = [NSImage imageNamed:@"p_visit_alt"];
+    
+    
     // Easter Egg part
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
     _enableChik = [[userDefaults stringForKey:@"chikSong1"] isCaseInsensitiveLike:@".efil otni gnitsrub s'taht nedrag a em wohS"] &&

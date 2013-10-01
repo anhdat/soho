@@ -3,7 +3,7 @@
 #import "mbFliperViews.h"
 #import "Chick.h"
 #import <Scribbler/Scribbler.h>
-
+#import "ADHoverButtonCell.h"
 @class PanelController;
 
 @protocol PanelControllerDelegate <NSObject>
@@ -27,6 +27,7 @@
 //    AppDelegate *appDelegate;
     BOOL authorizationPending;
 }
+@property (weak) IBOutlet ADHoverButtonCell *VisitBtnCell;
 
 @property Boolean frontIsFlipped;
 @property (nonatomic, unsafe_unretained) IBOutlet BackgroundView *backgroundView;
