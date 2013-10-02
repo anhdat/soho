@@ -7,8 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		1A1C10E9171BFAAA0027C41D /* StartupWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A1C10E7171BFAAA0027C41D /* StartupWindow.m */; };
-		1A1C10EA171BFAAA0027C41D /* StartupWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1A1C10E8171BFAAA0027C41D /* StartupWindow.xib */; };
+		12A7144717FC81A500097FF2 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 12A7144617FC81A500097FF2 /* Images.xcassets */; };
 		1A1C10EC171BFCBA0027C41D /* SoHo_logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 1A1C10EB171BFCBA0027C41D /* SoHo_logo.png */; };
 		1A2C714616DE515D00091C15 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1A2C714516DE515D00091C15 /* Cocoa.framework */; };
 		1A2C715016DE515D00091C15 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 1A2C714E16DE515D00091C15 /* InfoPlist.strings */; };
@@ -193,9 +192,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		1A1C10E6171BFAAA0027C41D /* StartupWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StartupWindow.h; sourceTree = "<group>"; };
-		1A1C10E7171BFAAA0027C41D /* StartupWindow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StartupWindow.m; sourceTree = "<group>"; };
-		1A1C10E8171BFAAA0027C41D /* StartupWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = StartupWindow.xib; sourceTree = "<group>"; };
+		12A7144617FC81A500097FF2 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = SoHo/Images.xcassets; sourceTree = "<group>"; };
 		1A1C10EB171BFCBA0027C41D /* SoHo_logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SoHo_logo.png; sourceTree = "<group>"; };
 		1A2A670E17159F66007ABCB0 /* Radium.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Radium.h; sourceTree = "<group>"; };
 		1A2C714216DE515D00091C15 /* SoHo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SoHo.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -451,6 +448,7 @@
 		1A2C713916DE515D00091C15 = {
 			isa = PBXGroup;
 			children = (
+				12A7144617FC81A500097FF2 /* Images.xcassets */,
 				1A5E83971725B7FE0009E4A1 /* icon.icns */,
 				1A95A80E1700B98C006D3708 /* Carbon.framework */,
 				1A2C714B16DE515D00091C15 /* Maori */,
@@ -509,9 +507,6 @@
 				1AB37369170B2E0100D2B5DA /* NotificationWindowController.xib */,
 				1AB3737C170B368B00D2B5DA /* NotificationView.h */,
 				1AB3737D170B368C00D2B5DA /* NotificationView.m */,
-				1A1C10E6171BFAAA0027C41D /* StartupWindow.h */,
-				1A1C10E7171BFAAA0027C41D /* StartupWindow.m */,
-				1A1C10E8171BFAAA0027C41D /* StartupWindow.xib */,
 				1AD09D8417F9773B00E785DC /* bt_donate_1.tiff */,
 				1AD09D8517F9773B00E785DC /* bt_donate_2.tiff */,
 				1A57A72017F9DAF000A3404B /* Panel Images */,
@@ -924,12 +919,12 @@
 				1ADBA3291717159B00C821BA /* So_bow.png in Resources */,
 				1ADBA32A1717159B00C821BA /* So_sword.png in Resources */,
 				1A57A71717F9D57800A3404B /* p_quit@2x.png in Resources */,
-				1A1C10EA171BFAAA0027C41D /* StartupWindow.xib in Resources */,
 				1A1C10EC171BFCBA0027C41D /* SoHo_logo.png in Resources */,
 				1A66912C171DDA88009C45E9 /* Auckland_Pause@2x.png in Resources */,
 				1A66912D171DDA88009C45E9 /* Auckland_Next@2x.png in Resources */,
 				1A66912E171DDA88009C45E9 /* Auckland_Play@2x.png in Resources */,
 				1A57A71517F9D57800A3404B /* p_quit_alt@2x.png in Resources */,
+				12A7144717FC81A500097FF2 /* Images.xcassets in Resources */,
 				1A66912F171DDA88009C45E9 /* Auckland_Previous@2x.png in Resources */,
 				1A669130171DDA88009C45E9 /* Auckland_Previous_alt@2x.png in Resources */,
 				1A669131171DDA88009C45E9 /* Auckland_Play_alt@2x.png in Resources */,
@@ -1020,7 +1015,6 @@
 				1AD09D8317F9749D00E785DC /* ADHoverButtonCell.m in Sources */,
 				1AB3736A170B2E0100D2B5DA /* NotificationWindowController.m in Sources */,
 				1AB3737E170B368D00D2B5DA /* NotificationView.m in Sources */,
-				1A1C10E9171BFAAA0027C41D /* StartupWindow.m in Sources */,
 				1A78A8DB177F52B2009CFF76 /* NSColor+CGColor.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1117,9 +1111,10 @@
 		1A2C716016DE515D00091C15 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = Maori/Maori.entitlements;
 				CODE_SIGN_IDENTITY = "Mac Developer";
-				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Mac Developer";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Mac Developer: Anh Dat Truong (9H82WA6C3X)";
 				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = NO;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -1143,9 +1138,10 @@
 		1A2C716116DE515D00091C15 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = Maori/Maori.entitlements;
 				CODE_SIGN_IDENTITY = "Mac Developer";
-				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Mac Developer";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Mac Developer: Anh Dat Truong (9H82WA6C3X)";
 				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = NO;
 				FRAMEWORK_SEARCH_PATHS = (

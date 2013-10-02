@@ -9,7 +9,6 @@
 #import "AppDelegate.h"
 #import "MSDurationFormatter.h"
 #import "NotificationWindowController.h"
-#import "StartupWindow.h"
 #import "NSColor+CGColor.h"
 
 #define kAlreadyBeenLaunched @"AlreadyBeenLaunched"
@@ -33,7 +32,6 @@
 @property (nonatomic) Boolean isChanged;
 @property (nonatomic) Boolean currentState;
 @property (nonatomic) Boolean isJustRun;
-@property (strong, nonatomic) StartupWindow *startup;
 
 @property (nonatomic) NSColor *greenColor;
 @property (nonatomic) NSColor *grayColor;

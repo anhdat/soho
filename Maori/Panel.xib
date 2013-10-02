@@ -50,7 +50,7 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <customView id="54" userLabel="hostView">
-                        <rect key="frame" x="1" y="123.00000000000001" width="276" height="276"/>
+                        <rect key="frame" x="1" y="123" width="276" height="276"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES" heightSizable="YES"/>
                     </customView>
                     <customView id="71" userLabel="titleView" customClass="FrontView">
@@ -239,8 +239,8 @@ GgAjAC0AMgA3AEEARwBQAFcAXABkAHkAewB9AH8AgQCJAI4AkwCeAKEAowClAKcArwC0AL8AyADQANMA
                                             <action selector="quitApp:" target="-2" id="106"/>
                                         </connections>
                                     </button>
-                                    <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" setsMaxLayoutWidthAtFirstLayout="YES" id="200">
-                                        <rect key="frame" x="-1" y="-71" width="251" height="57"/>
+                                    <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" id="200">
+                                        <rect key="frame" x="-1" y="-59" width="251" height="45"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                         <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="center" title="Visit SoHo website for upcoming updates and may be you will find Chik there." allowsEditingTextAttributes="YES" id="201">
                                             <font key="font" size="13" name="HelveticaNeue"/>
@@ -325,7 +325,7 @@ DQ
                                 <rect key="frame" x="10" y="33" width="253" height="230"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <subviews>
-                                    <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" setsMaxLayoutWidthAtFirstLayout="YES" id="227">
+                                    <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" id="227">
                                         <rect key="frame" x="27" y="161" width="198" height="60"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                         <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="center" id="228">
