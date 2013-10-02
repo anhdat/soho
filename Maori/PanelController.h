@@ -28,6 +28,12 @@
     BOOL authorizationPending;
 }
 @property (weak) IBOutlet ADHoverButtonCell *VisitBtnCell;
+@property (weak) IBOutlet ADHoverButtonCell *lastFMBtnCell;
+@property (weak) IBOutlet ADHoverButtonCell *feedbackCell;
+@property (weak) IBOutlet NSButton *visitBtn;
+@property (weak) IBOutlet NSButton *feedbackBtn;
+- (IBAction)sendFeedback:(id)sender;
+- (IBAction)visitSoHo:(id)sender;
 
 @property Boolean frontIsFlipped;
 @property (nonatomic, unsafe_unretained) IBOutlet BackgroundView *backgroundView;

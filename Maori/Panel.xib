@@ -15,10 +15,13 @@
                 <outlet property="backView" destination="52" id="61"/>
                 <outlet property="backgroundView" destination="6" id="20"/>
                 <outlet property="chikBtn" destination="109" id="202"/>
+                <outlet property="feedbackBtn" destination="oDp-Oj-z0Q" id="OQ7-eQ-Dgf"/>
+                <outlet property="feedbackCell" destination="u02-Ol-9CC" id="19X-cJ-ulG"/>
                 <outlet property="flipBtn" destination="55" id="230"/>
                 <outlet property="frontView" destination="51" id="60"/>
                 <outlet property="goToTwitter" destination="211" id="220"/>
                 <outlet property="hostView" destination="54" id="59"/>
+                <outlet property="lastFMBtnCell" destination="114" id="ef8-Ln-j7u"/>
                 <outlet property="playBtn" destination="83" id="97"/>
                 <outlet property="playerProgressBar" destination="67" id="72"/>
                 <outlet property="quitApp" destination="57" id="105"/>
@@ -29,6 +32,7 @@
                 <outlet property="txtEslapsedTime" destination="78" id="103"/>
                 <outlet property="txtRemainingTime" destination="80" id="104"/>
                 <outlet property="txtSongTitle" destination="43" id="46"/>
+                <outlet property="visitBtn" destination="Kj7-5Z-G1w" id="L4Y-gu-n0P"/>
                 <outlet property="window" destination="5" id="7"/>
             </connections>
         </customObject>
@@ -214,7 +218,7 @@ GgAjAC0AMgA3AEEARwBQAFcAXABkAHkAewB9AH8AgQCJAI4AkwCeAKEAowClAKcArwC0AL8AyADQANMA
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <subviews>
                                     <button id="211">
-                                        <rect key="frame" x="151" y="-182" width="92" height="31"/>
+                                        <rect key="frame" x="148" y="-182" width="92" height="31"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                         <buttonCell key="cell" type="bevel" bezelStyle="circular" image="p_twitter" imagePosition="above" alignment="left" alternateImage="p_twitter_alt" imageScaling="proportionallyDown" id="212">
                                             <behavior key="behavior" lightByContents="YES"/>
@@ -225,35 +229,38 @@ GgAjAC0AMgA3AEEARwBQAFcAXABkAHkAewB9AH8AgQCJAI4AkwCeAKEAowClAKcArwC0AL8AyADQANMA
                                         </connections>
                                     </button>
                                     <button verticalHuggingPriority="750" id="57">
-                                        <rect key="frame" x="179" y="-222" width="64" height="32"/>
+                                        <rect key="frame" x="176" y="-228" width="64" height="32"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                         <buttonCell key="cell" type="bevel" title="Quit" bezelStyle="rounded" image="p_quit" imagePosition="overlaps" alignment="center" alternateImage="p_quit_alt" imageScaling="proportionallyDown" inset="2" id="58">
                                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                            <font key="font" metaFont="system"/>
+                                            <font key="font" size="13" name="MyriadPro-Semibold"/>
                                         </buttonCell>
                                         <connections>
                                             <action selector="quitApp:" target="-2" id="106"/>
                                         </connections>
                                     </button>
                                     <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" setsMaxLayoutWidthAtFirstLayout="YES" id="200">
-                                        <rect key="frame" x="14" y="-66" width="225" height="57"/>
+                                        <rect key="frame" x="-1" y="-71" width="251" height="57"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                        <textFieldCell key="cell" sendsActionOnEndEditing="YES" title="Visit SoHo website for upcoming updates and may be you will find Chik there." allowsEditingTextAttributes="YES" id="201">
+                                        <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="center" title="Visit SoHo website for upcoming updates and may be you will find Chik there." allowsEditingTextAttributes="YES" id="201">
                                             <font key="font" size="13" name="HelveticaNeue"/>
                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                         </textFieldCell>
                                     </textField>
                                     <button id="Kj7-5Z-G1w">
-                                        <rect key="frame" x="17" y="-134" width="226" height="52"/>
+                                        <rect key="frame" x="14" y="-126" width="226" height="52"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                         <buttonCell key="cell" type="square" title="Visit SoHo" bezelStyle="shadowlessSquare" image="p_visit" imagePosition="overlaps" alignment="center" imageScaling="proportionallyDown" inset="2" id="YFc-1r-XSO" customClass="ADHoverButtonCell">
                                             <behavior key="behavior" lightByContents="YES"/>
                                             <font key="font" size="18" name="MyriadPro-Semibold"/>
                                         </buttonCell>
+                                        <connections>
+                                            <action selector="visitSoHo:" target="-2" id="95i-gG-SiW"/>
+                                        </connections>
                                     </button>
                                     <button id="209">
-                                        <rect key="frame" x="17" y="-183" width="93" height="33"/>
+                                        <rect key="frame" x="14" y="-183" width="93" height="33"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                         <buttonCell key="cell" type="bevel" bezelStyle="circular" image="p_facebook" imagePosition="only" alignment="center" alternateImage="p_facebook_alt" imageScaling="proportionallyDown" inset="2" id="210">
                                             <behavior key="behavior" lightByContents="YES"/>
@@ -272,20 +279,20 @@ GgAjAC0AMgA3AEEARwBQAFcAXABkAHkAewB9AH8AgQCJAI4AkwCeAKEAowClAKcArwC0AL8AyADQANMA
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <subviews>
                                     <textField verticalHuggingPriority="750" id="125" userLabel="AuthoStatus">
-                                        <rect key="frame" x="29" y="175" width="197" height="27"/>
+                                        <rect key="frame" x="3" y="174" width="236" height="27"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="left" title="You are not login." id="126">
+                                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" title="Scrobble your music to Last.fm" id="126">
                                             <font key="font" size="13" name="HelveticaNeue"/>
                                             <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                         </textFieldCell>
                                     </textField>
                                     <button verticalHuggingPriority="750" id="113">
-                                        <rect key="frame" x="11" y="101" width="225" height="53"/>
+                                        <rect key="frame" x="14" y="104" width="228" height="53"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                        <buttonCell key="cell" type="square" title="Login" bezelStyle="shadowlessSquare" image="p_lastfm" imagePosition="overlaps" alignment="center" alternateImage="p_lastfm_alt" imageScaling="proportionallyDown" inset="2" id="114">
+                                        <buttonCell key="cell" type="square" title="Connect Last.fm" bezelStyle="shadowlessSquare" image="p_lastfm" imagePosition="overlaps" alignment="center" imageScaling="proportionallyDown" inset="2" id="114" customClass="ADHoverButtonCell">
                                             <behavior key="behavior" lightByContents="YES"/>
-                                            <font key="font" metaFont="system"/>
+                                            <font key="font" size="18" name="MyriadPro-Semibold"/>
                                             <string key="keyEquivalent" base64-UTF8="YES">
 DQ
 </string>
@@ -295,7 +302,7 @@ DQ
                                         </connections>
                                     </button>
                                     <progressIndicator hidden="YES" horizontalHuggingPriority="750" verticalHuggingPriority="750" maxValue="100" bezeled="NO" indeterminate="YES" controlSize="small" style="spinning" id="123">
-                                        <rect key="frame" x="199" y="151" width="16" height="16"/>
+                                        <rect key="frame" x="112" y="119" width="16" height="16"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                     </progressIndicator>
                                     <button id="145">
@@ -318,31 +325,37 @@ DQ
                                 <rect key="frame" x="10" y="33" width="253" height="230"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <subviews>
-                                    <imageView id="225">
-                                        <rect key="frame" x="102" y="98" width="48" height="48"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                        <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="SoHo_logo" id="226"/>
-                                    </imageView>
                                     <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" setsMaxLayoutWidthAtFirstLayout="YES" id="227">
-                                        <rect key="frame" x="5" y="107" width="242" height="120"/>
+                                        <rect key="frame" x="27" y="161" width="198" height="60"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                         <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="center" id="228">
                                             <font key="font" size="14" name="HelveticaNeue"/>
                                             <string key="title">SoHo is a gift from
 a music lover to music lovers. 
-
-Every feedback is a great help for the next version. Or just leave some words tell how much you like it : )</string>
+</string>
+                                            <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                        </textFieldCell>
+                                    </textField>
+                                    <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" setsMaxLayoutWidthAtFirstLayout="YES" id="iI2-ed-dsj">
+                                        <rect key="frame" x="5" y="28" width="242" height="60"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                        <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="center" title="Every feedback is a great help for the next version. Or just leave some words tell how much you like it : )" id="V6P-vO-lH6">
+                                            <font key="font" size="14" name="HelveticaNeue"/>
                                             <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                         </textFieldCell>
                                     </textField>
                                     <button id="oDp-Oj-z0Q">
-                                        <rect key="frame" x="20" y="24" width="216" height="55"/>
+                                        <rect key="frame" x="14" y="104" width="226" height="55"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                        <buttonCell key="cell" type="square" title="Send Feedback" bezelStyle="shadowlessSquare" image="p_feedback" imagePosition="overlaps" alignment="center" alternateImage="p_feedback_alt" imageScaling="proportionallyDown" inset="2" id="u02-Ol-9CC">
+                                        <buttonCell key="cell" type="square" title="Send Feedback" bezelStyle="shadowlessSquare" image="p_feedback" imagePosition="overlaps" alignment="center" alternateImage="p_feedback_alt" imageScaling="proportionallyDown" inset="2" id="u02-Ol-9CC" customClass="ADHoverButtonCell">
                                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                            <font key="font" metaFont="system"/>
+                                            <font key="font" size="18" name="MyriadPro-Semibold"/>
                                         </buttonCell>
+                                        <connections>
+                                            <action selector="sendFeedback:" target="-2" id="tKT-qy-PPh"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                             </view>
@@ -359,13 +372,11 @@ Every feedback is a great help for the next version. Or just leave some words te
         <image name="SoHo_Play" width="217" height="208"/>
         <image name="SoHo_Previous" width="211" height="206"/>
         <image name="SoHo_free_chick" width="55" height="59"/>
-        <image name="SoHo_logo" width="1025" height="1025"/>
         <image name="p_facebook" width="108" height="37"/>
         <image name="p_facebook_alt" width="108" height="37"/>
         <image name="p_feedback" width="228" height="53"/>
         <image name="p_feedback_alt" width="228" height="53"/>
         <image name="p_lastfm" width="228" height="53"/>
-        <image name="p_lastfm_alt" width="228" height="53"/>
         <image name="p_quit" width="61" height="27"/>
         <image name="p_quit_alt" width="61" height="27"/>
         <image name="p_twitter" width="108" height="37"/>

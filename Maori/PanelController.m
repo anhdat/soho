@@ -124,27 +124,29 @@
     [fliper setActiveViewAtIndex:0];
     _frontIsFlipped = NO;
     
-    NSColor *color = [NSColor whiteColor];
+    [self whiteTitleforBtn:_visitBtn];
+    [self whiteTitleforBtn:_quitApp];
+    [self whiteTitleforBtn:_authConnectButton];
+    [self whiteTitleforBtn:_feedbackBtn];
     
-    NSMutableAttributedString *colorTitle =
-    
-    [[NSMutableAttributedString alloc] initWithAttributedString:[_VisitBtnCell attributedTitle]];
-    
-    NSRange titleRange = NSMakeRange(0, [colorTitle length]);
-    
-    [colorTitle addAttribute:NSForegroundColorAttributeName value:color range:titleRange];
-    
-    [_VisitBtnCell setAttributedTitle:colorTitle];
-//    [_VisitBtnCell setHighlightsBy:NSCellLightsByBackground];
+
     _VisitBtnCell.hoverImage = [NSImage imageNamed:@"p_visit_alt"];
-    
-    
+    _feedbackCell.hoverImage = [NSImage imageNamed:@"p_feedback_alt"];
+    _lastFMBtnCell.hoverImage = [NSImage imageNamed:@"p_lastfm_alt"];
     // Easter Egg part
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
     _enableChik = [[userDefaults stringForKey:@"chikSong1"] isCaseInsensitiveLike:@".efil otni gnitsrub s'taht nedrag a em wohS"] &&
     [[userDefaults stringForKey:@"chikSong2"] isCaseInsensitiveLike:@"?enog uoy evah erehw gniht elpmis hO"] &&
     [[userDefaults stringForKey:@"chikSong3"] isCaseInsensitiveLike:@".snoitseuq ruoy em ksa dna ,sterces ruoy em lleT"];
     [self unhideChik];
+}
+
+- (void) whiteTitleforBtn:(NSButton *) btn{
+    NSColor *color = [NSColor whiteColor];
+    NSMutableAttributedString *colorTitle = [[NSMutableAttributedString alloc] initWithAttributedString:[btn attributedTitle]];
+    NSRange titleRange = NSMakeRange(0, [colorTitle length]);
+    [colorTitle addAttribute:NSForegroundColorAttributeName value:color range:titleRange];
+    [btn setAttributedTitle:colorTitle];
 }
 
 #pragma mark - Public accessors
@@ -553,12 +555,13 @@
 
 - (void)showAuthConnectPane
 {
-	[_authStatus setStringValue:@"You are not login."];
+	[_authStatus setStringValue:@"Scrobble your music to Last.fm "];
     [_authSpinner setHidden:YES];
 	[_authSpinner stopAnimation:self];
 	
-	[_authConnectButton setTitle:@"Connect"];
-	
+	[_authConnectButton setTitle:@"Connect Last.fm"];
+    [self whiteTitleforBtn:_authConnectButton];
+
 	[_authConnectButton setAction:@selector(connectWithLastFM:)];
 	[_authConnectButton setHidden:NO];
 }
@@ -585,10 +588,12 @@
 }
 - (void)showAuthConnectedPaneWithUser:(NSString *)username
 {
-	NSMutableAttributedString *str = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"Hi, %@!", username]];
+	NSMutableAttributedString *str = [[NSMutableAttributedString alloc] initWithString:@""];
 	[_authStatus setAttributedStringValue:str];
 	
-    [_authConnectButton setTitle:@"Disconnect"];
+    [_authConnectButton setTitle:[NSString stringWithFormat:@"Hi, %@!", username]];
+    _lastFMBtnCell.hoverImage = [NSImage imageNamed:@"p_lastfm_alt_dc"];
+    [self whiteTitleforBtn:_authConnectButton];
 	
     [_authSpinner stopAnimation:self];
     [_authSpinner setHidden:YES];
@@ -863,5 +868,12 @@
     [[NSUserDefaults standardUserDefaults] setBool:([_toggleLoveBtnChk state]==NSOnState) forKey:@"hideLoveBtnState"];
     [[NSUserDefaults standardUserDefaults] synchronize];
     [[NSNotificationCenter defaultCenter] postNotificationName:@"hideNow" object:nil];
+}
+- (IBAction)sendFeedback:(id)sender {
+    [[NSWorkspace sharedWorkspace] openURL: [NSURL URLWithString:@"mailto:sohomacapp@gmail.com"]];
+}
+
+- (IBAction)visitSoHo:(id)sender {
+    [[NSWorkspace sharedWorkspace] openURL: [NSURL URLWithString:@"http://soho.anhd.at"]];
 }
 @end
