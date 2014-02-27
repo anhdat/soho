@@ -11,6 +11,7 @@
 #import "NotificationWindowController.h"
 #import "NSColor+CGColor.h"
 
+
 #define kAlreadyBeenLaunched @"AlreadyBeenLaunched"
 #define kGreenComponents {0.5f, 1.0f, 0.5f, 0.3f}
 #define kGrayComponents {0.0f, 0.0f, 0.0f, 0.05f}
@@ -177,7 +178,23 @@
 //        [[NSUserDefaults standardUserDefaults] setInteger:1 forKey:@"launchCount"];
 //        [[NSUserDefaults standardUserDefaults] synchronize];
 //    }
+    [self showTour];
+}
+
+- (void) showTour
+{
+    self.tourController = [[TourWindowController alloc] initWithWindowNibName:@"TourWindowController"];
+    [self.tourController showWindow:nil];
+    [self.tourController.imageView setAnimates:YES];
+    [self.tourController.imageView setImage:[NSImage imageNamed:@"drag.gif"]];
     
+    NSRect screenFrame = [[NSScreen mainScreen] frame];
+    float x = screenFrame.size.width/2 - [[self.tourController window] frame].size.width/2;
+    float y = screenFrame.size.height/1.5 - [[self.tourController window] frame].size.height/2;
+    [[self.tourController window] setFrameOrigin:NSMakePoint(
+                                              x,
+                                              y
+                                              )];
 }
 
 - (void) toBottom:(NSString *) player{

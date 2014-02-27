@@ -13,8 +13,11 @@
 #import "Radium.h"
 #import "MenubarController.h"
 #import "PanelController.h"
+#import "TourWindowController.h"
+
 #import "ADTrack.h"
 #import "Chick.h"
+
 @interface AppDelegate : NSObject <NSApplicationDelegate, PanelControllerDelegate,NSMenuDelegate, ChickDelegate>{
 }
 @property (nonatomic, strong) NSStatusItem *controllerItem;
@@ -23,6 +26,7 @@
 @property (weak) IBOutlet NSView *titleView;
 @property (weak) IBOutlet NSView *controlView;
 @property (weak) IBOutlet NSView *volumeView;
+@property (strong) TourWindowController *tourController;
 
 @property (weak) IBOutlet NSTextFieldCell *txtTitle;
 @property (weak) IBOutlet NSTextFieldCell *txtVolume;

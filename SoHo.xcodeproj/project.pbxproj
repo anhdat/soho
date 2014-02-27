@@ -49,6 +49,15 @@
 		1A3EDCB5170768B200F68F0F /* SoHo_chick_love_alt@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1A3EDCB1170768B200F68F0F /* SoHo_chick_love_alt@2x.png */; };
 		1A3EDCB6170768B200F68F0F /* SoHo_chick_love.png in Resources */ = {isa = PBXBuildFile; fileRef = 1A3EDCB2170768B200F68F0F /* SoHo_chick_love.png */; };
 		1A3EDCB7170768B200F68F0F /* SoHo_chick_love@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1A3EDCB3170768B200F68F0F /* SoHo_chick_love@2x.png */; };
+		1A414FFD18BF9602008092EC /* TourWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A414FFB18BF9602008092EC /* TourWindowController.m */; };
+		1A414FFE18BF9602008092EC /* TourWindowController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1A414FFC18BF9602008092EC /* TourWindowController.xib */; };
+		1A41500318BF9FDA008092EC /* TourView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A41500218BF9FDA008092EC /* TourView.m */; };
+		1A41500618BFA46D008092EC /* TourWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A41500518BFA46C008092EC /* TourWindow.m */; };
+		1A41500B18BFA4EC008092EC /* tour_left_hover.png in Resources */ = {isa = PBXBuildFile; fileRef = 1A41500718BFA4EB008092EC /* tour_left_hover.png */; };
+		1A41500C18BFA4EC008092EC /* tour_left_normal.png in Resources */ = {isa = PBXBuildFile; fileRef = 1A41500818BFA4EC008092EC /* tour_left_normal.png */; };
+		1A41500D18BFA4EC008092EC /* tour_right_hover.png in Resources */ = {isa = PBXBuildFile; fileRef = 1A41500918BFA4EC008092EC /* tour_right_hover.png */; };
+		1A41500E18BFA4EC008092EC /* tour_right_normal.png in Resources */ = {isa = PBXBuildFile; fileRef = 1A41500A18BFA4EC008092EC /* tour_right_normal.png */; };
+		1A41501018BFA52B008092EC /* drag.gif in Resources */ = {isa = PBXBuildFile; fileRef = 1A41500F18BFA52B008092EC /* drag.gif */; };
 		1A47F3671708B6F3002EB810 /* BackTabView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A47F3661708B6F2002EB810 /* BackTabView.m */; };
 		1A47F5A31705E630003FE5DD /* MIHSliderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A47F5A21705E630003FE5DD /* MIHSliderView.m */; };
 		1A57A70817F9D57800A3404B /* p_facebook_alt.png in Resources */ = {isa = PBXBuildFile; fileRef = 1A57A6F017F9D57800A3404B /* p_facebook_alt.png */; };
@@ -104,6 +113,9 @@
 		1A66914E171DEEB7009C45E9 /* SoHo_facebook.png in Resources */ = {isa = PBXBuildFile; fileRef = 1A66914C171DEEB7009C45E9 /* SoHo_facebook.png */; };
 		1A66914F171DEEB7009C45E9 /* SoHo_twitter.png in Resources */ = {isa = PBXBuildFile; fileRef = 1A66914D171DEEB7009C45E9 /* SoHo_twitter.png */; };
 		1A669154171DF467009C45E9 /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 1A669153171DF467009C45E9 /* Credits.rtf */; };
+		1A67256618BFB52200DFB29C /* TourButtonCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A67256518BFB52200DFB29C /* TourButtonCell.m */; };
+		1A67256918BFB68F00DFB29C /* HexColor.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A67256818BFB68F00DFB29C /* HexColor.m */; };
+		1A67256C18BFBC6C00DFB29C /* TourTextFieldCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A67256B18BFBC6C00DFB29C /* TourTextFieldCell.m */; };
 		1A6A0A3E16F781BD00939616 /* FrontView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A6A0A3D16F781BD00939616 /* FrontView.m */; };
 		1A78A8DB177F52B2009CFF76 /* NSColor+CGColor.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A78A8DA177F52B2009CFF76 /* NSColor+CGColor.m */; };
 		1A801CB716EF8B3D00532C54 /* Background.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A801CB616EF8B3D00532C54 /* Background.m */; };
@@ -248,6 +260,20 @@
 		1A3EDCB1170768B200F68F0F /* SoHo_chick_love_alt@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "SoHo_chick_love_alt@2x.png"; sourceTree = "<group>"; };
 		1A3EDCB2170768B200F68F0F /* SoHo_chick_love.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SoHo_chick_love.png; sourceTree = "<group>"; };
 		1A3EDCB3170768B200F68F0F /* SoHo_chick_love@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "SoHo_chick_love@2x.png"; sourceTree = "<group>"; };
+		1A414FFA18BF9602008092EC /* TourWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TourWindowController.h; path = Controllers/TourWindowController.h; sourceTree = "<group>"; };
+		1A414FFB18BF9602008092EC /* TourWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TourWindowController.m; path = Controllers/TourWindowController.m; sourceTree = "<group>"; };
+		1A414FFC18BF9602008092EC /* TourWindowController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = TourWindowController.xib; path = Controllers/TourWindowController.xib; sourceTree = "<group>"; };
+		1A41500118BF9FDA008092EC /* TourView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TourView.h; path = Views/TourView.h; sourceTree = "<group>"; };
+		1A41500218BF9FDA008092EC /* TourView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TourView.m; path = Views/TourView.m; sourceTree = "<group>"; };
+		1A41500418BFA46C008092EC /* TourWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TourWindow.h; path = Views/TourWindow.h; sourceTree = "<group>"; };
+		1A41500518BFA46C008092EC /* TourWindow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TourWindow.m; path = Views/TourWindow.m; sourceTree = "<group>"; };
+		1A41500718BFA4EB008092EC /* tour_left_hover.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tour_left_hover.png; sourceTree = "<group>"; };
+		1A41500818BFA4EC008092EC /* tour_left_normal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tour_left_normal.png; sourceTree = "<group>"; };
+		1A41500918BFA4EC008092EC /* tour_right_hover.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tour_right_hover.png; sourceTree = "<group>"; };
+		1A41500A18BFA4EC008092EC /* tour_right_normal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tour_right_normal.png; sourceTree = "<group>"; };
+		1A41500F18BFA52B008092EC /* drag.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = drag.gif; sourceTree = "<group>"; };
+		1A41501418BFA755008092EC /* ImageIO.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ImageIO.framework; path = System/Library/Frameworks/ImageIO.framework; sourceTree = SDKROOT; };
+		1A41501618BFA8BA008092EC /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		1A47F3651708B6F2002EB810 /* BackTabView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BackTabView.h; sourceTree = "<group>"; };
 		1A47F3661708B6F2002EB810 /* BackTabView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BackTabView.m; sourceTree = "<group>"; };
 		1A47F5A11705E630003FE5DD /* MIHSliderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MIHSliderView.h; sourceTree = "<group>"; };
@@ -309,6 +335,12 @@
 		1A66914C171DEEB7009C45E9 /* SoHo_facebook.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SoHo_facebook.png; sourceTree = "<group>"; };
 		1A66914D171DEEB7009C45E9 /* SoHo_twitter.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SoHo_twitter.png; sourceTree = "<group>"; };
 		1A669153171DF467009C45E9 /* Credits.rtf */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.rtf; path = Credits.rtf; sourceTree = "<group>"; };
+		1A67256418BFB52200DFB29C /* TourButtonCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TourButtonCell.h; path = Views/TourButtonCell.h; sourceTree = "<group>"; };
+		1A67256518BFB52200DFB29C /* TourButtonCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TourButtonCell.m; path = Views/TourButtonCell.m; sourceTree = "<group>"; };
+		1A67256718BFB68E00DFB29C /* HexColor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HexColor.h; sourceTree = "<group>"; };
+		1A67256818BFB68F00DFB29C /* HexColor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HexColor.m; sourceTree = "<group>"; };
+		1A67256A18BFBC6C00DFB29C /* TourTextFieldCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TourTextFieldCell.h; path = Views/TourTextFieldCell.h; sourceTree = "<group>"; };
+		1A67256B18BFBC6C00DFB29C /* TourTextFieldCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TourTextFieldCell.m; path = Views/TourTextFieldCell.m; sourceTree = "<group>"; };
 		1A6A0A3C16F781BD00939616 /* FrontView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FrontView.h; sourceTree = "<group>"; };
 		1A6A0A3D16F781BD00939616 /* FrontView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FrontView.m; sourceTree = "<group>"; };
 		1A78A8D9177F52B2009CFF76 /* NSColor+CGColor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSColor+CGColor.h"; sourceTree = "<group>"; };
@@ -448,6 +480,8 @@
 		1A2C713916DE515D00091C15 = {
 			isa = PBXGroup;
 			children = (
+				1A41501618BFA8BA008092EC /* CoreGraphics.framework */,
+				1A41501418BFA755008092EC /* ImageIO.framework */,
 				12A7144617FC81A500097FF2 /* Images.xcassets */,
 				1A5E83971725B7FE0009E4A1 /* icon.icns */,
 				1A95A80E1700B98C006D3708 /* Carbon.framework */,
@@ -495,22 +529,10 @@
 				1A2C715716DE515D00091C15 /* AppDelegate.h */,
 				1A2C715816DE515D00091C15 /* AppDelegate.m */,
 				1A2C715A16DE515D00091C15 /* MainMenu.xib */,
-				DC1073ED16E3B11900EBF5FE /* Panel.xib */,
-				1A6148121704ADBA008EE2B9 /* DragLogo.h */,
-				1A6148131704ADBA008EE2B9 /* DragLogo.m */,
-				1A6148141704ADBA008EE2B9 /* DragLogo.xib */,
-				1A8F9D2316FB486900D49883 /* Chick.h */,
-				1A8F9D2416FB486900D49883 /* Chick.m */,
-				1A8F9D2516FB486900D49883 /* Chick.xib */,
-				1AB37367170B2E0000D2B5DA /* NotificationWindowController.h */,
-				1AB37368170B2E0000D2B5DA /* NotificationWindowController.m */,
-				1AB37369170B2E0100D2B5DA /* NotificationWindowController.xib */,
-				1AB3737C170B368B00D2B5DA /* NotificationView.h */,
-				1AB3737D170B368C00D2B5DA /* NotificationView.m */,
+				1A41500018BF9633008092EC /* Controllers */,
 				1AD09D8417F9773B00E785DC /* bt_donate_1.tiff */,
 				1AD09D8517F9773B00E785DC /* bt_donate_2.tiff */,
 				1A57A72017F9DAF000A3404B /* Panel Images */,
-				DC1073D916E3B11900EBF5FE /* PopUp */,
 				1AA70F7F16FA2C7500D2FE21 /* LastFM */,
 				1AEACF8816EC351300420311 /* Views */,
 				DC1073F216E3B11900EBF5FE /* Images */,
@@ -530,6 +552,75 @@
 				1A2C714D16DE515D00091C15 /* SoHo-Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		1A414FF718BF956A008092EC /* Notification Controller */ = {
+			isa = PBXGroup;
+			children = (
+				1AB37367170B2E0000D2B5DA /* NotificationWindowController.h */,
+				1AB37368170B2E0000D2B5DA /* NotificationWindowController.m */,
+				1AB37369170B2E0100D2B5DA /* NotificationWindowController.xib */,
+				1AB3737C170B368B00D2B5DA /* NotificationView.h */,
+				1AB3737D170B368C00D2B5DA /* NotificationView.m */,
+			);
+			name = "Notification Controller";
+			sourceTree = "<group>";
+		};
+		1A414FF818BF957E008092EC /* Chik Controller */ = {
+			isa = PBXGroup;
+			children = (
+				1A8F9D2316FB486900D49883 /* Chick.h */,
+				1A8F9D2416FB486900D49883 /* Chick.m */,
+				1A8F9D2516FB486900D49883 /* Chick.xib */,
+			);
+			name = "Chik Controller";
+			sourceTree = "<group>";
+		};
+		1A414FF918BF959F008092EC /* Drag Logo Controller */ = {
+			isa = PBXGroup;
+			children = (
+				1A6148121704ADBA008EE2B9 /* DragLogo.h */,
+				1A6148131704ADBA008EE2B9 /* DragLogo.m */,
+				1A6148141704ADBA008EE2B9 /* DragLogo.xib */,
+			);
+			name = "Drag Logo Controller";
+			sourceTree = "<group>";
+		};
+		1A414FFF18BF960B008092EC /* Tour Controller */ = {
+			isa = PBXGroup;
+			children = (
+				1A414FFA18BF9602008092EC /* TourWindowController.h */,
+				1A414FFB18BF9602008092EC /* TourWindowController.m */,
+				1A414FFC18BF9602008092EC /* TourWindowController.xib */,
+				1A41500418BFA46C008092EC /* TourWindow.h */,
+				1A41500518BFA46C008092EC /* TourWindow.m */,
+				1A41500118BF9FDA008092EC /* TourView.h */,
+				1A41500218BF9FDA008092EC /* TourView.m */,
+				1A67256418BFB52200DFB29C /* TourButtonCell.h */,
+				1A67256518BFB52200DFB29C /* TourButtonCell.m */,
+				1A67256A18BFBC6C00DFB29C /* TourTextFieldCell.h */,
+				1A67256B18BFBC6C00DFB29C /* TourTextFieldCell.m */,
+				1A67256718BFB68E00DFB29C /* HexColor.h */,
+				1A67256818BFB68F00DFB29C /* HexColor.m */,
+				1A41500F18BFA52B008092EC /* drag.gif */,
+				1A41500718BFA4EB008092EC /* tour_left_hover.png */,
+				1A41500818BFA4EC008092EC /* tour_left_normal.png */,
+				1A41500918BFA4EC008092EC /* tour_right_hover.png */,
+				1A41500A18BFA4EC008092EC /* tour_right_normal.png */,
+			);
+			name = "Tour Controller";
+			sourceTree = "<group>";
+		};
+		1A41500018BF9633008092EC /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				DC1073D916E3B11900EBF5FE /* PopUp */,
+				1A414FF918BF959F008092EC /* Drag Logo Controller */,
+				1A414FF818BF957E008092EC /* Chik Controller */,
+				1A414FF718BF956A008092EC /* Notification Controller */,
+				1A414FFF18BF960B008092EC /* Tour Controller */,
+			);
+			name = Controllers;
 			sourceTree = "<group>";
 		};
 		1A47F5A01705E621003FE5DD /* Welcome */ = {
@@ -680,6 +771,7 @@
 		DC1073D916E3B11900EBF5FE /* PopUp */ = {
 			isa = PBXGroup;
 			children = (
+				DC1073ED16E3B11900EBF5FE /* Panel.xib */,
 				1A669153171DF467009C45E9 /* Credits.rtf */,
 				1A37635B1708232E00F77910 /* LaunchAtLoginController.h */,
 				1A37635C1708232E00F77910 /* LaunchAtLoginController.m */,
@@ -963,6 +1055,12 @@
 				1ABA56CE17D8E72500DAA3FA /* SoHo_logo_normal.png in Resources */,
 				1ABA56CF17D8E72500DAA3FA /* SoHo_logo_normal@2x.png in Resources */,
 				1A57A70C17F9D57800A3404B /* p_feedback_alt.png in Resources */,
+				1A414FFE18BF9602008092EC /* TourWindowController.xib in Resources */,
+				1A41500B18BFA4EC008092EC /* tour_left_hover.png in Resources */,
+				1A41500C18BFA4EC008092EC /* tour_left_normal.png in Resources */,
+				1A41500D18BFA4EC008092EC /* tour_right_hover.png in Resources */,
+				1A41500E18BFA4EC008092EC /* tour_right_normal.png in Resources */,
+				1A41501018BFA52B008092EC /* drag.gif in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1016,6 +1114,12 @@
 				1AB3736A170B2E0100D2B5DA /* NotificationWindowController.m in Sources */,
 				1AB3737E170B368D00D2B5DA /* NotificationView.m in Sources */,
 				1A78A8DB177F52B2009CFF76 /* NSColor+CGColor.m in Sources */,
+				1A414FFD18BF9602008092EC /* TourWindowController.m in Sources */,
+				1A41500318BF9FDA008092EC /* TourView.m in Sources */,
+				1A41500618BFA46D008092EC /* TourWindow.m in Sources */,
+				1A67256618BFB52200DFB29C /* TourButtonCell.m in Sources */,
+				1A67256918BFB68F00DFB29C /* HexColor.m in Sources */,
+				1A67256C18BFBC6C00DFB29C /* TourTextFieldCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1111,6 +1215,7 @@
 		1A2C716016DE515D00091C15 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = Maori/Maori.entitlements;
 				CODE_SIGN_IDENTITY = "Mac Developer";
@@ -1128,6 +1233,7 @@
 				GCC_PREFIX_HEADER = "Maori/SoHo-Prefix.pch";
 				INFOPLIST_FILE = "Maori/SoHo-Info.plist";
 				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				OTHER_CODE_SIGN_FLAGS = "--deep";
 				PRODUCT_NAME = SoHo;
 				PROVISIONING_PROFILE = "";
 				SDKROOT = macosx;
@@ -1138,6 +1244,7 @@
 		1A2C716116DE515D00091C15 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = Maori/Maori.entitlements;
 				CODE_SIGN_IDENTITY = "Mac Developer";
@@ -1155,6 +1262,7 @@
 				GCC_PREFIX_HEADER = "Maori/SoHo-Prefix.pch";
 				INFOPLIST_FILE = "Maori/SoHo-Info.plist";
 				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				OTHER_CODE_SIGN_FLAGS = "--deep";
 				PRODUCT_NAME = SoHo;
 				PROVISIONING_PROFILE = "";
 				SDKROOT = macosx;
