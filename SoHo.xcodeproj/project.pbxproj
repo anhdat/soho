@@ -75,7 +75,6 @@
 		1A57A71D17F9D57800A3404B /* p_visit_alt@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1A57A70517F9D57800A3404B /* p_visit_alt@2x.png */; };
 		1A57A71E17F9D57800A3404B /* p_visit.png in Resources */ = {isa = PBXBuildFile; fileRef = 1A57A70617F9D57800A3404B /* p_visit.png */; };
 		1A57A71F17F9D57800A3404B /* p_visit@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1A57A70717F9D57800A3404B /* p_visit@2x.png */; };
-		1A5E83981725B7FE0009E4A1 /* icon.icns in Resources */ = {isa = PBXBuildFile; fileRef = 1A5E83971725B7FE0009E4A1 /* icon.icns */; };
 		1A6148151704ADBB008EE2B9 /* DragLogo.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A6148131704ADBA008EE2B9 /* DragLogo.m */; };
 		1A6148161704ADBB008EE2B9 /* DragLogo.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1A6148141704ADBA008EE2B9 /* DragLogo.xib */; };
 		1A6148191704B612008EE2B9 /* TransperentView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A6148181704B612008EE2B9 /* TransperentView.m */; };
@@ -276,7 +275,6 @@
 		1A57A70517F9D57800A3404B /* p_visit_alt@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "p_visit_alt@2x.png"; sourceTree = "<group>"; };
 		1A57A70617F9D57800A3404B /* p_visit.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = p_visit.png; sourceTree = "<group>"; };
 		1A57A70717F9D57800A3404B /* p_visit@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "p_visit@2x.png"; sourceTree = "<group>"; };
-		1A5E83971725B7FE0009E4A1 /* icon.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = icon.icns; sourceTree = "<group>"; };
 		1A6148121704ADBA008EE2B9 /* DragLogo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DragLogo.h; sourceTree = "<group>"; };
 		1A6148131704ADBA008EE2B9 /* DragLogo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DragLogo.m; sourceTree = "<group>"; };
 		1A6148141704ADBA008EE2B9 /* DragLogo.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DragLogo.xib; sourceTree = "<group>"; };
@@ -449,7 +447,6 @@
 			isa = PBXGroup;
 			children = (
 				12A7144617FC81A500097FF2 /* Images.xcassets */,
-				1A5E83971725B7FE0009E4A1 /* icon.icns */,
 				1A95A80E1700B98C006D3708 /* Carbon.framework */,
 				1A2C714B16DE515D00091C15 /* Maori */,
 				1A2C714416DE515D00091C15 /* Frameworks */,
@@ -957,7 +954,6 @@
 				1A669154171DF467009C45E9 /* Credits.rtf in Resources */,
 				1A3404FF172080EF007F944B /* SoHo_twitter_alt.png in Resources */,
 				1A34050117208133007F944B /* SoHo_facebook_alt.png in Resources */,
-				1A5E83981725B7FE0009E4A1 /* icon.icns in Resources */,
 				1A57A71E17F9D57800A3404B /* p_visit.png in Resources */,
 				1A57A71F17F9D57800A3404B /* p_visit@2x.png in Resources */,
 				1ABA56CE17D8E72500DAA3FA /* SoHo_logo_normal.png in Resources */,
@@ -1128,6 +1124,7 @@
 				GCC_PREFIX_HEADER = "Maori/SoHo-Prefix.pch";
 				INFOPLIST_FILE = "Maori/SoHo-Info.plist";
 				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				OTHER_CODE_SIGN_FLAGS = "--deep";
 				PRODUCT_NAME = SoHo;
 				PROVISIONING_PROFILE = "";
 				SDKROOT = macosx;
@@ -1155,6 +1152,7 @@
 				GCC_PREFIX_HEADER = "Maori/SoHo-Prefix.pch";
 				INFOPLIST_FILE = "Maori/SoHo-Info.plist";
 				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				OTHER_CODE_SIGN_FLAGS = "--deep";
 				PRODUCT_NAME = SoHo;
 				PROVISIONING_PROFILE = "";
 				SDKROOT = macosx;
