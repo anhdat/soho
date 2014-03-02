@@ -18,6 +18,8 @@
     __weak ADHoverButtonCell *tourNextBtn;
     __weak ADHoverButtonCell *tourPrevBtn;
     __weak TourTextFieldCell *tourTextFieldCell;
+    __weak NSButton *nextBtn;
+    __weak NSButton *prevBtn;
 }
 
 @property (weak) IBOutlet NSImageView *imageView;
@@ -27,5 +29,12 @@
 @property (weak) IBOutlet ADHoverButtonCell *tourNextBtn;
 @property (weak) IBOutlet ADHoverButtonCell *tourPrevBtn;
 @property (weak) IBOutlet TourTextFieldCell *tourTextFieldCell;
+
+@property (weak) IBOutlet NSButton *nextBtn;
+@property (weak) IBOutlet NSButton *prevBtn;
+
+
+- (IBAction)nextGuide:(id)sender;
+- (IBAction)prevGuide:(id)sender;
 
 @end

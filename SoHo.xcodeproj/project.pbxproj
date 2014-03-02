@@ -122,6 +122,10 @@
 		1A801CBA16EF8CE600532C54 /* LBProgressBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A801CB916EF8CE600532C54 /* LBProgressBar.m */; };
 		1A801CC316EFA12F00532C54 /* SNRVerticalSliderCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A801CC216EFA12E00532C54 /* SNRVerticalSliderCell.m */; };
 		1A801CE616EFA1F200532C54 /* JKSMoviePlayerSliderCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A801CE516EFA1F200532C54 /* JKSMoviePlayerSliderCell.m */; };
+		1A86BA0418C0475F004B83F4 /* contextMenu.gif in Resources */ = {isa = PBXBuildFile; fileRef = 1A86BA0018C0475F004B83F4 /* contextMenu.gif */; };
+		1A86BA0518C0475F004B83F4 /* control.gif in Resources */ = {isa = PBXBuildFile; fileRef = 1A86BA0118C0475F004B83F4 /* control.gif */; };
+		1A86BA0618C0475F004B83F4 /* play.gif in Resources */ = {isa = PBXBuildFile; fileRef = 1A86BA0218C0475F004B83F4 /* play.gif */; };
+		1A86BA0718C0475F004B83F4 /* volume.gif in Resources */ = {isa = PBXBuildFile; fileRef = 1A86BA0318C0475F004B83F4 /* volume.gif */; };
 		1A8BB4D517FC692700DD75A6 /* p_lastfm_alt_dc.png in Resources */ = {isa = PBXBuildFile; fileRef = 1A8BB4D317FC692700DD75A6 /* p_lastfm_alt_dc.png */; };
 		1A8BB4D617FC692700DD75A6 /* p_lastfm_alt_dc@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1A8BB4D417FC692700DD75A6 /* p_lastfm_alt_dc@2x.png */; };
 		1A8F9D2616FB486900D49883 /* Chick.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A8F9D2416FB486900D49883 /* Chick.m */; };
@@ -353,6 +357,10 @@
 		1A801CC216EFA12E00532C54 /* SNRVerticalSliderCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SNRVerticalSliderCell.m; sourceTree = "<group>"; };
 		1A801CE416EFA1F200532C54 /* JKSMoviePlayerSliderCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JKSMoviePlayerSliderCell.h; sourceTree = "<group>"; };
 		1A801CE516EFA1F200532C54 /* JKSMoviePlayerSliderCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JKSMoviePlayerSliderCell.m; sourceTree = "<group>"; };
+		1A86BA0018C0475F004B83F4 /* contextMenu.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = contextMenu.gif; sourceTree = "<group>"; };
+		1A86BA0118C0475F004B83F4 /* control.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = control.gif; sourceTree = "<group>"; };
+		1A86BA0218C0475F004B83F4 /* play.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = play.gif; sourceTree = "<group>"; };
+		1A86BA0318C0475F004B83F4 /* volume.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = volume.gif; sourceTree = "<group>"; };
 		1A8BB4D317FC692700DD75A6 /* p_lastfm_alt_dc.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = p_lastfm_alt_dc.png; sourceTree = "<group>"; };
 		1A8BB4D417FC692700DD75A6 /* p_lastfm_alt_dc@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "p_lastfm_alt_dc@2x.png"; sourceTree = "<group>"; };
 		1A8F9D2316FB486900D49883 /* Chick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Chick.h; sourceTree = "<group>"; };
@@ -603,6 +611,10 @@
 				1A67256718BFB68E00DFB29C /* HexColor.h */,
 				1A67256818BFB68F00DFB29C /* HexColor.m */,
 				1A41500F18BFA52B008092EC /* drag.gif */,
+				1A86BA0018C0475F004B83F4 /* contextMenu.gif */,
+				1A86BA0118C0475F004B83F4 /* control.gif */,
+				1A86BA0218C0475F004B83F4 /* play.gif */,
+				1A86BA0318C0475F004B83F4 /* volume.gif */,
 				1A41500718BFA4EB008092EC /* tour_left_hover.png */,
 				1A41500818BFA4EC008092EC /* tour_left_normal.png */,
 				1A41500918BFA4EC008092EC /* tour_right_hover.png */,
@@ -1061,6 +1073,10 @@
 				1A41500D18BFA4EC008092EC /* tour_right_hover.png in Resources */,
 				1A41500E18BFA4EC008092EC /* tour_right_normal.png in Resources */,
 				1A41501018BFA52B008092EC /* drag.gif in Resources */,
+				1A86BA0418C0475F004B83F4 /* contextMenu.gif in Resources */,
+				1A86BA0518C0475F004B83F4 /* control.gif in Resources */,
+				1A86BA0618C0475F004B83F4 /* play.gif in Resources */,
+				1A86BA0718C0475F004B83F4 /* volume.gif in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

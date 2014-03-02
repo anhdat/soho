@@ -31,7 +31,7 @@
 }
 
 - (void)mouseExited:(NSEvent *)event {
-    [self setColorWithhexString:@"C6E2FF" alpha:1.0];
+    [self setColorWithhexString:@"DEDEDE" alpha:1.0];
 }
 
 - (void)_updateMouseTracking {
