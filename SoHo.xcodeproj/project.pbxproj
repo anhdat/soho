@@ -60,6 +60,9 @@
 		1A41501018BFA52B008092EC /* drag.gif in Resources */ = {isa = PBXBuildFile; fileRef = 1A41500F18BFA52B008092EC /* drag.gif */; };
 		1A47F3671708B6F3002EB810 /* BackTabView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A47F3661708B6F2002EB810 /* BackTabView.m */; };
 		1A47F5A31705E630003FE5DD /* MIHSliderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A47F5A21705E630003FE5DD /* MIHSliderView.m */; };
+		1A54BFBA18C3484B0025E85F /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1A54BFB918C3484B0025E85F /* StoreKit.framework */; };
+		1A54BFBD18C34A4C0025E85F /* InAppPurchaseManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A54BFBC18C34A4C0025E85F /* InAppPurchaseManager.m */; };
+		1A54BFC118C34BDB0025E85F /* SKProduct+LocalizedPrice.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A54BFC018C34BDB0025E85F /* SKProduct+LocalizedPrice.m */; };
 		1A57A70817F9D57800A3404B /* p_facebook_alt.png in Resources */ = {isa = PBXBuildFile; fileRef = 1A57A6F017F9D57800A3404B /* p_facebook_alt.png */; };
 		1A57A70917F9D57800A3404B /* p_facebook_alt@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1A57A6F117F9D57800A3404B /* p_facebook_alt@2x.png */; };
 		1A57A70A17F9D57800A3404B /* p_facebook.png in Resources */ = {isa = PBXBuildFile; fileRef = 1A57A6F217F9D57800A3404B /* p_facebook.png */; };
@@ -84,6 +87,7 @@
 		1A57A71D17F9D57800A3404B /* p_visit_alt@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1A57A70517F9D57800A3404B /* p_visit_alt@2x.png */; };
 		1A57A71E17F9D57800A3404B /* p_visit.png in Resources */ = {isa = PBXBuildFile; fileRef = 1A57A70617F9D57800A3404B /* p_visit.png */; };
 		1A57A71F17F9D57800A3404B /* p_visit@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1A57A70717F9D57800A3404B /* p_visit@2x.png */; };
+		1A5A8CEB18C4923D0016B52E /* sharethis.png in Resources */ = {isa = PBXBuildFile; fileRef = 1A5A8CEA18C4923D0016B52E /* sharethis.png */; };
 		1A5E83981725B7FE0009E4A1 /* icon.icns in Resources */ = {isa = PBXBuildFile; fileRef = 1A5E83971725B7FE0009E4A1 /* icon.icns */; };
 		1A6148151704ADBB008EE2B9 /* DragLogo.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A6148131704ADBA008EE2B9 /* DragLogo.m */; };
 		1A6148161704ADBB008EE2B9 /* DragLogo.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1A6148141704ADBA008EE2B9 /* DragLogo.xib */; };
@@ -282,6 +286,11 @@
 		1A47F3661708B6F2002EB810 /* BackTabView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BackTabView.m; sourceTree = "<group>"; };
 		1A47F5A11705E630003FE5DD /* MIHSliderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MIHSliderView.h; sourceTree = "<group>"; };
 		1A47F5A21705E630003FE5DD /* MIHSliderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MIHSliderView.m; sourceTree = "<group>"; };
+		1A54BFB918C3484B0025E85F /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
+		1A54BFBB18C34A4C0025E85F /* InAppPurchaseManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = InAppPurchaseManager.h; path = Models/InAppPurchaseManager.h; sourceTree = "<group>"; };
+		1A54BFBC18C34A4C0025E85F /* InAppPurchaseManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = InAppPurchaseManager.m; path = Models/InAppPurchaseManager.m; sourceTree = "<group>"; };
+		1A54BFBF18C34BDB0025E85F /* SKProduct+LocalizedPrice.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "SKProduct+LocalizedPrice.h"; path = "Models/SKProduct+LocalizedPrice.h"; sourceTree = "<group>"; };
+		1A54BFC018C34BDB0025E85F /* SKProduct+LocalizedPrice.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "SKProduct+LocalizedPrice.m"; path = "Models/SKProduct+LocalizedPrice.m"; sourceTree = "<group>"; };
 		1A57A6F017F9D57800A3404B /* p_facebook_alt.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = p_facebook_alt.png; sourceTree = "<group>"; };
 		1A57A6F117F9D57800A3404B /* p_facebook_alt@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "p_facebook_alt@2x.png"; sourceTree = "<group>"; };
 		1A57A6F217F9D57800A3404B /* p_facebook.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = p_facebook.png; sourceTree = "<group>"; };
@@ -306,6 +315,7 @@
 		1A57A70517F9D57800A3404B /* p_visit_alt@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "p_visit_alt@2x.png"; sourceTree = "<group>"; };
 		1A57A70617F9D57800A3404B /* p_visit.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = p_visit.png; sourceTree = "<group>"; };
 		1A57A70717F9D57800A3404B /* p_visit@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "p_visit@2x.png"; sourceTree = "<group>"; };
+		1A5A8CEA18C4923D0016B52E /* sharethis.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = sharethis.png; sourceTree = "<group>"; };
 		1A5E83971725B7FE0009E4A1 /* icon.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = icon.icns; sourceTree = "<group>"; };
 		1A6148121704ADBA008EE2B9 /* DragLogo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DragLogo.h; sourceTree = "<group>"; };
 		1A6148131704ADBA008EE2B9 /* DragLogo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DragLogo.m; sourceTree = "<group>"; };
@@ -460,6 +470,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1A54BFBA18C3484B0025E85F /* StoreKit.framework in Frameworks */,
 				1A2C714616DE515D00091C15 /* Cocoa.framework in Frameworks */,
 				1A95A79D1700A991006D3708 /* Security.framework in Frameworks */,
 				1A95A7A61700ABDF006D3708 /* ScriptingBridge.framework in Frameworks */,
@@ -488,6 +499,7 @@
 		1A2C713916DE515D00091C15 = {
 			isa = PBXGroup;
 			children = (
+				1A54BFB918C3484B0025E85F /* StoreKit.framework */,
 				1A41501618BFA8BA008092EC /* CoreGraphics.framework */,
 				1A41501418BFA755008092EC /* ImageIO.framework */,
 				12A7144617FC81A500097FF2 /* Images.xcassets */,
@@ -536,6 +548,7 @@
 				1ACD0E9816FE31CB00C3D71D /* Maori.entitlements */,
 				1A2C715716DE515D00091C15 /* AppDelegate.h */,
 				1A2C715816DE515D00091C15 /* AppDelegate.m */,
+				1A54BFBE18C34A500025E85F /* Models */,
 				1A2C715A16DE515D00091C15 /* MainMenu.xib */,
 				1A41500018BF9633008092EC /* Controllers */,
 				1AD09D8417F9773B00E785DC /* bt_donate_1.tiff */,
@@ -642,6 +655,17 @@
 				1A47F5A21705E630003FE5DD /* MIHSliderView.m */,
 			);
 			name = Welcome;
+			sourceTree = "<group>";
+		};
+		1A54BFBE18C34A500025E85F /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				1A54BFBB18C34A4C0025E85F /* InAppPurchaseManager.h */,
+				1A54BFBC18C34A4C0025E85F /* InAppPurchaseManager.m */,
+				1A54BFBF18C34BDB0025E85F /* SKProduct+LocalizedPrice.h */,
+				1A54BFC018C34BDB0025E85F /* SKProduct+LocalizedPrice.m */,
+			);
+			name = Models;
 			sourceTree = "<group>";
 		};
 		1A57A72017F9DAF000A3404B /* Panel Images */ = {
@@ -783,6 +807,7 @@
 		DC1073D916E3B11900EBF5FE /* PopUp */ = {
 			isa = PBXGroup;
 			children = (
+				1A5A8CEA18C4923D0016B52E /* sharethis.png */,
 				DC1073ED16E3B11900EBF5FE /* Panel.xib */,
 				1A669153171DF467009C45E9 /* Credits.rtf */,
 				1A37635B1708232E00F77910 /* LaunchAtLoginController.h */,
@@ -1077,6 +1102,7 @@
 				1A86BA0518C0475F004B83F4 /* control.gif in Resources */,
 				1A86BA0618C0475F004B83F4 /* play.gif in Resources */,
 				1A86BA0718C0475F004B83F4 /* volume.gif in Resources */,
+				1A5A8CEB18C4923D0016B52E /* sharethis.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1136,6 +1162,8 @@
 				1A67256618BFB52200DFB29C /* TourButtonCell.m in Sources */,
 				1A67256918BFB68F00DFB29C /* HexColor.m in Sources */,
 				1A67256C18BFBC6C00DFB29C /* TourTextFieldCell.m in Sources */,
+				1A54BFBD18C34A4C0025E85F /* InAppPurchaseManager.m in Sources */,
+				1A54BFC118C34BDB0025E85F /* SKProduct+LocalizedPrice.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

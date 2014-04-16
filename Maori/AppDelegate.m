@@ -178,8 +178,25 @@
 //        [[NSUserDefaults standardUserDefaults] setInteger:1 forKey:@"launchCount"];
 //        [[NSUserDefaults standardUserDefaults] synchronize];
 //    }
-    [self showTour];
+    
+    
+//    [self showTour];
+    
+    // Locate the receipt
+    NSURL *receiptURL = [[NSBundle mainBundle] appStoreReceiptURL];
+    
+    // Test whether the receipt is present at the above path
+    if(![[NSFileManager defaultManager] fileExistsAtPath:[receiptURL path]])
+    {
+        // Validation fails
+        exit(173);
+    } else {
+        self.iapManager = [[InAppPurchaseManager alloc] init];
+        [self.iapManager loadStore];
+    }
 }
+
+
 
 - (void) showTour
 {

@@ -15,11 +15,14 @@
 #import "PanelController.h"
 #import "TourWindowController.h"
 
+#import "InAppPurchaseManager.h"
+
 #import "ADTrack.h"
 #import "Chick.h"
 
 @interface AppDelegate : NSObject <NSApplicationDelegate, PanelControllerDelegate,NSMenuDelegate, ChickDelegate>{
 }
+@property (nonatomic, strong) InAppPurchaseManager *iapManager;
 @property (nonatomic, strong) NSStatusItem *controllerItem;
 //@property (assign) IBOutlet NSWindow *window;
 @property (weak) IBOutlet NSView *mainView;
