@@ -7,6 +7,8 @@
 //
 
 #import <Cocoa/Cocoa.h>
+#import <ServiceManagement/ServiceManagement.h>
+#import "StartAtLoginController.h"
 #import "iTunes.h"
 #import "Spotify.h"
 #import "Rdio.h"

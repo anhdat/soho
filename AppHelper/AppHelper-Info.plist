@@ -7,32 +7,30 @@
 	<key>CFBundleExecutable</key>
 	<string>${EXECUTABLE_NAME}</string>
 	<key>CFBundleIconFile</key>
-	<string>icon</string>
+	<string></string>
 	<key>CFBundleIdentifier</key>
-	<string>at.anhd.soho</string>
+	<string>at.anhd.${PRODUCT_NAME:rfc1034identifier}</string>
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleName</key>
-	<string>SoHo</string>
+	<string>${PRODUCT_NAME}</string>
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
-	<string>1.1</string>
+	<string>1.0</string>
 	<key>CFBundleSignature</key>
 	<string>????</string>
 	<key>CFBundleVersion</key>
-	<string>1.1</string>
-	<key>LSApplicationCategoryType</key>
-	<string>public.app-category.music</string>
+	<string>1</string>
 	<key>LSMinimumSystemVersion</key>
-	<string>10.7</string>
-	<key>LSUIElement</key>
-	<true/>
+	<string>${MACOSX_DEPLOYMENT_TARGET}</string>
 	<key>NSHumanReadableCopyright</key>
-	<string>Copyright © 2013 Dat Anh Truong. All rights reserved.</string>
+	<string>Copyright © 2014 Dat Anh Truong. All rights reserved.</string>
 	<key>NSMainNibFile</key>
 	<string>MainMenu</string>
 	<key>NSPrincipalClass</key>
 	<string>NSApplication</string>
+	<key>LSUIElement</key>
+	<true/>
 </dict>
 </plist>

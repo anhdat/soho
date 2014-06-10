@@ -180,20 +180,50 @@
 //    }
     
     
-//    [self showTour];
+    [self showTour];
     
     // Locate the receipt
     NSURL *receiptURL = [[NSBundle mainBundle] appStoreReceiptURL];
     
     // Test whether the receipt is present at the above path
-    if(![[NSFileManager defaultManager] fileExistsAtPath:[receiptURL path]])
-    {
-        // Validation fails
-        exit(173);
-    } else {
+//    if(![[NSFileManager defaultManager] fileExistsAtPath:[receiptURL path]])
+//    {
+//        // Validation fails
+//        exit(173);
+//    } else {
         self.iapManager = [[InAppPurchaseManager alloc] init];
         [self.iapManager loadStore];
+//    }
+}
+
+- (void) checkChanged
+{
+    StartAtLoginController *loginController = [[StartAtLoginController alloc] init];
+    [loginController setBundle:[NSBundle bundleWithPath:[[[NSBundle mainBundle] bundlePath] stringByAppendingPathComponent:@"Contents/Library/LoginItems/AppHelper.app"]]]; // Path to helper app within main bundle. THIS PATH IS REQUIRED!
+    if ([[NSUserDefaults standardUserDefaults] boolForKey:@"autoLaunch"]) {
+        if (![loginController startAtLogin]) {
+            [loginController setStartAtLogin: YES];
+            
+            if (![loginController startAtLogin]) { // Error checking if you want
+                NSLog(@"Register error");
+            }
+        }
+    } else {
+        if ([loginController startAtLogin]) {
+            [loginController setStartAtLogin:NO];
+            
+            if ([loginController startAtLogin]) { // Error checking if you want
+                NSLog(@"Error");
+            }
+        }
     }
+    
+    //    BOOL startsAtLogin = [loginController startAtLogin]; // Use to check if it is set or not set.
+    //    if (startsAtLogin) {
+    //        NSAlert *alert = [NSAlert alertWithMessageText:@"Item registered" defaultButton:nil alternateButton:nil otherButton:nil informativeTextWithFormat:@"Score!"];
+    //        [alert runModal];
+    //    }
+   
 }
 
 

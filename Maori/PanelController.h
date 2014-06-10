@@ -11,7 +11,7 @@
 @optional
 
 - (StatusItemView *)statusItemViewForPanelController:(PanelController *)controller;
-
+- (void) checkChanged;
 @end
 
 #pragma mark -
@@ -26,7 +26,9 @@
     mbFliperViews* fliper;
 //    AppDelegate *appDelegate;
     BOOL authorizationPending;
+    IBOutlet NSButton *loginCheck;
 }
+
 @property (weak) IBOutlet ADHoverButtonCell *VisitBtnCell;
 @property (weak) IBOutlet ADHoverButtonCell *lastFMBtnCell;
 @property (weak) IBOutlet ADHoverButtonCell *feedbackCell;
@@ -149,4 +151,5 @@
 @property (assign) bool enableChik;
 - (void) unhideChik;
 -(void) toggleFlipBtnWith: (BOOL) value;
+- (IBAction)checkDidChanged:(id)sender;
 @end

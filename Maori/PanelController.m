@@ -876,4 +876,9 @@
 - (IBAction)visitSoHo:(id)sender {
     [[NSWorkspace sharedWorkspace] openURL: [NSURL URLWithString:@"http://soho.anhd.at"]];
 }
+
+- (IBAction)checkDidChanged:(id)sender
+{
+    [self.delegate checkChanged];
+}
 @end

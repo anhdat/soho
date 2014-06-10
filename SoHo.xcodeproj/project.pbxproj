@@ -121,6 +121,14 @@
 		1A67256918BFB68F00DFB29C /* HexColor.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A67256818BFB68F00DFB29C /* HexColor.m */; };
 		1A67256C18BFBC6C00DFB29C /* TourTextFieldCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A67256B18BFBC6C00DFB29C /* TourTextFieldCell.m */; };
 		1A6A0A3E16F781BD00939616 /* FrontView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A6A0A3D16F781BD00939616 /* FrontView.m */; };
+		1A72E12B18FE882900537F73 /* StartAtLoginController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A72E12A18FE882900537F73 /* StartAtLoginController.m */; };
+		1A72E13118FE884000537F73 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1A2C714516DE515D00091C15 /* Cocoa.framework */; };
+		1A72E13718FE884000537F73 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 1A72E13518FE884000537F73 /* InfoPlist.strings */; };
+		1A72E13918FE884000537F73 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A72E13818FE884000537F73 /* main.m */; };
+		1A72E13D18FE884000537F73 /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 1A72E13B18FE884000537F73 /* Credits.rtf */; };
+		1A72E14018FE884000537F73 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A72E13F18FE884000537F73 /* AppDelegate.m */; };
+		1A72E14318FE884000537F73 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1A72E14118FE884000537F73 /* MainMenu.xib */; };
+		1A72E14B18FE889800537F73 /* ServiceManagement.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1A72E14A18FE889800537F73 /* ServiceManagement.framework */; };
 		1A78A8DB177F52B2009CFF76 /* NSColor+CGColor.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A78A8DA177F52B2009CFF76 /* NSColor+CGColor.m */; };
 		1A801CB716EF8B3D00532C54 /* Background.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A801CB616EF8B3D00532C54 /* Background.m */; };
 		1A801CBA16EF8CE600532C54 /* LBProgressBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A801CB916EF8CE600532C54 /* LBProgressBar.m */; };
@@ -130,6 +138,7 @@
 		1A86BA0518C0475F004B83F4 /* control.gif in Resources */ = {isa = PBXBuildFile; fileRef = 1A86BA0118C0475F004B83F4 /* control.gif */; };
 		1A86BA0618C0475F004B83F4 /* play.gif in Resources */ = {isa = PBXBuildFile; fileRef = 1A86BA0218C0475F004B83F4 /* play.gif */; };
 		1A86BA0718C0475F004B83F4 /* volume.gif in Resources */ = {isa = PBXBuildFile; fileRef = 1A86BA0318C0475F004B83F4 /* volume.gif */; };
+		1A87DCDF18FE91630005880B /* AppHelper.app in CopyFiles */ = {isa = PBXBuildFile; fileRef = 1A72E13018FE884000537F73 /* AppHelper.app */; };
 		1A8BB4D517FC692700DD75A6 /* p_lastfm_alt_dc.png in Resources */ = {isa = PBXBuildFile; fileRef = 1A8BB4D317FC692700DD75A6 /* p_lastfm_alt_dc.png */; };
 		1A8BB4D617FC692700DD75A6 /* p_lastfm_alt_dc@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1A8BB4D417FC692700DD75A6 /* p_lastfm_alt_dc@2x.png */; };
 		1A8F9D2616FB486900D49883 /* Chick.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A8F9D2416FB486900D49883 /* Chick.m */; };
@@ -199,6 +208,16 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
+		1A87DCDE18FE91330005880B /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = Contents/Library/LoginItems;
+			dstSubfolderSpec = 1;
+			files = (
+				1A87DCDF18FE91630005880B /* AppHelper.app in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		1A95A8091700B60A006D3708 /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
@@ -357,6 +376,19 @@
 		1A67256B18BFBC6C00DFB29C /* TourTextFieldCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TourTextFieldCell.m; path = Views/TourTextFieldCell.m; sourceTree = "<group>"; };
 		1A6A0A3C16F781BD00939616 /* FrontView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FrontView.h; sourceTree = "<group>"; };
 		1A6A0A3D16F781BD00939616 /* FrontView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FrontView.m; sourceTree = "<group>"; };
+		1A72E12918FE882900537F73 /* StartAtLoginController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StartAtLoginController.h; sourceTree = "<group>"; };
+		1A72E12A18FE882900537F73 /* StartAtLoginController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StartAtLoginController.m; sourceTree = "<group>"; };
+		1A72E13018FE884000537F73 /* AppHelper.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AppHelper.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		1A72E13418FE884000537F73 /* AppHelper-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "AppHelper-Info.plist"; sourceTree = "<group>"; };
+		1A72E13618FE884000537F73 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		1A72E13818FE884000537F73 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		1A72E13A18FE884000537F73 /* AppHelper-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "AppHelper-Prefix.pch"; sourceTree = "<group>"; };
+		1A72E13C18FE884000537F73 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = en; path = en.lproj/Credits.rtf; sourceTree = "<group>"; };
+		1A72E13E18FE884000537F73 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		1A72E13F18FE884000537F73 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		1A72E14218FE884000537F73 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainMenu.xib; sourceTree = "<group>"; };
+		1A72E14718FE884F00537F73 /* AppHelper.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = AppHelper.entitlements; sourceTree = "<group>"; };
+		1A72E14A18FE889800537F73 /* ServiceManagement.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ServiceManagement.framework; path = System/Library/Frameworks/ServiceManagement.framework; sourceTree = SDKROOT; };
 		1A78A8D9177F52B2009CFF76 /* NSColor+CGColor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSColor+CGColor.h"; sourceTree = "<group>"; };
 		1A78A8DA177F52B2009CFF76 /* NSColor+CGColor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSColor+CGColor.m"; sourceTree = "<group>"; };
 		1A801CB516EF8B3D00532C54 /* Background.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Background.h; sourceTree = "<group>"; };
@@ -470,6 +502,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1A72E14B18FE889800537F73 /* ServiceManagement.framework in Frameworks */,
 				1A54BFBA18C3484B0025E85F /* StoreKit.framework in Frameworks */,
 				1A2C714616DE515D00091C15 /* Cocoa.framework in Frameworks */,
 				1A95A79D1700A991006D3708 /* Security.framework in Frameworks */,
@@ -477,6 +510,14 @@
 				1A95A80F1700B98D006D3708 /* Carbon.framework in Frameworks */,
 				1A2C716316DE58D300091C15 /* QuartzCore.framework in Frameworks */,
 				1A95A8111700B9BE006D3708 /* Scribbler.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		1A72E12D18FE884000537F73 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1A72E13118FE884000537F73 /* Cocoa.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -499,6 +540,7 @@
 		1A2C713916DE515D00091C15 = {
 			isa = PBXGroup;
 			children = (
+				1A72E14A18FE889800537F73 /* ServiceManagement.framework */,
 				1A54BFB918C3484B0025E85F /* StoreKit.framework */,
 				1A41501618BFA8BA008092EC /* CoreGraphics.framework */,
 				1A41501418BFA755008092EC /* ImageIO.framework */,
@@ -506,6 +548,7 @@
 				1A5E83971725B7FE0009E4A1 /* icon.icns */,
 				1A95A80E1700B98C006D3708 /* Carbon.framework */,
 				1A2C714B16DE515D00091C15 /* Maori */,
+				1A72E13218FE884000537F73 /* AppHelper */,
 				1A2C714416DE515D00091C15 /* Frameworks */,
 				1A2C714316DE515D00091C15 /* Products */,
 			);
@@ -515,6 +558,7 @@
 			isa = PBXGroup;
 			children = (
 				1A2C714216DE515D00091C15 /* SoHo.app */,
+				1A72E13018FE884000537F73 /* AppHelper.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -548,6 +592,8 @@
 				1ACD0E9816FE31CB00C3D71D /* Maori.entitlements */,
 				1A2C715716DE515D00091C15 /* AppDelegate.h */,
 				1A2C715816DE515D00091C15 /* AppDelegate.m */,
+				1A72E12918FE882900537F73 /* StartAtLoginController.h */,
+				1A72E12A18FE882900537F73 /* StartAtLoginController.m */,
 				1A54BFBE18C34A500025E85F /* Models */,
 				1A2C715A16DE515D00091C15 /* MainMenu.xib */,
 				1A41500018BF9633008092EC /* Controllers */,
@@ -699,6 +745,30 @@
 				1A57A70717F9D57800A3404B /* p_visit@2x.png */,
 			);
 			name = "Panel Images";
+			sourceTree = "<group>";
+		};
+		1A72E13218FE884000537F73 /* AppHelper */ = {
+			isa = PBXGroup;
+			children = (
+				1A72E14718FE884F00537F73 /* AppHelper.entitlements */,
+				1A72E13E18FE884000537F73 /* AppDelegate.h */,
+				1A72E13F18FE884000537F73 /* AppDelegate.m */,
+				1A72E14118FE884000537F73 /* MainMenu.xib */,
+				1A72E13318FE884000537F73 /* Supporting Files */,
+			);
+			path = AppHelper;
+			sourceTree = "<group>";
+		};
+		1A72E13318FE884000537F73 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				1A72E13418FE884000537F73 /* AppHelper-Info.plist */,
+				1A72E13518FE884000537F73 /* InfoPlist.strings */,
+				1A72E13818FE884000537F73 /* main.m */,
+				1A72E13A18FE884000537F73 /* AppHelper-Prefix.pch */,
+				1A72E13B18FE884000537F73 /* Credits.rtf */,
+			);
+			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
 		1AA70F7F16FA2C7500D2FE21 /* LastFM */ = {
@@ -927,6 +997,7 @@
 				1A2C713F16DE515D00091C15 /* Frameworks */,
 				1A2C714016DE515D00091C15 /* Resources */,
 				1A95A8091700B60A006D3708 /* CopyFiles */,
+				1A87DCDE18FE91330005880B /* CopyFiles */,
 			);
 			buildRules = (
 			);
@@ -935,6 +1006,23 @@
 			name = SoHo;
 			productName = Maori;
 			productReference = 1A2C714216DE515D00091C15 /* SoHo.app */;
+			productType = "com.apple.product-type.application";
+		};
+		1A72E12F18FE884000537F73 /* AppHelper */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 1A72E14418FE884000537F73 /* Build configuration list for PBXNativeTarget "AppHelper" */;
+			buildPhases = (
+				1A72E12C18FE884000537F73 /* Sources */,
+				1A72E12D18FE884000537F73 /* Frameworks */,
+				1A72E12E18FE884000537F73 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = AppHelper;
+			productName = AppHelper;
+			productReference = 1A72E13018FE884000537F73 /* AppHelper.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -964,6 +1052,7 @@
 			projectRoot = "";
 			targets = (
 				1A2C714116DE515D00091C15 /* SoHo */,
+				1A72E12F18FE884000537F73 /* AppHelper */,
 			);
 		};
 /* End PBXProject section */
@@ -1106,6 +1195,16 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		1A72E12E18FE884000537F73 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1A72E13718FE884000537F73 /* InfoPlist.strings in Resources */,
+				1A72E13D18FE884000537F73 /* Credits.rtf in Resources */,
+				1A72E14318FE884000537F73 /* MainMenu.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -1164,6 +1263,16 @@
 				1A67256C18BFBC6C00DFB29C /* TourTextFieldCell.m in Sources */,
 				1A54BFBD18C34A4C0025E85F /* InAppPurchaseManager.m in Sources */,
 				1A54BFC118C34BDB0025E85F /* SKProduct+LocalizedPrice.m in Sources */,
+				1A72E12B18FE882900537F73 /* StartAtLoginController.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		1A72E12C18FE884000537F73 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1A72E13918FE884000537F73 /* main.m in Sources */,
+				1A72E14018FE884000537F73 /* AppDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1190,6 +1299,30 @@
 			isa = PBXVariantGroup;
 			children = (
 				1A2C715B16DE515D00091C15 /* en */,
+			);
+			name = MainMenu.xib;
+			sourceTree = "<group>";
+		};
+		1A72E13518FE884000537F73 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				1A72E13618FE884000537F73 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		1A72E13B18FE884000537F73 /* Credits.rtf */ = {
+			isa = PBXVariantGroup;
+			children = (
+				1A72E13C18FE884000537F73 /* en */,
+			);
+			name = Credits.rtf;
+			sourceTree = "<group>";
+		};
+		1A72E14118FE884000537F73 /* MainMenu.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				1A72E14218FE884000537F73 /* en */,
 			);
 			name = MainMenu.xib;
 			sourceTree = "<group>";
@@ -1314,6 +1447,38 @@
 			};
 			name = Release;
 		};
+		1A72E14518FE884000537F73 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				CODE_SIGN_ENTITLEMENTS = AppHelper/AppHelper.entitlements;
+				COMBINE_HIDPI_IMAGES = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "AppHelper/AppHelper-Prefix.pch";
+				INFOPLIST_FILE = "AppHelper/AppHelper-Info.plist";
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		1A72E14618FE884000537F73 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				CODE_SIGN_ENTITLEMENTS = AppHelper/AppHelper.entitlements;
+				COMBINE_HIDPI_IMAGES = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "AppHelper/AppHelper-Prefix.pch";
+				INFOPLIST_FILE = "AppHelper/AppHelper-Info.plist";
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -1331,6 +1496,15 @@
 			buildConfigurations = (
 				1A2C716016DE515D00091C15 /* Debug */,
 				1A2C716116DE515D00091C15 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		1A72E14418FE884000537F73 /* Build configuration list for PBXNativeTarget "AppHelper" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1A72E14518FE884000537F73 /* Debug */,
+				1A72E14618FE884000537F73 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
